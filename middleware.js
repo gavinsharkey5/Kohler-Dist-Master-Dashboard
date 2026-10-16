@@ -35,6 +35,8 @@ const cache = new Map(); // token -> { ok, email, role, until }
 // Keep this in step with what those pages load (see supabase/README.txt).
 const REP_PATHS = [
   '/kohler-korner/read/',                // read-only published newsletters (RLS; no drafts)
+  '/kohler-korner/magazine-layout.js',      // read-only newsletter pagination
+  '/kohler-korner/magazine-layout.css',
   '/kohler-korner/model.js',              // shared safe rendering only
   '/kohler-korner/newsletter.js',         // reader client (editor RPCs enforce permissions)
   '/kohler-korner/newsletter.css',
@@ -56,8 +58,54 @@ const REP_PATHS = [
   '/api/geocode',                       // account map coordinates (api/geocode.js authorizes the route itself)
   '/inventory/',                        // What Can I Sell (units only -- no cost, value or margin; 2026-10-02)
   '/nonbuy/',                           // Non-Buy Reports (2026-10-08; a rep's history + book are the per-rep slices below)
+  '/tasks/',                            // Field Tasks: a rep assigns work to a sales associate (2026-10-14; RLS decides the rows)
 ];
 const REP_HOME = '/rep/';
+
+// A SALES ASSOCIATE (allowed_users.role = 'associate', 2026-10-14) does field
+// work reps hand them: displays, tap handles, POS. They may open only the
+// Field Tasks page and what it loads; everything else sends them there
+// (403 for a data fetch). Which tasks they see is row-level security.
+const ASSOCIATE_PATHS = ['/tasks/', '/shared/', '/rep/rep.css'];   // rep.css = the stylesheet tasks/ links (NOT the rep home; the same unstyled-page bug as finance, 2026-10-15)
+const ASSOCIATE_HOME = '/tasks/';
+function associateMayOpen(pathname) {
+  const p = pathname.split('?')[0];
+  return ASSOCIATE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+}
+
+// The FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a
+// manager who handles billbacks and supplier recaps -- Alexis. They may open
+// the Incentive Hub, both MPO trackers and Supplier Budgets, plus what those
+// pages load (the Incentive Tracker and Incentive Performance pages are NOT
+// theirs -- Gavin, 2026-10-15); anything
+// else sends them to the hub (403 for a data fetch). Row-level security is
+// untouched: they are a manager everywhere the database is asked.
+const FINANCE_PATHS = [
+  '/hub/', '/MPOs/', '/supplier-budget/',
+  '/rep/rep.css',   // the stylesheet the manager home + Supplier Budgets link (NOT the rep home); without it her pages rendered unstyled, 2026-10-15
+  '/incentive-tracking/programs.js', '/incentive-tracking/data/', '/incentive-tracking/assets/',   // what the hub loads; NOT the Incentive Tracker page (Gavin, 2026-10-15)
+  '/shared/', '/carbliss-mpo/data/', '/api/',
+  '/accounts/data/elig/', '/accounts/data/hist/', '/accounts/data/catalog.json', '/accounts/data/index.json', '/accounts/data/products.json',   // what the hub loads; never a rep's route or sales files
+];
+const FINANCE_HOME = '/';   // the manager home, which hides every card outside the workspace for them
+function financeMayOpen(pathname) {
+  const p = pathname.split('?')[0];
+  if (p === '/' || p === '/index.html') return true;
+  return FINANCE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+}
+
+// IT (allowed_users.role = 'it', 2026-10-15): Vlad. One page, the UPC
+// Registration Audit, and what it loads; everything else sends them there
+// (403 for a data fetch). No other row-level grant applies to the 'it' role.
+// A MANAGER may open the audit only with allowed_users.upc_audit (Gavin + the
+// brand managers, set by migration 20261015190000_upc_audit.sql).
+const IT_PATHS = ['/upc-audit/', '/shared/', '/rep/rep.css'];   // rep.css = the stylesheet the page links (not the rep home)
+const IT_HOME = '/upc-audit/';
+function itMayOpen(pathname) {
+  const p = pathname.split('?')[0];
+  return IT_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+}
+function isUpcPath(pathname) { return /^\/upc-audit(\/|$)/.test(pathname); }
 
 // ACCOUNT DATA IS SERVED PER REP (2026-09-30). accounts/generate.py writes one
 // slice per rep under /accounts/data/{book,reps,sales}/<key>..., where <key>
@@ -203,7 +251,46 @@ function wantsDocument(request) {
 
 function route(request, url, verdict) {
   if (verdict.ok) {
-    if (verdict.role === 'manager') return passThrough();
+    if (verdict.role === 'it') {
+      if (itMayOpen(url.pathname)) return passThrough();
+      if (!wantsDocument(request)) {
+        return new Response(JSON.stringify({ error: 'not part of the IT workspace' }), {
+          status: 403,
+          headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+        });
+      }
+      return redirect(new URL(IT_HOME, url).toString());
+    }
+    if (verdict.role === 'manager') {
+      if (isUpcPath(url.pathname)) {
+        if (verdict.upc) return passThrough();
+        if (!wantsDocument(request)) {
+          return new Response(JSON.stringify({ error: 'not available' }), {
+            status: 403,
+            headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+          });
+        }
+        return redirect(new URL(verdict.workspace === 'finance' ? FINANCE_HOME : '/', url).toString());
+      }
+      if (verdict.workspace !== 'finance' || financeMayOpen(url.pathname)) return passThrough();
+      if (!wantsDocument(request)) {
+        return new Response(JSON.stringify({ error: 'not part of the finance workspace' }), {
+          status: 403,
+          headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+        });
+      }
+      return redirect(new URL(FINANCE_HOME, url).toString());
+    }
+    if (verdict.role === 'associate') {
+      if (associateMayOpen(url.pathname)) return passThrough();
+      if (!wantsDocument(request)) {
+        return new Response(JSON.stringify({ error: 'not available to sales associates' }), {
+          status: 403,
+          headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+        });
+      }
+      return redirect(new URL(ASSOCIATE_HOME, url).toString());
+    }
     // A rep: their own account slice, never anyone else's.
     if (url.pathname === '/hub/data/accounts.js') {
       const key = nameKey(verdict.name);
@@ -308,7 +395,7 @@ async function check(token, supabaseUrl, publishableKey) {
 
   let res;
   try {
-    res = await fetch(`${supabaseUrl}/rest/v1/allowed_users?select=email,name,role,title,reports_to&limit=1`, {
+    res = await fetch(`${supabaseUrl}/rest/v1/allowed_users?select=*&limit=1`, {
       headers: {
         apikey: publishableKey,
         authorization: `Bearer ${token}`,
@@ -329,7 +416,7 @@ async function check(token, supabaseUrl, publishableKey) {
   if (!row) return remember(token, { ok: false, reason: 'notlisted' }, now + 60 * 1000);
 
   const until = Math.min(exp, now + CACHE_TTL_MS);
-  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep', title: row.title || '', reports_to: row.reports_to || '' }, until);
+  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep', title: row.title || '', reports_to: row.reports_to || '', workspace: row.workspace || '', upc: row.upc_audit === true || row.role === 'it' }, until);
 }
 
 function remember(token, verdict, until) {

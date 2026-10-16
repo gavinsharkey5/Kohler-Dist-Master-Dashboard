@@ -10,22 +10,22 @@ Legend: `[ ]` open, `[~]` built, waiting on a step outside the repo,
 device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
+- [ ] **UPC Registration Audit for Vlad (2026-10-15).** Built: /upc-audit/ -- Vlad adds his FileMaker export
+  and the ABC registration search (license -002; this year's file, plus next year's once renewals start), the
+  page matches them on UPC in his browser and lists what still needs registering (Not Registered, UPC Not on
+  Registration, Expired / Historical) plus Pending, Wrong Reg # in FileMaker and No UPC, with a dated notes log
+  per product code and New / Still Open / Resolved against the last run. Vlad sees only this page; you and every
+  brand manager get it as a tool. DONE 2026-10-15: migration run, Vlad added as role `it` (checked: the tables
+  exist, you + the 9 brand managers have upc_audit). Left: Vlad signs in and runs it once with the two files. A new brand manager later: re-run
+  `supabase/seed/upc_audit_access.sql` or tick allowed_users.upc_audit.
 
-- [~] **Brand managers open the Incentive Hub and both MPO trackers on their brands (2026-10-14).** LIVE ON PUSH, no
-  Supabase step: the assignment comes from the Encompass Brand Families export (shared/data/brand_families.csv ->
-  shared/data/brand-managers.json, 9 brand managers, manager -> suppliers -> brand families) by name. A brand manager
-  lands on Program View / View by Program showing only their suppliers' programs (brand families count too: Carbliss
-  under SN Food & Beverage), every rep; nothing matching = "None of Your Brands Are on the <scope> MPO This Month". A
-  district manager who also carries a brand (Chris McCrohan: Red Bull; Denise Montes) keeps their team across every
-  supplier. OPTIONAL, Gavin: `supabase/seed/program_brands.sql` (regenerated from the same export; REVIEW, then run after
-  the Manage Programs migration) makes the database agree for Manage Programs / Non-Buy scope, and
-  `supabase/migrations/20261014090000_team_brands.sql` lets kdh_team carry program_brands; a database row with brands
-  overrides the file. REFRESH when assignments change: save the new Brand Families export over
-  shared/data/brand_families.csv (no emails in it) and run `python3 tools/program_seed.py`.
-  HYBRID (Chris McCrohan: on-premise DM + Red Bull): the Hub and both MPO trackers give him his team across
-  every supplier already. For Manage Programs / Non-Buy to read him the same way once program_brands.sql is
-  run, also run `supabase/migrations/20261014120000_hybrid_scope.sql` (kdh_program_scope `hybrid`; a program
-  must be for the team with any supplier OR for Red Bull with any rep; Non-Buy = team, every supplier).
+- [ ] **Supplier Budgets round two (2026-10-15).** Built: + New Account from the expense form, saved vendors
+  listed on tap, a billback rule per account (Constellation / Crown never split: Kohler Spend = Total; 50/50
+  accounts fill half), invoice numbers that open in Encompass, no File column, past and imported rows editable.
+  Steps: (1) run `supabase/migrations/20261015150000_budget_rules.sql` in the SQL Editor; (2) OPTIONAL, your call: 8 Crown rows were split 50/50 before the rule (7 on the 2026 tab,
+  1 on 2025). The SQL to list them and to zero their billback is in supplier-budget/README.txt; every change is
+  logged with the old value.
+
 - [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
   Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
   had to store the new cookie each time; a lost or unapplied renewal left the phone sending the old
@@ -296,6 +296,45 @@ device, a decision).
   Supabase -- estimate: Sonnet-class model, well under $50/month at 27 reps.
 
 ## Tabled -- waiting on data or a signature
+- **Supplier Budgets: invoice numbers as Encompass links (tabled by Gavin, 2026-10-15).** Built and OFF: nothing
+  links until an editor saves one Encompass invoice address under Ledger -> "Invoice Links to Encompass" (needs the
+  20261015150000 migration). To revisit: confirm the sheet's invoice numbers are Encompass invoices, then save one
+  address.
+
+- **Rewrite git history to purge supplier-budget/expenses.csv (2026-10-14).** The old Supplier Budget page kept the
+  tracker's Expenses tab (dollars by vendor) as a CSV in this PUBLIC repo from 2026-07 until 2026-10-14. It is deleted
+  from the tree now, but every clone and GitHub's history still carry it. Removing it for good = `git filter-repo`
+  (or BFG) on the whole history + a force push to main + every collaborator re-cloning + Vercel redeploy. Gavin
+  decides whether that is worth it; the data is a summary of invoices already shared with the suppliers.
+- **"Ledger Plan" (Gavin, 2026-10-14; say the name to recall it).** The question: could the site hold the
+  invoices itself so a rep sells a case through our system (the tables live here, not in Encompass)? The answer
+  on file: possible in principle, a different project in kind, not recommended. An invoice is the OUTPUT of
+  pricing, deals / post-offs, deposits, NJ taxes, credit holds, allocation, pick / load / proof of delivery,
+  returns, AR, GL, excise filings and supplier depletion reports -- replacing Encompass means owning all of
+  it (a distributor ERP: multi-year, migration + parallel run, truck printers, chain EDI, accounting,
+  compliance; the risk is financial / regulatory, not display). The three tiers: (1) READ-ONLY MIRROR --
+  invoices, balances, purchase transactions in Supabase with RLS (own accounts / managers; dollars
+  manager-only), a loader like tools/load_contacts.py, Invoices tab on the Account page + a manager
+  Transactions page; days per dataset, freshness = the export cadence (Encompass caps ~100k rows; window
+  pulls restate); never in the public repo. (2) ORDER CAPTURE on the site that Encompass still books,
+  prices and invoices -- months, and ONLY if Encompass's API creates orders (ask the account rep: does the
+  plan include API access, does it allow order creation). (3) REPLACE Encompass as the system of record --
+  a company decision with a vendor comparison, not a feature of this site. Recommendation: build (1), ask
+  the API question for (2), never (3) from here.
+
+- **Warehouse + delivery workflow (tabled by Gavin, 2026-10-14; keep).** The day as one chain of hand-offs,
+  each leaving a timestamp: (1) Inbound -- receiver scans / types the product number on a Warehouse phone
+  page, units + supplier, taps Received (a receipt row; Available stays Encompass's number). (2) Reps who
+  starred the product see "Received today, N units" on their Starred group and Rep Home (no push needed in
+  v1). (3) Orders stay in Encompass. (4) Night crew: "Tomorrow's Routes" page (truck, stops, cases, kegs)
+  from the Encompass route export; Loaded per truck, visible to reps. (5) Driver: route on the phone (stops
+  in order, directions, what is on the hand truck, keg pickups, the rep's note); taps Delivered, or logs a
+  short ship / refusal / return with a photo. (6) Rep sees "Delivered 10:42" / "Refused" on the Account page
+  and Needs Attention; a refusal creates a follow-up. (7) Returns / short ships are still keyed into Encompass
+  by the office -- the site is the fast signal, Encompass the invoice. NEEDS: the daily route export (truck,
+  stop order, customer, cases, kegs), a delivery-events table (like merch records), warehouse + driver roles
+  in allowed_users with their own home pages; the case barcode vs product number question for scanning.
+  Steps 1, 2 and 5 can be mocked on sample data first.
 
 - Encompass -> Snowflake -> Supabase pipeline (Snowflake agreement not
   signed yet). Unblocks: live sales numbers, the display auction tracker
@@ -314,7 +353,40 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+- [x] **Finance workspace LIVE (2026-10-15).** Gavin ran the finance and budget-preview migrations and added the
+  finance person's allow-list row. Her Home shows four cards (Incentives, Off / On-Premise MPOs, Supplier Budgets);
+  every other page sends her home. First real sign-in showed an unstyled page (the middleware blocked the shared
+  stylesheet); fixed the same day and confirmed after a refresh. View As -> Manager shows the same screen.
 
+- [x] **Supplier Budgets LIVE (2026-10-15).** Gavin ran the migration, pasted the seed (two parts: 987 rows from the
+  2026 tab, 917 from 2025, 120 accounts for 2026 of which 59 are Needs Review placeholders) and set budget_editor for
+  Alexis. Still open: whether brand managers who are not editors should see their accounts, and the history rewrite
+  for the old expenses.csv (Tabled).
+- [x] **Supplier Budgets page (2026-10-14).** /supplier-budget/: Ledger (sheet columns in order, sticky sortable
+  header, search, Account / Supplier / Brand Manager / Billback / date filters, newest first, 100 + Show More, summary
+  strip for the filter, stacked rows on phones, CSV for editors), Add Expense (account picker grouped by supplier,
+  vendor typeahead + Kohler one tap, Kohler Spend live, Save and Add Another), Edit / Delete / Mark Received from the
+  row, Budget tab (amount spent, % bar, billback outstanding, editable amounts, Add Account, Needs Review flags).
+  Manager home card (Planning & Finance) + sidebar item; hidden from reps. Needs Gavin's three steps (Now).
+- [x] **View As: Manager / Rep / Associate in one picker (2026-10-14).** The manager home's "View as Rep" and
+  Gavin's "Preview as Manager" are one "View As" button; every manager gets Rep and Associate, Gavin also Manager.
+  An associate preview opens on their Field Tasks queue, read-only. Live on push, no Supabase step.
+- [x] **Field Tasks: reps hand work to sales associates (2026-10-14).** Migration
+  `20261014180000_field_tasks.sql` run by Gavin the same day (Success, no rows). `/tasks/`: associate queue,
+  rep list + New Task, manager read-only overview, one thread per task with photos. Open assumptions (any rep
+  to any associate, photo required for Display / Tap Handle only, managers see every task, in-app
+  notifications only) and the v2 list are in sales-associates/PLAN.md.
+- [x] **2026-10-14 Inventory: starred products + brand-manager scope + role defaults.** Migration product_stars run by Gavin the same day ("Success. No rows returned"): stars sync across devices. Reps (and managers) star
+  products; a Starred group tops the list with "N Out · M Low", a Starred chip filters to them, stars sync per
+  person (device until the migration runs). A brand manager sees only their suppliers' products (tiles, list,
+  search, filter sheet; "Your Suppliers: ..."), a hybrid DM everything, reps never scoped. Rep default = Starred
+  first; brand manager default = their suppliers only.
+- [x] **2026-10-14 Rep Inventory page rebuilt for the phone (inventory/).** One report in place of three exports
+  (Product Num Name / Supplier / Brand Family / On Floor / Pre Sales / Allocated / Available; Available as reported, never
+  re-derived); Shopify-style list: search + Sort / Filter row, status chips, dismissible supplier / brand chips, rows
+  with an Available pill (green > 24, amber 1-24, red <= 0), tap to expand on phones, inline figures on iPad, sticky
+  supplier headers, chunked rendering for 3,200 rows, sort + filters remembered. Dropped (the report cannot support
+  them): days of cover, on the way / next arrival, just arrived, backordered. inventory/README.txt.
 - [x] **2026-10-09 Account assistant is LIVE on kohlerdisthub.com.** Ledger migration run, API key + KDH_CHAT_USERS (every allow-list sign-in) + KDH_CHAT_DAILY_USD=10 set on Vercel Production. First live question answered (Shop Rite Liq Englewood: 12-month totals, top products, period comparisons). Still to do: watch the ledger for a week, raise the daily cap as real use shows, set a monthly spend limit in the Claude Console, consider KDH_CHAT_MODEL=claude-sonnet-5-5 if cost per question runs high. First try failed with HTTP 401 "invalid x-api-key" (a pasted key) -- managers now see the API's reason on the error line.
 
 - [x] **Non-Buy Reports (2026-10-08, merged to main the same day after Gavin's approval):** one engine (nonbuy/engine.js, pure) + one static source

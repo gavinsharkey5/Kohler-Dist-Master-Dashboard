@@ -25,7 +25,7 @@
    the row, never sent to the phone, so a lost reply costs nothing -- the
    next request simply renews again from the row. The pages still get
      kdh_at    the access token the pages and the middleware read
-     kdh_user  {name, role, email, title, dm} for the pages
+     kdh_user  {name, role, email, title, dm, ws, upc} for the pages (ws = 'finance' for the finance workspace; upc = 1 may open the UPC audit)
    on every renewal, and the keep-alive in shared/kdh-user.js re-asks GET
    /api/session when the page's own copy runs out. When kdh_at is expired or
    missing on a page load, middleware.js sends the browser through
@@ -86,7 +86,7 @@ function clear(name, httpOnly) {
 export function accessCookies(accessToken, me, keep) {
   return [
     cookie('kdh_at', accessToken, { keep }),
-    cookie('kdh_user', JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email || '', title: me.title || '', dm: me.reports_to || '' }), { keep }),
+    cookie('kdh_user', JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email || '', title: me.title || '', dm: me.reports_to || '', ws: me.workspace || '', ...(me.upc === true || me.upc_audit === true || me.role === 'it' ? { upc: 1 } : {}) }), { keep }),
   ];
 }
 // A server-held session: the device secret (never rotates) + the access cookies.
@@ -143,7 +143,7 @@ export function refreshSession(rt, supabaseUrl, key) {
 export async function allowRow(token, supabaseUrl, key) {
   let res;
   try {
-    res = await fetch(`${supabaseUrl}/rest/v1/allowed_users?select=email,name,role,title,reports_to&limit=1`, {
+    res = await fetch(`${supabaseUrl}/rest/v1/allowed_users?select=*&limit=1`, {
       headers: { apikey: key, authorization: `Bearer ${token}`, accept: 'application/json' },
     });
   } catch { return { ok: false, reason: 'unavailable' }; }

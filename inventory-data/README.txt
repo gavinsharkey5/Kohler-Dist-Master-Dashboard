@@ -1,29 +1,33 @@
 Inventory source exports (shared)
 ================================
 
-The five Encompass/RDE exports both inventory dashboards read. One folder so the
+The five Encompass/RDE exports the EXECUTIVE inventory dashboard reads (the rep view moved to its own one-file report on 2026-10-14, below). One folder so the
 same export is never pulled twice, added 2026-08-28 when the rep and executive
 views were split apart.
 
   ../inventory/            REP VIEW -- "what can I sell right now?"
-                           Reads THREE of these: status, projections, received.
-                           No cost, no value, no write-off exposure by design.
+                           Since 2026-10-14 reads ONE file here, Inventory_Report.csv
+                           (Product Num Name, Supplier, Brand Family, On Floor
+                           Inventory, Pre Sales, Allocated, Available) -- see
+                           ../inventory/README.txt. It no longer reads the five
+                           exports below. No cost, no value, no write-off
+                           exposure by design.
   ../inventory-overview/   EXECUTIVE VIEW -- "what inventory risk are we
                            carrying?" Reads ALL FIVE; purchase_transactions is
                            what makes valuation and PO-level exposure possible.
 
 Files, and which view needs them:
 
-  inventory_status.csv          BOTH.  Encompass "Inventory Status". The spine --
+  inventory_status.csv          EXEC.  Encompass "Inventory Status". The spine --
                                 one row per product, grouped by supplier.
                                 `Available` is the sellable figure and is used as
                                 delivered; see ../inventory/generate.py for why it
                                 must not be recomputed.
-  inventory_projections.csv     BOTH.  Encompass "Inventory Projections". Real
+  inventory_projections.csv     EXEC.  Encompass "Inventory Projections". Real
                                 days of inventory catalog-wide, plus Ordered and
                                 Next Receive Date. MONTH COLUMNS SHIFT EVERY PULL
                                 -- match by pattern, never by name.
-  inventory_received.csv        BOTH.  RDE "Inventory Received". Recent receipt
+  inventory_received.csv        EXEC.  RDE "Inventory Received". Recent receipt
                                 lots, a rolling ~3-month window.
   inventory_at_risk.csv         EXEC.  Encompass "Inventory at Risk (0-60 Days to
                                 Expire)". Write-off dollars and expiry exposure.
@@ -53,6 +57,7 @@ FUTURE:
 Not needed: an invoice/sales export. Encompass refuses it above 100,000 records
 and projections already carries the depletion history and DOI.
 
-After pulling, run BOTH generators -- they read the same files:
-  python3 ../inventory/generate.py
+After pulling, run the executive generator:
   python3 ../inventory-overview/generate.py
+The rep view has its own report: save it as Inventory_Report.csv here and run
+  python3 ../inventory/generate.py

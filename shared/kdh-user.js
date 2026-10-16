@@ -20,7 +20,9 @@
         var p = cookie('kdh_preview');
         if (p) {
           var o = null; try { o = p.charAt(0) === '{' ? JSON.parse(p) : null; } catch (e2) {}
-          if (o && o.role === 'manager' && o.name) return { name: o.name, role: 'manager', preview: true, manager: u.name, email: u.email, title: o.title || '', dm: o.dm || '', brands: Array.isArray(o.brands) && o.brands.length ? o.brands.slice() : null };
+          if (o && o.role === 'manager' && o.name) return { name: o.name, role: 'manager', preview: true, manager: u.name, email: u.email, title: o.title || '', dm: o.dm || '', brands: Array.isArray(o.brands) && o.brands.length ? o.brands.slice() : null, ws: o.ws || '' };
+          // an associate preview (2026-10-14): the whole site becomes that associate's (one page, Field Tasks)
+          if (o && o.role === 'associate' && o.name) return { name: o.name, role: 'associate', preview: true, manager: u.name, email: u.email, title: '', dm: '', previewEmail: o.email || '' };
           return { name: (o && o.name) || p, role: 'rep', preview: true, manager: u.name, email: u.email, title: '', dm: '' };
         }
       }
@@ -56,7 +58,7 @@
     wireExit();
   }
   function previewChipHtml(u) {
-    return '<span>Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '</span><button type="button" id="kdhExitPreview">Exit</button>';
+    return '<span>Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : u.role === 'associate' ? ' (associate)' : '') + '</span><button type="button" id="kdhExitPreview">Exit</button>';
   }
   // Leaving preview puts the manager back on their own home page: their
   // identity and permissions never changed, only what the pages showed.
@@ -68,6 +70,24 @@
     try { var src = (document.currentScript && document.currentScript.src) || ''; var i = src.indexOf('shared/kdh-user.js'); return i > 0 ? src.slice(0, i) : ''; } catch (e) { return ''; }
   })();
   var REP_HOME = ROOT + 'rep/';
+  // A SALES ASSOCIATE (role 'associate', 2026-10-14) has ONE page: Field Tasks.
+  var ASSOC_HOME = ROOT + 'tasks/';
+  function isAssoc(u) { return !!(u && u.role === 'associate'); }
+  // the FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a manager -- Alexis, billbacks and
+  // supplier recaps -- whose site is the Incentive Hub, the Incentive Tracker, both MPO trackers, Supplier Budgets
+  // and Incentive Performance, nothing else. The middleware enforces it; this only shapes the chrome.
+  function isFin(u) { return !!(u && u.role === 'manager' && u.ws === 'finance'); }
+  var FIN_HOME = ROOT;   // the manager home trims itself to the finance cards
+  // IT (role 'it', 2026-10-15): Vlad -- ONE page, the UPC Registration Audit. A manager with the upc flag
+  // (kdh_user.upc: Gavin, the brand managers) has it as a tool. The middleware enforces both.
+  var IT_HOME = ROOT + 'upc-audit/';
+  function isIT(u) { return !!(u && u.role === 'it'); }
+  // A sign-in cookie can predate the person's upc_audit flag (it is rewritten only at the next renewal), so a
+  // manager without it in the cookie is asked once against the database (checkUpc) and the answer kept on this
+  // device for 6 hours under kdh_upc:<email>. Only the LINKS follow this; access is still the middleware's call.
+  function upcMemo(u) { try { var v = (localStorage.getItem('kdh_upc:' + String(u.email || '').toLowerCase()) || '').split('|'); return +v[1] > Date.now() - 6 * 3600e3 ? v[0] : ''; } catch (e) { return ''; } }
+  function canUpc(u) { return !!(u && (isIT(u) || (u.role === 'manager' && !u.preview && (u.upc || upcMemo(u) === '1')))); }
+  function homeOf(u) { return !u ? ROOT : isFin(u) ? FIN_HOME : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : isIT(u) ? IT_HOME : REP_HOME; }
 
   // THEME (2026-09-30): the saved choice (localStorage kdh_theme = 'dark' |
   // 'light') wins; with no choice the DEVICE setting applies and the page
@@ -106,6 +126,7 @@
     var m = document.querySelector('meta[name="kdh-page"]');
     // a page can name itself differently for a manager ("My Accounts" / "Accounts")
     if (m && u && u.role === 'manager' && m.getAttribute('data-manager')) return m.getAttribute('data-manager');
+    if (m && m.content === 'Manager Home' && isFin(u)) return 'Home';   // the finance workspace's trimmed home
     if (m && m.content) return m.content;
     var h = document.querySelector('h1'); if (h && h.textContent.trim()) return h.textContent.replace(/\s+/g, ' ').trim();
     return (document.title || '').split(/\s+[|\u2014\u00b7-]\s+/)[0].trim();
@@ -120,6 +141,7 @@
     var u = user(); var root = document.documentElement;
     root.classList.toggle('kdh-rep', !!(u && u.role !== 'manager'));
     root.classList.toggle('kdh-mgr', !!(u && u.role === 'manager'));
+    root.classList.toggle('kdh-assoc', isAssoc(u));
   }
   markViewer();
   // WHERE "BACK" GOES (2026-09-29): the place the person came from, named.
@@ -131,7 +153,7 @@
   function returnTarget() {
     var u = user();
     var isMgr = !!(u && u.role === 'manager');
-    var own = { label: isMgr ? 'Back to Manager Home' : 'Back to Rep Home', href: isMgr ? ROOT : REP_HOME };
+    var own = { label: isMgr ? 'Back to Manager Home' : isAssoc(u) ? 'Back to Field Tasks' : isIT(u) ? 'Back to UPC Audit' : 'Back to Rep Home', href: homeOf(u) };
     var key = 'kdh_from:' + location.pathname;
     var saved = null; try { saved = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch (e) {}
     var t = null;
@@ -186,6 +208,9 @@
     mp: I('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>'),
     merch: I('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
     nb: I('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6"/>'),
+    sb: I('<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/>'),
+    upc: I('<path d="M4 5v14M7 5v14M10 5v14M14 5v14M16 5v14M20 5v14"/>'),
+    tasks: I('<path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/>'),
     more: I('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
     tap: I('<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'),
     rb: I('<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>'),
@@ -211,6 +236,15 @@
   function progDefault(u) { return ROOT + 'hub/' + (u.role === 'manager' ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc'); }
   function navItems(u) {
     if (!u) return [];
+    if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }];
+    if (isIT(u)) return [{ key: 'upc', label: 'UPC Audit', href: IT_HOME }];
+    if (isFin(u)) return [
+      { key: 'home', label: 'Home', href: FIN_HOME },
+      { key: 'inc', label: 'Incentives', short: 'Programs', href: ROOT + 'hub/' },   // the bar's word for the hub everywhere on the site; six tabs must fit a 375px phone
+      { key: 'off', label: 'Off-Premise', short: 'Off-Prem', href: ROOT + 'MPOs/off-prem/index.html' },
+      { key: 'on', label: 'On-Premise', short: 'On-Prem', href: ROOT + 'MPOs/on-prem/index.html' },
+      { key: 'sb', label: 'Budgets', href: ROOT + 'supplier-budget/' }
+    ];
     var isMgr = u.role === 'manager';
     var items = [
       { key: 'home', label: 'Home', href: isMgr ? ROOT : REP_HOME },
@@ -224,13 +258,17 @@
   }
   // the authorized tools that sit behind More (phones) / in the sidebar (desktop)
   function toolItems(u) {
+    if (isAssoc(u) || isIT(u)) return [];
+    if (isFin(u)) return [];   // the four navigation items are the whole workspace (Gavin, 2026-10-15)
     var isMgr = u.role === 'manager';
     var t = [
       { key: 'off', group: 'Programs', label: 'Off-Premise MPOs', href: ROOT + 'MPOs/off-prem/index.html' },
       { key: 'on', group: 'Programs', label: 'On-Premise MPOs', href: ROOT + 'MPOs/on-prem/index.html' },
       { key: 'tap', group: 'Trackers', label: 'Tap Tracker', href: ROOT + 'isellbeer/tap-survey-tracking/' },
       { key: 'rb', group: 'Trackers', label: 'Red Bull Tracker', href: ROOT + 'redbull/' },
-      { key: 'cb', group: 'Trackers', label: 'Carbliss Leaderboard', href: ROOT + 'carbliss-onprem-targets/' }
+      { key: 'cb', group: 'Trackers', label: 'Carbliss Leaderboard', href: ROOT + 'carbliss-onprem-targets/' },
+      // Field Tasks (2026-10-14): a rep hands display / tap handle / POS work to a sales associate
+      { key: 'tasks', group: 'Field', label: 'Field Tasks', href: ROOT + 'tasks/' }
     ];
     if (isMgr) t.push({ key: 'invm', group: 'Manager', label: 'Inventory', href: ROOT + 'inventory/', menuOnly: true });
     if (isMgr) t.push({ key: 'exc', group: 'Manager', label: 'Exceptions', href: ROOT + 'exceptions/' });
@@ -239,6 +277,8 @@
     if (isMgr) t.push({ key: 'mp', group: 'Manager', label: 'Manage Programs', href: ROOT + 'manage-programs/' });
     if (isMgr) t.push({ key: 'kk', group: 'Manager', label: 'Kohler Korner', href: ROOT + 'kohler-korner/' });
     if (isMgr) t.push({ key: 'nb', group: 'Manager', label: 'Non-Buy Reports', href: ROOT + 'nonbuy/' });
+    if (isMgr) t.push({ key: 'sb', group: 'Manager', label: 'Supplier Budgets', href: ROOT + 'supplier-budget/' });
+    if (canUpc(u)) t.push({ key: 'upc', group: 'Manager', label: 'UPC Registration Audit', href: IT_HOME });
     if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
     return t;
   }
@@ -247,6 +287,15 @@
     var isMgr = u && u.role === 'manager';
     var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : location.pathname.replace(/^\//, '');
     rel = rel.split(/[?#]/)[0];
+    if (isFin(u)) {
+      if (/^hub\//.test(rel)) return { nav: 'inc', tool: '' };
+      if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'off', tool: '' };
+      if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'on', tool: '' };
+      if (/^supplier-budget\//.test(rel)) return { nav: 'sb', tool: '' };
+      return { nav: rel === '' || rel === 'index.html' ? 'home' : '', tool: '' };
+    }
+    if (/^upc-audit\//.test(rel)) return isIT(u) ? { nav: 'upc', tool: '' } : { nav: 'more', tool: 'upc' };
+    if (/^tasks\//.test(rel)) return isAssoc(u) ? { nav: 'home', tool: '' } : { nav: 'more', tool: 'tasks' };
     if (/^accounts\//.test(rel)) return { nav: 'accounts', tool: '' };
     if (/^hub\//.test(rel)) {   // the hub's MPO tabs mark their MPO item (2026-10-06)
       var cat = (location.hash.match(/[#&]cat=([^&]+)/) || [])[1];
@@ -260,6 +309,7 @@
     if (/^kohler-korner\//.test(rel)) return { nav: 'more', tool: 'kk' };
     if (/^nonbuy\//.test(rel)) return isMgr ? { nav: 'more', tool: 'nb' } : { nav: 'accounts', tool: '' };   // reps reach it from My Accounts
     if (/^exceptions\//.test(rel)) return { nav: 'more', tool: 'exc' };
+    if (/^supplier-budget\//.test(rel)) return { nav: 'more', tool: 'sb' };
     if (/^merchandising\//.test(rel)) return { nav: 'more', tool: 'merch' };
     if (/^inventory\//.test(rel)) return { nav: 'inventory', tool: isMgr ? 'invm' : '' };
     if (/^isellbeer\/tap-survey-tracking\//.test(rel)) return { nav: 'more', tool: 'tap' };
@@ -286,7 +336,7 @@
     var tabs = navItems(u).filter(function (it) { return !(isMgr && it.key === 'inventory'); });
     // the bottom bar says "Accounts" (2026-10-08): "My Accounts" truncated to "My Acco..." on a 390px phone;
     // the sidebar and the page title keep "My Accounts" and the link's aria-label carries the full name
-    t.innerHTML = '<div class="kdh-tabs-in">' + tabs.map(function (it) { return it.key === 'accounts' && it.label === 'My Accounts' ? link('kdh-tab', {key: it.key, href: it.href, label: 'Accounts'}, it.key === w.nav, ' aria-label="My Accounts"') : link('kdh-tab', it, it.key === w.nav); }).join('') +
+    t.innerHTML = '<div class="kdh-tabs-in">' + tabs.map(function (it) { return it.key === 'accounts' && it.label === 'My Accounts' ? link('kdh-tab', {key: it.key, href: it.href, label: 'Accounts'}, it.key === w.nav, ' aria-label="My Accounts"') : it.short ? link('kdh-tab', {key: it.key, href: it.href, label: it.short}, it.key === w.nav, ' aria-label="' + esc(it.label) + '"') : link('kdh-tab', it, it.key === w.nav); }).join('') +
       '<button type="button" class="kdh-tab' + (w.nav === 'more' ? ' on' : '') + '" id="kdhMoreBtn" aria-haspopup="true" aria-expanded="false"' + (w.nav === 'more' ? ' aria-current="page"' : '') + '>' + NAV_ICON.more + '<span>More</span></button></div>';
     document.body.appendChild(t);
     document.documentElement.classList.add('kdh-has-tabs');
@@ -311,7 +361,7 @@
     if (!u || document.getElementById('kdhSide') || shellOff()) return;
     SIDE_U = u;
     var w = where(u), isMgr = u.role === 'manager';
-    var home = isMgr ? ROOT : REP_HOME;
+    var home = homeOf(u);
     var groups = {}; toolItems(u).forEach(function (t) { (groups[t.group] = groups[t.group] || []).push(t); });
     var html = '<a class="kdh-side-logo" href="' + home + '" aria-label="Kohler Distribution Hub home"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="" width="40" height="48"><span class="kdh-lock"><b>Kohler</b><small>Distribution Hub</small></span></a><nav class="kdh-side-nav" aria-label="Main">';
     navItems(u).forEach(function (it) {
@@ -321,14 +371,14 @@
           (groups.Programs || []).map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('') + '</div>';
       }
     });
-    ['Trackers', 'Manager'].forEach(function (g) {
+    ['Trackers', 'Field', 'Finance', 'Manager'].forEach(function (g) {
       if (!groups[g]) return;
       var list = groups[g].filter(function (t) { return !t.menuOnly; });
       if (!list.length) return;
       html += '<div class="kdh-side-h">' + g + '</div>' + list.map(function (t) { return link('kdh-side-i', t, w.tool === t.key); }).join('');
     });
     html += '</nav>';
-    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isMgr || u.preview ? 'Manager' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
+    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : isIT(u) ? 'IT' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
     var a = document.createElement('aside');
     a.id = 'kdhSide'; a.className = 'kdh-side'; a.innerHTML = html;
     document.body.insertBefore(a, document.body.firstChild);
@@ -356,7 +406,7 @@
   // under the top bar. Remove it by deleting this function and its call.
   var LIVE_URL = 'https://kohlerdist.encompass8.com/Home?DashboardID=184193';
   function liveNotice(u, isMgr, bar) {
-    if (!u || isMgr || document.getElementById('kdhLive')) return;
+    if (!u || isMgr || isAssoc(u) || isIT(u) || document.getElementById('kdhLive')) return;   // the task page / UPC audit hold no sales data
     if (!document.getElementById('kdhLiveCss')) {
       var st = document.createElement('style'); st.id = 'kdhLiveCss';
       st.textContent = '#kdhLive{box-sizing:border-box;margin:0;padding:10px 16px;background:#FFE08A;color:#2B1B00;border-top:1px solid #B45309;border-bottom:4px solid #B45309;font:15px/1.4 var(--kdh-body,system-ui,sans-serif);display:flex;gap:12px;align-items:center;justify-content:center}' +
@@ -380,16 +430,16 @@
     if (document.querySelector('.kdh-bar') || document.getElementById('kdhBar')) return;
     var u = user();
     var isMgr = !!(u && u.role === 'manager');
-    var home = u ? (isMgr ? ROOT : REP_HOME) : ROOT;
+    var home = homeOf(u);
     var b = document.createElement('div');
     b.id = 'kdhBar'; b.className = 'kdh-bar';
     var acts = '';
     // BACK: concise, contextual, and only when it adds a destination the
     // navigation does not already show (the Incentive Hub a tracker was
     // opened from, Team Activity, the rep workspace).
-    if (!isHomePage()) {
+    if (!isHomePage() && !isAssoc(u) && !isIT(u)) {   // an associate's / IT's only page is their home
       var back = returnTarget();
-      var dup = u && (back.href === home || back.href === (isMgr ? ROOT : REP_HOME) || /Back to (Rep|Manager) Home/.test(back.label) && back.href === home);
+      var dup = u && (back.href === home || back.href === homeOf(u) || /Back to (Rep|Manager) Home/.test(back.label) && back.href === home);
       if (!u || !dup) acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label.replace(/^Back to /, '')) + '</span></a>';
     }
     var chips = '<span id="kdhViewing"></span>';
@@ -421,11 +471,11 @@
   // ---- the ONE account menu: More on phones / iPads, the sidebar's account button on desktop ----
   function menuHtml(u, isMgr) {
     var who = u.preview ? u.manager : u.name;
-    var role = isMgr || u.preview ? 'Manager' : 'Sales Rep';
+    var role = isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : isIT(u) ? 'IT' : 'Sales Rep';
     var w = where(u);
     var items = '';
-    if (isMgr || u.preview) {
-      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + NAV_ICON.eye + '<span>' + (u.preview && u.role !== 'manager' ? 'Change Rep' : 'View as Rep') + '</span><small>See the site as one rep does</small></button>';
+    if ((isMgr && !isFin(u)) || u.preview) {
+      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + NAV_ICON.eye + '<span>View As</span><small>See the site as a ' + (isOwner(u) ? 'manager, rep or associate' : 'rep or associate') + '</small></button>';
       if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">' + BACK + '<span>Exit Preview</span><small>Back to your own pages</small></button>';
     }
     // the tools: listed here for phones and iPads; the desktop sidebar shows them itself
@@ -463,7 +513,7 @@
     if (document.__kdhMenuDoc) return; document.__kdhMenuDoc = 1;
     document.addEventListener('click', function (e) { var m = document.getElementById('kdhMenu'); if (m && !m.hidden && !m.contains(e.target)) openMenu(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { openMenu(false); closePicker(); } });
-    var v = document.getElementById('kdhViewAsRep'); if (v) v.addEventListener('click', function () { openMenu(false); viewAsRep(); });
+    var v = document.getElementById('kdhViewAsRep'); if (v) v.addEventListener('click', function () { openMenu(false); viewAs(); });
     var x2 = document.getElementById('kdhExitPreview2'); if (x2) x2.addEventListener('click', exitPreview);
     themeLabel();
   }
@@ -480,47 +530,128 @@
     document.head.appendChild(s);
   }
   function closePicker() { var p = document.getElementById('kdhPicker'); if (p) p.hidden = true; }
-  function viewAsRep() {
-    var u = user(); if (!u || u.role !== 'manager') return;
+  // VIEW AS (2026-10-14, Gavin: "combine View as and create a dropdown that allows me to
+  // preview as a manager, rep and associate"). One sheet, a role row on top:
+  //   Rep        every manager; a DM sees their team (dm-groups, as before) -> /rep/
+  //   Associate  every manager; kdh_people('associate') -> /tasks/ (their one page)
+  //   Manager    Gavin only (OWNER); kdh_team's managers -> the manager home
+  // The preview cookie is the same as before (a bare name = rep; JSON with role for a
+  // manager or an associate). Picking yourself on the Manager list = exit. Reads are the
+  // previewed person's; writes stay off everywhere in preview.
+  var OWNER = 'g.sharkey@kohlerdist.com';
+  function isOwner(u) { return !!(u && String(u.email || '').toLowerCase() === OWNER); }
+  var ROLE_TEXT = {
+    rep: { title: 'View as Rep', sub: 'Every page will show exactly what this rep sees. Their notes and follow-ups stay read-only while you preview.', search: 'Search reps', empty: 'No rep matches' },
+    associate: { title: 'View as Associate', sub: 'The site becomes that associate’s: their Field Tasks queue, read-only.', search: 'Search associates', empty: 'No associate matches' },
+    manager: { title: 'View as Manager', sub: 'Every page will show what this manager sees (their team, their brands). Pick yourself to leave preview.', search: 'Search managers', empty: 'No manager matches' }
+  };
+  var pickRole = 'rep', pickerGroups = [], peopleCache = {};
+  function rpc(name, body) {
+    var cfg = global.KDH_AUTH || {}, tok = cookie('kdh_at');
+    if (!cfg.url || !cfg.key || !tok) return Promise.resolve(null);
+    return fetch(String(cfg.url).replace(/\/$/, '') + '/rest/v1/rpc/' + name, { method: 'POST', headers: { apikey: cfg.key, authorization: 'Bearer ' + tok, 'content-type': 'application/json' }, body: JSON.stringify(body || {}) })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+  }
+  function loadPeople(role, cb) {
+    if (peopleCache[role]) return cb(peopleCache[role]);
+    if (role === 'rep') return loadGroups(function (groups) {
+      var T = team(groups);
+      var g = (T ? groups.filter(function (g) { return g.dm === T.dm || g.under === T.dm; }) : groups)
+        .map(function (g) { return { dm: g.dm, people: (g.reps || []).filter(isRep).slice().sort().map(function (r) { return { name: r }; }) }; }).filter(function (g) { return g.people.length; });
+      peopleCache.rep = g; cb(g);
+    });
+    if (role === 'associate') return rpc('kdh_people', { p_role: 'associate' }).then(function (rows) {
+      var list = (rows || []).filter(function (r) { return r && r.name; }).map(function (r) { return { name: r.name, email: r.email || '', dm: r.reports_to || '' }; });
+      var g = list.length ? [{ dm: '', people: list }] : [];
+      peopleCache.associate = g; cb(g);
+    });
+    return rpc('kdh_team', {}).then(function (team) {
+      var mgrs = (team || []).filter(function (t) { return t && t.role === 'manager' && t.name; }).sort(function (a, b) { return a.name.localeCompare(b.name); });
+      // names only; when a name appears twice the entry with no title is that person's personal (test) account
+      var seen = {}; mgrs.forEach(function (m) { seen[m.name] = (seen[m.name] || 0) + 1; });
+      var list = mgrs.map(function (m) { return { name: m.name, label: m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''), title: m.title || '', dm: m.reports_to || '', brands: Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : [], ws: m.workspace || '' }; });
+      var g = list.length ? [{ dm: '', people: list }] : [];
+      peopleCache.manager = g; cb(g);
+    });
+  }
+  function viewAs(role) {
+    var u = user(); if (!u || u.role !== 'manager' && !(u.preview && isOwner(u))) return;
+    var owner = isOwner(u);
     var p = document.getElementById('kdhPicker');
     if (!p) {
+      if (!document.getElementById('kdhPickerCss')) {
+        var st = document.createElement('style'); st.id = 'kdhPickerCss';
+        st.textContent = '#kdhPicker .kdh-sheet-roles,#kdhPicker .kdh-sheet-h,#kdhPicker .kdh-sheet-p,#kdhPicker #kdhPickerSearch{flex:none}' +
+          '.kdh-sheet-roles{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--kdh-border-2);border-radius:10px;overflow:hidden;margin:10px 0 8px}' +
+          '.kdh-sheet-roles button{min-height:44px!important;height:44px;padding:0 6px;line-height:1.2;border:0;border-left:1px solid var(--kdh-border);background:var(--kdh-surface);font:inherit;font-size:15px;font-weight:600;color:var(--kdh-text-2);cursor:pointer;white-space:nowrap}' +
+          '.kdh-sheet-roles button:first-child{border-left:0}.kdh-sheet-roles button[aria-selected="true"]{background:var(--kdh-brand);color:var(--kdh-brand-ink)}' +
+          '.kdh-sheet-i small{display:block;font-weight:500;font-size:13px;color:var(--kdh-text-3)}';
+        document.head.appendChild(st);
+      }
       p = document.createElement('div'); p.id = 'kdhPicker'; p.className = 'kdh-sheet-wrap';
       p.innerHTML = '<div class="kdh-sheet-back"></div><div class="kdh-sheet" role="dialog" aria-modal="true" aria-labelledby="kdhPickerTitle">' +
-        '<div class="kdh-sheet-h"><b id="kdhPickerTitle">View as Rep</b><button type="button" class="kdh-sheet-x" aria-label="Close">Close</button></div>' +
-        '<p class="kdh-sheet-p">Every page will show exactly what this rep sees. Their notes and follow-ups stay read-only while you preview.</p>' +
-        '<input type="search" id="kdhPickerSearch" class="kdh-field" placeholder="Search reps" autocomplete="off" aria-label="Search reps">' +
-        '<div id="kdhPickerList" class="kdh-sheet-list"><div class="kdh-sheet-empty">Loading reps…</div></div></div>';
+        '<div class="kdh-sheet-h"><b id="kdhPickerTitle">View As</b><button type="button" class="kdh-sheet-x" aria-label="Close">Close</button></div>' +
+        '<div class="kdh-sheet-roles" role="tablist" aria-label="Who to view as" id="kdhPickerRoles">' +
+          (owner ? '<button type="button" role="tab" data-role="manager">Manager</button>' : '') +
+          '<button type="button" role="tab" data-role="rep">Rep</button><button type="button" role="tab" data-role="associate">Associate</button></div>' +
+        '<p class="kdh-sheet-p" id="kdhPickerSub"></p>' +
+        '<input type="search" id="kdhPickerSearch" class="kdh-field" placeholder="Search" autocomplete="off" aria-label="Search">' +
+        '<div id="kdhPickerList" class="kdh-sheet-list"><div class="kdh-sheet-empty">Loading…</div></div></div>';
       document.body.appendChild(p);
       p.querySelector('.kdh-sheet-back').addEventListener('click', closePicker);
       p.querySelector('.kdh-sheet-x').addEventListener('click', closePicker);
-      p.addEventListener('click', function (e) { var b = e.target.closest('[data-rep]'); if (!b) return; setPreview(b.getAttribute('data-rep')); location.href = REP_HOME; });
+      p.querySelector('#kdhPickerRoles').addEventListener('click', function (e) { var b = e.target.closest('[data-role]'); if (b) showRole(b.getAttribute('data-role')); });
+      p.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-pick]'); if (!b) return;
+        var cur = user(), who = {}; try { who = JSON.parse(b.getAttribute('data-pick')); } catch (e2) { return; }
+        if (pickRole === 'rep') { setPreview(who.name); location.href = REP_HOME; return; }
+        if (pickRole === 'associate') { setPreview({ name: who.name, role: 'associate', email: who.email || '' }); location.href = ASSOC_HOME; return; }
+        // manager: picking yourself = leave preview
+        var me = cur && (cur.preview ? cur.manager : cur.name);
+        if (who.name === me) setPreview(''); else setPreview({ name: who.name, role: 'manager', title: who.title || '', dm: who.dm || '', brands: who.brands || [], ws: who.ws || '' });
+        location.href = ROOT || '/';
+      });
       document.getElementById('kdhPickerSearch').addEventListener('input', function () { renderPicker(this.value); });
     }
     p.hidden = false;
-    var inp = document.getElementById('kdhPickerSearch'); inp.value = '';
-    loadGroups(function (groups) {
-      var T = team(groups);
-      pickerGroups = (T ? groups.filter(function (g) { return g.dm === T.dm || g.under === T.dm; }) : groups)
-        .map(function (g) { return { dm: g.dm, reps: (g.reps || []).filter(isRep).slice().sort() }; }).filter(function (g) { return g.reps.length; });
+    showRole(role || (u.preview ? u.role : 'rep'));
+  }
+  function showRole(role) {
+    if (role === 'manager' && !isOwner(user())) role = 'rep';
+    pickRole = role;
+    var T = ROLE_TEXT[role];
+    Array.prototype.forEach.call(document.querySelectorAll('#kdhPickerRoles [data-role]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-role') === role ? 'true' : 'false'); });
+    document.getElementById('kdhPickerTitle').textContent = T.title;
+    document.getElementById('kdhPickerSub').textContent = T.sub;
+    var inp = document.getElementById('kdhPickerSearch'); inp.value = ''; inp.placeholder = T.search; inp.setAttribute('aria-label', T.search);
+    document.getElementById('kdhPickerList').innerHTML = '<div class="kdh-sheet-empty">Loading…</div>';
+    pickerGroups = [];
+    loadPeople(role, function (groups) {
+      if (pickRole !== role) return;
+      pickerGroups = groups;
       renderPicker('');
       if (window.innerWidth >= 700) setTimeout(function () { inp.focus(); }, 50);
     });
   }
-  var pickerGroups = [];
   function renderPicker(q) {
     var list = document.getElementById('kdhPickerList'); if (!list) return;
-    var cur = user(); var now = cur && cur.preview && cur.role !== 'manager' ? cur.name : '';
+    var cur = user(); var now = cur && cur.preview && cur.role === pickRole ? cur.name : '';
+    var me = pickRole === 'manager' && cur ? (cur.preview ? cur.manager : cur.name) : '';
     q = String(q || '').trim().toLowerCase();
     var html = '';
     pickerGroups.forEach(function (g) {
-      var reps = g.reps.filter(function (r) { return !q || r.toLowerCase().indexOf(q) >= 0 || g.dm.toLowerCase().indexOf(q) >= 0; });
-      if (!reps.length) return;
-      html += '<div class="kdh-sheet-dm">' + esc(g.dm) + '</div>' + reps.map(function (r) {
-        return '<button type="button" class="kdh-sheet-i' + (r === now ? ' on' : '') + '" data-rep="' + esc(r) + '"><span class="kdh-av">' + esc(initials(r)) + '</span><span>' + esc(r) + '</span>' + (r === now ? '<small>Previewing now</small>' : '') + '</button>';
+      var people = g.people.filter(function (r) { return !q || r.name.toLowerCase().indexOf(q) >= 0 || (g.dm || '').toLowerCase().indexOf(q) >= 0; });
+      if (!people.length) return;
+      html += (g.dm ? '<div class="kdh-sheet-dm">' + esc(g.dm) + '</div>' : '') + people.map(function (r) {
+        var on = r.name === now, self = r.name === me && !cur.preview;
+        return '<button type="button" class="kdh-sheet-i' + (on ? ' on' : '') + '" data-rep="' + esc(r.name) + '" data-pick="' + esc(JSON.stringify(r)) + '"><span class="kdh-av">' + esc(initials(r.name)) + '</span><span>' + esc(r.label || r.name) +
+          (on ? '<small>Previewing now</small>' : self ? '<small>You</small>' : r.name === me && cur.preview ? '<small>Leave preview</small>' : r.dm && pickRole !== 'rep' ? '<small>Reports to ' + esc(r.dm) + '</small>' : '') + '</span></button>';
       }).join('');
     });
-    list.innerHTML = html || '<div class="kdh-sheet-empty">No rep matches “' + esc(q) + '”.</div>';
+    var T = ROLE_TEXT[pickRole];
+    list.innerHTML = html || '<div class="kdh-sheet-empty">' + (q ? T.empty + ' “' + esc(q) + '”.' : pickRole === 'associate' ? 'No sales associates are on the allow list yet.' : 'Nobody to show.') + '</div>';
   }
+  function viewAsRep() { viewAs('rep'); }
   // "Viewing <rep>" in the top bar: a manager looking at one rep's page
   // says so next to the way back. changeHref (optional) is where "Change"
   // goes -- the page's own picker. Pass '' to clear.
@@ -706,6 +837,10 @@
   global.kdhBackBar = backBar;
   global.kdhViewing = viewing;
   global.kdhViewAsRep = viewAsRep;
+  global.kdhIsFinance = isFin;
+  global.kdhCanUpc = canUpc;
+  global.kdhViewAs = viewAs;
+  global.kdhIsOwner = isOwner;
   global.kdhExitPreview = exitPreview;
   global.kdhReturnTarget = returnTarget;
   global.kdhChrome = chrome;
@@ -723,6 +858,8 @@
       var els = (root || document.body).querySelectorAll('body *:not(script):not(style):not(svg):not(svg *)');
       for (var i = 0; i < els.length; i++) {
         var el = els[i];
+        // Newsletter pages measure their own typography for matching screen/PDF breaks.
+        if (el.closest('.kk-magazine')) continue;
         if (el.__kdhLifted) continue;
         var hasText = false;
         for (var c = el.firstChild; c; c = c.nextSibling) { if (c.nodeType === 3 && c.nodeValue.trim().length > 1) { hasText = true; break; } }
@@ -776,6 +913,36 @@
     document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') renew(false); });
     setInterval(function () { if (document.visibilityState === 'visible') renew(false); }, 5 * 60 * 1000);
   }
-  function boot() { chrome(); bar(); watchType(); keepAlive(); }
+  function addUpcLinks(u) {
+    var it = { key: 'upc', group: 'Manager', label: 'UPC Registration Audit', href: IT_HOME }, on = where(u).tool === 'upc', tmp = document.createElement('div');
+    var nav = document.querySelector('#kdhSide .kdh-side-nav');
+    if (nav && !nav.querySelector('a[data-nav="upc"]')) { tmp.innerHTML = link('kdh-side-i', it, on); nav.insertBefore(tmp.firstChild, nav.querySelector('a[data-nav="ws"]')); }
+    var tools = document.querySelector('#kdhMenu .kdh-menu-tools');
+    if (tools && !tools.querySelector('a[href$="upc-audit/"]')) {
+      tmp.innerHTML = '<a class="kdh-menu-i" href="' + esc(it.href) + '">' + NAV_ICON.upc + '<span>' + esc(it.label) + '</span></a>';
+      var before = Array.prototype.filter.call(tools.querySelectorAll('a.kdh-menu-i'), function (a) { return a.getAttribute('href') === REP_HOME; })[0] || tools.querySelector('.kdh-menu-g:last-of-type');
+      tools.insertBefore(tmp.firstChild, before || null);
+    }
+    document.dispatchEvent(new CustomEvent('kdh:upc'));
+  }
+  function checkUpc() {
+    var u = user();
+    if (!u || u.role !== 'manager' || u.preview || u.ws === 'finance' || u.upc) return;
+    if (upcMemo(u) === '1') return;   // already drawn by toolItems
+    if (upcMemo(u) === '0') return;
+    var ask = function () {
+      var c = window.KDH_AUTH, t = atCookie(); if (!c || !c.url || !t) return;
+      fetch(String(c.url).replace(/\/$/, '') + '/rest/v1/rpc/kdh_upc_can', { method: 'POST', headers: { apikey: c.key, authorization: 'Bearer ' + t, 'content-type': 'application/json' }, body: '{}' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (yes) { if (yes == null) return; try { localStorage.setItem('kdh_upc:' + String(u.email || '').toLowerCase(), (yes === true ? '1' : '0') + '|' + Date.now()); } catch (e) {} if (yes === true) addUpcLinks(u); })
+        .catch(function () {});
+    };
+    if (window.KDH_AUTH) return ask();
+    var sc = document.createElement('script'); sc.src = (ROOT || '/') + 'shared/auth-config.js'; sc.onload = ask; document.head.appendChild(sc);
+  }
+  function boot() { chrome(); bar(); watchType(); keepAlive(); checkUpc();
+    if (user() && (user().preview || user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
+    if (user() && !user().preview && user().ws !== 'finance') { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015ui'; document.head.appendChild(work); }
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })(window);

@@ -50,7 +50,8 @@ DATA (all existing; generate.py builds the per-rep slices)
   it renders nothing and exposes window.KohlerHub): active programs, this
   account's target / credited / can't-sell status, what to sell, deadlines.
 
-  inventory/index.html (rep-data JSON)     the warehouse's sellable units, days of cover, next
+  inventory/index.html (rep-data JSON)     the warehouse's sellable units + status (2026-10-14: from the one
+                                           Inventory_Report; days of cover / next arrival are null now), next
                                            arrival per product, as ../inventory/ computes them.
   incentive-tracking/data/customer_base_full.csv   Draft / Package service type per account.
   carbliss-onprem-targets/brands_sell_sheets.xlsx  sell-sheet URL per brand (Carbliss so far).

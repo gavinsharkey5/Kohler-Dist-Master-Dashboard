@@ -196,7 +196,7 @@ Screens
                  rule; then one row per account-product opportunity with a Rep
                  column first, sorted by rep; formula-like text is prefixed),
                  Download Excel (same rows with a heading row per rep, through
-                 merchandising/xlsx-write.js), Export PDF (print view grouped
+                 shared/xlsx-write.js), Export PDF (print view grouped
                  by rep, Save as PDF), Save as Target List. No financial
                  amounts anywhere.
 

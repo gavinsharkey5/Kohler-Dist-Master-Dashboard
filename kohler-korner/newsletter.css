@@ -28,3 +28,20 @@
 @container(max-width:620px){.kk-event-portrait .kk-event-body{grid-template-columns:150px minmax(0,1fr);gap:18px}}
 @container(max-width:380px){.kk-event-portrait .kk-event-body{display:block}.kk-event-portrait .kk-gallery{margin-top:18px}.kk-event-portrait .kk-gallery img{height:222px}}
 @media print{.kk-event-portrait .kk-event-body{grid-template-columns:176.25pt minmax(0,1fr);gap:19.5pt}.kk-event-portrait .kk-gallery img{height:166.5pt}.kk-recognition-pair{break-inside:auto}}
+
+/* Product features: short headings, generous photographs, compact copy. */
+.kk-products{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 22px}.kk-product-photo img{height:190px;margin-bottom:10px}.kk-products-feature .kk-product-photo img{height:210px}.kk-product-copy h3{font-size:17px;line-height:22px;margin:0 0 5px}.kk-product-copy p{margin-bottom:7px}.kk-product-copy .kk-byline{font-size:10px;margin-bottom:7px}.kk-product{break-inside:avoid}.kk-product-media:empty{display:none}
+@container(max-width:380px){.kk-products{grid-template-columns:1fr}.kk-product-media{max-width:none}.kk-product-photo img{height:210px}}
+@media print{
+ @page{size:Letter;margin:13mm 12mm}
+ .kk-print-root .kk-magazine{font-size:10pt;line-height:14pt}.kk-story{padding:12pt 0}.kk-mast{margin-bottom:14pt}.kk-print-row{gap:18pt;margin-bottom:15pt;align-items:flex-start}.kk-print-row>*{flex:0 0 calc(50% - 9pt);max-width:calc(50% - 9pt)}.kk-product-photo img{height:135pt;margin-bottom:7pt}.kk-products-feature .kk-product-photo img{height:150pt}.kk-product-copy h3{font-size:12pt;line-height:15pt;margin:0 0 4pt}.kk-product-copy p{margin-bottom:5pt}.kk-print-intro{break-inside:avoid}.kk-product-media{break-after:avoid}.kk-product{break-inside:avoid}.kk-story>h2{break-after:avoid}.kk-print-single-feature>.kk-print-row>*{max-width:none}.kk-people .kk-print-row>*{flex:1;max-width:none}.kk-gallery .kk-print-row>*{flex:1;max-width:none}.kk-gallery-feature>.kk-print-row>*{max-width:none}
+}
+
+@media print{
+ .kk-mast{padding-top:7pt;margin-bottom:10pt}.kk-wordmark{font-size:36pt;line-height:40pt}.kk-mast-row{margin:4pt 0}.kk-mast-mark{width:45pt;height:53pt;flex-basis:45pt}.kk-magazine .kk-mast-mark img{width:45pt;height:53pt}.kk-issue{padding-bottom:7pt}.kk-story{padding:9pt 0}.kk-lead h2{font-size:23pt;line-height:26pt}.kk-product-photo img{height:120pt}.kk-print-row.kk-print-three>*{flex:0 0 calc(33.333% - 12pt);max-width:calc(33.333% - 12pt)}.kk-print-row.kk-print-three .kk-product-copy h3{font-size:11pt;line-height:14pt}.kk-recognition-pair{break-inside:avoid}.kk-recognition h3{font-size:11pt;line-height:14pt;margin:0 0 4pt}.kk-recognition li{padding:2pt 0}.kk-recognition>div{margin-bottom:7pt}
+}
+
+@media print{.kk-type-article:has(.kk-products){break-inside:avoid}}
+
+@media print{.kk-product-photo img{height:105pt}.kk-print-root,.kk-print-root .kk-magazine{margin:0!important;min-height:0!important;overflow:visible!important}.kk-mag-foot{margin-bottom:0!important;padding-bottom:0!important}.kk-story:last-of-type{padding-bottom:0;border-bottom:0}}
+@media print{html.kdh-has-side body,html.kdh-has-tabs body{padding:0!important;margin:0!important;min-height:0!important;height:auto!important}.kk-print-root{width:100%;max-width:none}.kk-print-root .kk-magazine{width:100%;max-width:none}}

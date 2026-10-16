@@ -1,0 +1,13 @@
+{
+  "name": "kdh-work-verification",
+  "private": true,
+  "scripts": {
+    "test:work:sql": "node work-sql-test.cjs",
+    "test:work:browser": "node work-browser-test.cjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.3.14",
+    "@supabase/supabase-js": "2.57.4",
+    "playwright": "1.56.1"
+  }
+}

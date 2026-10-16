@@ -24,7 +24,7 @@
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep Home">
 <meta name="kdh-home" content="rep">
-<script src="../shared/kdh-user.js?v=20261008d"></script>
+<script src="../shared/kdh-user.js?v=20261015i"></script>
 <script src="../shared/program-titles.js?v=20261005e"></script>
 <script src="../shared/data/rep-premise.js?v=20261007z"></script>
 </head>
@@ -56,6 +56,7 @@
       <button class="btn outline" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as This Rep</button>
     </div>
   </header>
+  <section data-my-day aria-label="My Day" class="work-card"><p>Loading your day…</p></section>
 
   <!-- the prominent entry: My Accounts (search lives on that page) -->
   <section class="hs rh-entry" aria-label="My Accounts">
@@ -122,6 +123,11 @@
       <a class="kt" id="c-inv" href="../inventory/">
         <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4"/><path d="M12 12v8"/></svg></span>
         <span class="kt-main"><span class="kt-t">Inventory</span><span class="kt-s">What is available to sell</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" id="c-tasks" href="../tasks/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Field Tasks</span><span class="kt-s">Hand displays, tap handles and POS to a sales associate</span></span>
         <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
       <a class="kt" id="c-map" href="../accounts/#mode=map">

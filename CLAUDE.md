@@ -2223,7 +2223,7 @@ that order; PODs take product lines like displays; opps.js `evidenceCat` sends
 placement programs to PODs); the DB checks need
 `supabase/migrations/20261005120000_merch_pod_signage.sql` (sql_pod_test.sh).
 The Merchandising page's Download Excel (`downloadXlsx`, writer
-merchandising/xlsx-write.js, signed links via `KdhData.signUrls`) is the
+shared/xlsx-write.js, signed links via `KdhData.signUrls`) is the
 iSellBeer-style export of exactly the filtered view; CSV and Export Recap stay.
 NOT done, Gavin's decision first (ROADMAP "Now"): seven pages are still built
 from iSellBeer exports (MPO cooler doors / Lytt POS / Bardstown menus, Display
@@ -3199,3 +3199,252 @@ trackers: Constellation preview -> Corona Innovation only off-prem, the empty me
 By Program and a rep's page, phone, real sign-in, Chris Politano from the file = Lytt / Oktoberfest /
 Carbliss, DM, rep preview, signed-in rep); Playwright over Edge (`channel:'msedge'`, npm i playwright
 in the scratchpad), stubbed Supabase. Tags: hub.js / kdh-user.js / guided.js 20261014a.
+
+## Rep Inventory page on one report (2026-10-14)
+
+Gavin's brief (inventory/design-refs/CLAUDE_CODE_PROMPT.md + three Mobbin screenshots there: Shopify inventory
+list, Resy grouped list, Copilot filter chip). `inventory/generate.py` now reads ONE Encompass report
+(`python3 inventory/generate.py [path]`, default ../inventory-data/Inventory_Report.csv; columns Product Num Name,
+Supplier, Brand Family, On Floor Inventory, Pre Sales, Allocated, Available) instead of the three shared exports --
+inventory-overview/ (the executive view) still reads those five and was NOT touched. Available is used exactly as
+reported; status is a unit threshold now (Out <= 0, Low 1-24, In Stock 25+), the snapshot date is the report FILE's
+modified time (no date column), stale tag past 7 days. The old days-of-cover / on-the-way / just-arrived /
+backordered fields are GONE (the report has no rate of sale, purchase orders or receipts); accounts/generate.py still
+reads this page's rep-data JSON (num / name / supplier / available / status; doi / nextArrival / backordered are
+absent -> null in catalog.json), so run it after each inventory refresh. Page (`inventory/index.html`, standalone, no
+fetches): "Inventory" + "Inventory as of <date>", three KPI tiles that are filters (Products Available / Out of
+Stock / Running Low), search (150 ms debounce, substring over "<num> <name>"), Sort sheet (Available high-low
+default, A-Z, Pre Sales high-low), Filter bottom sheet (Supplier + Brand Family multi-select with find boxes,
+families narrow to the chosen suppliers), chips row (active supplier / brand chips FIRST with x, then All / In Stock
+/ Low / Out; counts hidden under 480px so all four fit), rows = description bold / "#num · Brand Family" / Available
+pill (--kdh-ok / -warn / -bad + soft), tap expands one row at a time to a 2x2 On Floor / Pre Sales / Allocated /
+Available grid on phones, inline figures on >= 768px; sticky Supplier headers (A-Z) when no search / filter, flat
+list otherwise; chunked rendering (60 then 120 via IntersectionObserver + Show More fallback -- the first IO
+notification carries stale geometry, so `near()` re-checks the real position); skeleton until first paint; state
+`kdh_inv:v2` in localStorage (sort + filters, not the search). GOTCHA: `[hidden]{display:none!important}` is in the
+page CSS because `.more{display:flex}` / `.sclr{display:flex}` beat the hidden attribute. Sheets are z-index 1200
+(above the bar, banner and tabs). Test: scratchpad inv_test.mjs (310 checks: rep + manager, 390 / 820 / 1366, light /
+dark, contrast, sticky offsets, persistence, chunking) + mobile_audit / contrast_audit / elong_audit on the page.
+Refresh = save the report as inventory-data/Inventory_Report.csv, run the two generators (ROADMAP Now).
+
+## Inventory: starred products, brand-manager scope, role defaults (2026-10-14)
+
+Gavin: "allow sales reps to star certain products" and "have the brand managers only see their
+products/brands/suppliers"; defaults tailored to the rep's and the manager's day. inventory/README.txt has the
+rules. STARS: every row carries a 44px star (`.star`, left slot; a tap never expands the row). Starred products
+form a "Starred" group at the TOP of the grouped list (header "N Out · M Low · K Products"; the rows also stay
+under their supplier) and a Starred chip (`F.status='star'`, star + count only under 480px so all five chips fit
+375px). Storage: localStorage `kdh_inv_star:v1:<fnv(email)>` {on, off} is always the truth on the device;
+`Stars.load()` syncs with `public.product_stars` (migration `20261014150000_product_stars.sql`: email stamped
+from the token, own rows only, a manager never sees a rep's; sql_stars_test.sh) through the signed-in token --
+404 = migration not run = device-only; `off` holds removals the server has not confirmed, retried on the next
+load, so a lost DELETE never resurrects a star. PREVIEW: `kdhUser().preview` -> `html.no-star`, no control, no
+chip, no group (a star would be the manager's). Stars never reserve or watch stock; About This Data says so.
+BRAND SCOPE: `scopePromise()` = null for a rep / rep preview, null when `kdhTeam(window.KDH_DM_GROUPS)` matches
+(a hybrid DM keeps everything, as on the hub / MPO trackers), else `kdhBrandScope()` with a 3 s cap; `applyScope`
+cuts `P = ALL.filter(p => kdhBrandMatch([p.supplier, p.family], scope))` BEFORE the first render (skeleton
+meanwhile), `index()` rebuilds the supplier / family / status counts from P, and the header gains "Your
+Suppliers: A, B, C (and N more)". Carbliss reaches the SN Food & Beverage manager by FAMILY. Nothing in scope ->
+"None of Your Suppliers Are on This Report" (no Clear). The page now loads shared/auth-config.js (the star sync's
+feature switch, 404 on a static server = off) and shared/dm-groups.js. Tests: scratchpad inv2_test.mjs (179) +
+inv_test.mjs (310) + sql_stars_test.sh (10) + contrast / mobile / elong audits.
+
+## Business map + the warehouse / delivery workflow (Gavin, 2026-10-14 -- tabled, REMEMBER)
+
+Gavin's list of areas still to bring onto the site: Warehouse (scan SKUs on arrival so reps know inventory was
+received), IT, Finance, Sales Associate portal. Added on review: Delivery / drivers (the largest missing group),
+Purchasing / supplier management (open POs, arrivals, out-of-code), POS / marketing requests, suppliers as
+read-only outside viewers (scoped like brand managers), compliance. Rule restated: Encompass stays the system of
+record for orders, invoices and balances; the site shows, reminds and coordinates, never takes an order or moves
+money. The warehouse + delivery day (7 hand-offs, receipts -> starred reps -> routes -> driver Delivered /
+refusal -> rep follow-up) is written out in ROADMAP.md "Tabled"; Gavin tabled it on 2026-10-14 and asked that it
+be kept. Transactional Encompass data (invoice / purchase transaction tables) belongs in Supabase with RLS, never
+in this PUBLIC repo (prices / dollars); see the same ROADMAP entry's neighbour when that work starts.
+
+## "Ledger Plan" = Gavin's name for the system-of-record question (2026-10-14, REMEMBER)
+
+When Gavin says "Ledger Plan" he means: could kohlerdisthub.com hold invoices / purchase transactions /
+balances itself and take a rep's order, replacing Encompass as the system of record? The full answer is in
+ROADMAP.md "Tabled" under that name: three tiers (read-only mirror in Supabase with RLS; order capture through
+Encompass's API if it exists; replacing Encompass = a separate company project, not this site), what an
+invoice really depends on, and the recommendation (build the mirror, ask Encompass about API order creation,
+never replace from here). Tabled by Gavin on 2026-10-14; recall it by name, do not rebuild the argument.
+
+## Field Tasks: reps hand work to sales associates (2026-10-14)
+
+Gavin's brief (sales-associates/design-refs/CLAUDE_CODE_PROMPT.md; refs Attio My Tasks, Jira list +
+status dropdown, Asana task detail, Jobber / ClickUp new task, Bolt "Check your photo", Airtable
+overview). `/tasks/` is ONE page with three views by role (tasks/README.txt has every rule;
+sales-associates/PLAN.md is the fit / data model / MVP-vs-v2 / assumptions write-up the brief asked
+for). ROLE 'associate' (allowed_users, Gavin's migration 20261014150000_associate_role.sql, nine
+merchandisers): middleware.js ASSOCIATE_PATHS = /tasks/ + /shared/, home /tasks/, everything else
+redirects (403 for data); kdh-user.js `isAssoc` / `homeOf`: Home = /tasks/, no tools, no liveNotice,
+sidebar + menu say "Sales Associate", `html.kdh-assoc`. Reps / managers get a "Field Tasks" tool
+(group 'Field', NAV_ICON.tasks, where() -> more/tasks) and a home card each (manager home now 27
+cards; rep home #c-tasks). DATA: migration `20261014180000_field_tasks.sql` -- field_tasks (creator
+STAMPED from the token, assignee must be an associate, Display / Tap Handle cannot be Done without a
+photo, Blocked needs a reason, an associate may change only status / photo / note, only an unstarted
+task may be withdrawn), field_task_comments (status lines written by a trigger -- the audit trail;
+kind 'status' is reserved through the kdh.task_sys setting), field_task_reads (the "New" chip),
+kdh_people(role) (associates for anyone signed in, reps for managers), kdh_task_member, bucket
+task-photos/<task id>/<uuid>.jpg. RLS = rep / associate / manager; the page never filters by name
+except PREVIEW (a manager viewing as a rep: that rep's tasks by name, read-only, nothing written).
+Every PATCH / DELETE counts the rows that come back (never trust a 2xx under RLS). Polling 30 s while
+visible; no push / email yet (v2 list in PLAN.md). Tests (scratchpad): sql_tasks_test.sh (32),
+tasks_test.mjs (74 with an RLS-faithful PostgREST stub, tasks_stub.mjs), mw_test.mjs. kdh-user.js tag
+20261014b on every page (100 files, incl. per-rep copies -- rep_slices --check is clean).
+
+## View As: one picker for Manager / Rep / Associate (2026-10-14)
+
+Gavin: "add View as Associate, same as View as Rep; combine View as into one dropdown that lets me preview as a
+manager, rep and associate." kdh-user.js `viewAs(role)` (global `kdhViewAs`; `kdhViewAsRep` = viewAs('rep')) is
+the ONE picker (`#kdhPicker`): a role row `#kdhPickerRoles` (Manager only for the OWNER, g.sharkey@kohlerdist.com,
+now a constant in kdh-user.js; Rep and Associate for every manager), title / sub / search placeholder per role,
+`loadPeople(role)`: rep = dm-groups scoped by kdhTeam (unchanged), associate = RPC kdh_people('associate'),
+manager = RPC kdh_team's managers (names only, "(Personal)" for the untitled duplicate, program_brands carried).
+Picking: rep -> bare-name cookie -> /rep/; associate -> {name, role:'associate', email} -> /tasks/; manager ->
+{name, role:'manager', title, dm, brands} -> the manager home; picking yourself on Manager = exit. `user()` returns
+an ASSOCIATE PREVIEW as {role:'associate', preview:true, previewEmail} so the chrome becomes the associate's (Home
+= /tasks/, no tools, no banner) and the chip says "Previewing X (associate)". tasks.js: PREVIEW = any preview (read-
+only); an associate preview lists the tasks assigned to that associate (by email when the cookie has it, else by
+name). The manager home has ONE "View As" button (`#viewAsBtn`); the old #viewAsRepBtn / #mgrToggle / #mgrSelect /
+#mgrPreviewBtn and the page's own kdh_team switcher are gone; the menu item (`#kdhViewAsRep`, id kept) reads "View
+As". The rep home's own "Viewing as" / "Preview as This Rep" controls are untouched. Tests (scratchpad):
+viewas_test.mjs (owner phone: three tabs, associate preview chrome + read-only queue, rep, Exit, manager preview,
+self = leave; DM desktop: two tabs; rep: none), mgr_test / home_test / preview_flow updated. Tags kdh-user.js
+20261014c, tasks.js 20261014b. FIX (same day, Gavin's screenshot): the role row collapsed to a sliver on desktop with
+the full rep list -- the sheet is a flex column capped at 80vh and the list (flex:1) squeezed it; the injected
+picker CSS now pins the header, role row, sub line and search to flex:none and the role buttons to 44px
+(!important, because kdh-skin's generic button rule wins otherwise). kdh-user.js 20261014d.
+
+## Supplier Budgets: the tracker workbook in Supabase, entered on the site (2026-10-14)
+
+Gavin's brief (supplier-budget/design-refs/CLAUDE_CODE_PROMPT.md): the "Supplier Budgets Tracker" workbook
+becomes `/supplier-budget/` for Alexis (office assistant, a manager in allowed_users). THE REPO IS PUBLIC: nothing
+from the workbook is committed -- the workbook itself, the generated seed SQL (`supabase/data/`, git-ignored) and
+every dollar live in Supabase only. The OLD page's `supplier-budget/expenses.csv` + `generate.py` (dollars embedded
+in a public page since July) are deleted from the tree; the CSV stays in git history until Gavin orders a rewrite
+(ROADMAP "Tabled"). Migration `supabase/migrations/20261014210000_supplier_budget.sql`: `allowed_users.budget_editor`
+(flag, set by hand, like photo_admin) + `kdh_is_budget_editor()` (editor OR program_admin); `budget_accounts` (the
+Budget tab: year + account unique, code, supplier, brand_manager, description, file_name, vendor_default,
+budget_amount NULL = none, basis_text, active, needs_review); `supplier_expenses` (the Expenses tab; `kohler_spend`
+is ALWAYS total - billback by trigger; site rows need 0 <= billback <= total and a date in last..next year; imported
+rows skip that; `source` site / import_2026 / import_2025, `source_key` unique so a re-pasted seed never duplicates,
+`sheet_values` = the original cells); `supplier_expense_events` (create / update diff / delete; `kdh.seeding` = '1'
+skips it; editors read); `budget_vendors` (typeahead, filled by the trigger). RLS: editor / admin everything; another
+manager reads only accounts whose brand_manager is them (`kdh_name_key`) or whose supplier matches their
+program_brands (`kdh_brand_key` = SQL mirror of kdh-user.js brandKey, prefix match >= 4 chars) via
+`kdh_budget_can_read`; reps / anon nothing. `kdh_budget_me()` tells the page {editor, admin, manager}. Name stamps
+(created_name / updated_name) come from allowed_users through the trigger so the page shows "Edited by Alexis" with
+no email. SEED: `python3 supplier-budget/seed_from_workbook.py <xlsx>` -> `supabase/data/supplier_budget_seed_part1.sql`,
+`_part2.sql` ... (self-contained parts under the SQL Editor's ~1 MB cap, part 1 holds the accounts; multi-row
+inserts joined to budget_accounts by year + account) + `_report.txt` (never commit; verified on local Postgres:
+987 + 917 rows, idempotent); Budget tab -> accounts, Expenses 2026 -> import_2026, Expenses 2025 rows dated 2025
+-> import_2025 under inactive 2025 account rows (its 2026 rows are copies of the 2026 tab and are skipped);
+an Expenses Account with no Budget row -> a placeholder account with needs_review (59 on 2026-10-14, NEVER mapped by
+guess); the report lists the 172 Kohler Spend disagreements (computed value wins), 26 blank Totals (derived from
+Spend + Billback), the 2062 Year typo, 21 brand-manager and 128 code disagreements with the Budget row (the Budget
+row wins on the page). PAGE (`budget.js` / `budget.css`, refuses a rep cookie or ANY preview -- RLS would use the
+manager's token and mislead): Ledger (sheet columns in order, sticky sortable header, search, Account / Supplier /
+Brand Manager / Billback / date filters, Year defaults to the current year, newest first, 100 + Show More, strip
+for the current filter, stacked rows under 760px, CSV for editors, tap = Edit or read-only view), Add Expense
+(account picker grouped by supplier with code + brand manager, vendor typeahead + Kohler one tap + the account's
+default vendor, Kohler Spend live, Received Yes/No + date, Save / Save and Add Another keeps Date-Account-Vendor,
+the saved row highlighted at the top), Edit / Delete (confirm) / Received flip from the row, Budget tab (spent, %
+bar, billback outstanding, tap-to-edit amount, Add Account, Needs Review). A non-editor manager also gets the
+`kdhBrandScope()` cut and a "Your Suppliers" line. NAV: manager home card in "Planning & Finance" (renamed from
+Planning & Field; 28 cards now), sidebar tool `sb`; not in REP_PATHS. Gavin's steps are in ROADMAP "Now" (run the
+migration, paste the seed, set budget_editor for Alexis). Tests (scratchpad): sql_budget_test.sh (39),
+budget_test.mjs (78, stub budget_stub.mjs), mgr_test expects 28 cards. kdh-user.js tag 20261014e everywhere.
+LIVE 2026-10-15 (Gavin ran the migration, pasted the seed -- in TWO PARTS, the SQL Editor caps a query at ~1 MB --
+and set Alexis's flag). Same day, Gavin: (1) "Time Entered" column = created_at of site-entered rows ("Imported" for
+the seed's), FIRST column and the DEFAULT SORT newest on top (sessionStorage key kdh_sb_sort2; a save resets to it;
+ties fall to Date); (2) "all columns in one view, no scrolling": table-layout fixed with COLS[].w percentages, wrapped
+cells at 13px, short dates, compact Received ("Yes Oct 20" / "No"), soft-hyphenated headers, the ledger view at full
+width from 1100px (`.sb.wide`), header sticky under the top bar (`--sb-top` measured from #kdhBar + #kdhLive), Year
+and Notes hidden under 1100px (`data-narrow`); (3) VIEW AS a manager works here: a MANAGER preview is read-only, the
+page asks `kdh_budget_standing(name)` (migration `20261015090000_budget_preview.sql`, managers only, by kdh_name_key)
+for the previewed person's editor / admin / program_brands and cuts the rows client-side (an editor's page with Add
+Expense disabled; a brand manager's accounts by name + brands); without the RPC the preview is read-only over every
+account and names the migration. A rep / associate preview is still refused. Tags budget.js / .css 20261015a;
+budget_test.mjs 95, sql_budget_test.sh 43.
+
+## The FINANCE workspace: Alexis sees incentives, MPOs and budgets only (2026-10-15)
+
+Gavin: "Alexis handles all billbacks and recaps to send to supplier for incentive programs ... give her the incentives
+and MPO functions so she can recap as well as supplier budgets ... and hide the rest." `allowed_users.workspace` (NULL =
+full site; 'finance'; check constraint; migration `20261015120000_finance_workspace.sql`, which also redefines
+`kdh_team()` to return `workspace` and `kdh_budget_standing()` to carry it). She stays role 'manager' so every RLS rule
+and the hub / MPO data are unchanged. ENFORCED in middleware.js: `check()` now selects `*` from allowed_users (a column
+a migration has not added yet must never break sign-in) and keeps `workspace` in the verdict; a manager with
+workspace 'finance' may open only `FINANCE_PATHS` (/hub/, /MPOs/, /supplier-budget/, /rep/rep.css -- the
+STYLESHEET the manager home and Supplier Budgets link, not the rep home: Alexis's first real sign-in showed an
+unstyled page with giant icons because it was blocked, something a View As preview (Gavin's own full access)
+can never show; mw_test now walks every <link>/<script> of her five pages through the middleware,
+/incentive-tracking/{programs.js,data/,assets/} -- never the tracker or performance pages, /shared/, /carbliss-mpo/data/, /api/, and of /accounts/data/ only elig / hist / catalog / index /
+products -- never a rep's route or sales files), anything else redirects to `FINANCE_HOME` /hub/ (403 for data).
+The kdh_user cookie carries `ws` (api/session.js accessCookies, login/index.html, both now select `*`).
+CHROME (kdh-user.js tag 20261015c everywhere): `isFin(u)` (also from a manager preview cookie's `ws`); navItems =
+Home (the root page) / Incentives (/hub/, phone-bar word "Programs" -- six tabs must fit 375px, `short` labels) /
+Off-Premise ("Off-Prem") / On-Premise ("On-Prem") / Budgets (keys home / inc / off / on / sb), toolItems = a
+toolItems = NONE (the INCENTIVE TRACKER and INCENTIVE PERFORMANCE pages are NOT hers -- Gavin, 2026-10-15: "remove it
+from all aspects of site unless I say otherwise" -- the middleware allows only incentive-tracking's programs.js /
+data/ / assets/ that the hub loads; the sidebar's group list still knows a 'Finance' group for later), where()
+maps those pages, homeOf = ROOT, no View As in the menu, the foot / menu say "Finance", the bar names the root page
+"Home". HER HOME (Gavin: "a home page with just those tabs she has available") = the manager home (index.html)
+with every card outside hub / MPOs / supplier-budget / performance / incentive-tracking hidden, empty sections
+hidden, the title "Home" (FOUR cards: Incentives, Off / On-Premise MPOs, Supplier Budgets; tests count
+`a.kt:not([hidden])`); the middleware lets a finance manager open `/` and
+`/index.html` and sends her there from anything else (FINANCE_HOME '/'). View As -> Manager lists her by name
+only (Gavin: no "(Finance)" tag), carries `ws` in the preview cookie and lands on the manager home, which then
+trims itself. Tests (scratchpad): mw_test (finance paths, home redirect, 403s, full manager
+untouched), fin_test.mjs (14: sidebar, bottom bar, menu, trimmed home, picker label), sql_budget_test.sh (46),
+viewas / mgr / home / tasks / budget suites. NOTE: scratchpad session_test.mjs has 2 failures that predate this
+(it describes the 2026-10-02 kdh_rt design; session2_test.mjs, which replaced it, is not in this scratchpad).
+
+## Supplier Budgets round two: New Account, saved vendors, no-split rule, invoice links, editable history (2026-10-15)
+
+Gavin's six asks; supplier-budget/README.txt "ROUND TWO" has every rule. Migration
+`20261015150000_budget_rules.sql` (NOT yet run by Gavin; the page works without it): budget_accounts.billback_rule
+('split' 50/50 = the form fills half the Total until a billback is typed; 'none' = billback locked at 0, Kohler Spend
+= Total; 'manual'), backfilled once (Crown / Constellation -> none, 50/50 basis or mostly-half rows -> split, else
+manual; a re-run keeps rules set on the site). CONSTELLATION / CROWN NEVER SPLIT (Gavin) -- enforced by
+supplier_expenses_guard on insert and on any edit touching account / total / billback; budget_accounts_stamp forces
+'none' for a Crown / Constellation name, supplier or description. 8 rows split before the rule are left alone; the
+optional cleanup SQL is in the README (ROADMAP Now). The guard also: credits allowed on site rows (billback between the
+Total and 0), the open-year date check only on insert or a date change, a vendor typed in other capitals reuses the
+saved spelling, vendor uses count only on a new row or a vendor change. budget_settings (key / value; managers read,
+editors write; invoice_link must be https://*.encompass8.com with {invoice}). PAGE (budget.js / .css 20261015b): File
+column gone (table + CSV); "+ New Account" in the Add Expense picker (accountSheet(null, false, {name, year, onSaved}))
+and on the Budget tab; the picker lists the EXPENSE's year; saved vendors on tap + recent quick buttons + last vendor
+used on the account; invoice links (`invHtml` / `invUrl`, numeric invoices only, new tab, row click ignores them) set
+once in the Ledger's "Invoice Links to Encompass" fold from one pasted invoice address -- never a guessed URL format;
+validate(f, e) checks only what changed, so the 39 imported credit rows (and 102 odd 2025 rows) that refused every
+edit now save. Messages: a message travels only to the screen it was sent to (go() + hashchange). Tests (scratchpad):
+sql_budget_test.sh 65, budget_test.mjs 167, sb_shots.mjs.
+
+## UPC Registration Audit: IT's one page, brand managers' tool (2026-10-15)
+
+The /upc-crossref-audit skill moved onto the site: `/upc-audit/` (index.html, upc.js, upc.css, engine.js,
+README.txt has every rule). Vlad (IT) adds the FileMaker product export (12 columns; UPC = ABC_UPC_Text) and the
+ABC registration search download (sheets Data / Distributor / Criteria; XML is namespace-prefixed, which
+shared/xlsx-read.js -- the isb-import reader made shared and prefix-tolerant -- handles); engine.js (KdhUpc)
+matches IN THE BROWSER, nothing uploaded. Gavin's rules: license 3403-23-652-002 only (Criteria checked, other
+licenses / missing Criteria refused); a registration counts when State = Current and it expires in the CURRENT
+YEAR OR LATER (a file filtered to a past year is refused; several ABC files merge, e.g. 2026 + 2027); UPC match
+exact, then leading zeros stripped; ANY ABC row for the UPC with FileMaker's reg # counts. Results: notreg /
+notonreg / expired ("Still to Register") + pending / wrongreg / noupc / match -- ALL shown (Gavin). First run
+2026-10-15: 2,057 matched, 56 / 44 / 3 / 0 / 11 / 0. ACCESS (Gavin: "myself, vlad and every brand manager"):
+allowed_users.role 'it' (new; IT_PATHS /upc-audit/, /shared/, /rep/rep.css; no other RLS grant -- not a manager)
+and allowed_users.upc_audit for managers (migration `20261015190000_upc_audit.sql` sets it for program_admin +
+the brand-managers.json names; `supabase/seed/upc_audit_access.sql` from tools/program_seed.py adds new ones).
+The kdh_user cookie carries `upc:1` (api/session.js, login/, middleware verdict.upc); kdh-user.js `isIT` /
+`canUpc` (IT: one nav item "UPC Audit", no tools / banner / Back; managers: Manager tool + a hidden-unless-flag
+card on the manager home). NOTES are an append-only log per product code (upc_notes: status and/or text, the
+result then, author stamped; no update / delete); upc_runs keeps each run's counts + open codes so the next run
+says New / Still Open / Resolved. Preview: rep / associate refused, manager read-only. Excel download (Summary,
+Need Attention, All Products) via shared/xlsx-write.js -- MOVED from merchandising/ (reps' Non-Buy export could
+not load it from /merchandising/). Also fixed: associates were blocked from /rep/rep.css (tasks/ unstyled -- the
+same bug as finance), now in ASSOCIATE_PATHS. Tests (scratchpad upc2/): upc_test.mjs 46, sql_upc_test.sh 32,
+mw_test.mjs (IT routing + every asset of upc-audit and tasks passes). kdh-user.js 20261015h everywhere.
+

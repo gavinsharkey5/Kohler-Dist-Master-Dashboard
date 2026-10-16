@@ -115,3 +115,31 @@ Catalog validation
   node --test kohler-korner/tests/catalog.test.cjs kohler-korner/tests/model.test.cjs
   Browser checks cover exact SKU search, Brand Family bulk selection, removal,
   duplicate prevention, custom descriptions, save/reload and On the Horizon.
+
+Recognition uploads (2026-10-14)
+  Upload and Review Content appears on the edition list and editor toolbar.
+  Supported: XLSX/CSV employee tables, Outlook MSG new-hire announcements,
+  JPG/PNG/WebP anniversary table images, and pasted tab-delimited tables.
+  SheetJS 0.20.3, MsgReader 1.29.0 and Tesseract.js 7.0.0 are vendored,
+  pinned, and loaded only for their respective formats. OCR cores and English
+  language data are self-hosted; uploaded documents never go to a third party.
+  No new server endpoint, database table, or editing permission is introduced.
+  Files are read in browser memory. Full birth dates are immediately reduced
+  to month/day. Birth years, source workbooks and email files are not persisted.
+  Birthday candidates are filtered to the chosen edition month before saving.
+  Managers edit reviewed fields, choose photos, and explicitly confirm review.
+  Unknown hiring details stay blank. Email timestamps are not hire dates.
+  OCR compares column positions and requires readable anniversary headings.
+  Image-derived names and service milestones must be checked against the source.
+  Add and Save Draft uses the existing RPC and optimistic revision checks;
+  selected images use the existing private image storage and optimization.
+  Duplicate names within a section are skipped by default; updating matching
+  names requires choosing that option. Existing draft content is retained.
+  Affected sections remain incomplete until the final publication review.
+  Merely uploading or cancelling does not create an edition or store photos.
+  No supplied employee data is embedded in the site or public repository.
+
+  node --test kohler-korner/tests/import.test.cjs
+  PLAYWRIGHT_MODULE=<module> node kohler-korner/tests/import-browser-check.cjs
+  Optional NEWSLETTER_IMPORT_FIXTURE points to a private external fixture
+  containing source paths and expected month/day-only records. Never commit it.
