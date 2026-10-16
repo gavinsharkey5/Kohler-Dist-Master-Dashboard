@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Home | Kohler Distribution Hub</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../assets/icon-192.png">
+<script>try{var t=localStorage.getItem('kdh_theme');document.documentElement.setAttribute('data-theme',t==='dark'||t==='light'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20261016signature1">
+<meta name="kdh-page" content="Home">
+<meta name="kdh-home" content="associate">
+<script src="../shared/kdh-user.js?v=20261016signature1"></script>
+</head>
+<body>
+<main class="wrap home">
+ <header class="hh"><div class="hh-id"><h1>Home</h1><p class="hh-meta"><b id="associateWho">Your workspace</b><span id="associateMeta"></span></p></div></header>
+ <section data-my-day aria-label="My Day" class="work-card"><p>Loading your day…</p></section>
+ <section class="hs"><div class="hs-h"><h2>Your work</h2></div><div class="kt-grid">
+  <a class="kt" href="../tasks/"><span><b class="kt-t">Field Tasks</b><small class="kt-s">Your assignments, updates, and completion photos</small></span></a>
+  <a class="kt" href="../accounts/field.html"><span><b class="kt-t">Accounts</b><small class="kt-s">Find customers and add account photos</small></span></a>
+ </div></section>
+</main>
+<script>var associateUser=window.kdhUser&&kdhUser();if(associateUser){document.getElementById('associateWho').textContent=associateUser.name;document.getElementById('associateMeta').textContent=' · '+(associateUser.title||'Sales Associate')+(associateUser.dm?' · Reports to '+associateUser.dm:'');}</script>
+</body>
+</html>

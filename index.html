@@ -24,7 +24,7 @@
      Only the hero photo and the section list are this page's own. -->
 <link rel="stylesheet" href="rep/rep.css?v=20261016signature1">
 <script src="shared/auth-config.js"></script>
-<!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
+<!-- The top bar is injected by shared/kdh-user.js (badge and account menu). kdh-home = no Back button. -->
 <meta name="kdh-page" content="Manager Home">
 <meta name="kdh-home" content="manager">
 <script src="shared/kdh-user.js?v=20261016signature1"></script>
@@ -43,11 +43,6 @@
     <div class="hh-id">
       <h1>Manager Home</h1>
       <p class="hh-meta" id="meta"><b id="who">Kohler Distribution Hub</b><span id="metaRest"></span></p>
-    </div>
-    <!-- View As (2026-10-14): one picker from shared/kdh-user.js -- Manager (Gavin only) / Rep / Associate.
-         The whole site then shows what that person sees until "Exit" on the chip. -->
-    <div class="hh-acts" id="viewAs">
-      <button class="btn brand-outline" id="viewAsBtn" type="button">View As</button>
     </div>
   </header>
   <section data-my-day aria-label="My Day" class="work-card"><p>Loading your day…</p></section>
@@ -249,7 +244,6 @@
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
-  $('viewAsBtn').addEventListener('click', function(){ if (window.kdhViewAs) kdhViewAs(); });
   var user = null; try { user = window.kdhUser ? window.kdhUser() : null; } catch (e) {}
   // Previewing a rep: still the manager here. Previewing another manager
   // (Gavin's switcher below): this page is theirs.
@@ -273,7 +267,6 @@
     if (user.dm) meta.push('Reports to ' + esc(user.dm));
     $('metaRest').innerHTML = meta.map(function(m){ return '<span class="sep">·</span><span>' + m + '</span>'; }).join('');
   }
-  // the manager switcher (Gavin only) now lives in the shared View As picker (kdh-user.js viewAs)
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   function status(id, cls, text){ var el = $(id); if(!el) return; el.className = 'kt-st' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }

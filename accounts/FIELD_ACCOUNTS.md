@@ -1,10 +1,10 @@
 # Associate Accounts
 
-Associates have Home (Field Tasks) and Accounts in the shared navigation.
+Associates have a personal Home dashboard, Accounts, and Field Tasks in the shared navigation.
 Accounts opens `field.html`: a searchable directory of all customer accounts,
 their identity/location, account photos and merchandising, and tasks visible to
 the signed-in employee. Task links open the existing completion/thread workflow;
-Open Account returns to the account's photo page. Manager View As stays read-only.
+Open Account returns to the account's photo page. View As is disabled site-wide.
 
 `api/field-accounts.js` reads the existing customer source inside the function
 bundle, checks the caller's current role against Supabase, and returns only

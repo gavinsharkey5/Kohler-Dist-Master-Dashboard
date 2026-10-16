@@ -240,12 +240,11 @@
     return '<div class="panel">'
       + '<div><h3>Open Follow-ups · '+follow.length+'</h3>'+(follow.length ? '<ul>'+follow.map(function(r){ return item(r,false); }).join('')+'</ul>' : '<p class="empty">No Open Follow-Ups</p>')+'</div>'
       + '<div><h3>Recent Marks</h3>'+(recent.length ? '<ul>'+recent.map(function(r){ return item(r,true); }).join('')+'</ul>' : '<p class="empty">'+esc(R.name)+' Has No Marks Yet</p>')+'</div>'
-      + '<div class="links"><a href="'+hub+'">View in Incentive Hub ›</a><button type="button" data-preview="'+esc(R.name)+'">Preview as '+esc(R.name.split(' ')[0])+' ›</button></div>'
+      + '<div class="links"><a href="'+hub+'">View in Incentive Hub ›</a></div>'
       + '</div>';
   }
   document.addEventListener('click', function(e){
     var p = e.target.closest('.pill'); if(p){ scope = p.dataset.scope; openRep = null; render(); return; }
-    var pv = e.target.closest('[data-preview]'); if(pv){ if(window.kdhSetPreview){ kdhSetPreview(pv.dataset.preview); location.href = '../rep/'; } return; }
     var row = e.target.closest('.row'); if(row){ openRep = openRep===row.dataset.rep ? null : row.dataset.rep; render(); }
   });
   // accounts.js is deferred: once it lands, fold its roster in.
