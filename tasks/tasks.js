@@ -83,23 +83,19 @@ function friendly(e){
   if(/Failed to fetch|NetworkError|network/i.test(m)) return 'The connection dropped. Try again.';
   return m;
 }
+let previewScopePromise;
+function previewScope(){
+ if(!previewScopePromise)previewScopePromise=Promise.all([rest('rpc/kdh_work_people',{method:'POST',body:{p_assign:false}}),ROLE==='manager'?rest('rpc/kdh_team',{method:'POST',body:{}}):Promise.resolve([])]).then(([people,roster])=>window.KdhTaskScope.create(U,people,roster));
+ return previewScopePromise;
+}
 async function loadAll(){
+  const scope=PREVIEW?await previewScope():null;
   let tasks = [], offset = 0;
   for(;;){ const page = await rest('field_tasks?select=*&archived_at=is.null&order=due_date.asc.nullslast,created_at.desc,id.asc&limit=500&offset='+offset); tasks.push(...page); if(page.length<500) break; offset+=500; }
   const reads = await rest('field_task_reads?select=task_id,seen_at');
   const rd = {}; (reads || []).forEach(r => { rd[r.task_id] = r.seen_at; });
   S.reads = rd;
-  S.tasks = (tasks || []).filter(t => !PREVIEW || previewMine(t));
-}
-function previewMine(t){
-  // a manager previewing a rep (tasks they created) or an associate (tasks assigned to them), by
-  // name -- a rep preview carries no email; an associate preview may carry one
-  if(ROLE === 'manager') return true;
-  if(ROLE === 'associate' && U.previewEmail) return (t.associate_email || '').toLowerCase() === U.previewEmail.toLowerCase();
-  const want = U && U.name || '', have = ROLE === 'associate' ? (t.associate_name || '') : (t.rep_name || '');
-  if(!want) return false;
-  if(window.kdhMatchName) return !!window.kdhMatchName(want, [have]);
-  return have.toLowerCase() === want.toLowerCase();
+  S.tasks = (tasks || []).filter(t => !PREVIEW || scope.visible(t));
 }
 async function loadPeople(){
   try { const people=await rest('rpc/kdh_work_people',{method:'POST',body:{p_assign:true}}); S.people.associate=people; S.people.rep=people.filter(p=>p.role==='rep'); return; } catch(e){ if(!e.missing) throw e; }

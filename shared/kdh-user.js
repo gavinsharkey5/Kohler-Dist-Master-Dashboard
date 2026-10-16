@@ -942,8 +942,8 @@
     if (canViewAs()) { var hero = document.querySelector('main.home .hh'); if (hero) { var va = document.createElement('button'); va.type='button'; va.className='btn'; va.id='viewAsBtn'; va.textContent='View As'; va.addEventListener('click', function(){ viewAs(); }); hero.appendChild(va); } }
     var signatureBar=document.querySelector('.kdh-bar');if(signatureBar){var signatureBarSize=function(){document.documentElement.style.setProperty('--signature-bar-height',signatureBar.getBoundingClientRect().height+'px');};signatureBarSize();if(window.ResizeObserver)new ResizeObserver(signatureBarSize).observe(signatureBar);}
     if(document.querySelector('main.home')){var signature=document.createElement('script');signature.src=(ROOT||'/')+'shared/signature-home.js?v=20261016signature1';document.head.appendChild(signature);}
-    if (user() && (user().preview || user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
-    if (user() && !user().preview && user().ws !== 'finance') { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015ui'; document.head.appendChild(work); }
+    if (user() && (user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
+    if (user() && user().ws !== 'finance') { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015ui'; document.head.appendChild(work); }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })(window);
