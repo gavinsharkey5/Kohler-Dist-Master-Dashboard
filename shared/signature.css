@@ -1,0 +1,176 @@
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url('../assets/fonts/dm-sans.ttf') format('truetype')}
+/* Kohler Signature · 2026-10-16. Presentation only; shared by every application page.
+   The approved concepts are preserved under designs/kohler-theme-directions/.
+   html:root deliberately outranks legacy :root token aliases without !important. */
+html:root{
+ --kdh-bg:#F3F5F8;--kdh-surface:#FFFFFF;--kdh-surface-2:#F7F9FC;--kdh-surface-3:#EAF0F6;
+ --kdh-text:#15263C;--kdh-text-2:#40516A;--kdh-text-3:#59677B;--kdh-text-4:#607087;
+ --kdh-border:#DCE2E9;--kdh-border-2:#8795A8;
+ --kdh-brand:#245B9E;--kdh-brand-2:#194A86;--kdh-brand-soft:#E9F0F9;--kdh-brand-ink:#FFFFFF;
+ --kdh-navy:#112B49;--kdh-navy-ink:#FFFFFF;--kdh-head-c:#15263C;
+ --kdh-accent:#BC8741;--kdh-accent-soft:#FAF0E1;--kdh-gold:#80561C;--kdh-gold-soft:#FAF0E1;
+ --kdh-ok:#226744;--kdh-ok-soft:#E9F4EC;--kdh-warn:#8E4C17;--kdh-warn-soft:#FFF1DE;--kdh-bad:#A72D25;--kdh-bad-soft:#FDECE9;
+ --kdh-r:6px;--kdh-r-lg:12px;--kdh-r-xl:14px;--kdh-side-w:224px;
+ --kdh-head:'DM Sans','Inter',system-ui,sans-serif;--kdh-body:'DM Sans','Inter',system-ui,sans-serif;
+ --kdh-ring:rgba(36,91,158,.32);--kdh-focus:#245B9E;
+ --kdh-shadow:0 1px 2px rgba(21,38,60,.035);--kdh-shadow-h:0 3px 12px rgba(21,38,60,.07);
+ --signature-side:#112B49;--signature-side-ink:#E3EBF5;--signature-side-muted:#B8C9DE;
+ --signature-gold:#D8AE70;--signature-selected:rgba(255,255,255,.11);
+}
+html:root[data-theme="dark"]{
+ --kdh-bg:#101A29;--kdh-surface:#17263A;--kdh-surface-2:#1B2D44;--kdh-surface-3:#243A54;
+ --kdh-text:#F0F4FA;--kdh-text-2:#CBD6E5;--kdh-text-3:#AFBDD1;--kdh-text-4:#A7B8CE;
+ --kdh-border:#33465F;--kdh-border-2:#6B819F;
+ --kdh-brand:#9AC5FF;--kdh-brand-2:#B8D7FF;--kdh-brand-soft:#203D61;--kdh-brand-ink:#0E253F;
+ --kdh-navy:#112B49;--kdh-head-c:#F0F4FA;
+ --kdh-accent:#D8AE70;--kdh-accent-soft:#342B1F;--kdh-gold:#E8BD7D;--kdh-gold-soft:#342B1F;
+ --kdh-ok:#9ED9B4;--kdh-ok-soft:#193B2B;--kdh-warn:#F2CB92;--kdh-warn-soft:#3D2D1D;--kdh-bad:#FFB3A8;--kdh-bad-soft:#422721;
+ --kdh-ring:rgba(154,197,255,.35);--kdh-focus:#B8D7FF;
+ --kdh-shadow:0 1px 2px rgba(0,0,0,.12);--kdh-shadow-h:0 4px 14px rgba(0,0,0,.2);
+ --signature-side:#0E223A;
+}
+html:root .kdh-bar{background:var(--kdh-surface);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid var(--kdh-border)}
+html:root .kdh-bar-in{min-height:62px;height:auto;padding-top:8px;padding-bottom:8px}
+html:root .topbar,html:root #acctApp .filters{top:var(--signature-bar-height,63px)}
+html:root .kdh-logo small{font-weight:500;font-size:14px}
+html:root .kdh-b{border-radius:6px}
+html:root .kdh-state{border-radius:var(--kdh-r-lg)}
+html:root .btn{border-radius:6px;font-weight:500;box-shadow:none}
+html:root .btn.primary{background:var(--kdh-brand);color:var(--kdh-brand-ink);border-color:var(--kdh-brand)}
+html:root .btn.primary:hover{background:var(--kdh-brand-2);border-color:var(--kdh-brand-2)}
+html:root .btn.ghost{background:transparent;border-color:transparent;color:var(--kdh-brand)}
+html:root .kdh-tag,html:root .kdh-pill{border-radius:5px}
+html:root .kdh-tabs{background:var(--kdh-surface);border-color:var(--kdh-border)}
+html:root .kdh-tab.on{background:var(--kdh-brand-soft);color:var(--kdh-brand)}
+html:root .kdh-menu,html:root .kdh-picker{background:var(--kdh-surface);border-color:var(--kdh-border);border-radius:12px}
+html:root .kdh-side-group{border:0;padding:0;margin:3px 0}
+html:root .kdh-side-group>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;padding:8px 12px;color:var(--signature-side-muted);font-size:13px;font-weight:500;border-radius:6px;cursor:pointer}
+html:root .kdh-side-group>summary::-webkit-details-marker{display:none}
+html:root .kdh-side-group>summary::after{content:'›';font-size:20px;line-height:1;transform:rotate(0deg)}
+html:root .kdh-side-group[open]>summary::after{transform:rotate(90deg)}
+html:root .kdh-side-group>summary:hover{background:var(--signature-selected);color:#FFF}
+html:root .kdh-side-group>summary:focus-visible{outline:2px solid #D8AE70;outline-offset:-2px}
+html:root .kdh-side-group .kdh-side-sub{margin:0 0 8px 12px;padding-left:8px}
+@media(min-width:1024px){
+ html:root .kdh-side{background:var(--signature-side);border:0;border-top:4px solid var(--kdh-accent);padding:21px 14px 14px;color:var(--signature-side-ink)}
+ html:root .kdh-side-logo{height:auto;min-height:66px;padding:0 8px 20px;margin:0 0 13px;border-bottom:1px solid rgba(255,255,255,.15);gap:10px;color:#FFF}
+ html:root .kdh-side-logo::after{display:none}
+ html:root .kdh-side-logo img{width:35px;height:44px;object-fit:contain;background:transparent;border-radius:0}
+ html:root .kdh-side-logo .kdh-lock b{font-size:21px;font-weight:600}
+ html:root .kdh-side-logo .kdh-lock small{font-size:11px;color:var(--signature-side-muted)}
+ html:root .kdh-side-nav{gap:3px}
+ html:root .kdh-side-i{color:var(--signature-side-ink);font-size:14px;min-height:42px;line-height:1.35;border-radius:6px;padding:9px 12px;font-weight:400;gap:10px}
+ html:root .kdh-side-i svg{color:var(--signature-side-muted);width:17px;height:17px}
+ html:root .kdh-side-i:hover,html:root .kdh-side-i.sub:hover{background:rgba(255,255,255,.07);color:#FFF}
+ html:root .kdh-side-i.on,html:root .kdh-side-i.sub.on{background:var(--signature-selected);color:#FFF;box-shadow:inset 3px 0 0 var(--signature-gold);font-weight:500}
+ html:root .kdh-side-i.on svg{color:var(--signature-gold)}
+ html:root .kdh-side .kdh-side-i.sub{color:var(--signature-side-ink);font-size:13px;min-height:38px;border-radius:5px;padding:8px 10px}
+ html:root .kdh-side-sub{border-color:rgba(255,255,255,.17)}
+ html:root .kdh-side-h{color:var(--signature-side-muted);font-size:11px;font-weight:500;padding:16px 12px 5px;margin:0}
+ html:root .kdh-side-foot{border-color:rgba(255,255,255,.15);padding-top:14px}
+ html:root .kdh-side-user{color:#FFF;padding:8px 5px}
+ html:root .kdh-side-who small{color:var(--signature-side-muted)}
+ html:root .kdh-side-user .kdh-av{background:#E9F0F9;color:#245B9E}
+ html:root .kdh-side-user>svg{color:var(--signature-side-muted)}
+ html:root .kdh-side-user:hover,html:root .kdh-side-user[aria-expanded="true"]{background:var(--signature-selected)}
+ html:root .kdh-side a:focus-visible,html:root .kdh-side button:focus-visible{outline:2px solid var(--signature-gold);outline-offset:-2px}
+}
+/* Shared page rhythm. Keep each page's data model and responsive table behavior. */
+html:root .wrap.home{max-width:1320px;padding:0 30px}
+html:root .hh{padding:30px 0 22px;margin-bottom:22px;border-bottom:1px solid var(--kdh-border);align-items:center}
+html:root .hh h1{font-size:30px;line-height:1.2;font-weight:600;color:var(--kdh-text)}
+html:root .hh-meta{font-size:14px;color:var(--kdh-text-3);margin-top:8px}
+html:root .hs-h{margin:0 0 14px}
+html:root .hs-h h2{font-size:17px;font-weight:600}
+html:root .home .hs{margin:26px 0}
+html:root .home{--kt-surface:var(--kdh-surface);--kt-bd:var(--kdh-border);--kt-div:var(--kdh-border);--kt-bd-h:var(--kdh-brand);--kt-ico-bg:var(--kdh-brand-soft);--kt-ico-bd:transparent;--kt-press:var(--kdh-surface-3)}
+html:root .kt-grid{gap:14px}
+html:root a.kt{border:1px solid var(--kdh-border);border-radius:12px;background:var(--kdh-surface);box-shadow:var(--kdh-shadow);padding:18px;min-height:98px}
+html:root a.kt:hover{background:var(--kdh-surface);border-color:var(--kdh-border-2);box-shadow:var(--kdh-shadow-h)}
+html:root a.kt .kt-ico{width:34px;height:34px;background:var(--kdh-brand-soft);color:var(--kdh-brand);border:0;border-radius:8px}
+html:root .kt-t{font-size:15px;font-weight:500}
+html:root .kt-s,html:root .kt-st{font-size:13px;color:var(--kdh-text-3)}
+html:root .signature-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 24px}
+html:root .signature-stat{padding:20px;background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:12px;min-width:0}
+html:root .signature-stat:first-child{border-top:3px solid var(--kdh-accent);padding-top:18px}
+html:root .signature-stat h2{font-size:13px;font-weight:500;color:var(--kdh-text-3);margin:0 0 10px}
+html:root .signature-stat strong{font-size:29px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2;display:block}
+html:root .signature-stat p{font-size:12px;color:var(--kdh-text-3);margin:9px 0 0}
+html:root .signature-work-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(260px,1fr);gap:22px;align-items:start}
+html:root .signature-work-grid .work-card{margin:0;min-width:0;border:1px solid var(--kdh-border);border-radius:12px;box-shadow:var(--kdh-shadow);background:var(--kdh-surface)}
+html:root .signature-work-grid .work-workspace-head{padding:20px 22px;border-bottom:1px solid var(--kdh-border)}
+html:root .signature-work-grid .work-workspace-head h2{font-size:17px;font-weight:600}
+html:root .signature-work-grid .work-tabs{padding:0 22px}
+html:root .signature-work-grid .work-tabs{margin:12px 0 0}
+html:root .signature-work-grid .work-layout{padding:0 20px 16px}
+html:root .signature-work-grid .work-list-panel{border:0;border-radius:0;box-shadow:none}
+html:root .signature-work-grid .work-summary{padding:16px 4px}
+html:root .signature-work-grid .work-summary h3{font-size:15px;font-weight:500}
+html:root .signature-work-grid .work-filters{padding:12px 0 0}
+html:root .signature-work-grid .work-group{padding:16px 4px 8px}
+html:root .signature-work-grid .work-row{padding-top:15px;padding-bottom:15px}
+html:root .signature-work-grid .work-task-title{font-weight:500}
+html:root .signature-work-grid .work-layout:has(.work-detail:not([hidden])){grid-template-columns:minmax(0,1fr)}
+html:root .signature-programs{border:1px solid var(--kdh-border);border-radius:12px;background:var(--kdh-surface);min-width:0;overflow:hidden}
+html:root .signature-programs h2{font-size:17px;font-weight:600;padding:20px 22px;margin:0;border-bottom:1px solid var(--kdh-border)}
+html:root .signature-programs a{display:block;padding:18px 22px;border-bottom:1px solid var(--kdh-border);text-decoration:none;color:var(--kdh-text)}
+html:root .signature-programs a:last-child{border:0}
+html:root .signature-programs a:hover{background:var(--kdh-surface-2)}
+html:root .signature-programs b{font-size:14px;font-weight:500;display:block;margin-bottom:6px}
+html:root .signature-programs small{font-size:12px;color:var(--kdh-text-3);display:block}
+html:root .signature-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}
+html:root .signature-shortcuts a{background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:12px;padding:18px;text-decoration:none;color:var(--kdh-text);font-size:15px;font-weight:500;min-width:0}
+html:root .signature-shortcuts a:hover{border-color:var(--kdh-border-2);box-shadow:var(--kdh-shadow-h)}
+html:root .signature-shortcuts a::after{content:'↗';float:right;color:var(--kdh-brand)}
+html:root .signature-shortcuts small{display:block;font-size:12px;color:var(--kdh-text-3);font-weight:400;margin-top:6px}
+html:root .signature-directory{border:0;border-top:1px solid var(--kdh-border);border-radius:0;margin:28px 0 0;padding:0;background:transparent}
+html:root .signature-directory>summary{font-size:16px;font-weight:500;padding:20px 0;min-height:56px;color:var(--kdh-text);cursor:pointer}
+html:root .signature-directory>.hs{margin:20px 0 30px}
+html:root .signature-finance .kt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+/* Supplier Budgets: Signature's comfortable spacing, existing nine columns and exports. */
+html:root .sb.wide{max-width:1560px;padding:0 28px 36px}
+html:root .sb .sb-head{border-bottom:1px solid var(--kdh-border);padding-top:26px;padding-bottom:20px;margin-bottom:20px}
+html:root .sb .filters,html:root .sb .ledger-filters{background:var(--kdh-surface);border-color:var(--kdh-border);border-radius:12px}
+html:root .sb .led{border-color:var(--kdh-border);border-radius:12px;box-shadow:var(--kdh-shadow);background:var(--kdh-surface)}
+html:root .sb .led th{background:var(--kdh-surface-2);color:var(--kdh-text-3);font-size:13px;font-weight:500}
+html:root .sb .led td{padding-top:18px;padding-bottom:18px;border-color:var(--kdh-border);line-height:1.5}
+html:root .sb table.ledger th:last-child,html:root .sb table.ledger td:last-child{padding-left:4px;padding-right:4px}
+html:root .sb table.ledger th:last-child .column-sort{overflow-wrap:normal;word-break:normal}
+html:root .sb .received-cell .rec{white-space:nowrap;max-width:none}
+html:root .sb .led tr:nth-child(even){background:var(--kdh-surface-2)}
+html:root .sb .invoice-number{font-size:15px;font-weight:600}
+html:root .sb .received-pill,html:root .sb .sb-doc-status{border-radius:5px}
+html:root .sb .new-expense-pdfs{border-radius:10px;background:var(--kdh-brand-soft);border-color:var(--kdh-border-2)}
+html:root .sb .form{max-width:760px;background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:12px;padding:24px;margin:20px 0 0}
+html:root .sb:has(.form){max-width:1020px;padding-top:20px}
+html:root .sb .form input,html:root .sb .form select,html:root .sb .form textarea{border-color:var(--kdh-border);border-radius:6px}
+html:root .sb .form input:focus-visible,html:root .sb .form select:focus-visible,html:root .sb .form textarea:focus-visible{border-color:var(--kdh-brand)}
+html:root .sb .form .fld label{font-weight:500}
+html:root .sb .strip{gap:14px;margin-bottom:22px}
+html:root .sb .strip .st{padding:18px 16px;text-align:left}
+html:root .sb .strip .st:first-child{border-top:3px solid var(--kdh-accent);padding-top:16px}
+html:root .sb .strip .st b{font-weight:600;font-size:25px}
+@media(max-width:1120px){html:root .signature-work-grid{grid-template-columns:minmax(0,1fr)}html:root .signature-programs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}html:root .signature-programs h2{grid-column:1/-1}html:root .signature-programs a{border-bottom:0;border-right:1px solid var(--kdh-border)}}
+@media(max-width:599px){
+ html:root .kdh-bar-in{min-height:54px;padding-top:0;padding-bottom:0}
+ html:root .wrap.home,html:root .sb.wide{padding-left:16px;padding-right:16px}
+ html:root .hh{padding:22px 0 18px;margin-bottom:18px}
+ html:root .hh h1{font-size:27px}
+ html:root .signature-stats{gap:8px;margin-bottom:18px}
+ html:root .signature-stat{padding:14px 10px}
+ html:root .signature-stat:first-child{padding-top:12px}
+ html:root .signature-stat h2{font-size:12px;line-height:1.4}
+ html:root .signature-stat strong{font-size:26px}
+ html:root .signature-stat p{font-size:12px;line-height:1.4}
+ html:root .signature-programs,html:root .signature-shortcuts{grid-template-columns:minmax(0,1fr)}
+ html:root .signature-programs a{border-right:0;border-bottom:1px solid var(--kdh-border)}
+ html:root .signature-work-grid .work-workspace-head{padding:16px}
+ html:root .signature-work-grid .work-layout{padding:0 12px 12px}
+ html:root .signature-finance .kt-grid{grid-template-columns:minmax(0,1fr)}
+ html:root .signature-shortcuts{gap:10px}
+ html:root .sb .form{padding:18px 14px 166px;margin-top:16px}
+ html:root .sb .strip{gap:8px}
+ html:root .sb .strip .st{padding:14px 10px}
+ html:root .sb .strip .st:first-child{padding-top:12px}
+ html:root .sb .strip .st b{font-size:22px}
+}

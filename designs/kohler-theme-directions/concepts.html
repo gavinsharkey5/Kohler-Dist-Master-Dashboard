@@ -1,0 +1,327 @@
+<div id="kohler-directions" class="viz-carousel" aria-label="Five Kohler Hub design directions">
+  <section data-variant="Kohler Signature" aria-label="Kohler Signature design"><div class="kd-app kd-signature" data-theme="signature"></div></section>
+  <section data-variant="The Dispatch" aria-label="The Dispatch design" hidden><div class="kd-app kd-dispatch" data-theme="dispatch"></div></section>
+  <section data-variant="Precision Workspace" aria-label="Precision Workspace design" hidden><div class="kd-app kd-precision" data-theme="precision"></div></section>
+  <section data-variant="Fieldwork" aria-label="Fieldwork design" hidden><div class="kd-app kd-fieldwork" data-theme="fieldwork"></div></section>
+  <section data-variant="Nightshift" aria-label="Nightshift design" hidden><div class="kd-app kd-nightshift" data-theme="nightshift"></div></section>
+</div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+#kohler-directions .kd-app{--kd-bg:#f3f5f8;--kd-paper:#fff;--kd-ink:#15263c;--kd-muted:#59677b;--kd-line:#dce2e9;--kd-accent:#245b9e;--kd-soft:#e9f0f9;--kd-nav:#112b49;--kd-navink:#e3ebf5;--kd-special:#bc8741;--kd-good:#226744;--kd-goodbg:#e9f4ec;--kd-warn:#8e4c17;--kd-warnbg:#fff1de;--kd-radius:12px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;line-height:1.5;color:var(--kd-ink);background:var(--kd-bg);min-height:1100px;display:grid;grid-template-columns:190px minmax(0,1fr);position:relative;color-scheme:light;text-align:left;overflow:clip}
+#kohler-directions .kd-app *{box-sizing:border-box}
+#kohler-directions .kd-app button,#kohler-directions .kd-app input,#kohler-directions .kd-app select,#kohler-directions .kd-app textarea{font:inherit}
+#kohler-directions .kd-app button{cursor:var(--cursor-interaction,pointer)}
+#kohler-directions .kd-app button:focus-visible,#kohler-directions .kd-app input:focus-visible,#kohler-directions .kd-app select:focus-visible,#kohler-directions .kd-app textarea:focus-visible{outline:3px solid var(--kd-accent);outline-offset:3px}
+#kohler-directions .kd-app [hidden]{display:none!important}
+#kohler-directions .kd-nav{padding:28px 16px;background:var(--kd-nav);color:var(--kd-navink);display:flex;flex-direction:column;gap:26px;min-width:0}
+#kohler-directions .kd-brand{display:flex;gap:10px;align-items:center;font-size:20px;font-weight:700;line-height:1.1}
+#kohler-directions .kd-brand small{display:block;font-size:11px;letter-spacing:.08em;font-weight:500;margin-top:6px;text-transform:uppercase}
+#kohler-directions .kd-mark{display:grid;place-items:center;width:34px;height:39px;border:1px solid var(--kd-special);color:var(--kd-special);font-family:Georgia,serif;font-size:26px;flex-shrink:0}
+#kohler-directions .kd-nav label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:inherit;opacity:.72;display:block;margin:0 10px 9px}
+#kohler-directions .kd-nav button{background:transparent;color:inherit;border:0;display:flex;gap:10px;align-items:center;padding:10px 11px;margin:3px 0;width:100%;text-align:left;border-radius:6px;font-size:13px}
+#kohler-directions .kd-nav button[aria-current="page"]{background:#ffffff19;color:#fff;box-shadow:inset 3px 0 var(--kd-special)}
+#kohler-directions .kd-nav .kd-subnav{padding-left:20px;font-size:12px;opacity:.8}
+#kohler-directions .kd-nav-foot{margin-top:auto;padding-top:20px;border-top:1px solid #ffffff28;font-size:12px}
+#kohler-directions .kd-user{display:flex;gap:9px;align-items:center}
+#kohler-directions .kd-avatar{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:var(--kd-soft);color:var(--kd-accent);font-size:11px;font-weight:700;flex-shrink:0}
+#kohler-directions .kd-main{min-width:0}
+#kohler-directions .kd-top{min-height:64px;border-bottom:1px solid var(--kd-line);padding:14px 27px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--kd-paper)}
+#kohler-directions .kd-crumb{font-size:12px;color:var(--kd-muted)}
+#kohler-directions .kd-top-actions{display:flex;gap:12px;align-items:center;font-size:11px;color:var(--kd-muted)}
+#kohler-directions .kd-demo{padding:3px 7px;border:1px solid var(--kd-line);border-radius:4px;font-size:11px;white-space:nowrap}
+#kohler-directions .kd-content{padding:28px;position:relative}
+#kohler-directions .kd-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px}
+#kohler-directions .kd-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--kd-muted);margin-bottom:7px}
+#kohler-directions .kd-app h1{font-size:29px;line-height:1.15;letter-spacing:-.8px;margin:0 0 8px;font-weight:600;color:var(--kd-ink)}
+#kohler-directions .kd-app h2{font-size:16px;line-height:1.3;margin:0;font-weight:600;color:var(--kd-ink)}
+#kohler-directions .kd-app p{margin:0;color:var(--kd-muted);font-size:12px}
+#kohler-directions .kd-button{display:inline-flex;gap:7px;align-items:center;justify-content:center;min-height:36px;padding:8px 12px;color:var(--kd-ink);background:var(--kd-paper);border:1px solid var(--kd-line);border-radius:6px;font-size:12px;white-space:nowrap}
+#kohler-directions .kd-button.kd-primary{background:var(--kd-accent);color:var(--kd-onaccent,#fff);border-color:var(--kd-accent)}
+#kohler-directions .kd-button.kd-text{padding:4px 0;border:0;color:var(--kd-accent);background:transparent;min-height:28px;text-align:left}
+#kohler-directions .kd-tabs{display:flex;gap:22px;border-bottom:1px solid var(--kd-line);margin-bottom:24px;flex-wrap:wrap}
+#kohler-directions .kd-tabs button{color:var(--kd-muted);border:0;background:transparent;padding:0 0 12px;font-size:12px;border-bottom:2px solid transparent}
+#kohler-directions .kd-tabs button[aria-selected="true"]{border-color:var(--kd-accent);color:var(--kd-accent);font-weight:600}
+#kohler-directions .kd-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:24px}
+#kohler-directions .kd-stat{padding:18px;background:var(--kd-paper);border:1px solid var(--kd-line);border-radius:var(--kd-radius);position:relative}
+#kohler-directions .kd-stat label{display:block;color:var(--kd-muted);font-size:11px;margin-bottom:9px}
+#kohler-directions .kd-stat strong{display:block;font-size:28px;line-height:1.2;letter-spacing:-1px;font-weight:600;font-variant-numeric:tabular-nums}
+#kohler-directions .kd-stat small{display:block;color:var(--kd-muted);font-size:11px;margin-top:8px}
+#kohler-directions .kd-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(190px,1fr);gap:20px}
+#kohler-directions .kd-panel{background:var(--kd-paper);border:1px solid var(--kd-line);border-radius:var(--kd-radius);min-width:0;overflow:hidden}
+#kohler-directions .kd-panel-head{padding:18px 20px;border-bottom:1px solid var(--kd-line);display:flex;justify-content:space-between;align-items:center;gap:10px}
+#kohler-directions .kd-panel-head small{font-size:11px;color:var(--kd-muted)}
+#kohler-directions .kd-task{padding:15px 20px;display:flex;gap:13px;align-items:start;border-bottom:1px solid var(--kd-line)}
+#kohler-directions .kd-task:last-child{border:0}
+#kohler-directions .kd-task input{width:16px;height:16px;margin:3px 0;accent-color:var(--kd-accent);flex-shrink:0}
+#kohler-directions .kd-task-title{display:block;font-weight:500;font-size:12px;margin-bottom:5px}
+#kohler-directions .kd-task small{font-size:11px;color:var(--kd-muted)}
+#kohler-directions .kd-task.done .kd-task-title{text-decoration:line-through;color:var(--kd-muted)}
+#kohler-directions .kd-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 7px;border-radius:4px;background:var(--kd-soft);color:var(--kd-accent);font-size:11px;white-space:nowrap}
+#kohler-directions .kd-pill.kd-warn{color:var(--kd-warn);background:var(--kd-warnbg)}
+#kohler-directions .kd-pill.kd-good{color:var(--kd-good);background:var(--kd-goodbg)}
+#kohler-directions .kd-task .kd-pill{margin-left:auto}
+#kohler-directions .kd-program{padding:18px 20px;border-bottom:1px solid var(--kd-line)}
+#kohler-directions .kd-program:last-child{border:0}
+#kohler-directions .kd-program b{font-size:12px;display:block;margin-bottom:5px;font-weight:600}
+#kohler-directions .kd-progress{height:5px;border-radius:5px;background:var(--kd-soft);margin-top:12px;overflow:hidden}
+#kohler-directions .kd-progress span{height:100%;display:block;background:var(--kd-accent)}
+#kohler-directions .kd-program-foot{display:flex;justify-content:space-between;margin-top:7px;font-size:11px;color:var(--kd-muted)}
+#kohler-directions .kd-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+#kohler-directions .kd-shortcut{border:1px solid var(--kd-line);background:var(--kd-paper);padding:16px;text-align:left;border-radius:var(--kd-radius);color:var(--kd-ink);font-weight:500;font-size:12px}
+#kohler-directions .kd-shortcut span{display:block;font-weight:400;font-size:11px;color:var(--kd-muted);margin-top:6px}
+#kohler-directions .kd-shortcut em{float:right;font-style:normal;color:var(--kd-accent)}
+#kohler-directions .kd-notice{font-size:11px;color:var(--kd-muted);margin-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#kohler-directions .kd-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:14px 16px;background:var(--kd-paper);border:1px solid var(--kd-line);border-bottom:0;border-radius:var(--kd-radius) var(--kd-radius) 0 0}
+#kohler-directions .kd-tools input{min-width:100px;flex:1;width:160px;padding:9px 10px;border:1px solid var(--kd-line);background:var(--kd-bg);color:var(--kd-ink);border-radius:5px;font-size:12px}
+#kohler-directions .kd-tools select{padding:9px 7px;border:1px solid var(--kd-line);background:var(--kd-paper);color:var(--kd-ink);border-radius:5px;font-size:11px;max-width:100%}
+#kohler-directions .kd-tools button[aria-pressed="true"]{background:var(--kd-soft);color:var(--kd-accent);border-color:var(--kd-accent)}
+#kohler-directions .kd-ledger{background:var(--kd-paper);border:1px solid var(--kd-line);border-radius:0 0 var(--kd-radius) var(--kd-radius);overflow:hidden}
+#kohler-directions .kd-table{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed}
+#kohler-directions .kd-table th{color:var(--kd-muted);font-size:11px;font-weight:500;text-align:left;padding:12px;background:var(--kd-bg);border-bottom:1px solid var(--kd-line)}
+#kohler-directions .kd-table td{padding:15px 12px;border-bottom:1px solid var(--kd-line);vertical-align:top;overflow-wrap:anywhere}
+#kohler-directions .kd-table td:last-child,#kohler-directions .kd-table th:last-child{text-align:right}
+#kohler-directions .kd-table b{font-weight:600;display:block;margin-bottom:4px;font-size:12px}
+#kohler-directions .kd-table small{display:block;color:var(--kd-muted);font-size:11px}
+#kohler-directions .kd-table .kd-money{font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap;font-weight:600}
+#kohler-directions .kd-table .kd-button{min-height:27px;font-size:11px;padding:3px 7px;margin-top:6px}
+#kohler-directions .kd-table .kd-source{color:var(--kd-muted);font-size:11px;display:block;border:0;background:transparent;padding:5px 0;text-align:left}
+#kohler-directions .kd-row-count{padding:12px 16px;font-size:11px;color:var(--kd-muted)}
+#kohler-directions .kd-form-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(175px,1fr);gap:20px}
+#kohler-directions .kd-form{min-width:0;padding:22px;background:var(--kd-paper);border:1px solid var(--kd-line);border-radius:var(--kd-radius)}
+#kohler-directions .kd-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+#kohler-directions .kd-field{display:flex;flex-direction:column;gap:7px;font-size:11px;min-width:0}
+#kohler-directions .kd-field input,#kohler-directions .kd-field select,#kohler-directions .kd-field textarea{width:100%;padding:10px;border:1px solid var(--kd-line);background:var(--kd-paper);color:var(--kd-ink);border-radius:5px;font-size:12px;min-width:0}
+#kohler-directions .kd-field textarea{resize:vertical;min-height:65px}
+#kohler-directions .kd-field.kd-wide{grid-column:1/-1}
+#kohler-directions .kd-optional{color:var(--kd-muted);font-weight:400;font-size:11px}
+#kohler-directions .kd-drop{padding:19px;border:1px dashed var(--kd-accent);border-radius:6px;background:var(--kd-soft);grid-column:1/-1}
+#kohler-directions .kd-drop label{font-size:12px;font-weight:500;display:block}
+#kohler-directions .kd-drop p{font-size:11px;margin:5px 0 12px}
+#kohler-directions .kd-drop input{max-width:100%;font-size:11px;color:var(--kd-ink)}
+#kohler-directions .kd-form-actions{display:flex;gap:8px;margin-top:21px;flex-wrap:wrap}
+#kohler-directions .kd-summary{padding:22px;background:var(--kd-soft);border-radius:var(--kd-radius);align-self:start}
+#kohler-directions .kd-summary h2{font-size:14px;margin-bottom:20px}
+#kohler-directions .kd-summary dl{margin:0}
+#kohler-directions .kd-summary dl div{display:flex;justify-content:space-between;gap:10px;font-size:11px;margin:15px 0}
+#kohler-directions .kd-summary dt{color:var(--kd-muted)}
+#kohler-directions .kd-summary dd{margin:0;font-variant-numeric:tabular-nums}
+#kohler-directions .kd-summary .kd-net{padding-top:16px;border-top:1px solid var(--kd-line);font-size:14px;font-weight:600}
+#kohler-directions .kd-summary .kd-net dt{color:var(--kd-ink)}
+#kohler-directions .kd-staged{font-size:11px;margin-top:12px;color:var(--kd-accent);overflow-wrap:anywhere}
+#kohler-directions .kd-feedback{padding:12px 0;font-size:11px;color:var(--kd-good);min-height:40px}
+#kohler-directions .kd-modal{position:absolute;inset:0;background:#0006;display:grid;place-items:center;padding:24px;z-index:5}
+#kohler-directions .kd-modal-box{max-width:440px;width:100%;padding:24px;background:var(--kd-paper);border:1px solid var(--kd-line);border-radius:var(--kd-radius);box-shadow:0 20px 60px #0003}
+#kohler-directions .kd-modal-box h2{margin-bottom:12px}
+#kohler-directions .kd-modal-box p{margin-bottom:16px}
+#kohler-directions .kd-file-line{border:1px solid var(--kd-line);padding:16px;margin:15px 0;overflow-wrap:anywhere}
+#kohler-directions .kd-file-line strong{display:block;font-size:12px}
+#kohler-directions .kd-file-line small{font-size:11px;color:var(--kd-muted)}
+/* Signature: a branded side rail, restrained gold, and a calm work canvas. */
+#kohler-directions .kd-signature .kd-nav{border-top:4px solid var(--kd-special)}
+#kohler-directions .kd-signature .kd-heading{padding-bottom:18px;border-bottom:1px solid var(--kd-line)}
+#kohler-directions .kd-signature .kd-stat:first-child{border-top:3px solid var(--kd-special)}
+/* Dispatch: an editorial masthead, horizontal departments, and an open report. */
+#kohler-directions .kd-dispatch{--kd-bg:#f4f0e8;--kd-paper:#fffcf7;--kd-ink:#302922;--kd-muted:#70665c;--kd-line:#dcd4c8;--kd-accent:#315976;--kd-soft:#e9eeed;--kd-nav:#fffcf7;--kd-navink:#302922;--kd-special:#9c7141;--kd-radius:2px;display:block}
+#kohler-directions .kd-dispatch .kd-nav{display:grid;grid-template-columns:1fr auto;gap:20px;padding:20px 28px 0;border-bottom:2px solid var(--kd-ink)}
+#kohler-directions .kd-dispatch .kd-brand{font-family:'DM Serif Display',Georgia,serif;font-size:29px;font-weight:400}
+#kohler-directions .kd-dispatch .kd-mark{display:none}
+#kohler-directions .kd-dispatch .kd-brand small{font-family:'DM Sans',Arial,sans-serif;font-size:11px;letter-spacing:.15em}
+#kohler-directions .kd-dispatch .kd-nav-group{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:20px;order:2}
+#kohler-directions .kd-dispatch .kd-nav-group label,#kohler-directions .kd-dispatch .kd-secondary-nav{display:none}
+#kohler-directions .kd-dispatch .kd-nav button{width:auto;border-radius:0;margin:0;padding:10px 0;color:var(--kd-muted);font-size:11px}
+#kohler-directions .kd-dispatch .kd-nav button[aria-current="page"]{background:transparent;box-shadow:inset 0 -3px var(--kd-accent);color:var(--kd-ink)}
+#kohler-directions .kd-dispatch .kd-nav-foot{margin:0;padding:0;border:0;align-self:center}
+#kohler-directions .kd-dispatch .kd-top{background:transparent;border:0;min-height:40px;padding:10px 28px 0}
+#kohler-directions .kd-dispatch .kd-content{padding-top:18px}
+#kohler-directions .kd-dispatch h1{font-family:'DM Serif Display',Georgia,serif;font-size:40px;font-weight:400;letter-spacing:-.5px}
+#kohler-directions .kd-dispatch .kd-panel{border:0;background:transparent}
+#kohler-directions .kd-dispatch .kd-panel-head{padding:12px 0;border-top:1px solid var(--kd-ink);border-bottom:1px solid var(--kd-line)}
+#kohler-directions .kd-dispatch .kd-task,#kohler-directions .kd-dispatch .kd-program{padding-left:0;padding-right:0}
+#kohler-directions .kd-dispatch .kd-stats{gap:0;border-top:1px solid var(--kd-line);border-bottom:1px solid var(--kd-line);padding:16px 0}
+#kohler-directions .kd-dispatch .kd-stat{border:0;border-right:1px solid var(--kd-line);background:transparent;border-radius:0;padding:0 25px}
+#kohler-directions .kd-dispatch .kd-stat:first-child{padding-left:0}
+#kohler-directions .kd-dispatch .kd-stat:last-child{border:0}
+#kohler-directions .kd-dispatch .kd-stat strong{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:34px}
+#kohler-directions .kd-dispatch .kd-shortcuts{border-top:1px solid var(--kd-ink);gap:0}
+#kohler-directions .kd-dispatch .kd-shortcut{border:0;border-right:1px solid var(--kd-line);background:transparent;border-radius:0}
+#kohler-directions .kd-dispatch .kd-tabs{gap:25px}
+/* Precision: compact workspace navigation and a list/detail workbench. */
+#kohler-directions .kd-precision{--kd-bg:#f8fafb;--kd-paper:#fff;--kd-ink:#202c35;--kd-muted:#586975;--kd-line:#dfe5e9;--kd-accent:#235f73;--kd-soft:#e9f3f5;--kd-nav:#eef2f4;--kd-navink:#344754;--kd-special:#235f73;--kd-radius:5px;grid-template-columns:155px minmax(0,1fr)}
+#kohler-directions .kd-precision .kd-brand{font-size:18px}
+#kohler-directions .kd-precision .kd-mark{width:27px;height:30px;font-size:21px}
+#kohler-directions .kd-precision .kd-nav{padding:22px 10px;border-right:1px solid var(--kd-line)}
+#kohler-directions .kd-precision .kd-nav label{font-size:11px}
+#kohler-directions .kd-precision .kd-nav button{font-size:12px;padding:8px}
+#kohler-directions .kd-precision .kd-nav button[aria-current="page"]{color:var(--kd-accent);background:var(--kd-soft);box-shadow:none;font-weight:600}
+#kohler-directions .kd-precision .kd-nav-foot{border-color:var(--kd-line)}
+#kohler-directions .kd-precision .kd-content{padding:24px}
+#kohler-directions .kd-precision h1{font-size:25px}
+#kohler-directions .kd-precision .kd-stats{gap:1px;border:1px solid var(--kd-line);border-radius:5px;overflow:hidden;background:var(--kd-line)}
+#kohler-directions .kd-precision .kd-stat{border:0;border-radius:0;padding:13px 16px}
+#kohler-directions .kd-precision .kd-stat strong{font-size:24px}
+#kohler-directions .kd-precision .kd-layout{gap:0;border:1px solid var(--kd-line);border-radius:5px;overflow:hidden;grid-template-columns:1.2fr 1fr}
+#kohler-directions .kd-precision .kd-panel{border:0;border-radius:0}
+#kohler-directions .kd-precision .kd-panel+.kd-panel{border-left:1px solid var(--kd-line);background:var(--kd-bg)}
+#kohler-directions .kd-precision .kd-task{padding:13px 16px}
+#kohler-directions .kd-precision .kd-table td{padding-top:11px;padding-bottom:11px}
+#kohler-directions .kd-precision .kd-shortcuts{gap:0;border:1px solid var(--kd-line);border-radius:5px;overflow:hidden}
+#kohler-directions .kd-precision .kd-shortcut{border:0;border-right:1px solid var(--kd-line);border-radius:0}
+/* Fieldwork: task-first horizontal workspace and three operational lanes. */
+#kohler-directions .kd-fieldwork{--kd-bg:#f1f5f0;--kd-paper:#fffefa;--kd-ink:#233c30;--kd-muted:#596c60;--kd-line:#d8e2d8;--kd-accent:#2e6249;--kd-soft:#e6eee3;--kd-nav:#254835;--kd-navink:#f1f5eb;--kd-special:#d9ba7c;--kd-radius:15px;display:block}
+#kohler-directions .kd-fieldwork .kd-nav{display:flex;flex-direction:row;align-items:center;gap:25px;padding:17px 24px}
+#kohler-directions .kd-fieldwork .kd-brand{font-size:20px;min-width:140px}
+#kohler-directions .kd-fieldwork .kd-mark{border-radius:50%;width:31px;height:31px;font-size:23px}
+#kohler-directions .kd-fieldwork .kd-nav-group{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+#kohler-directions .kd-fieldwork .kd-nav label,#kohler-directions .kd-fieldwork .kd-secondary-nav{display:none}
+#kohler-directions .kd-fieldwork .kd-nav button{width:auto;font-size:11px;padding:8px 11px}
+#kohler-directions .kd-fieldwork .kd-nav button[aria-current="page"]{box-shadow:none;background:#ffffff1f;border-radius:20px}
+#kohler-directions .kd-fieldwork .kd-nav-foot{margin:0;padding:0;border:0}
+#kohler-directions .kd-fieldwork .kd-nav-foot .kd-user-text{display:none}
+#kohler-directions .kd-fieldwork .kd-top{background:transparent;border:0;min-height:45px;padding-bottom:0}
+#kohler-directions .kd-fieldwork h1{font-size:33px;letter-spacing:-1.1px}
+#kohler-directions .kd-fieldwork .kd-stats{margin-bottom:20px}
+#kohler-directions .kd-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+#kohler-directions .kd-lane{border-radius:var(--kd-radius);background:var(--kd-soft);padding:13px;min-width:0}
+#kohler-directions .kd-lane-head{display:flex;justify-content:space-between;align-items:center;margin:0 2px 14px;font-size:12px;font-weight:600}
+#kohler-directions .kd-board-card{padding:16px;background:var(--kd-paper);border:1px solid var(--kd-line);border-radius:10px;margin-top:10px;min-height:135px}
+#kohler-directions .kd-board-card h2{font-size:13px;margin:12px 0 7px}
+#kohler-directions .kd-board-card p{font-size:11px}
+#kohler-directions .kd-board-card .kd-button{margin-top:12px;font-size:11px}
+#kohler-directions .kd-fieldwork .kd-shortcut{border-radius:12px}
+/* Nightshift: compact dark operations console with an amber navigation rail. */
+#kohler-directions .kd-nightshift{--kd-bg:#15191d;--kd-paper:#1d2328;--kd-ink:#edf0f1;--kd-muted:#adb7bd;--kd-line:#354047;--kd-accent:#ecc17a;--kd-soft:#353025;--kd-onaccent:#242015;--kd-nav:#101417;--kd-navink:#b5bec4;--kd-special:#ecc17a;--kd-good:#9ed6b1;--kd-goodbg:#21392c;--kd-warn:#f2cc91;--kd-warnbg:#3b3020;--kd-radius:5px;grid-template-columns:155px minmax(0,1fr);color-scheme:dark}
+#kohler-directions .kd-nightshift .kd-nav{padding:24px 11px;border-right:1px solid var(--kd-line)}
+#kohler-directions .kd-nightshift .kd-nav button{font-size:12px}
+#kohler-directions .kd-nightshift .kd-brand{font-size:18px;color:var(--kd-ink)}
+#kohler-directions .kd-nightshift .kd-mark{width:26px;height:32px;font-size:22px}
+#kohler-directions .kd-nightshift .kd-nav button[aria-current="page"]{background:var(--kd-soft);color:var(--kd-accent)}
+#kohler-directions .kd-nightshift .kd-top{background:var(--kd-bg)}
+#kohler-directions .kd-nightshift .kd-content{padding:25px}
+#kohler-directions .kd-nightshift .kd-stats{gap:0;border:1px solid var(--kd-line);border-radius:5px;overflow:hidden}
+#kohler-directions .kd-nightshift .kd-stat{border:0;border-right:1px solid var(--kd-line);border-radius:0}
+#kohler-directions .kd-nightshift .kd-stat:last-child{border:0}
+#kohler-directions .kd-nightshift .kd-stat strong{font-family:Consolas,monospace;font-size:28px;letter-spacing:-1.5px}
+#kohler-directions .kd-console{border:1px solid var(--kd-line);background:var(--kd-paper);border-radius:5px}
+#kohler-directions .kd-console-row{display:grid;grid-template-columns:70px minmax(0,1fr) 120px 75px;gap:12px;padding:15px 18px;border-bottom:1px solid var(--kd-line);align-items:center;font-size:12px}
+#kohler-directions .kd-console-row:last-child{border:0}
+#kohler-directions .kd-console-row small{font-size:11px;color:var(--kd-muted)}
+#kohler-directions .kd-console-row>strong{color:var(--kd-accent);font-family:Consolas,monospace;font-size:11px;font-weight:400}
+#kohler-directions .kd-console-row .kd-button{font-size:11px;min-height:28px;padding:4px 8px}
+@media(max-width:820px){
+ #kohler-directions .kd-app{grid-template-columns:145px minmax(0,1fr)}
+ #kohler-directions .kd-nav{padding:22px 10px}
+ #kohler-directions .kd-brand{font-size:17px;gap:7px}
+ #kohler-directions .kd-brand small{font-size:11px}
+ #kohler-directions .kd-mark{width:26px;height:32px}
+ #kohler-directions .kd-nav button{font-size:12px;padding:9px}
+ #kohler-directions .kd-content{padding:20px}
+ #kohler-directions .kd-top{padding:12px 20px}
+ #kohler-directions .kd-layout{grid-template-columns:1fr}
+ #kohler-directions .kd-precision .kd-layout{grid-template-columns:1fr}
+ #kohler-directions .kd-precision .kd-panel+.kd-panel{border-left:0;border-top:1px solid var(--kd-line)}
+ #kohler-directions .kd-form-layout{grid-template-columns:minmax(0,1fr)}
+ #kohler-directions .kd-summary{display:block;order:-1;padding:14px} #kohler-directions .kd-summary h2,#kohler-directions .kd-summary p{display:none} #kohler-directions .kd-summary dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px} #kohler-directions .kd-summary dl div{display:block;margin:0;font-size:11px} #kohler-directions .kd-summary .kd-net{border:0;padding:0;font-size:11px} #kohler-directions .kd-summary dd{margin-top:4px;font-weight:600}
+ #kohler-directions .kd-fieldwork .kd-nav{gap:12px;flex-wrap:wrap}
+ #kohler-directions .kd-fieldwork .kd-nav-group{order:3;flex-basis:100%}
+ #kohler-directions .kd-fieldwork .kd-nav-foot{margin-left:auto}
+ #kohler-directions .kd-console-row{grid-template-columns:60px minmax(0,1fr) 70px}
+ #kohler-directions .kd-console-row>small{display:none}
+ #kohler-directions .kd-app{min-height:1100px}
+}
+@media(max-width:560px){
+ #kohler-directions .kd-app{display:block;min-height:1700px}
+ #kohler-directions .kd-nav{display:block;padding:18px 16px 0}
+ #kohler-directions .kd-brand{font-size:20px;margin-bottom:16px}
+ #kohler-directions .kd-brand small{font-size:11px}
+ #kohler-directions .kd-nav-group{display:flex;flex-wrap:wrap;gap:5px}
+ #kohler-directions .kd-nav label,#kohler-directions .kd-secondary-nav,#kohler-directions .kd-nav-foot{display:none!important}
+ #kohler-directions .kd-nav button{width:auto!important;min-height:44px;margin:0;padding:9px 10px;font-size:12px}
+ #kohler-directions .kd-nav button[aria-current="page"]{box-shadow:inset 0 -3px var(--kd-special)}
+ #kohler-directions .kd-top{padding:12px 16px;min-height:48px}
+ #kohler-directions .kd-top-actions>.kd-top-date{display:none}
+ #kohler-directions .kd-content{padding:22px 16px}
+ #kohler-directions .kd-heading{align-items:start;flex-wrap:wrap}
+ #kohler-directions .kd-app h1{font-size:28px}
+ #kohler-directions .kd-tabs{gap:17px;margin-bottom:20px}
+ #kohler-directions .kd-tabs button{font-size:12px;min-height:44px;padding:7px 0}
+ #kohler-directions .kd-stats{gap:8px}
+ #kohler-directions .kd-stat{padding:14px 10px}
+ #kohler-directions .kd-stat strong{font-size:24px}
+ #kohler-directions .kd-stat small{font-size:11px}
+ #kohler-directions .kd-stat label{font-size:11px}
+ #kohler-directions .kd-layout{gap:17px}
+ #kohler-directions .kd-panel-head{padding:16px}
+ #kohler-directions .kd-task{padding:15px 16px;gap:9px}
+ #kohler-directions .kd-task .kd-pill{display:none}
+ #kohler-directions .kd-shortcuts{grid-template-columns:1fr;gap:8px}
+ #kohler-directions .kd-button{min-height:44px;font-size:12px}
+ #kohler-directions .kd-tools{padding:12px}
+ #kohler-directions .kd-tools input{flex-basis:100%;font-size:16px}
+ #kohler-directions .kd-tools select{font-size:16px;min-height:44px}
+ #kohler-directions .kd-table thead{display:none}
+ #kohler-directions .kd-table,#kohler-directions .kd-table tbody{display:block}
+ #kohler-directions .kd-table tr{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--kd-line);padding:10px}
+ #kohler-directions .kd-table td{display:block;border:0;padding:8px}
+ #kohler-directions .kd-table td:first-child{grid-column:1/-1}
+ #kohler-directions .kd-table td:last-child{text-align:left}
+ #kohler-directions .kd-table td:last-child::before{content:'Kohler spend';display:block;color:var(--kd-muted);font-size:11px;margin-bottom:4px}
+ #kohler-directions .kd-table .kd-button{min-height:38px;padding:7px 10px;font-size:11px}
+ #kohler-directions .kd-table .kd-source{min-height:38px}
+ #kohler-directions .kd-form{padding:17px}
+ #kohler-directions .kd-form-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+ #kohler-directions .kd-field input,#kohler-directions .kd-field select,#kohler-directions .kd-field textarea{font-size:16px;min-height:44px}
+ #kohler-directions .kd-drop{padding:16px}
+ #kohler-directions .kd-drop input{font-size:12px;min-height:44px}
+ #kohler-directions .kd-drop input::file-selector-button{min-height:44px}
+ #kohler-directions .kd-dispatch .kd-nav{display:block;padding:20px 16px 0}
+ #kohler-directions .kd-dispatch .kd-nav-group{gap:16px}
+ #kohler-directions .kd-dispatch .kd-stat{padding:0 10px}
+ #kohler-directions .kd-dispatch .kd-stat strong{font-size:27px}
+ #kohler-directions .kd-dispatch .kd-shortcut{border-right:0;border-bottom:1px solid var(--kd-line)}
+ #kohler-directions .kd-fieldwork .kd-nav{display:block;padding:18px 16px 0}
+ #kohler-directions .kd-board{grid-template-columns:1fr}
+ #kohler-directions .kd-board-card{min-height:0}
+ #kohler-directions .kd-precision .kd-content,#kohler-directions .kd-nightshift .kd-content{padding:22px 16px}
+ #kohler-directions .kd-precision .kd-shortcuts{display:block}
+ #kohler-directions .kd-precision .kd-shortcut{width:100%;border-bottom:1px solid var(--kd-line);border-right:0}
+ #kohler-directions .kd-console-row{grid-template-columns:48px minmax(0,1fr);padding:15px 13px}
+ #kohler-directions .kd-console-row .kd-button{grid-column:2;justify-self:start;min-height:38px}
+ #kohler-directions .kd-nightshift .kd-stat{padding:14px 10px}
+ #kohler-directions .kd-nightshift .kd-stat strong{font-size:23px}
+}
+</style>
+<script>
+(()=>{
+ const root=document.getElementById('kohler-directions');
+ const names={signature:'Kohler Signature',dispatch:'The Dispatch',precision:'Precision Workspace',fieldwork:'Fieldwork',nightshift:'Nightshift'};
+ const rows=[{inv:'1234567',account:'Example supplier',item:'Samples · historical example',vendor:'Kohler Distributing',date:'Feb 2, 2026',total:100.00,spend:0,status:'Reversed',pdf:true},{inv:'DEMO-2048',account:'Supplier account A',item:'Fall display materials',vendor:'Custom Vendor',date:'Oct 15, 2026',total:480,spend:240,status:'Pending',pdf:true},{inv:'DEMO-2051',account:'Supplier account B',item:'Account activation',vendor:'BDA',date:'Oct 16, 2026',total:250,spend:250,status:'Pending',pdf:false},{inv:'DEMO-2054',account:'Supplier account C',item:'Printed point of sale',vendor:'Custom Vendor',date:'Oct 16, 2026',total:625,spend:312.50,status:'Received',pdf:true}];
+ const money=n=>n.toLocaleString('en-US',{style:'currency',currency:'USD'});
+ function stats(budget=false){return `<div class="kd-stats">${(budget?[['Available budget','$24,800','Illustrative remaining balance'],['Kohler spend','$8,640','October · sample figures'],['Needs a PDF','1','In this preview ledger']]:[['Today’s priorities','3','Two follow-ups · one recap'],['Active programs','12','Three ending this month'],['Awaiting review','4','Team tasks and documents']]).map(x=>`<div class="kd-stat"><label>${x[0]}</label><strong>${x[1]}</strong><small>${x[2]}</small></div>`).join('')}</div>`}
+ function tasks(){return `<div class="kd-panel"><div class="kd-panel-head"><h2>Next up</h2><small>My work · 3</small></div>${[['Review supplier recap','Supplier Budgets · Finance','Today'],['Follow up on display photos','Field Tasks · Team','Today'],['Review October program results','Incentives · Programs','This week']].map((t,i)=>`<label class="kd-task"><input type="checkbox" aria-label="Complete ${t[0]}"><span><span class="kd-task-title">${t[0]}</span><small>${t[1]}</small></span><span class="kd-pill ${i<2?'kd-warn':''}">${t[2]}</span></label>`).join('')}</div>`}
+ function programs(){return `<div class="kd-panel"><div class="kd-panel-head"><h2>Program watch</h2><small>October</small></div><div class="kd-program"><b>Fall distribution rewards</b><p>Team goal progress</p><div class="kd-progress"><span style="width:72%"></span></div><div class="kd-program-foot"><span>72% of goal</span><span>15 days left</span></div></div><div class="kd-program"><b>Seasonal draft conversion</b><p>Team goal progress</p><div class="kd-progress"><span style="width:46%"></span></div><div class="kd-program-foot"><span>46% of goal</span><span>7 days left</span></div></div></div>`}
+ function shortcuts(){return `<div class="kd-shortcuts"><button class="kd-shortcut" data-view="budget">Supplier Budgets <em>↗</em><span>Expenses, PDFs & billbacks</span></button><button class="kd-shortcut" data-detail="Team Accounts">Team Accounts <em>↗</em><span>Follow-ups & opportunities</span></button><button class="kd-shortcut" data-detail="Inventory">What Can I Sell <em>↗</em><span>Available & running low</span></button></div>`}
+ function board(){return `<div class="kd-board">${[['To follow up','2',[['Account follow-up','Review the next reorder opportunity.','Accounts'],['Display photos','Check the latest field submission.','Field Tasks']]],['To review','1',[['Supplier recap','Review invoice PDFs before closing out.','Supplier Budgets']]],['Coming up','1',[['October programs','Review progress before the month ends.','Programs']]]].map(l=>`<div class="kd-lane"><div class="kd-lane-head"><span>${l[0]}</span><span>${l[1]}</span></div>${l[2].map(c=>`<div class="kd-board-card"><span class="kd-pill">${c[2]}</span><h2>${c[0]}</h2><p>${c[1]}</p><button class="kd-button kd-text" ${c[2]==='Supplier Budgets'?'data-view="budget"':`data-detail="${c[0]}"`}>Open work →</button></div>`).join('')}</div>`).join('')}</div>`}
+ function consoleView(){return `<div class="kd-console"><div class="kd-panel-head"><h2>Operations queue</h2><span class="kd-pill kd-warn">3 open</span></div>${[['FIN','Review supplier recap','Invoice documents','budget'],['FIELD','Display photo review','Team submission','detail'],['SALES','October goal check','Program progress','detail']].map(c=>`<div class="kd-console-row"><strong>${c[0]}</strong><div>${c[1]}<br><small>Ready for your review</small></div><small>${c[2]}</small><button class="kd-button" ${c[3]==='budget'?'data-view="budget"':`data-detail="${c[1]}"`}>Review ↗</button></div>`).join('')}</div>`}
+ function home(theme){let title={signature:'Good morning, Manager.',dispatch:'Your daily dispatch.',precision:'Your workspace',fieldwork:'Move the day forward.',nightshift:'Manager overview'}[theme];return `<div class="kd-heading"><div><div class="kd-eyebrow">Friday, October 16 · Northern New Jersey</div><h1>${title}</h1><p>Your priorities, programs and team in one place.</p></div><button class="kd-button kd-primary" data-detail="Assign a task">+ Assign task</button></div>${stats()}${theme==='fieldwork'?board():theme==='nightshift'?consoleView():`<div class="kd-layout">${tasks()}${programs()}</div>`}${shortcuts()}`}
+ function ledger(){return `<div class="kd-heading"><div><div class="kd-eyebrow">Finance / Supplier Budgets</div><h1>Every dollar, documented.</h1><p>Review expenses, invoice PDFs and supplier billbacks.</p></div><button class="kd-button kd-primary" data-view="new">+ New Expense</button></div>${stats(true)}<div class="kd-tools"><input type="search" aria-label="Search invoice or supplier" placeholder="Search invoice or supplier…"><select aria-label="Budget year"><option>2026</option><option>2025</option></select><button class="kd-button" data-missing aria-pressed="false">Missing PDF · 1</button><button class="kd-button" data-detail="Bulk attach PDFs">Bulk attach PDFs</button></div><div class="kd-ledger"><table class="kd-table"><thead><tr><th style="width:29%">Invoice & documents</th><th style="width:29%">Account / expense</th><th style="width:23%">Billback status</th><th style="width:19%">Kohler spend</th></tr></thead><tbody>${rows.map(r=>`<tr data-invoice="${r.inv}" data-pdf="${r.pdf}"><td><b>${r.inv}</b><small>${r.date}</small>${r.pdf?`<button class="kd-button" data-pdf="${r.inv}">View PDF ↗</button>`:'<span class="kd-pill kd-warn" style="margin-top:7px">Missing PDF</span><button class="kd-button" data-detail="Attach PDF">Attach PDF</button>'}<button class="kd-source" data-encompass="${r.inv}">Open in Encompass ↗</button></td><td><b>${r.account}</b><small>${r.item}</small></td><td><span class="kd-pill ${r.status==='Received'?'kd-good':r.status==='Pending'?'kd-warn':''}">${r.status}</span><small style="margin-top:7px">${r.status==='Reversed'?'Original total '+money(r.total):'Total '+money(r.total)}</small></td><td class="kd-money">${money(r.spend)}${r.status==='Reversed'?'<small>Reversed example</small>':''}</td></tr>`).join('')}</tbody></table><div class="kd-row-count" aria-live="polite">4 example expenses · Sample data</div></div>`}
+ function expense(theme){let id='kd-'+theme;return `<div class="kd-heading"><div><div class="kd-eyebrow">Finance / Supplier Budgets / New Expense</div><h1>New Expense</h1><p>Keep the expense and its supporting invoice together.</p></div><button class="kd-button" data-view="budget">← Ledger</button></div><div class="kd-form-layout"><form class="kd-form"><div class="kd-form-grid"><label class="kd-field">Date<input type="date" value="2026-10-16" required></label><label class="kd-field">Invoice number <input placeholder="e.g. 1234567"></label><label class="kd-field kd-wide">Supplier account<select required><option value="">Choose an account…</option><option>Supplier account A</option><option>Supplier account B</option></select></label><label class="kd-field">Vendor<input placeholder="Choose or enter vendor" required></label><label class="kd-field">Items purchased<input placeholder="Describe the expense" required></label><label class="kd-field">Total amount ($)<input type="number" min="0" step="0.01" placeholder="0.00" data-total required></label><label class="kd-field">Billback amount ($)<input type="number" min="0" step="0.01" placeholder="0.00" data-billback></label><label class="kd-field kd-wide">Notes <span class="kd-optional">Optional</span><textarea placeholder="Add context for the manager reviewing this expense"></textarea></label><div class="kd-drop"><label for="${id}-pdf">Invoice PDFs <span class="kd-optional">Optional</span></label><p>Attach supporting PDFs · Up to 20 MB per file</p><input id="${id}-pdf" type="file" accept="application/pdf,.pdf" multiple><div class="kd-staged" aria-live="polite">No PDFs selected.</div></div></div><div class="kd-form-actions"><button class="kd-button kd-primary" type="submit">Save Expense</button><button class="kd-button" type="submit" data-another>Save & Add Another</button><button class="kd-button kd-text" type="button" data-view="budget">Cancel</button></div><div class="kd-feedback" role="status">Design preview · Files stay on your device.</div></form><aside class="kd-summary"><h2>Expense summary</h2><dl><div><dt>Total amount</dt><dd data-summary-total>$0.00</dd></div><div><dt>Supplier billback</dt><dd data-summary-bb>$0.00</dd></div><div class="kd-net"><dt>Kohler spend</dt><dd data-summary-net>$0.00</dd></div></dl><p style="margin-top:22px">Selected PDFs appear alongside this expense in the ledger after saving.</p></aside></div>`}
+ root.querySelectorAll('.kd-app').forEach(app=>{
+  const theme=app.dataset.theme;
+  app.innerHTML=`<aside class="kd-nav"><div class="kd-brand"><span class="kd-mark">K</span><span>Kohler<small>Distribution Hub</small></span></div><nav class="kd-nav-group" aria-label="Workspace"><label>Workspace</label><button data-view="home" aria-current="page">Home</button><button data-detail="Accounts">Accounts</button><button data-detail="Programs">Programs</button><button data-view="budget">Supplier Budgets</button></nav><div class="kd-secondary-nav"><label>Operations</label><button data-detail="Field Tasks">Field Tasks</button><button data-detail="Team">Team</button><button data-detail="Inventory">Inventory</button><button data-detail="Reports">Reports</button></div><div class="kd-nav-foot"><div class="kd-user"><span class="kd-avatar">GS</span><span class="kd-user-text">Preview Manager<br><span style="opacity:.7;font-size:11px">Manager workspace</span></span></div></div></aside><div class="kd-main"><header class="kd-top"><span class="kd-crumb">${names[theme]} <span style="opacity:.5">/</span> <span data-crumb>Home</span></span><div class="kd-top-actions"><span class="kd-top-date">Oct 16, 2026</span><span class="kd-demo">Design preview</span></div></header><main class="kd-content"><div class="kd-tabs" role="tablist" aria-label="Preview screens"><button role="tab" id="${theme}-home-tab" aria-controls="${theme}-home" aria-selected="true" data-view="home">Home</button><button role="tab" id="${theme}-budget-tab" aria-controls="${theme}-budget" aria-selected="false" data-view="budget">Supplier Budgets</button><button role="tab" id="${theme}-new-tab" aria-controls="${theme}-new" aria-selected="false" data-view="new">New Expense</button></div><section role="tabpanel" id="${theme}-home" aria-labelledby="${theme}-home-tab" data-panel="home">${home(theme)}</section><section role="tabpanel" id="${theme}-budget" aria-labelledby="${theme}-budget-tab" data-panel="budget" hidden>${ledger()}</section><section role="tabpanel" id="${theme}-new" aria-labelledby="${theme}-new-tab" data-panel="new" hidden>${expense(theme)}</section><div class="kd-notice"><span>Kohler Distribution Hub · Internal workspace</span><span>Illustrative data · No live changes</span></div></main></div><div class="kd-modal" role="dialog" aria-modal="true" aria-label="Preview detail" hidden><div class="kd-modal-box"><h2 data-modal-title></h2><div data-modal-body></div><button class="kd-button kd-primary" data-close>Back to preview</button></div></div>`;
+  function view(name){app.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==name);app.querySelectorAll('[role="tab"]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.view===name)));app.querySelectorAll('.kd-nav [data-view]').forEach(b=>{if(b.dataset.view===(name==='new'?'budget':name))b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});app.querySelector('[data-crumb]').textContent={home:'Home',budget:'Supplier Budgets',new:'New Expense'}[name];}
+  let returnFocus=null;
+  function modal(title,body){returnFocus=document.activeElement;app.querySelector('[data-modal-title]').textContent=title;app.querySelector('[data-modal-body]').innerHTML=body;app.querySelector('.kd-modal').hidden=false;app.querySelector('[data-close]').focus();}
+  function close(){app.querySelector('.kd-modal').hidden=true;returnFocus?.focus();}
+  app.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.view)view(b.dataset.view);if(b.hasAttribute('data-close'))close();if(b.dataset.pdf)modal('Invoice '+b.dataset.pdf,`<span class="kd-pill kd-good">PDF attached</span><div class="kd-file-line"><strong>${b.dataset.pdf==='1234567'?'1234567 Example.pdf':'Example invoice.pdf'}</strong><small>Invoice PDF · Document preview</small></div><p>This demonstrates document access. The production site opens the secured invoice PDF.</p>`);if(b.dataset.encompass)modal('Open in Encompass',`<p>Invoice <strong>${b.dataset.encompass}</strong> opens its matching Encompass record in a new tab on the production site.</p><p>External navigation is disabled in these design previews.</p>`);if(b.dataset.detail)modal(b.dataset.detail,b.dataset.detail==='Bulk attach PDFs'?'<p>Select multiple PDFs, match filenames to invoice numbers, review any ambiguous matches, then attach the batch.</p><div class="kd-file-line"><strong>1234567 Example.pdf → 1234567</strong><small>Example exact invoice match</small></div>':'<p>This area uses the same navigation, typography, spacing and action hierarchy throughout the proposed theme.</p><p>Home, Supplier Budgets and New Expense are available as interactive preview screens.</p>');if(b.hasAttribute('data-missing')){b.setAttribute('aria-pressed',String(b.getAttribute('aria-pressed')!=='true'));filter();}});
+  app.addEventListener('keydown',e=>{const tab=e.target.closest('[role="tab"]');if(tab&&['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const tabs=[...app.querySelectorAll('[role="tab"]')];let index=tabs.indexOf(tab);index=e.key==='Home'?0:e.key==='End'?tabs.length-1:(index+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;view(tabs[index].dataset.view);tabs[index].focus();}const dialog=app.querySelector('.kd-modal');if(dialog.hidden)return;if(e.key==='Escape')close();if(e.key==='Tab'){e.preventDefault();app.querySelector('[data-close]').focus();}});
+  const search=app.querySelector('input[type="search"]');function filter(){const q=search.value.toLowerCase();const missing=app.querySelector('[data-missing]').getAttribute('aria-pressed')==='true';let count=0;app.querySelectorAll('[data-invoice]').forEach(tr=>{tr.hidden=!tr.textContent.toLowerCase().includes(q)||(missing&&tr.dataset.pdf==='true');if(!tr.hidden)count++;});app.querySelector('.kd-row-count').textContent=count+' example expense'+(count===1?'':'s')+' · Sample data';}
+  search.addEventListener('input',filter);
+  app.querySelector('.kd-tools select').addEventListener('change',e=>{app.querySelector('.kd-row-count').textContent=e.target.value==='2025'?'No 2025 sample expenses.': '4 example expenses · Sample data';app.querySelector('.kd-table').hidden=e.target.value==='2025';});
+  app.querySelectorAll('.kd-task input').forEach(c=>c.addEventListener('change',()=>c.closest('.kd-task').classList.toggle('done',c.checked)));
+  const form=app.querySelector('form');const file=form.querySelector('input[type="file"]');file.addEventListener('change',()=>{const files=[...file.files];const bad=files.find(f=>!f.name.toLowerCase().endsWith('.pdf')||f.size>20*1024*1024);form.querySelector('.kd-staged').textContent=bad?'Choose PDF files no larger than 20 MB.':files.length?files.map(f=>f.name).join(' · '):'No PDFs selected.';});
+  function sums(){const total=Number(form.querySelector('[data-total]').value)||0,bb=Number(form.querySelector('[data-billback]').value)||0;app.querySelector('[data-summary-total]').textContent=money(total);app.querySelector('[data-summary-bb]').textContent=money(bb);app.querySelector('[data-summary-net]').textContent=money(total-bb);}
+  form.addEventListener('input',sums);form.addEventListener('submit',e=>{e.preventDefault();const feedback=form.querySelector('.kd-feedback');feedback.textContent='Preview only — no expense or PDF was uploaded.';if(e.submitter?.hasAttribute('data-another')){form.reset();form.querySelector('.kd-staged').textContent='No PDFs selected.';sums();feedback.textContent='Ready for another expense. Preview only — nothing was uploaded.';}});
+  const settings={compact:false};if(globalThis.Tweak){const tweak=new Tweak({container:app,onChange:()=>app.style.setProperty('--kd-radius',settings.compact?'4px':theme==='fieldwork'?'15px':theme==='dispatch'?'2px':theme==='precision'||theme==='nightshift'?'5px':'12px')});tweak.addToggle(settings,'compact',{label:'Sharper corners'});}
+ });
+})();
+</script>

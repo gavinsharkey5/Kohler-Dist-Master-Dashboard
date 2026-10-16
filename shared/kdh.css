@@ -19,6 +19,7 @@
 
 /* ---- fonts (self-hosted: assets/fonts/, see shared/fonts.css) ---- */
 @import url("fonts.css?v=20261001a");
+@import url("signature.css?v=20261016signature1");
 
 /* ---- tokens ---- */
 :root{
