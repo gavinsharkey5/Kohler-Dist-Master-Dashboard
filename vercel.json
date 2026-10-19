@@ -1,6 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
+  "git": {
+    "deploymentEnabled": {
+      "codex/photos-merchandising-timeout-pdf": false
+    }
+  },
   "buildCommand": null,
   "installCommand": null,
   "trailingSlash": true,

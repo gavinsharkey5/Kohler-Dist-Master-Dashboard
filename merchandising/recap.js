@@ -42,18 +42,31 @@ async function all(path){ // PostgREST pages (Supabase caps a response at 1,000 
   return out;
 }
 
+// Page IDs before embedding: PostgREST's lateral joins otherwise run for the
+// whole visible table before ORDER BY / LIMIT, repeating child RLS checks.
+// Keep the existing response shape and the signed-in person's permissions.
+async function records(cols){
+  const ids = await all('merch_records?select=id&order=id');
+  const out = [];
+  for(let i = 0; i < ids.length; i += 100){
+    const batch = ids.slice(i, i + 100).map(r=>r.id);
+    out.push(...await all('merch_records?select=' + cols + '&id=in.(' + batch.join(',') + ')&order=id'));
+  }
+  return out;
+}
+
 let RECS = [], NOTE = '', LOADED_AT = null;
 async function load(){
   if(!D.signedIn()) throw Object.assign(new Error('Sign in on kohlerdisthub.com to read merchandising records.'), {off:true});
   let recs = [], merchMissing = false;
-  try{ recs = await all('merch_records?select=' + REC_COLS + '&order=observed_at.desc.nullslast'); }
+  try{ recs = await records(REC_COLS); }
   catch(e){
     if(e.status===404 || e.code==='PGRST205' || e.code==='42P01') merchMissing = true;
-    else if(e.status===400 || e.code==='42703' || e.code==='PGRST204'){ recs = await all('merch_records?select=' + REC_COLS_OLD + '&order=observed_at.desc.nullslast'); }
+    else if(e.status===400 || e.code==='42703' || e.code==='PGRST204'){ recs = await records(REC_COLS_OLD); }
     else throw e; }
   let photos = [];
-  try{ photos = await all('account_photos?select=' + PH_COLS + '&order=uploaded_at.desc'); }
-  catch(e){ photos = await all('account_photos?select=id,customer_num,category,caption,storage_path,captured_at,uploaded_at,author_name&order=uploaded_at.desc'); }
+  try{ photos = await all('account_photos?select=' + PH_COLS + '&order=uploaded_at.desc,id'); }
+  catch(e){ photos = await all('account_photos?select=id,customer_num,category,caption,storage_path,captured_at,uploaded_at,author_name&order=uploaded_at.desc,id'); }
   if(merchMissing) NOTE = 'Records with product lines need supabase/migrations/20261004090000_merchandising.sql. Until it is run, each photo is listed on its own.';
   const byId = new Map(photos.map(p=>[p.id, p])); const used = new Set();
   const out = recs.map(r=>{
