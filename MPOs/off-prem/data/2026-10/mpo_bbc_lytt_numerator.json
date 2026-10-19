@@ -325,6 +325,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 78003,
+    "CUSTOMER_NAME": "Ani Service Station Inc",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 25045,
@@ -923,7 +932,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 35001,
     "CUSTOMER_NAME": "Westmont Liquors 64",
-    "DATE": "10/19/2026",
+    "DATE": "10/20/2026",
     "CASES": 1.0
   },
   {
@@ -932,7 +941,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 35001,
     "CUSTOMER_NAME": "Westmont Liquors 64",
-    "DATE": "10/19/2026",
+    "DATE": "10/20/2026",
     "CASES": 1.0
   },
   {
@@ -941,7 +950,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 35001,
     "CUSTOMER_NAME": "Westmont Liquors 64",
-    "DATE": "10/19/2026",
+    "DATE": "10/20/2026",
     "CASES": 1.0
   },
   {
@@ -3088,6 +3097,33 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20021,
+    "CUSTOMER_NAME": "Diamond Liquors (P)",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20021,
+    "CUSTOMER_NAME": "Diamond Liquors (P)",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20021,
+    "CUSTOMER_NAME": "Diamond Liquors (P)",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 27012,
@@ -3120,6 +3156,33 @@
     "CUSTOMER_NUM": 20056,
     "CUSTOMER_NAME": "East Side Bar Liquors",
     "DATE": "8/12/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20117,
+    "CUSTOMER_NAME": "El Cantaro Liquors",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20117,
+    "CUSTOMER_NAME": "El Cantaro Liquors",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20117,
+    "CUSTOMER_NAME": "El Cantaro Liquors",
+    "DATE": "10/20/2026",
     "CASES": 1.0
   },
   {
@@ -3174,6 +3237,33 @@
     "CUSTOMER_NUM": 21044,
     "CUSTOMER_NAME": "Farm Boy",
     "DATE": "8/6/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27034,
+    "CUSTOMER_NAME": "Liquor Stop (Passaic)",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27034,
+    "CUSTOMER_NAME": "Liquor Stop (Passaic)",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27034,
+    "CUSTOMER_NAME": "Liquor Stop (Passaic)",
+    "DATE": "10/20/2026",
     "CASES": 1.0
   },
   {
@@ -5851,6 +5941,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 11003,
+    "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
+    "DATE": "10/19/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 11003,
+    "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
+    "DATE": "10/19/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 94001,
@@ -6063,6 +6171,33 @@
     "CUSTOMER_NUM": 27021,
     "CUSTOMER_NAME": "Johnny's Liqs (P)",
     "DATE": "8/24/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 15040,
+    "CUSTOMER_NAME": "Legacy Bar & Liquor",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 15040,
+    "CUSTOMER_NAME": "Legacy Bar & Liquor",
+    "DATE": "10/20/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 15040,
+    "CUSTOMER_NAME": "Legacy Bar & Liquor",
+    "DATE": "10/20/2026",
     "CASES": 1.0
   },
   {

@@ -1513,6 +1513,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "200194 Chateau Diana Non-Alcoholic Moscato 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/20/2026",
+    "LAST_DATE": "10/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "100125 Le Grand Noir Rose 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 29011,
@@ -2293,6 +2305,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "101091 Lo Secco Prosecco 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/20/2026",
+    "LAST_DATE": "10/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "200192 Chateau Diana Non-Alcoholic Chardonnay 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/20/2026",
+    "LAST_DATE": "10/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "100120 Le Grand Noir Chardonnay 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 83001,
@@ -2406,10 +2442,10 @@
     "CUSTOMER_NUM": 80026,
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/22/2026",
+    "LAST_DATE": "10/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",

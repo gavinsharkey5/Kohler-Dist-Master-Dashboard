@@ -181,12 +181,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 78003,
-    "CUSTOMER_NAME": "Ani Service Station Inc",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 81001,
     "CUSTOMER_NAME": "B & B Liquors (Fair Lawn)",
     "AREA": "Bergen"
@@ -751,20 +745,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20021,
-    "CUSTOMER_NAME": "Diamond Liquors (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 22024,
     "CUSTOMER_NAME": "Edwards (P) Wine & Liq",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20117,
-    "CUSTOMER_NAME": "El Cantaro Liquors",
     "AREA": "Passaic"
   },
   {
@@ -777,12 +759,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 20031,
     "CUSTOMER_NAME": "La Joya Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27034,
-    "CUSTOMER_NAME": "Liquor Stop (Passaic)",
     "AREA": "Passaic"
   },
   {
@@ -1495,12 +1471,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 11003,
-    "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
-    "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 93003,
     "CUSTOMER_NAME": "Mahwah Liqrs (P)",
     "AREA": "Bergen"
@@ -1641,12 +1611,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20070,
     "CUSTOMER_NAME": "Joe's Liquor (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15040,
-    "CUSTOMER_NAME": "Legacy Bar & Liquor",
     "AREA": "Passaic"
   },
   {

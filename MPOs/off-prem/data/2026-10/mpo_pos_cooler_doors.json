@@ -1,5 +1,38 @@
 [
   {
+    "REP": "Dan Lagala",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "GARDEN STATE FOOD&LIQ (P)",
+    "CITY": "CLIFFSIDE PARK",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 5,
+    "DATE": "10/19/2026 02:03 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/d1199a3e-858e-41e6-9d52-46e8e8b0ed5b/"
+  },
+  {
+    "REP": "Pablo Lopez",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "SUNNY'S LIQS.(P)",
+    "CITY": "PASSAIC",
+    "BRAND": "WHITE CLAW SURGE PINEAPPLE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/19/2026 01:13 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/d304459c-03af-498d-98d8-4a7ef4424bd3/"
+  },
+  {
+    "REP": "Pablo Lopez",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "REGALADO LIQ",
+    "CITY": "PASSAIC",
+    "BRAND": "WHITE CLAW SURGE GREEN APPLE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 6,
+    "DATE": "10/19/2026 12:56 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/63d77ff2-88ef-4402-a46d-dc1e7dfbbfb6/"
+  },
+  {
     "REP": "Matt Powierski",
     "SOURCE": "Promo",
     "CUSTOMER_NAME": "WINE GRAND (CARLSTADT)",
