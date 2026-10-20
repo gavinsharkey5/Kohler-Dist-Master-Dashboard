@@ -107,6 +107,8 @@ details.mfold > summary:focus-visible{outline:2px solid var(--brand);outline-off
 @media (min-width:760px){ .rp .rrec{grid-template-columns:420px minmax(0,1fr)} .rp .rrec.menu{grid-template-columns:520px minmax(0,1fr)} }
 @media print{
   body.recap-on main.wrap{display:none!important}
+  /* Hidden bottom navigation must not reserve an extra printed page. */
+  html.kdh-has-tabs body.recap-on{padding-bottom:0!important}
   .rp{max-width:none;padding:0}
   .rp .rrec{grid-template-columns:3.6in 1fr}
   .rp .rrec.menu{grid-template-columns:4.6in 1fr}
