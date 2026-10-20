@@ -416,7 +416,7 @@
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl",
     "BASE_DATE": "9/15/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Pride & Clarke Vodka 48/200 mL Btl",
+    "DONE_DETAIL": "Pride & Clarke Vodka 12/1 L Btl, Pride & Clarke Vodka 48/200 mL Btl",
     "DONE_DATE": "10/13/2026"
   },
   {
@@ -675,9 +675,9 @@
     "CUSTOMER_NAME": "Players Club (Z)",
     "BASE_DETAIL": "7 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl, Green River Wheated 1/750 mL, Striped Pig Doppio 1/6/750 mL Btl ...",
     "BASE_DATE": "7/28/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "DONE_DATE": "10/20/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",

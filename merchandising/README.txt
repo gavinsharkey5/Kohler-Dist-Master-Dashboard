@@ -251,3 +251,49 @@ rpc kdh_is_photo_admin() is true for the signed-in account (allowed_users.photo_
 Row-level security still decides each DELETE, so another sign-in gets nothing even from the console; every DELETE asks for the
 removed rows back and a 0-row answer says "Not deleted" instead of success. The stored file is removed after its row; a
 file that could not be removed is reported. A photo-only entry (no record) offers Delete This Photo only. Test: scratchpad mgdel.mjs.
+
+
+ACCOUNT WINDOWS (2026-10-20)
+============================
+A WINDOW is one signage spot at an account (a storefront with four places a
+sign can go = four windows). Unlike a merchandising record (one dated
+observation) a window lasts, so it lives in its own table:
+  supabase/migrations/20261020090000_account_windows.sql
+    account_windows        name, location (Front / Side / Entrance Door /
+                           Other), width + height in inches, class (High /
+                           Medium / Low), and the CURRENT status (executed =
+                           our brand / competitor / open / NULL = not verified
+                           yet), brand, program (free text), latest photo,
+                           last verified (when, who), removed_at
+    account_window_events  append-only history: add / edit / verify / remove
+                           / restore, each with the full state after it and
+                           who did it (nobody can update or delete a row)
+    merch_records.window_id  a window visit's record knows its window
+  Written ONLY through kdh_window_save / kdh_window_verify /
+  kdh_window_remove (security definer: kdh_can_access_account, author stamped
+  from the token). Read by RLS with the same account rule as photos (a rep
+  their route, an associate any assigned customer, managers all).
+Counting: Window Count = windows on the list (removed ones excluded).
+Execution % = executed / Window Count -- a window not verified yet is in the
+total and never counted as open.
+Where it shows (accounts/activity.js "ACCOUNT WINDOWS"):
+  * Account page -> Account Details -> Windows: count, executed %, the
+    competitor / open split, See All Windows (More -> Windows, sub=windows).
+  * More -> Windows: the table (cards under 760px), sorted High -> Low then
+    name; + Add Window, Update (photo flow for that window), Edit (fields,
+    History, Remove Window); removed windows fold at the foot with Restore.
+    Tapping a photo opens the visit's record full size.
+  * Associates' field account page (accounts/field.js): the same table.
+  * Preview is read-only (no Add / Update / Edit / Restore).
+Capture: Add Photos -> Window now asks Which Window? (+ New Window inline)
+and What's on It? (Executed (Ours) / Competitor / Open). Open needs no brand;
+otherwise the brand lines are asked as before minus their own "Window"
+question (filled from the window's location), then an optional Program.
+Save writes the record (kdh_merch_save) and then kdh_window_verify with the
+same draft key, so a Retry never updates the window twice. Update starts
+from the window's current state (status, program, last visit's brands), so
+an unchanged window is: Update -> Take Photo -> Save.
+Old Window photos (before 2026-10-20) are untouched and not counted.
+Before the migration is run the window sections say so and Window photos
+save exactly as before. NOT built yet: the roll-up page (rep / associate /
+DM / brand / program / status, competitor view, drill-down).

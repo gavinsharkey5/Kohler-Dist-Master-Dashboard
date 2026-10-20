@@ -279,10 +279,10 @@ function renderLedger(){
       '<div><label for="sbFrom">From</label><input type="date" id="sbFrom" data-f="from" value="' + esc(S.f.from) + '"></div>' +
       '<div><label for="sbTo">To</label><input type="date" id="sbTo" data-f="to" value="' + esc(S.f.to) + '"></div>' +
     '</div>' +
-    '<div class="ledger-tools">' + invoiceDocs.toolbar() + '<div class="ledger-sort"><label for="sbSort">Sort by</label><select id="sbSort">' + SORT_COLS.map(c => '<option value="' + c.k + '"' + (S.sort.k === c.k ? ' selected' : '') + '>' + esc(c.l) + '</option>').join('') + '</select><button type="button" class="btn sm" id="sbSortDir" aria-label="' + (S.sort.d < 0 ? 'Sort ascending' : 'Sort descending') + '">' + (S.sort.d < 0 ? '↓' : '↑') + '</button></div></div>' + activeLine(rows.length) +
+    '<div class="ledger-tools">' + invoiceDocs.toolbar() + '<div class="ledger-sort"><label for="sbSort">Sort by</label><select id="sbSort">' + SORT_COLS.map(c => '<option value="' + c.k + '"' + (S.sort.k === c.k ? ' selected' : '') + '>' + esc(c.l) + '</option>').join('') + '</select><button type="button" class="btn sm" id="sbSortDir" aria-label="' + (S.sort.d < 0 ? 'Sort ascending' : 'Sort descending') + '">' + (S.sort.d < 0 ? '↓' : '↑') + '</button></div>' + exportTools(rows) + '</div>' + activeLine(rows.length) +
     (rows.length ? tableHtml(shown) + cardsHtml(shown) : '<div class="kdh-state empty"><b>No Expenses Match</b><span>' + (all.length ? 'Change the filters.' : (S.missing ? '' : 'Nothing has been entered yet.')) + '</span></div>') +
     (rows.length > S.shown ? '<div class="more"><button type="button" class="btn" id="sbMore">Show More (' + (rows.length - S.shown).toLocaleString() + ' Left)</button></div>' : '') +
-    '<div class="sb-note">' + rows.length.toLocaleString() + ' of ' + all.length.toLocaleString() + ' rows' + (canEdit() ? ' · <button type="button" class="back" id="sbCsv">Export CSV</button>' : '') + '</div>' +
+    '<div class="sb-note">' + rows.length.toLocaleString() + ' of ' + all.length.toLocaleString() + ' rows</div>' +
     '<details class="fold"><summary>About This Data</summary><div class="body">Kohler Spend is always Total minus Billback. Constellation / Crown accounts never split: their Billback is $0, so Kohler Spend equals the Total. Accounts set to 50/50 fill half the Total as the Billback when you enter an expense. Description, Brand Manager and Code come from the account on the Budget tab. Rows marked History were imported from the 2025 tab of the tracker workbook; rows from the 2026 tab carry their original cells in the database. Billback Received is marked here by the office; "Received" with a date means the supplier paid it back.</div></details>' + invLinkFold();
   wireLedger(rows);
 }
@@ -340,7 +340,7 @@ function wireLedger(rows){
   $$('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
   $$('tr.r,.card[data-id]').forEach(el => { el.addEventListener('click', ev => { if(ev.target.closest('[data-rec],a.inv,[data-pdf],[data-attach-pdf],[data-retry-expense-pdf]')) return; go('edit=' + el.dataset.id); }); el.addEventListener('keydown', ev => { if(ev.key === 'Enter' && ev.target === el) go('edit=' + el.dataset.id); }); });
   $$('[data-rec]').forEach(b => b.addEventListener('click', ev => { ev.stopPropagation(); if(!canEdit()) return; toggleReceived(b.dataset.rec, b); }));
-  const csv = $('#sbCsv'); if(csv) csv.addEventListener('click', () => exportCsv(rows));
+  $$('[data-export]').forEach(b => b.addEventListener('click', () => exportRows(rows, b.dataset.export)));
   wireInvLink();
   if(S.hl){ const el = document.querySelector('.tbl-wrap tr.hl') || document.querySelector('.card.hl'); if(el && el.offsetParent) el.scrollIntoView({block: 'center'}); setTimeout(() => { S.hl = ''; $$('.hl').forEach(x => x.classList.remove('hl')); }, 6000); }
 }
@@ -358,12 +358,98 @@ async function toggleReceived(id, btn){
     replaceRow(r[0]); S.msg = null; renderLedger();
   }catch(err){ btn.removeAttribute('aria-busy'); S.msg = {text: friendly(err), bad: true}; renderLedger(); }
 }
-function exportCsv(rows){
-  const H = ['Time Entered','Date','Year','Invoice','Vendor Name','Description','Brand Manager','Items Purchased','Total Amount','Kohler Spend','Billback Amt','Billback Received?','Received Date','Code','Account','Supplier','Notes','Source'];
-  const q = v => { const s = v == null ? '' : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
-  const lines = [H.join(',')].concat(rows.map(r => [tEntered(r) ? r.created_at : '', r.expense_date, r.year, r.invoice, r.vendor, r.description, r.brand_manager, r.items_purchased, n2(r.total_amount), n2(r.kohler_spend), n2(r.billback_amount), r.billback_received ? 'Y' : 'N', r.received_date || '', r.code, r.account, r.supplier, r.notes, r.source].map(q).join(',')));
-  const blob = new Blob(['﻿' + lines.join('\r\n')], {type: 'text/csv;charset=utf-8'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'supplier-expenses-' + TODAY + '.csv'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+/* ---------------- export (2026-10-20): the supplier's file of the filtered, sorted ledger, Excel or CSV ---------------- */
+// Gavin, 2026-10-20: ONE export, the copy a supplier can read: what was spent and on what (columns A-L). Internal fields
+// (notes, brand manager, budgets / billback rule, who entered or edited) and billback received / PDFs / Encompass links are
+// left out; there is no full internal export. Anyone who can read the ledger may export what they see (RLS already limits a
+// brand manager to their accounts); never in preview.
+const canExport = () => !PREVIEW;
+function exportTools(rows){
+  if(!canExport()) return '';
+  return '<div class="ledger-export" role="group" aria-label="Export to"><span>Export to</span>' +
+    '<button type="button" class="btn sm" data-export="xlsx"' + (rows.length ? '' : ' disabled') + '>Excel</button>' +
+    '<button type="button" class="btn sm" data-export="csv"' + (rows.length ? '' : ' disabled') + '>CSV</button></div>';
+}
+function stamp(s){ if(!s) return ''; const d = new Date(s); if(isNaN(d)) return ''; const h = d.getHours(); return (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + ((h % 12) || 12) + ':' + pad(d.getMinutes()) + (h < 12 ? ' AM' : ' PM'); }
+// One list of columns for both files: label, value, kind (money / num / text), Excel width.
+const EXPORT_COLS = [
+  {l: 'Expense Date', v: r => dNum(r.expense_date), w: 12},
+  {l: 'Year', v: r => r.year == null ? '' : +r.year, k: 'num', w: 7},
+  {l: 'Supplier', v: r => r.supplier, w: 22},
+  {l: 'Account', v: r => r.account, w: 26},
+  {l: 'GL Code', v: r => r.code, w: 10},
+  {l: 'Account Description', v: r => r.description, w: 24},
+  {l: 'Vendor', v: r => r.vendor, w: 22},
+  {l: 'Invoice #', v: r => r.invoice, w: 12},
+  {l: 'Items Purchased', v: r => r.items_purchased, w: 40},
+  {l: 'Total Amount', v: r => n2(r.total_amount), k: 'money', w: 14},
+  {l: 'Billback Amount', v: r => n2(r.billback_amount), k: 'money', w: 14},
+  {l: 'Kohler Spend', v: r => n2(r.kohler_spend), k: 'money', w: 14}];
+function filterText(){
+  const f = S.f, p = [];
+  p.push('Year: ' + (f.year || 'All Years'));
+  if(f.acct){ const a = acctById(f.acct); if(a) p.push('Account: ' + a.account); }
+  if(f.sup) p.push('Supplier: ' + f.sup); if(f.bm) p.push('Brand Manager: ' + f.bm);
+  if(f.rec === 'yes') p.push('Billback: Received'); if(f.rec === 'no') p.push('Billback: Outstanding');
+  if(f.from || f.to) p.push('Dates: ' + (f.from ? dNum(f.from) : '…') + ' – ' + (f.to ? dNum(f.to) : '…'));
+  if(f.q.trim()) p.push('Search: "' + f.q.trim() + '"');
+  return p.join(' · ');
+}
+function exportName(ext){
+  const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+  const a = S.f.acct && acctById(S.f.acct);
+  const part = a ? slug(a.account) : S.f.sup ? slug(S.f.sup) : '';
+  return 'supplier-expenses' + (part ? '-' + part : '') + (S.f.year ? '-' + S.f.year : '') + '-as-of-' + TODAY + '.' + ext;
+}
+function download(blob, name){ const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function exportRows(rows, kind){
+  if(!rows.length) return;
+  const vals = rows.map(r => EXPORT_COLS.map(c => { const v = c.v(r); return v == null ? '' : v; }));
+  if(kind === 'csv'){
+    const q = v => { const s = v == null ? '' : String(v); return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const lines = [EXPORT_COLS.map(c => q(c.l)).join(',')].concat(vals.map(r => r.map(q).join(',')));
+    return download(new Blob(['﻿' + lines.join('\r\n')], {type: 'text/csv;charset=utf-8'}), exportName('csv'));
+  }
+  if(!window.KdhXlsx){ S.msg = {text: 'The Excel writer did not load. Reload the page, or use CSV.', bad: true}; return renderLedger(); }
+  download(window.KdhXlsx.book([summarySheet(rows), expenseSheet(vals)]), exportName('xlsx'));
+}
+function expenseSheet(vals){
+  const L = i => { let s = '', n = i + 1; while(n){ const m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - 1) / 26); } return s; };
+  const last = vals.length + 1;
+  const body = vals.map(r => r.map((v, i) => EXPORT_COLS[i].k === 'money' && v !== '' ? {v, s: 'money'} : v));
+  const total = EXPORT_COLS.map((c, i) => i === 0 ? {v: 'Total', s: 'bold'} : c.k === 'money'
+    ? {v: Math.round(vals.reduce((s, r) => s + (+r[i] || 0), 0) * 100) / 100, s: 'moneyBold', f: 'SUM(' + L(i) + '2:' + L(i) + last + ')'} : '');
+  return {name: 'Expenses', rows: [EXPORT_COLS.map(c => c.l)].concat(body, [total]), widths: EXPORT_COLS.map(c => c.w), freeze: 1};
+}
+// Summary keeps Billback Received / Outstanding (Gavin, 2026-10-20) though the Expenses tab does not show them per row.
+function summarySheet(rows){
+  const sum = (list, f) => Math.round(list.reduce((s, r) => s + (+f(r) || 0), 0) * 100) / 100;
+  const m = v => ({v, s: 'money'}), mb = v => ({v, s: 'moneyBold'});
+  const tot = list => ({total: sum(list, r => r.total_amount), bb: sum(list, r => r.billback_amount), spend: sum(list, r => r.kohler_spend),
+    recv: sum(list, r => r.billback_received ? r.billback_amount : 0), out: sum(list, r => r.billback_received ? 0 : Math.max(0, +r.billback_amount || 0))});
+  const t = tot(rows);
+  const byAcct = new Map(); rows.forEach(r => { if(!byAcct.has(r.account_id)) byAcct.set(r.account_id, []); byAcct.get(r.account_id).push(r); });
+  const accts = Array.from(byAcct.values()).sort((a, b) => String(a[0].supplier || '').localeCompare(String(b[0].supplier || '')) || String(a[0].account).localeCompare(String(b[0].account)));
+  const out = [
+    [{v: 'Supplier Budgets – Expense Export', s: 'bold'}],
+    ['Generated', stamp(new Date().toISOString())],
+    ['Filters', filterText()],
+    ['Expenses', rows.length],
+    ['Accounts', accts.length],
+    [],
+    [{v: 'Totals', s: 'bold'}],
+    ['Total Amount', m(t.total)], ['Billback Amount', m(t.bb)], ['Kohler Spend', m(t.spend)],
+    ['Billback Received', m(t.recv)], ['Billback Outstanding', m(t.out)],
+    [],
+    [{v: 'By Account', s: 'bold'}],
+    ['Supplier', 'Account', 'GL Code', 'Expenses', 'Total Amount', 'Billback Amount', 'Kohler Spend', 'Billback Received', 'Billback Outstanding'].map(v => ({v, s: 'bold'}))];
+  accts.forEach(list => {
+    const r0 = list[0], x = tot(list);
+    out.push([r0.supplier || '', r0.account || '', r0.code || '', list.length, m(x.total), m(x.bb), m(x.spend), m(x.recv), m(x.out)]);
+  });
+  out.push([{v: 'Total', s: 'bold'}, '', '', rows.length, mb(t.total), mb(t.bb), mb(t.spend), mb(t.recv), mb(t.out)]);
+  out.push([], ['Kohler Spend is always Total Amount minus Billback Amount. Billback Received means the supplier has paid the billback back.']);
+  return {name: 'Summary', rows: out, widths: [26, 30, 10, 10, 14, 14, 14, 14, 14]};
 }
 
 /* ---------------- invoice links (editors set one Encompass address) ---------------- */

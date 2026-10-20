@@ -88,7 +88,7 @@ function isPhotoAdmin(){
 }
 async function load(n, force){
   if(!force && cache.has(n)) return cache.get(n);
-  const out = {tasks:[], notes:[], photos:[], records:[], notesErr:'', photosErr:'', update:false, merchMissing:false};
+  const out = {tasks:[], notes:[], photos:[], records:[], windows:[], windowsRemoved:[], notesErr:'', photosErr:'', update:false, merchMissing:false, windowsMissing:false, windowsErr:''};
   if(!cfg()){ out.notesErr = out.photosErr = 'off'; cache.set(n, out); return out; }
   const base = 'select=id,program_id,account_num,account_name,status,note,updated_at,created_at,rep_name';
   let recs = [];
@@ -108,6 +108,10 @@ async function load(n, force){
       .catch(e=>{ if(colMissing(e) || e.status===400) return rest('merch_records?select='+REC_COLS_OLD+'&customer_num=eq.'+encodeURIComponent(n)+'&order=observed_at.desc.nullslast&limit=300'); throw e; })
       .then(rows=>{ recs = Array.isArray(rows) ? rows : []; })
       .catch(e=>{ out.merchMissing = true; }),
+    // ACCOUNT WINDOWS (2026-10-20): the account's signage spots, live and removed (removed ones can be restored)
+    rest('account_windows?select=*&customer_num=eq.'+encodeURIComponent(n)+'&order=created_at.asc&limit=500')
+      .then(rows=>{ (Array.isArray(rows) ? rows : []).forEach(w=>(w.removed_at ? out.windowsRemoved : out.windows).push(w)); })
+      .catch(e=>{ if(e.status===404 || e.code==='PGRST205' || e.code==='42P01') out.windowsMissing = true; else out.windowsErr = e.message || 'error'; }),
   ]);
   out.records = buildRecords(recs, out.photos);
   out.admin = await isPhotoAdmin();
@@ -596,6 +600,13 @@ async function uploadRecord(d, onProgress){
       if(e.status===404 || e.code==='PGRST202' || e.code==='42883'){ merchSaveMissing = true; }
       else throw e;
     }
+    // a Window visit updates the window itself (retry-safe: the same record key twice changes nothing)
+    if(d.category==='window' && d.window_id && d.win_status){
+      const ls = (d.lines||[]).filter(l=>l.brand);
+      await rest('rpc/kdh_window_verify', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({p:{id:d.window_id, status:d.win_status,
+        brand: d.win_status==='open' ? '' : Array.from(new Set(ls.map(l=>l.brand))).join(', ').slice(0, 120), brand_family: (ls.find(l=>l.fam)||{}).fam || '',
+        program: d.win_status==='open' ? '' : String(d.win_program||'').trim(), photo_path: (d.photos[0]||{}).path || '', record_key: d.id}})});
+    }
     await IDB.del('records', d.id);
     return true;
   }catch(e){
@@ -693,6 +704,179 @@ function unavailable(img){
   img.replaceWith(s);
 }
 
+/* ---------------- ACCOUNT WINDOWS (2026-10-20, Gavin): every signage spot at the account,
+   kept as a LIST (account_windows; migration 20261020090000_account_windows.sql). A window has
+   a name, a location, its size in inches and an importance (High / Medium / Low); each visit
+   through the Window photo flow says what is on it -- Executed (our brand), Competitor or Open --
+   and points the window at that photo. Window Count = windows on the list; Execution % =
+   executed / every window on it (a window not verified yet counts in the total, never as open).
+   History is append-only in account_window_events; a removed window is hidden, not deleted. ---------------- */
+const WIN_SQL = 'supabase/migrations/20261020090000_account_windows.sql';
+const WIN_LOC = [['front', 'Front'], ['side', 'Side'], ['entrance', 'Entrance Door'], ['other', 'Other']];
+const WIN_CLASS = [['high', 'High'], ['medium', 'Medium'], ['low', 'Low']];
+const WIN_STATUS = [['executed', 'Executed (Ours)'], ['competitor', 'Competitor'], ['open', 'Open']];
+const WIN_TAG = {executed: 'Executed', competitor: 'Competitor', open: 'Open'};
+const winLocLabel = k => (WIN_LOC.find(x=>x[0]===k) || [0, k || '—'])[1];
+const winClassLabel = k => (WIN_CLASS.find(x=>x[0]===k) || [0, k || '—'])[1];
+const inch = v => { const n = Number(v); return Number.isFinite(n) && n > 0 ? String(Math.round(n*10)/10) : ''; };
+function winSize(w){
+  const a = inch(w.width_in), b = inch(w.height_in);
+  if(!a || !b) return a || b ? `${a || '?'} × ${b || '?'} in` : 'Not measured';
+  return `${a} × ${b} in · ${(Number(a)*Number(b)/144).toFixed(1).replace(/\.0$/, '')} sq ft`;
+}
+function winSort(list){ const o = {high:0, medium:1, low:2}; return list.slice().sort((a, b)=>((o[a.importance]??1) - (o[b.importance]??1)) || String(a.name).localeCompare(String(b.name))); }
+function winCounts(list){
+  const c = {n:list.length, executed:0, competitor:0, open:0, unverified:0};
+  list.forEach(w=>{ if(c[w.status]!=null) c[w.status]++; else c.unverified++; });
+  c.pct = c.n ? Math.round(c.executed / c.n * 100) : 0;
+  return c;
+}
+function winSummary(list){
+  const c = winCounts(list);
+  if(!c.n) return 'No windows on file';
+  return `${c.executed} of ${c.n} executed (${c.pct}%) · ${c.competitor} competitor · ${c.open} open${c.unverified ? ` · ${c.unverified} not verified` : ''}`;
+}
+// the photo a window shows: its latest visit's record (when that record is still here), else the stored path
+function winRecord(st, w){ return w.record_id ? st.records.find(r=>r.key==='mr:'+w.record_id) : null; }
+function winPhoto(st, w){
+  const r = winRecord(st, w); const ph = r && (r.photos.find(p=>p.storage_path) || r.photos[0]);
+  return ph ? thumbAttr(ph) : w.photo_path ? `data-src="${E(w.photo_path)}"` : '';
+}
+const winVerified = w => w.verified_at ? `${fmtDay(w.verified_at)}${w.verified_by_name ? ' by '+w.verified_by_name : ''}` : 'Not verified yet';
+// Account Details: "Windows" group -- the count, the split, and See All Windows
+function winDetails(st){
+  if(st.windowsMissing) return `<h3 class="dg-h">Windows</h3><p class="dg-na">Window tracking turns on once ${E(WIN_SQL)} is run in Supabase.</p>`;
+  if(st.windowsErr) return `<h3 class="dg-h">Windows</h3><p class="dg-na">Couldn’t load windows: ${E(st.windowsErr)}</p>`;
+  if(!cfg()) return '';
+  const c = winCounts(st.windows);
+  return `<h3 class="dg-h">Windows</h3>
+    <div class="kv"><span>Window Count</span><span><b>${c.n}</b></span></div>
+    ${c.n ? `<div class="kv"><span>Execution</span><span>${c.executed} of ${c.n} executed (${c.pct}%)</span></div>
+    <div class="kv"><span>Breakdown</span><span>${c.competitor} competitor · ${c.open} open${c.unverified ? ` · ${c.unverified} not verified` : ''}</span></div>` : ''}
+    <a class="btn outline wide win-all" href="#" data-go="more:windows">${c.n ? 'See All Windows' : (ctx.readOnly ? 'See All Windows' : 'Add Windows')}</a>`;
+}
+// More -> Windows: the table (cards on phones)
+function winTable(st){
+  if(st.windowsMissing) return `<div class="kdh-state unavailable slim"><b>Window tracking needs a one-time database update.</b><span>Run ${E(WIN_SQL)} in the Supabase SQL Editor.</span></div>`;
+  if(st.windowsErr) return `<div class="kdh-state error slim"><b>Couldn’t load windows.</b><span>${E(st.windowsErr)}</span></div>`;
+  if(!cfg()) return `<p class="act-empty">Windows need a sign-in on kohlerdisthub.com.</p>`;
+  const list = winSort(st.windows), edit = !ctx.readOnly;
+  const head = `<div class="win-head"><p class="win-sum"><b>Windows:</b> ${E(winSummary(list))}</p>${edit ? `<button type="button" class="btn primary" data-wadd>+ Add Window</button>` : ''}</div>`;
+  if(!list.length) return head + `<p class="act-empty">No windows on file for this account.${edit ? ' Add each spot a sign can go: name it, say where it is, measure it, and take a photo of what is on it.' : ''}</p>` + winRemoved(st);
+  const rows = list.map(w=>{ const ph = winPhoto(st, w);
+    return `<tr data-wid="${E(w.id)}">
+      <td class="wt-ph" data-l="Photo">${ph ? `<button type="button" class="wph" data-wph="${E(w.id)}" aria-label="Open the latest photo of ${E(w.name)}"><img alt="${E(w.name)}" ${ph}></button>` : `<span class="wph none">No photo</span>`}</td>
+      <td class="wt-name" data-l="Window"><b>${E(w.name)}</b></td>
+      <td data-l="Location">${E(winLocLabel(w.location))}</td>
+      <td data-l="Size">${E(winSize(w).split(' · ')[0])}${winSize(w).includes(' · ') ? `<span class="wt-sub">${E(winSize(w).split(' · ')[1])}</span>` : ''}</td>
+      <td data-l="Class"><span class="wcls wcls-${E(w.importance)}">${E(winClassLabel(w.importance))}</span></td>
+      <td data-l="Status"><span class="wst wst-${E(w.status || 'none')}">${E(WIN_TAG[w.status] || 'Not Verified')}</span></td>
+      <td data-l="Current Brand">${w.brand ? E(w.brand) : '<span class="dim">—</span>'}${w.program ? `<span class="wt-sub">${E(w.program)}</span>` : ''}</td>
+      <td data-l="Last Verified">${E(winVerified(w))}</td>
+      ${edit ? `<td class="wt-act"><button type="button" class="btn sm primary" data-wup="${E(w.id)}">Update</button><button type="button" class="btn sm outline" data-wedit="${E(w.id)}">Edit</button></td>` : ''}
+    </tr>`; }).join('');
+  return head + `<table class="wtbl"><thead><tr><th>Photo</th><th>Window</th><th>Location</th><th>Size</th><th>Class</th><th>Status</th><th>Current Brand</th><th>Last Verified</th>${edit ? '<th><span class="sr">Actions</span></th>' : ''}</tr></thead><tbody>${rows}</tbody></table>
+    <p class="note">Update takes a new photo and records what is on the window today. Every update is kept in the window’s history (Edit → History).</p>` + winRemoved(st);
+}
+function winRemoved(st){
+  if(!st.windowsRemoved.length) return '';
+  return `<details class="fold win-rm"><summary>Removed Windows · ${st.windowsRemoved.length}</summary><ul class="win-rml">${st.windowsRemoved.map(w=>`<li><span><b>${E(w.name)}</b> · removed ${E(fmtDay(w.removed_at))}${w.removed_by_name ? ' by '+E(w.removed_by_name) : ''}</span>${ctx.readOnly ? '' : `<button type="button" class="btn sm outline" data-wrestore="${E(w.id)}">Restore</button>`}</li>`).join('')}</ul></details>`;
+}
+function wireWindows(root, st){
+  hydrateImages(root);
+  const find = id => st.windows.find(w=>w.id===id);
+  root.querySelectorAll('[data-wadd]').forEach(b=>b.addEventListener('click', ()=>winSheet(st, null)));
+  root.querySelectorAll('[data-wedit]').forEach(b=>b.addEventListener('click', ()=>winSheet(st, find(b.dataset.wedit))));
+  root.querySelectorAll('[data-wup]').forEach(b=>b.addEventListener('click', ()=>photoFlow({category:'window', window_id:b.dataset.wup})));
+  root.querySelectorAll('[data-wph]').forEach(b=>b.addEventListener('click', ()=>{ const w = find(b.dataset.wph); if(!w) return; const r = winRecord(st, w);
+    if(r) return viewer(st, r.key);
+    const s = sheet(E(w.name), `<div class="rv-img" id="rvImg"><img alt="${E(w.name)}" data-src="${E(w.photo_path)}"></div><dl class="pv-meta"><dt>Last Verified</dt><dd>${E(winVerified(w))}</dd></dl>`);
+    hydrateImages(s); const box = s.querySelector('#rvImg'); box.addEventListener('click', ()=>box.classList.toggle('zoom')); }));
+  root.querySelectorAll('[data-wrestore]').forEach(b=>b.addEventListener('click', async ()=>{
+    b.disabled = true; b.setAttribute('aria-busy', 'true');
+    try{ await rest('rpc/kdh_window_remove', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({p:{id:b.dataset.wrestore, restore:true}})});
+      const s2 = await load(ctx.n, true); paint(s2); toast('Window restored'); }
+    catch(e){ b.disabled = false; b.removeAttribute('aria-busy'); toast('Could not restore it: '+(e.message||'error')); }
+  }));
+}
+// the window's own fields: name, location, size, class. Used by Add / Edit and inline in the photo flow.
+function winFieldsHtml(v, pre){
+  pre = pre || 'wf';
+  const chips = (k, opts, val) => `<div class="cchips" role="group">${opts.map(([o, l])=>`<button type="button" class="cchip" data-${pre}="${k}" data-v="${o}" aria-pressed="${val===o}">${E(l)}</button>`).join('')}</div>`;
+  return `<p class="ce-l">Window Name</p><input type="text" class="ce-in" id="${pre}Name" maxlength="60" placeholder="e.g. Front Left, Door, Side Window 2" value="${E(v.name||'')}" autocomplete="off" list="${pre}Names">
+    <datalist id="${pre}Names">${['Front Left', 'Front Center', 'Front Right', 'Door', 'Side Window'].map(x=>`<option value="${x}">`).join('')}</datalist>
+    <p class="ce-l">Location</p>${chips('location', WIN_LOC, v.location)}
+    <p class="ce-l">Size <span>inches</span></p>
+    <div class="wsize"><label><span>Width</span><input type="text" inputmode="decimal" id="${pre}W" maxlength="6" placeholder="36" value="${E(inch(v.width_in))}"></label><span aria-hidden="true">×</span><label><span>Height</span><input type="text" inputmode="decimal" id="${pre}H" maxlength="6" placeholder="48" value="${E(inch(v.height_in))}"></label></div>
+    <p class="ce-l">Class</p>${chips('importance', WIN_CLASS, v.importance)}`;
+}
+function winFieldsWire(root, v, pre, onChange){
+  pre = pre || 'wf';
+  root.querySelectorAll(`[data-${pre}]`).forEach(b=>b.addEventListener('click', ()=>{ v[b.dataset[pre]] = b.dataset.v;
+    root.querySelectorAll(`[data-${pre}="${b.dataset[pre]}"]`).forEach(x=>x.setAttribute('aria-pressed', String(x===b))); if(onChange) onChange(); }));
+  [['Name', 'name'], ['W', 'width_in'], ['H', 'height_in']].forEach(([id, k])=>{ const i = root.querySelector('#'+pre+id);
+    if(i) i.addEventListener('input', ()=>{ if(k!=='name'){ const x = i.value.replace(/[^0-9.]/g, ''); if(x!==i.value) i.value = x; } v[k] = i.value; if(onChange) onChange(); }); });
+}
+function winCheck(st, v){
+  const nm = String(v.name||'').trim();
+  if(!nm) return 'Name the window (e.g. Front Left).';
+  if(st.windows.some(w=>w.id!==v.id && String(w.name).trim().toLowerCase()===nm.toLowerCase())) return `This account already has a window named “${nm}”.`;
+  if(!v.location) return 'Choose where the window is.';
+  for(const [k, l] of [['width_in', 'width'], ['height_in', 'height']]){ const x = String(v[k]||'').trim();
+    if(!x) return `Enter the ${l} in inches.`;
+    if(!/^\d{1,4}(\.\d)?$/.test(x) || Number(x)<=0 || Number(x)>1200) return `The ${l} should be inches, like 36 or 36.5.`; }
+  if(!v.importance) return 'Choose the class: High, Medium or Low.';
+  return '';
+}
+async function winSave(v){
+  const p = {customer_num:String(ctx.n), name:String(v.name).trim(), location:v.location, width_in:String(v.width_in).trim(), height_in:String(v.height_in).trim(), importance:v.importance};
+  if(v.id) p.id = v.id;
+  return rest('rpc/kdh_window_save', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({p})});
+}
+function winSheet(st, w){
+  if(ctx.readOnly || !cfg()) return;
+  const v = w ? {id:w.id, name:w.name, location:w.location, width_in:inch(w.width_in), height_in:inch(w.height_in), importance:w.importance} : {name:'', location:'', width_in:'', height_in:'', importance:''};
+  const s = sheet(w ? 'Edit Window' : 'Add Window', `${winFieldsHtml(v)}
+    ${w ? `<div class="sheet-b win-eacts"><button type="button" class="btn outline" id="wHist">History</button><button type="button" class="btn outline danger" id="wDel">Remove Window</button></div><div id="wHistBox"></div>` : ''}`, null,
+    {sub: E(ctx.name), cls:'cap-sheet', noFocus:!!w,
+     foot:`<p class="cap-msg" id="wErr" role="alert" hidden></p><div class="cap-foot"><button type="button" class="btn" id="wCancel">Cancel</button>
+       ${w ? '' : '<button type="button" class="btn outline" id="wSavePhoto">Save &amp; Take Photo</button>'}<button type="button" class="btn primary" id="wSave">Save</button></div>`});
+  const $ = q => s.querySelector(q);
+  const err = m => { const e = $('#wErr'); e.hidden = !m; e.textContent = m || ''; };
+  winFieldsWire(s, v, 'wf', ()=>err(''));
+  $('#wCancel').addEventListener('click', closeSheet);
+  const go = async (photo) => {
+    const why = winCheck(st, v); if(why){ err(why); return; }
+    const btn = photo ? $('#wSavePhoto') : $('#wSave'); if(btn.getAttribute('aria-busy')==='true') return;
+    btn.setAttribute('aria-busy', 'true'); s.querySelectorAll('.cap-foot .btn').forEach(b=>b.disabled = true);
+    try{ const row = await winSave(v); closeSheet();
+      const s2 = await load(ctx.n, true); paint(s2); if(ctx.onChange && !photo) ctx.onChange(s2);
+      toast(w ? 'Window saved' : `${row && row.name || 'Window'} added`);
+      if(photo && row && row.id) photoFlow({category:'window', window_id:row.id});
+    }catch(e){ btn.removeAttribute('aria-busy'); s.querySelectorAll('.cap-foot .btn').forEach(b=>b.disabled = false);
+      err(e.code==='23505' ? (e.message || 'That name is taken at this account.') : e.status===404 ? 'Window tracking needs '+WIN_SQL+' in Supabase.' : denied(e) ? 'This account is not on your route.' : 'Not saved — '+(e.message||'something went wrong')+'. Tap Save to try again.'); }
+  };
+  $('#wSave').addEventListener('click', ()=>go(false));
+  const sp = $('#wSavePhoto'); if(sp) sp.addEventListener('click', ()=>go(true));
+  const del = $('#wDel'); if(del) del.addEventListener('click', async ()=>{
+    if(!confirm(`Remove “${w.name}” from this account? Use this when the spot no longer exists. Its history is kept and it can be restored.`)) return;
+    del.disabled = true; del.setAttribute('aria-busy', 'true');
+    try{ await rest('rpc/kdh_window_remove', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({p:{id:w.id}})});
+      closeSheet(); const s2 = await load(ctx.n, true); paint(s2); if(ctx.onChange) ctx.onChange(s2); toast('Window removed'); }
+    catch(e){ del.disabled = false; del.removeAttribute('aria-busy'); err('Could not remove it: '+(e.message||'error')); }
+  });
+  const hb = $('#wHist'); if(hb) hb.addEventListener('click', async ()=>{
+    const box = $('#wHistBox'); hb.disabled = true; box.innerHTML = '<div class="kdh-state loading slim">Loading history…</div>';
+    try{ const ev = await rest('account_window_events?select=kind,state,author_name,at&window_id=eq.'+encodeURIComponent(w.id)+'&order=id.desc&limit=200');
+      const KIND = {add:'Added', edit:'Edited', verify:'Verified', remove:'Removed', restore:'Restored'};
+      box.innerHTML = `<h3 class="rv-h">History · ${ev.length}</h3><ul class="win-hist">${ev.map(x=>{ const t = x.state || {};
+        const what = x.kind==='verify' ? [WIN_TAG[t.status] || '', t.brand || '', t.program || ''].filter(Boolean).join(' · ')
+          : x.kind==='add' || x.kind==='edit' ? [t.name, winLocLabel(t.location), winSize(t), winClassLabel(t.importance)].join(' · ') : '';
+        return `<li><b>${E(KIND[x.kind] || x.kind)}</b>${what ? ` · ${E(what)}` : ''}<span>${E(fmtWhen(x.at))}${x.author_name ? ' by '+E(x.author_name) : ''}</span></li>`; }).join('')}</ul>`;
+    }catch(e){ box.innerHTML = `<p class="note">Couldn’t load the history: ${E(e.message||'error')}</p>`; hb.disabled = false; }
+  });
+}
+
 async function attach(c){
   ctx = c;
   const [st] = await Promise.all([load(ctx.n), refreshDrafts()]);
@@ -704,6 +888,8 @@ function paint(st){
   const all = document.getElementById('actAll'); if(all){ all.innerHTML = composerHtml() + timelineHtml(st, true); wireFeed(all, st); wireTimeline(all, st); }
   const ps = document.getElementById('actPhotos'); if(ps){ ps.innerHTML = photosSide(st); wirePhotos(ps, st); }
   const pa = document.getElementById('actPhotosAll'); if(pa){ pa.innerHTML = photosFull(st); wireQuick(pa); wirePhotos(pa, st); wirePhotoFilters(pa, st); }
+  const wd = document.getElementById('winDetails'); if(wd){ wd.innerHTML = winDetails(st); wd.hidden = !wd.innerHTML; }
+  const wa = document.getElementById('actWindows'); if(wa){ wa.innerHTML = winTable(st); wireWindows(wa, st); }
 }
 function wireTimeline(root, st){
   root.querySelectorAll('[data-tl]').forEach(b=>b.addEventListener('click', ()=>{ tl.type = b.dataset.tl; tl.limit = 15; repaintTimeline(root, st); }));
@@ -1042,11 +1228,13 @@ const SVG_TRASH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 function newDraft(opts){
   opts = opts || {};
   return {id: uuid(), owner: ownerId(), n: String(ctx.n), name: ctx.name, prem: ctx.prem || '', category: opts.category || '', subtype:'', subtype_note:'',
-    caption:'', location:'', brands: opts.brands || [], program_id: opts.program_id || '', lines:[], photos:[], state:'draft', err:'', at: Date.now(), fresh:true};
+    caption:'', location:'', brands: opts.brands || [], program_id: opts.program_id || '', lines:[], photos:[], state:'draft', err:'', at: Date.now(), fresh:true,
+    window_id: opts.window_id || '', win_status:'', win_program:''};
 }
 function photoFlow(opts){
   if(ctx.readOnly || !cfg()) return;
   const d = newDraft(opts);
+  if(d.window_id) winPrefill(d);
   if(d.category) return detailsStep(d);
   typeStep(d);
 }
@@ -1065,6 +1253,14 @@ function typeStep(d, showAll){
     if(was && was!==d.category) d.lines = [];          // a different type asks different questions
     detailsStep(d); }));
   const more = w.querySelector('#pfMore'); if(more) more.addEventListener('click', ()=>typeStep(d, true));
+}
+// an Update starts from the window's current state: status, program and the last visit's brand lines
+function winPrefill(d){
+  const st = cache.get(ctx.n); const w = st && st.windows.find(x=>x.id===d.window_id); if(!w) return;
+  d.win_status = w.status || ''; d.win_program = w.program || '';
+  const r = winRecord(st, w);
+  if(r && r.lines.length && w.status!=='open') d.lines = r.lines.filter(l=>l.brand).map(l=>({brand:l.brand, product_num:l.product_num||'', fam:l.brand_family||'', sup:l.supplier||'', pkg:l.package||'', quantity:'', unit:'', price:'', attrs:Object.assign({}, l.attrs||{})}));
+  else if(w.brand) d.lines = [{brand:w.brand, product_num:'', fam:w.brand_family||'', sup:'', pkg:'', quantity:'', unit:'', price:'', attrs:{}}];
 }
 // closing the sheet with photos in it keeps a draft (under "Not Yet Saved"); Cancel discards
 async function keepIfStarted(d){ if(d.photos.length && d.state!=='saved'){ await IDB.put('records', d); await refreshDrafts(); paint(cache.get(ctx.n) || await load(ctx.n)); toast('Kept on this device under Not Yet Saved'); } }
@@ -1145,6 +1341,10 @@ function detailsStep(d){
   const c = M().cat(d.category) || {label:'Photos', one:'Photos'};
   const spec = M().ITEMS[d.category] || M().ITEMS.other;
   const taps = spec.pick==='tap';
+  // a Window visit (2026-10-20) names WHICH window and what is on it; the line's own "Window" question is then the window's location
+  const winOn = d.category==='window' && !!cfg() && (()=>{ const s0 = cache.get(ctx.n); return !!s0 && !s0.windowsMissing && !s0.windowsErr; })();
+  const groupsOf = () => (spec.groups||[]).filter(g=>!(winOn && d.window_id && g.k==='window'));
+  const brandsWanted = () => !winOn || (!!d.window_id && !!d.win_status && d.win_status!=='open');
   if(taps && d.lines.length) d.lines.forEach(l=>{ if(l.unit!=='taps') l.unit = 'taps'; });
   let editing = d.lines.findIndex(l=>!itemDone(l)); // the item whose fields are open (-1 = none)
   let RULES = null;
@@ -1164,7 +1364,7 @@ function detailsStep(d){
   function itemDone(l){
     if(!l || !(l.brand || l.product_num)) return false;
     if(taps) return l.own==='US' || l.own==='THEM';
-    return (spec.groups||[]).every(g=>!g.req || (l.attrs && l.attrs[g.k]));
+    return groupsOf().every(g=>!g.req || (l.attrs && l.attrs[g.k]));
   }
   function newItem(){ const a = {}; (spec.groups||[]).forEach(g=>{ if(g.def) a[g.k] = g.def; });
     return taps ? {brand:'', quantity:1, unit:'taps', attrs:{}} : {brand:'', product_num:'', fam:'', sup:'', pkg:'', quantity: spec.qty ? 1 : '', unit: spec.qty || '', price:'', attrs:a}; }
@@ -1204,7 +1404,7 @@ function detailsStep(d){
       ? `<div class="ce-p"><div><b>${E(label(l))}</b>${l.pkg ? `<span>${E(l.pkg)}</span>` : ''}</div><button type="button" class="linkbtn" data-ipick="${i}">Change</button></div>`
       : `<button type="button" class="ce-pick" data-ipick="${i}">${SVG_SEARCH}<span>Select ${E(spec.noun)}</span></button>`;
     if(picked){
-      const gs = spec.groups || []; let open = true;
+      const gs = groupsOf(); let open = true;
       gs.forEach(g=>{ if(!open) return;
         html += `<p class="ce-l">${E(g.l)}${g.opt ? ' <span>optional</span>' : ''}</p>${chips(g, (l.attrs||{})[g.k], i)}`;
         if(g.k==='theme' && (l.attrs||{}).theme==='custom') html += `<input type="text" class="ce-in" data-ithemetext="${i}" maxlength="60" placeholder="Theme" value="${E((l.attrs||{}).theme_text||'')}">`;
@@ -1217,21 +1417,63 @@ function detailsStep(d){
     }
     return html + `</div>`;
   };
+  function winHtml(){
+    if(!winOn) return '';
+    const st = cache.get(ctx.n), ws = winSort(st.windows);
+    const sz = x => inch(x.width_in) && inch(x.height_in) ? `${inch(x.width_in)} × ${inch(x.height_in)} in` : 'Not measured';
+    let h = `<section class="cap-sec cap-win"><p class="ce-l">Which Window?</p>`;
+    if(ws.length) h += `<div class="cchips wchips" role="group" aria-label="Which window">${ws.map(x=>`<button type="button" class="cchip" data-wpick="${E(x.id)}" aria-pressed="${d.window_id===x.id}"><b>${E(x.name)}</b><small>${E(winLocLabel(x.location))} · ${E(sz(x))}</small></button>`).join('')}</div>`;
+    else if(!d._nwOpen) h += `<p class="cap-hint">No windows on file yet. Add the one you are photographing.</p>`;
+    h += d._nwOpen ? `<div class="wnew">${winFieldsHtml(d._nw, 'nw')}<p class="cap-msg" id="nwErr" role="alert" hidden></p><div class="ce-acts"><button type="button" class="btn sm" id="nwCancel">Cancel</button><button type="button" class="btn primary sm" id="nwAdd">Add Window</button></div></div>`
+      : `<button type="button" class="btn outline cap-addi" id="nwOpen">+ New Window</button>`;
+    if(d.window_id){
+      h += `<p class="ce-l">What’s on It?</p><div class="cchips" role="group" aria-label="What is on the window">${WIN_STATUS.map(([k, l])=>`<button type="button" class="cchip" data-wstat="${k}" aria-pressed="${d.win_status===k}">${E(l)}</button>`).join('')}</div>`;
+    }
+    return h + `</section>`;
+  }
+  // free-text program (v1), asked after the brand; names already used on this account's windows are offered
+  function winProgHtml(){
+    if(!winOn || !d.window_id || !d.win_status || d.win_status==='open') return '';
+    const progs = Array.from(new Set(cache.get(ctx.n).windows.map(x=>x.program).filter(Boolean))).sort();
+    return `<section class="cap-sec"><p class="ce-l">Program <span>optional</span></p><input type="text" class="ce-in" id="capWinProg" maxlength="120" placeholder="e.g. Fall Football 2026" list="capWinProgs" value="${E(d.win_program)}" autocomplete="off"><datalist id="capWinProgs">${progs.map(x=>`<option value="${E(x)}">`).join('')}</datalist></section>`;
+  }
+  function wireWin(){
+    if(!winOn) return;
+    w.querySelectorAll('[data-wpick]').forEach(b=>b.addEventListener('click', ()=>{ if(d.window_id!==b.dataset.wpick){ d.window_id = b.dataset.wpick; if(!d.lines.length && !d.photos.length) winPrefill(d); } persist(); render(); }));
+    w.querySelectorAll('[data-wstat]').forEach(b=>b.addEventListener('click', ()=>{ d.win_status = b.dataset.wstat; if(d.win_status==='open'){ editing = -1; } err(''); persist(); render(d.win_status!=='open' && !d.lines.length ? '#capAddItem' : null); }));
+    const pg = $('#capWinProg'); if(pg) pg.addEventListener('input', ()=>{ d.win_program = pg.value; persist(); });
+    const op = $('#nwOpen'); if(op) op.addEventListener('click', ()=>{ d._nwOpen = true; d._nw = {name:'', location:'', width_in:'', height_in:'', importance:''}; render('#nwName'); });
+    if(d._nwOpen){
+      const ne = m => { const e = $('#nwErr'); if(e){ e.hidden = !m; e.textContent = m || ''; } };
+      winFieldsWire(w, d._nw, 'nw', ()=>ne(''));
+      $('#nwCancel').addEventListener('click', ()=>{ d._nwOpen = false; render(); });
+      const add = $('#nwAdd');
+      add.addEventListener('click', async ()=>{
+        const st = cache.get(ctx.n); const why = winCheck(st, d._nw); if(why){ ne(why); return; }
+        if(add.getAttribute('aria-busy')==='true') return; add.setAttribute('aria-busy', 'true');
+        try{ const row = await winSave(d._nw); st.windows.push(row); d.window_id = row.id; d._nwOpen = false; persist(); render(); toast(`${row.name} added`); }
+        catch(e){ add.removeAttribute('aria-busy'); ne(e.code==='23505' ? (e.message || 'That name is taken at this account.') : 'Not added — '+(e.message||'something went wrong')); }
+      });
+    }
+  }
   function render(focusSel){
     const body = $('#capBody'); const y = body.closest('.asheet-b').scrollTop;
     const rec = spec.rec;
-    let h = `<section class="cap-sec cap-photos">${photosHtml()}</section>`;
+    let h = winHtml() + `<section class="cap-sec cap-photos">${photosHtml()}</section>`;
     if(prog) h += `<p class="cap-prog">For <b>${E(prog)}</b> <button type="button" class="linkbtn" id="capProgX">Remove</button></p>`;
     if(d.photos.length || d.lines.length || d.location){
       if(rec){ const val = d.location; const isOther = val && !rec.o.some(o=>o.k===val && o.k!=='Other');
         h += `<section class="cap-sec"><p class="ce-l">${E(rec.l)}</p><div class="cchips" role="group" aria-label="${E(rec.l)}">${rec.o.map(o=>`<button type="button" class="cchip" data-rec="${E(o.k)}" aria-pressed="${val===o.k || (o.k==='Other' && isOther)}">${E(o.l)}</button>`).join('')}</div>
           ${isOther ? `<input type="text" class="ce-in" id="capRecOther" maxlength="60" placeholder="Where?" value="${E(val==='Other' ? '' : val)}">` : ''}</section>`; }
       if(spec.what) h += `<section class="cap-sec"><p class="ce-l">What is it?</p><input type="text" class="ce-in" id="capWhat" maxlength="120" placeholder="e.g. Tasting, sampling event" value="${E(d.subtype_note)}"></section>`;
-      h += `<section class="cap-sec cap-items"><p class="ce-l">${taps ? 'Taps' : spec.what ? 'Brands <span>optional</span>' : (spec.noun==='SKU' ? 'SKUs' : spec.noun==='Brand' ? 'Brands' : 'Placements')}${d.lines.length ? ` <span class="cnum">${d.lines.length}</span>` : ''}</p>`;
+      if(brandsWanted()){
+      h += `<section class="cap-sec cap-items"><p class="ce-l">${winOn ? 'Brand on the Window' : taps ? 'Taps' : spec.what ? 'Brands <span>optional</span>' : (spec.noun==='SKU' ? 'SKUs' : spec.noun==='Brand' ? 'Brands' : 'Placements')}${d.lines.length ? ` <span class="cnum">${d.lines.length}</span>` : ''}</p>`;
       if(taps) h += tapRows() + tapTotals();
       else h += d.lines.map((l, i)=>i===editing ? editor(l, i) : itemRow(l, i)).join('');
       if(!(editing>=0 && !taps)) h += `<button type="button" class="btn outline cap-addi" id="capAddItem">+ ${E(d.lines.length || taps ? spec.add : 'Select '+spec.noun)}</button>`;
       h += `</section>`;
+      }
+      h += winProgHtml();
       h += d.caption || d._noteOpen ? `<section class="cap-sec"><p class="ce-l">Note <span>optional</span></p><textarea id="capNote" rows="2" maxlength="500" placeholder="Anything worth knowing">${E(d.caption)}</textarea></section>`
         : `<button type="button" class="linkbtn cap-notebtn" id="capNoteAdd">+ Add Note</button>`;
     } else {
@@ -1239,7 +1481,7 @@ function detailsStep(d){
     }
     body.innerHTML = h;
     body.closest('.asheet-b').scrollTop = y;
-    wire();
+    wire(); wireWin();
     if(focusSel){ const f = w.querySelector(focusSel); if(f){ f.focus({preventScroll:true}); try{ f.scrollIntoView({block:'nearest'}); }catch(e){} } }
   }
   function openPick(i){
@@ -1260,7 +1502,7 @@ function detailsStep(d){
     if(editing < 0) return true;
     const l = d.lines[editing];
     if(!(l.brand || l.product_num)){ d.lines.splice(editing, 1); editing = -1; return true; }
-    const miss = (spec.groups||[]).find(g=>g.req && !(l.attrs||{})[g.k]);
+    const miss = groupsOf().find(g=>g.req && !(l.attrs||{})[g.k]);
     if(miss){ err(`${label(l)}: choose ${miss.l}.`); return false; }
     if(l.price!=='' && l.price!=null && !/^\d{1,4}(\.\d{1,2})?$/.test(String(l.price))){ err(`${label(l)}: the price should look like 19.99.`); return false; }
     editing = -1; err(''); return true;
@@ -1327,7 +1569,13 @@ function detailsStep(d){
     if(!closeEditor()){ render(); return; }
     if(spec.rec && spec.rec.req && !d.location){ err(`Choose the ${spec.rec.l.toLowerCase()}.`); return; }
     if(spec.what && !d.subtype_note){ err('Say what it is in a few words.'); const x = $('#capWhat'); if(x) x.focus(); return; }
-    if(!spec.what && !d.lines.length){ err(taps ? 'Add the brands on tap.' : `Select at least one ${spec.noun==='Brand or SKU' ? 'brand or product' : spec.noun==='SKU' ? 'SKU' : 'brand'}.`); return; }
+    if(winOn && !d.window_id){ err('Choose which window this is, or add it with + New Window.'); return; }
+    if(winOn && !d.win_status){ err('Say what is on the window: Executed (Ours), Competitor or Open.'); return; }
+    if(winOn && d.win_status==='open') d.lines = [];
+    if(winOn){ const wn = (cache.get(ctx.n).windows || []).find(x=>x.id===d.window_id);
+      if(wn){ d.location = wn.name; d.lines.forEach(l=>{ l.attrs = Object.assign({}, l.attrs||{}, {window: wn.location}); }); } }
+    else d.window_id = '';
+    if(!spec.what && !d.lines.length && brandsWanted()){ err(taps ? 'Add the brands on tap.' : `Select at least one ${spec.noun==='Brand or SKU' ? 'brand or product' : spec.noun==='SKU' ? 'SKU' : 'brand'}.`); return; }
     const unl = taps ? d.lines.findIndex(l=>l.own!=='US' && l.own!=='THEM') : -1;
     if(unl >= 0){ err(`${label(d.lines[unl])}: tap Ours or Theirs.`); return; }
     err('');
@@ -1343,7 +1591,8 @@ function detailsStep(d){
       const s2 = await load(ctx.n, true); await refreshDrafts(); paint(s2); if(ctx.onChange) ctx.onChange(s2);
       w._noKeep = true; closeSheet();
       const n = d.lines.length;
-      toast(`${c.one || c.label} saved${n ? ` · ${n} ${n===1 ? 'item' : 'items'}` : ''}`);
+      const wn = d.window_id && (s2.windows||[]).find(x=>x.id===d.window_id);
+      toast(wn ? `${wn.name} updated · ${WIN_TAG[wn.status] || 'saved'}${wn.brand ? ' · '+wn.brand : ''}` : `${c.one || c.label} saved${n ? ` · ${n} ${n===1 ? 'item' : 'items'}` : ''}`);
       return;
     }
     saveBtn.removeAttribute('aria-busy'); $('#capCancel').disabled = false; $('#capLater').disabled = false; lbl.textContent = 'Retry';

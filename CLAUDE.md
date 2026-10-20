@@ -3422,6 +3422,13 @@ once in the Ledger's "Invoice Links to Encompass" fold from one pasted invoice a
 validate(f, e) checks only what changed, so the 39 imported credit rows (and 102 odd 2025 rows) that refused every
 edit now save. Messages: a message travels only to the screen it was sent to (go() + hashchange). Tests (scratchpad):
 sql_budget_test.sh 65, budget_test.mjs 167, sb_shots.mjs.
+EXPORT TO (2026-10-20, Gavin): ledger toolbar "Export to: Excel | CSV" = the SUPPLIER'S file of every filtered row,
+columns A-L only (Expense Date ... Kohler Spend; budget.js EXPORT_COLS, one list for both files). No notes, brand manager,
+budgets / rule, source, entered / edited by, billback received / date, PDF names or Encompass links, and NO full internal
+export (a 26-column one and a separate "Supplier Copy" pair existed for a few hours and were removed). The Excel Summary tab
+keeps Billback Received / Outstanding totals (Gavin's call) and a By Account table without brand manager or budget.
+Any non-preview manager who can read the ledger may export. Tags budget.js / documents.js 20261020c, budget.css 20261020a.
+Test: scratchpad sb_export_test.mjs (stubbed Supabase, Chrome).
 
 ## UPC Registration Audit: IT's one page, brand managers' tool (2026-10-15)
 
@@ -3463,3 +3470,35 @@ retention (`heineken_husa`, Oct 1 - Nov 30) BUILT from four RDE "with Goals" exp
 (`build_heineken_husa`, data/heineken_husa_*.csv, card cardHeinekenHusa, hub TOTALS_ONLY).
 Gavin: one goal per file per rep (its Goals column); the files beat the deck; no Local / Innovation
 (incentive-tracking/README.txt). Tags: incentive programs.js / hub.js / program_data.js 20261016c.
+
+## Account Windows: a window list per account (2026-10-20)
+
+Gavin: "a Window Count under Account details" + "See All Windows" (name, location, size, class, current brand, latest
+photo). A WINDOW = one signage spot; it LASTS, so it is its own table, not a merch record: migration
+`supabase/migrations/20261020090000_account_windows.sql` (account_windows + append-only account_window_events +
+merch_records.window_id; writes only through kdh_window_save / _verify / _remove, account rule
+kdh_can_access_account; NOT YET RUN by Gavin -- ROADMAP Now). Gavin's answers: windows are set up once per account
+(name, location Front / Side / Entrance Door / Other, width x height in inches, class High / Medium / Low), status
+Executed (ours) / Competitor / Open per visit (NULL = not verified, counted in the total, never as open; Execution
+% = executed / all), old Window photos left alone and not counted. accounts/activity.js "ACCOUNT WINDOWS" draws
+`#winDetails` (Account Details group in accounts.js identHtml) and `#actWindows` (More -> Windows, MSUBS
+'windows'; also on accounts/field.js for associates); the Window photo flow asks Which Window? / What's on It?,
+hides the line's own "window" chip group, and uploadRecord calls kdh_window_verify after kdh_merch_save with the
+draft key (retry-safe). Update prefills from the window's last visit. Preview read-only. merchandising/README.txt
+"ACCOUNT WINDOWS" has every rule. Roll-up page (by rep / associate / DM / brand / program, competitor view) is the
+next step, not built. Tests (scratchpad): win_test.sql (local Postgres 16: route limits, associate, manager,
+duplicate names, history immutable, restore clash) and win_ui.mjs (Playwright, in-memory Supabase stub: add, Save &
+Take Photo, Executed / Competitor / Open, + New Window inline, summary, sort, Update prefill, history, remove /
+restore, full-size photo, 390 light / dark cards, preview read-only). Tags accounts.css / activity.js / accounts.js /
+field.js 20261020a.
+
+## Wine & Spirits on Ashley Furman's view (2026-10-20)
+
+Gavin: "add the wines and spirits dashboard to Ashley's view." Ashley is a full manager (no
+workspace), so she could already open /wine-spirits/ -- it was only buried in the folded "All
+tools & reports" list. shared/kdh-user.js `WS_VIEWERS` (names, kdhMatchName; `kdhWsViewer(u)`)
+adds a "Wine & Spirits" item (key `wsd`, Trackers group: sidebar + More) and marks it current on
+the page; shared/signature-home.js puts it first in her home shortcuts (a 4-card row:
+signature.css `:has(>a:nth-child(4))`, 2 across 600-1199px, 4 from 1200px). A manager previewing
+her sees the same. Other managers unchanged. Add a name to WS_VIEWERS to give someone else the
+shortcut. Tags 20261020ws.

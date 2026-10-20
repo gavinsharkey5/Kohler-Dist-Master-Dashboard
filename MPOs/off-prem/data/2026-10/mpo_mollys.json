@@ -666,10 +666,10 @@
     "CUSTOMER_NUM": 39001,
     "CUSTOMER_NAME": "Home Wines & Liq 75 (A) (South Hackensack)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/19/2026",
+    "LAST_DATE": "10/19/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",

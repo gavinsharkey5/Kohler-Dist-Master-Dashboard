@@ -11,6 +11,15 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Account Windows (2026-10-20).** Built: every account page's Account Details shows a Windows group (Window
+  Count, executed %, competitor / open) with See All Windows -> a table of each window (name, location, size in
+  inches, class High / Medium / Low, status Executed / Competitor / Open, current brand + program, latest photo,
+  last verified by whom). Add / Edit / Remove (with Restore) and History on each window; Update takes a photo
+  through the existing Window photo flow, which now asks Which Window? and What's on It?. Associates get the same
+  table on their field account page. TO TURN IT ON: run
+  `supabase/migrations/20261020090000_account_windows.sql` in the Supabase SQL Editor. Until then the pages say
+  "Window tracking turns on once ..." and Window photos save exactly as before. Next step when you want it: the
+  roll-up page (by rep / associate / DM / brand / program / competitor).
 - [ ] **UPC Registration Audit for Vlad (2026-10-15).** Built: /upc-audit/ -- Vlad adds his FileMaker export
   and the ABC registration search (license -002; this year's file, plus next year's once renewals start), the
   page matches them on UPC in his browser and lists what still needs registering (Not Registered, UPC Not on
@@ -355,6 +364,10 @@ device, a decision).
 
 ## Done
 
+- [x] **Supplier Budgets: Export to Excel / CSV (2026-10-20).** Ledger toolbar "Export to: Excel | CSV" makes the
+  supplier's file of the filtered ledger: columns A-L (date, supplier, account, vendor, invoice, items, Total /
+  Billback / Kohler Spend); Excel adds a Summary tab with totals incl. billback received / outstanding. No internal
+  columns and no internal export. Any manager who can read the ledger may export what they see; off in preview.
 - [x] **Supplier budget layout and New Expense PDFs (2026-10-16).** Nine grouped
   ledger columns, aligned financial figures, compact document actions, responsive
   cards and sorting by every original field. Budget editors can select PDFs in New

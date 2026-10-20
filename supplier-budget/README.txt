@@ -243,6 +243,21 @@ TESTS (scratchpad)
                        brand manager, VP, rep + preview refused, migration missing,
                        nav; stub budget_stub.mjs mirrors the RLS.
 
+EXPORT TO (2026-10-20)
+  The ledger toolbar has "Export to: Excel | CSV" (budget.js exportTools / exportRows,
+  one column list EXPORT_COLS for both files). It is the SUPPLIER'S file (Gavin): every
+  row of the current filtered, sorted ledger (not just the 100 on screen), columns A-L
+  only -- Expense Date, Year, Supplier, Account, GL Code, Account Description, Vendor,
+  Invoice #, Items Purchased, Total Amount, Billback Amount, Kohler Spend. Left out on
+  purpose: notes, brand manager, account budget / billback rule / basis, source, who
+  entered or edited, billback received + date, invoice PDF names and Encompass links.
+  There is NO full internal export (Gavin removed it the same day). Excel
+  (shared/xlsx-write.js) adds a Summary tab first: filters used, totals (incl. Billback
+  Received / Outstanding -- Gavin kept those) and a By Account table (no brand manager or
+  budget); the Expenses tab has real dollar cells and SUM totals. CSV = header + rows
+  only (UTF-8 with BOM). Any manager who can read the ledger may export (RLS already
+  limits a brand manager to their own accounts); a preview never exports.
+
 HISTORY
   Until 2026-10-14 this folder held expenses.csv (the Expenses tab, with dollars)
   and a generate.py that embedded it into index.html. Both are deleted from the
