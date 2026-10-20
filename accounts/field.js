@@ -23,7 +23,7 @@ async function render(){
  if(!n){listing();return;}
  const a=accounts.find(a=>a.n===n);
  if(!a){app.innerHTML='<a class="field-back" href="#">← Accounts</a><div class="kdh-state">Account not found.</div>';return;}
- app.innerHTML='<a class="field-back" href="#">← Accounts</a><header class="field-head"><h1>'+E(a.name)+'</h1><p>'+E(['#'+a.n,a.address,a.city,a.rep].filter(Boolean).join(' · '))+'</p></header><section class="field-section"><h2>Assigned Tasks</h2><div class="card" id="fieldTasks">Loading tasks…</div></section><section class="field-section"><h2>Photos &amp; Merchandising</h2><div class="card" id="actPhotosAll">Loading photos…</div></section>';
+ app.innerHTML='<a class="field-back" href="#">← Accounts</a><header class="field-head"><h1>'+E(a.name)+'</h1><p>'+E(['#'+a.n,a.address,a.city,a.rep].filter(Boolean).join(' · '))+'</p></header><section class="field-section"><h2>Assigned Tasks</h2><div class="card" id="fieldTasks">Loading tasks…</div></section><section class="field-section"><h2>Windows</h2><div class="card" id="actWindows">Loading windows…</div></section><section class="field-section"><h2>Photos &amp; Merchandising</h2><div class="card" id="actPhotosAll">Loading photos…</div></section>';
  const ctx={n:a.n,name:a.name,area:a.area,prem:a.prem,rep:a.rep,me:U,readOnly:!!(U&&U.preview),readOnlyWhy:'Saving is off in preview.',isMgr:false,extra:{catalog,bought:[],opps:[]},progName:s=>s,hubLink:()=>''};
  const st=await window.KdhActivity.load(a.n,true);if(current!==revision)return;
  const tasks=(st.tasks||[]).filter(t=>!U?.preview||(t.associate_email||'').toLowerCase()===(U.previewEmail||'').toLowerCase()),box=document.getElementById('fieldTasks');
