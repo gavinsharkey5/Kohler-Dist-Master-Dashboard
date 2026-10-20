@@ -3463,3 +3463,24 @@ retention (`heineken_husa`, Oct 1 - Nov 30) BUILT from four RDE "with Goals" exp
 (`build_heineken_husa`, data/heineken_husa_*.csv, card cardHeinekenHusa, hub TOTALS_ONLY).
 Gavin: one goal per file per rep (its Goals column); the files beat the deck; no Local / Innovation
 (incentive-tracking/README.txt). Tags: incentive programs.js / hub.js / program_data.js 20261016c.
+
+## Account Windows: a window list per account (2026-10-20)
+
+Gavin: "a Window Count under Account details" + "See All Windows" (name, location, size, class, current brand, latest
+photo). A WINDOW = one signage spot; it LASTS, so it is its own table, not a merch record: migration
+`supabase/migrations/20261020090000_account_windows.sql` (account_windows + append-only account_window_events +
+merch_records.window_id; writes only through kdh_window_save / _verify / _remove, account rule
+kdh_can_access_account; NOT YET RUN by Gavin -- ROADMAP Now). Gavin's answers: windows are set up once per account
+(name, location Front / Side / Entrance Door / Other, width x height in inches, class High / Medium / Low), status
+Executed (ours) / Competitor / Open per visit (NULL = not verified, counted in the total, never as open; Execution
+% = executed / all), old Window photos left alone and not counted. accounts/activity.js "ACCOUNT WINDOWS" draws
+`#winDetails` (Account Details group in accounts.js identHtml) and `#actWindows` (More -> Windows, MSUBS
+'windows'; also on accounts/field.js for associates); the Window photo flow asks Which Window? / What's on It?,
+hides the line's own "window" chip group, and uploadRecord calls kdh_window_verify after kdh_merch_save with the
+draft key (retry-safe). Update prefills from the window's last visit. Preview read-only. merchandising/README.txt
+"ACCOUNT WINDOWS" has every rule. Roll-up page (by rep / associate / DM / brand / program, competitor view) is the
+next step, not built. Tests (scratchpad): win_test.sql (local Postgres 16: route limits, associate, manager,
+duplicate names, history immutable, restore clash) and win_ui.mjs (Playwright, in-memory Supabase stub: add, Save &
+Take Photo, Executed / Competitor / Open, + New Window inline, summary, sort, Update prefill, history, remove /
+restore, full-size photo, 390 light / dark cards, preview read-only). Tags accounts.css / activity.js / accounts.js /
+field.js 20261020a.

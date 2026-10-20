@@ -55,7 +55,7 @@ const state = {view:'list', mode:'list', q:'', rep:'', need:'', kind:'', fam:'',
 // (sec=sales / inv / tasks / ask, data-go="sales:alerts" ...) translate.
 const SECS = [['over','Overview'],['products','Products'],['history','History'],['more','More']];
 const HSUBS = [['sales','Sales & Alerts'],['patterns','Buying Patterns'],['record','Monthly Record']];
-const MSUBS = ['programs','activity','notes','photos','taps','tools','ask','about'];
+const MSUBS = ['programs','activity','notes','photos','windows','taps','tools','ask','about'];
 const LEGACY_SEC = {sales:['history','sales'], inv:['history','record'], tasks:['more',''], ask:['more','ask']};
 // in-page destinations: key -> [section, sub-view, element id]
 const GO = {'sales:sales':['history','sales','sales'], 'sales:alerts':['history','sales','alerts'], 'sales:patterns':['history','patterns','patterns'],
@@ -666,6 +666,7 @@ async function renderAccount(){
   const wide = window.matchMedia && window.matchMedia('(min-width: 1180px)').matches;
   const identHtml = `<div class="card dgroup">
       ${grp('Account', kvl('Customer ID', '#'+E(a.n)) + kvl('Premise', [premWord(a.prem) || '<span class="dim">not in the customer base</span>', a.service].filter(Boolean).join(' · ')) + kvl('Area', [a.area, a.county ? a.county+' County' : ''].filter(Boolean).join(' · ')) + (isMgr ? kvl('Rep', E(rep)) : '') + kvl('Size', sizeTxt))}
+      <div class="dg" id="winDetails" hidden></div>
       ${a.address ? '' : grp('Location', kvl('Address', `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`))}
       <details class="dmore"${wide ? ' open' : ''}><summary>Contact &amp; Servicing</summary>
         ${grp('Contact', contactBody)}
@@ -726,6 +727,7 @@ async function renderAccount(){
     ['programs', 'Program Opportunities', OPP ? `${plural(OPP.list.length,'opportunity','opportunities')}${OPP.credited.length ? ` · ${OPP.credited.length} credited` : ''}` : `${plural(idx.programs.length,'active program')}${openProg ? ` · ${openProg} credited or a lead here` : ''}`],
     ['activity', 'Account Activity', `Notes, follow-ups, photos, tap surveys and purchases${rows.length ? ` · ${plural(follows.length,'open follow-up')}` : ''}`],
     ['photos', 'Photos & Merchandising', ACT && ACT.records && ACT.records.length ? `${plural(ACT.records.length,'record')} · ${plural(ACT.records.reduce((n, r)=>n + r.photos.length, 0),'photo')} · latest ${E(fmtDay(new Date(ACT.records[0].observed_at || ACT.records[0].created_at)))}` : 'Displays, windows, cooler doors, tap handles, menus'],
+    ['windows', 'Windows', ACT && ACT.windows && ACT.windows.length ? `${ACT.windows.length} ${ACT.windows.length===1 ? 'window' : 'windows'} · ${ACT.windows.filter(w=>w.status==='executed').length} executed` : 'Every signage spot: size, class, current brand, latest photo'],
     tapLine ? ['taps', 'Taps & Visits', tapLine] : null,
     ['tools', 'Tools & Links', 'Incentive Hub, Tap Tracker, Directions'],
     ['ask', 'Ask About This Account', 'Questions about this account’s buying, or practice a pitch'],
@@ -764,6 +766,7 @@ async function renderAccount(){
       + subHtml('more', 'programs', moreBack + `<section class="sec" id="programs"><h2>Program Opportunities <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${oppFull}</section>`)
       + subHtml('more', 'activity', moreBack + `<section class="sec" id="notes"><h2>Account Activity</h2><div class="card actcard" id="actAll"></div></section>`)
       + subHtml('more', 'photos', moreBack + `<section class="sec" id="photos"><h2>Photos &amp; Merchandising</h2><div class="card" id="actPhotosAll"></div></section>`)
+      + subHtml('more', 'windows', moreBack + `<section class="sec" id="windows"><h2>Windows</h2><div class="card" id="actWindows"><div class="kdh-state loading slim">Loading windows…</div></div></section>`)
       + subHtml('more', 'taps', moreBack + (tapsHtml ? `<section class="sec" id="taps"><h2>Taps &amp; Visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : `<div class="kdh-state empty"><b>No tap survey for this account.</b></div>`))
       + subHtml('more', 'tools', moreBack + `<section class="sec" id="tools"><h2>Tools &amp; Links</h2>${toolsHtml}</section>`)
       + subHtml('more', 'ask', `<a class="subback" href="${E(acctHash(a.n, rep, 'over'))}" data-go="over:"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back to Overview</a><section class="sec" id="ask"><h2>Ask About This Account</h2><p class="ask-for">${E(a.name)} · sales record ${E(monLabel(months[0]))} – ${E(monLabel(refKey))}</p><div class="card ask" id="askCard"></div></section>`)
