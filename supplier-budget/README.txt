@@ -243,6 +243,26 @@ TESTS (scratchpad)
                        brand manager, VP, rep + preview refused, migration missing,
                        nav; stub budget_stub.mjs mirrors the RLS.
 
+EXPORT TO (2026-10-20)
+  The ledger toolbar has "Export To: Excel | CSV" (budget.js exportTools / exportRows,
+  one column list EXPORT_COLS for both files). It exports EVERY row of the current
+  filtered, sorted ledger (not just the 100 on screen) with every field: date, year,
+  supplier, account, GL code, account description, brand manager, vendor, invoice #,
+  items, Total / Billback / Kohler Spend, billback received + date, invoice PDF file
+  names, Encompass invoice link, notes, the account's budget / billback rule / basis,
+  source, entered by / time, last edited by / time. Excel (shared/xlsx-write.js) adds
+  a Summary tab first: filters used, totals, and a By Account table with budget and
+  % of budget; the Expenses tab has real dollar cells and SUM totals. CSV = header +
+  rows only (UTF-8 with BOM so Excel opens it cleanly). Any manager who can read the
+  ledger may export (RLS already limits a brand manager to their own accounts); a
+  preview never exports. Before 2026-10-20 a smaller CSV was editors only.
+  SUPPLIER COPY (same day, Gavin): a second "Supplier Copy: Excel | CSV" pair leaves
+  out every column marked `internal` in EXPORT_COLS -- Notes, Brand Manager, Account
+  Budget, Account Billback Rule, Budget Basis, Source, Entered By / Time Entered, Last
+  Edited By / Last Edited (16 columns remain) -- and its Summary drops the exporter's
+  name, the budget totals and the Brand Manager / Budget / % of Budget columns. Files
+  are named supplier-copy-expenses-... A new internal field = add `internal: 1`.
+
 HISTORY
   Until 2026-10-14 this folder held expenses.csv (the Expenses tab, with dollars)
   and a generate.py that embedded it into index.html. Both are deleted from the

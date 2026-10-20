@@ -3422,6 +3422,14 @@ once in the Ledger's "Invoice Links to Encompass" fold from one pasted invoice a
 validate(f, e) checks only what changed, so the 39 imported credit rows (and 102 odd 2025 rows) that refused every
 edit now save. Messages: a message travels only to the screen it was sent to (go() + hashchange). Tests (scratchpad):
 sql_budget_test.sh 65, budget_test.mjs 167, sb_shots.mjs.
+EXPORT TO (2026-10-20, Gavin: "every value/field ... so a supplier can understand exactly how much was spent and on
+what"): ledger toolbar "Export To: Excel | CSV" replaces the editors-only CSV link; every filtered row, 26 columns
+(budget.js EXPORT_COLS, one list for both files); Excel adds a Summary tab (filters, totals, By Account with budget %).
+Any non-preview manager who can read the ledger may export. documents.js exposes `files(id)` for the PDF names.
+SUPPLIER COPY (same day): a second "Supplier Copy: Excel | CSV" pair drops every EXPORT_COLS entry marked `internal`
+(Notes, Brand Manager, budget / billback rule / basis, Source, entered / edited by and when; 16 columns left) and the
+Summary's exporter name, budget totals and Brand Manager / Budget / % columns. Mark any new internal field `internal: 1`.
+Tags budget.js 20261020b, budget.css / documents.js 20261020a. Test: scratchpad sb_export_test.mjs (stubbed Supabase, Chrome).
 
 ## UPC Registration Audit: IT's one page, brand managers' tool (2026-10-15)
 
