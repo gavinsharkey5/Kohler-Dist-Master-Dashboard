@@ -124,6 +124,8 @@ html:root .signature-shortcuts{display:grid;grid-template-columns:repeat(3,minma
 html:root .signature-shortcuts a{background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:12px;padding:18px;text-decoration:none;color:var(--kdh-text);font-size:15px;font-weight:500;min-width:0}
 html:root .signature-shortcuts a:hover{border-color:var(--kdh-border-2);box-shadow:var(--kdh-shadow-h)}
 html:root .signature-shortcuts a::after{content:'↗';float:right;color:var(--kdh-brand)}
+@media(min-width:600px){html:root .signature-shortcuts:has(>a:nth-child(4)){grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1200px){html:root .signature-shortcuts:has(>a:nth-child(4)){grid-template-columns:repeat(4,minmax(0,1fr))}}
 html:root .signature-shortcuts small{display:block;font-size:12px;color:var(--kdh-text-3);font-weight:400;margin-top:6px}
 html:root .signature-directory{border:0;border-top:1px solid var(--kdh-border);border-radius:0;margin:28px 0 0;padding:0;background:transparent}
 html:root .signature-directory>summary{font-size:16px;font-weight:500;padding:20px 0;min-height:56px;color:var(--kdh-text);cursor:pointer}

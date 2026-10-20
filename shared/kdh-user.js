@@ -267,6 +267,8 @@
       // Field Tasks (2026-10-14): a rep hands display / tap handle / POS work to a sales associate
       { key: 'tasks', group: 'Field', label: 'Field Tasks', href: ROOT + 'tasks/' }
     ];
+    // Wine & Spirits (2026-10-20, Gavin): on Ashley Furman's sidebar / More (she runs W&S sales); every manager can still open it from Manager Home
+    if (isMgr && wsViewer(u)) t.push({ key: 'wsd', group: 'Trackers', label: 'Wine & Spirits', href: ROOT + 'wine-spirits/' });
     if (isMgr) t.push({ key: 'invm', group: 'Manager', label: 'Inventory', href: ROOT + 'inventory/', menuOnly: true });
     if (isMgr) t.push({ key: 'exc', group: 'Manager', label: 'Exceptions', href: ROOT + 'exceptions/' });
     if (isMgr) t.push({ key: 'merch', group: 'Manager', label: 'Merchandising', href: ROOT + 'merchandising/' });
@@ -278,6 +280,8 @@
     if (canUpc(u)) t.push({ key: 'upc', group: 'Manager', label: 'UPC Registration Audit', href: IT_HOME });
     return t;
   }
+  var WS_VIEWERS = ['Ashley Furman'];
+  function wsViewer(u) { return !!(u && matchName(u.name, WS_VIEWERS)); }
   // where this page sits: {nav: primary key, tool: tool key or ''}
   function where(u) {
     var isMgr = u && u.role === 'manager';
@@ -308,6 +312,7 @@
     if (/^exceptions\//.test(rel)) return { nav: 'more', tool: 'exc' };
     if (/^supplier-budget\//.test(rel)) return { nav: 'more', tool: 'sb' };
     if (/^merchandising\//.test(rel)) return { nav: 'more', tool: 'merch' };
+    if (/^wine-spirits\//.test(rel) && wsViewer(u)) return { nav: 'more', tool: 'wsd' };
     if (/^inventory\//.test(rel)) return { nav: 'inventory', tool: isMgr ? 'invm' : '' };
     if (/^isellbeer\/tap-survey-tracking\//.test(rel)) return { nav: 'more', tool: 'tap' };
     if (/^redbull\//.test(rel)) return { nav: 'more', tool: 'rb' };
@@ -705,6 +710,7 @@
   }
   global.kdhUser = user;
   global.kdhMatchName = matchName;
+  global.kdhWsViewer = wsViewer;
   global.kdhNameKey = nameKey;
   global.kdhNoRoster = noRoster;
   // TEAM SCOPE (2026-09-29, Gavin): a district manager sees only their own
@@ -941,7 +947,7 @@
   function boot() { if(cookie('kdh_preview') && !canViewAs())setPreview(); chrome(); bar(); watchType(); keepAlive(); checkUpc();
     if (canViewAs()) { var hero = document.querySelector('main.home .hh'); if (hero) { var va = document.createElement('button'); va.type='button'; va.className='btn'; va.id='viewAsBtn'; va.textContent='View As'; va.addEventListener('click', function(){ viewAs(); }); hero.appendChild(va); } }
     var signatureBar=document.querySelector('.kdh-bar');if(signatureBar){var signatureBarSize=function(){document.documentElement.style.setProperty('--signature-bar-height',signatureBar.getBoundingClientRect().height+'px');};signatureBarSize();if(window.ResizeObserver)new ResizeObserver(signatureBarSize).observe(signatureBar);}
-    if(document.querySelector('main.home')){var signature=document.createElement('script');signature.src=(ROOT||'/')+'shared/signature-home.js?v=20261016signature1';document.head.appendChild(signature);}
+    if(document.querySelector('main.home')){var signature=document.createElement('script');signature.src=(ROOT||'/')+'shared/signature-home.js?v=20261020ws';document.head.appendChild(signature);}
     if (user() && (user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
     if (user() && user().ws !== 'finance') { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015ui'; document.head.appendChild(work); }
   }

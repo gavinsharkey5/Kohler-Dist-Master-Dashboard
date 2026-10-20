@@ -1,6 +1,6 @@
 /* Release preparation for the requested branch preview; no network or credentials. */
 const fs=require('node:fs'),path=require('node:path');
-const root=path.resolve(__dirname,'..'),version='20261016signature1';
+const root=path.resolve(__dirname,'..'),version='20261020ws';
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name.startsWith('.')||e.name==='node_modules'?[]:e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);}
 let count=0;
 for(const file of walk(root)){

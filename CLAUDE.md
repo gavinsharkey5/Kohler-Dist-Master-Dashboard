@@ -3484,3 +3484,14 @@ duplicate names, history immutable, restore clash) and win_ui.mjs (Playwright, i
 Take Photo, Executed / Competitor / Open, + New Window inline, summary, sort, Update prefill, history, remove /
 restore, full-size photo, 390 light / dark cards, preview read-only). Tags accounts.css / activity.js / accounts.js /
 field.js 20261020a.
+
+## Wine & Spirits on Ashley Furman's view (2026-10-20)
+
+Gavin: "add the wines and spirits dashboard to Ashley's view." Ashley is a full manager (no
+workspace), so she could already open /wine-spirits/ -- it was only buried in the folded "All
+tools & reports" list. shared/kdh-user.js `WS_VIEWERS` (names, kdhMatchName; `kdhWsViewer(u)`)
+adds a "Wine & Spirits" item (key `wsd`, Trackers group: sidebar + More) and marks it current on
+the page; shared/signature-home.js puts it first in her home shortcuts (a 4-card row:
+signature.css `:has(>a:nth-child(4))`, 2 across 600-1199px, 4 from 1200px). A manager previewing
+her sees the same. Other managers unchanged. Add a name to WS_VIEWERS to give someone else the
+shortcut. Tags 20261020ws.
