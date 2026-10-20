@@ -364,10 +364,10 @@ device, a decision).
 
 ## Done
 
-- [x] **Supplier Budgets: Export To Excel / CSV (2026-10-20).** Ledger toolbar "Export To: Excel | CSV" exports
-  every field of the filtered, sorted ledger (26 columns); Excel adds a Summary tab (filters, totals, by account).
-  Any manager who can read the ledger may export what they see; off in preview. A "Supplier Copy" pair leaves out
-  the internal columns (notes, brand manager, budgets / rule, source, entered / edited by) to send to a supplier.
+- [x] **Supplier Budgets: Export to Excel / CSV (2026-10-20).** Ledger toolbar "Export to: Excel | CSV" makes the
+  supplier's file of the filtered ledger: columns A-L (date, supplier, account, vendor, invoice, items, Total /
+  Billback / Kohler Spend); Excel adds a Summary tab with totals incl. billback received / outstanding. No internal
+  columns and no internal export. Any manager who can read the ledger may export what they see; off in preview.
 - [x] **Supplier budget layout and New Expense PDFs (2026-10-16).** Nine grouped
   ledger columns, aligned financial figures, compact document actions, responsive
   cards and sorting by every original field. Budget editors can select PDFs in New

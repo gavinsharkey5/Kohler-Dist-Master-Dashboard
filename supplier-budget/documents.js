@@ -202,7 +202,7 @@ function create(host) {
     else if (b.hasAttribute('data-retry-pdf')) load().then(host.changed);
     else launch(b.dataset.attachPdf || '');
   });
-  return {load, html, toolbar, files: forRow, ready: () => state === 'ready', newExpenseHtml, wireNewExpense, validateNewExpense, saveNewExpense, clearNewExpense};
+  return {load, html, toolbar, newExpenseHtml, wireNewExpense, validateNewExpense, saveNewExpense, clearNewExpense};
 }
 root.KdhInvoiceDocuments = {create, matches};
 })(typeof window === 'undefined' ? globalThis : window);
