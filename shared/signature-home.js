@@ -8,6 +8,8 @@
   home.dataset.signatureReady='1';
   var finance=u.ws==='finance',associate=u.role==='associate';
   var h=home.querySelector('.hh h1');if(h){var first=String(u.name||'').trim().split(/\s+/)[0];h.textContent=first?'Welcome, '+first+'.':h.textContent;}
+  // slow rollout (2026-10-21): a rep / associate home is just the program cards kdh-user.js left visible -- no My Day, shortcuts or tool directory
+  if(window.kdhLimited&&kdhLimited()){home.classList.add('signature-limited');return;}
   if(finance){
    home.classList.add('signature-finance');
    var financeCard=home.querySelector('[data-my-day]');

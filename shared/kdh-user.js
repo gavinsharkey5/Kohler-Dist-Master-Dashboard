@@ -82,6 +82,19 @@
   // device for 6 hours under kdh_upc:<email>. Only the LINKS follow this; access is still the middleware's call.
   function upcMemo(u) { try { var v = (localStorage.getItem('kdh_upc:' + String(u.email || '').toLowerCase()) || '').split('|'); return +v[1] > Date.now() - 6 * 3600e3 ? v[0] : ''; } catch (e) { return ''; } }
   function canUpc(u) { return !!(u && (isIT(u) || (u.role === 'manager' && !u.preview && (u.upc || upcMemo(u) === '1')))); }
+  // SLOW ROLLOUT (Gavin, 2026-10-21): reps and sales associates see ONLY Incentives and the two MPO trackers
+  // (+ the Carbliss Leaderboard, the on-premise Carbliss MPO's own page). middleware.js ROLLOUT_LIMITED enforces
+  // it; this mirror only shapes the links (nav, menu, home cards) and stops a tap on any other link. Set both to
+  // false to give the full rep / associate site back. A manager previewing a rep or an associate sees it too.
+  var ROLLOUT_LIMITED = true;
+  function limited(u) { return !!(ROLLOUT_LIMITED && u && (u.role === 'rep' || u.role === 'associate')); }
+  var ROLLOUT_OK = /^(rep|associate|hub|MPOs|carbliss-onprem-targets|login)(\/|$)/;
+  function rolloutOk(href) {
+    try { var a = new URL(href, location.href); if (a.origin !== location.origin) return true;
+      var base = new URL(ROOT || '/', location.href).pathname; var rel = a.pathname.indexOf(base) === 0 ? a.pathname.slice(base.length) : a.pathname.replace(/^\//, '');
+      return rel === '' || rel === 'index.html' ? false : ROLLOUT_OK.test(rel);
+    } catch (e) { return true; }
+  }
   function homeOf(u) { return !u ? ROOT : isFin(u) ? FIN_HOME : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : isIT(u) ? IT_HOME : REP_HOME; }
 
   // THEME (2026-09-30): the saved choice (localStorage kdh_theme = 'dark' |
@@ -233,6 +246,12 @@
   function progDefault(u) { return ROOT + 'hub/' + (u.role === 'manager' ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc'); }
   function navItems(u) {
     if (!u) return [];
+    if (limited(u)) return [
+      { key: 'home', label: 'Home', href: homeOf(u) },
+      { key: 'inc', label: 'Incentives', short: 'Programs', href: progDefault(u) },
+      { key: 'off', label: 'Off-Premise MPOs', short: 'Off-Prem', href: ROOT + 'MPOs/off-prem/index.html' },
+      { key: 'on', label: 'On-Premise MPOs', short: 'On-Prem', href: ROOT + 'MPOs/on-prem/index.html' }
+    ];
     if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }, { key: 'accounts', label: 'Accounts', href: ROOT + 'accounts/field.html' }, { key: 'tasks', label: 'Field Tasks', href: ROOT + 'tasks/' }];
     if (isIT(u)) return [{ key: 'upc', label: 'UPC Audit', href: IT_HOME }];
     if (isFin(u)) return [
@@ -255,7 +274,7 @@
   }
   // the authorized tools that sit behind More (phones) / in the sidebar (desktop)
   function toolItems(u) {
-    if (isAssoc(u) || isIT(u)) return [];
+    if (isAssoc(u) || isIT(u) || limited(u)) return [];
     if (isFin(u)) return [];   // the four navigation items are the whole workspace (Gavin, 2026-10-15)
     var isMgr = u.role === 'manager';
     var t = [
@@ -287,11 +306,13 @@
     var isMgr = u && u.role === 'manager';
     var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : location.pathname.replace(/^\//, '');
     rel = rel.split(/[?#]/)[0];
-    if (isFin(u)) {
+    if (isFin(u) || limited(u)) {
+      if (/^carbliss-onprem-targets\//.test(rel)) return { nav: 'on', tool: '' };
       if (/^hub\//.test(rel)) return { nav: 'inc', tool: '' };
       if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'off', tool: '' };
       if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'on', tool: '' };
       if (/^supplier-budget\//.test(rel)) return { nav: 'sb', tool: '' };
+      if (/^(rep|associate)\//.test(rel)) return { nav: 'home', tool: '' };
       return { nav: rel === '' || rel === 'index.html' ? 'home' : '', tool: '' };
     }
     if (/^upc-audit\//.test(rel)) return isIT(u) ? { nav: 'upc', tool: '' } : { nav: 'more', tool: 'upc' };
@@ -420,7 +441,7 @@
   // under the top bar. Remove it by deleting this function and its call.
   var LIVE_URL = 'https://kohlerdist.encompass8.com/Home?DashboardID=184193';
   function liveNotice(u, isMgr, bar) {
-    if (!u || isMgr || isAssoc(u) || isIT(u) || document.getElementById('kdhLive')) return;   // the task page / UPC audit hold no sales data
+    if (!u || isMgr || (isAssoc(u) && !limited(u)) || isIT(u) || document.getElementById('kdhLive')) return;   // the task page / UPC audit hold no sales data
     if (!document.getElementById('kdhLiveCss')) {
       var st = document.createElement('style'); st.id = 'kdhLiveCss';
       st.textContent = '#kdhLive{box-sizing:border-box;margin:0;padding:10px 16px;background:#FFE08A;color:#2B1B00;border-top:1px solid #B45309;border-bottom:4px solid #B45309;font:15px/1.4 var(--kdh-body,system-ui,sans-serif);display:flex;gap:12px;align-items:center;justify-content:center}' +
@@ -944,12 +965,43 @@
     if (window.KDH_AUTH) return ask();
     var sc = document.createElement('script'); sc.src = (ROOT || '/') + 'shared/auth-config.js'; sc.onload = ask; document.head.appendChild(sc);
   }
+  // the slow rollout's page side: a home page keeps only the cards a rep / associate may open (sections left
+  // empty disappear), My Day (Field Tasks) is not loaded, and a tap on any other in-site link is stopped with a
+  // short note instead of bouncing off the middleware. [data-rollout-only] cards show only during the rollout.
+  function rollout(u) {
+    var on = limited(u);
+    document.querySelectorAll('[data-rollout-only]').forEach(function (el) { el.hidden = !on; });
+    if (!on) return;
+    document.documentElement.classList.add('kdh-limited');
+    if (!document.getElementById('kdhRolloutCss')) { var st = document.createElement('style'); st.id = 'kdhRolloutCss'; st.textContent = '[data-rollout-off]{display:none!important}'; document.head.appendChild(st); }
+    var home = document.querySelector('main.home');
+    if (home) {   // marked, not [hidden]: a page script that later un-hides a section (Needs Attention) cannot bring it back
+      home.querySelectorAll('[data-my-day], #todaySec, .rh-entry, #c-cb').forEach(function (el) { el.setAttribute('data-rollout-off', ''); });
+      home.querySelectorAll('a.kt').forEach(function (a) { if (!rolloutOk(a.getAttribute('href') || '')) a.setAttribute('data-rollout-off', ''); });
+      home.querySelectorAll('section.hs').forEach(function (sec) { if (!sec.querySelector('a.kt:not([data-rollout-off])')) sec.setAttribute('data-rollout-off', ''); });
+    }
+    if (document.__kdhRollout) return; document.__kdhRollout = 1;
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a[href]'); if (!a) return;
+      var h = a.getAttribute('href') || ''; if (!h || h.charAt(0) === '#' || /^(mailto|tel|javascript):/i.test(h)) return;
+      if (rolloutOk(a.href)) return;
+      e.preventDefault(); e.stopPropagation();
+      var n = document.getElementById('kdhRolloutNote');
+      if (!n) { n = document.createElement('div'); n.id = 'kdhRolloutNote'; n.setAttribute('role', 'status');
+        n.style.cssText = 'position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:1300;max-width:min(92vw,420px);padding:12px 16px;border-radius:10px;background:var(--kdh-text,#0E1A33);color:var(--kdh-bg,#fff);font-size:15px;line-height:1.35;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.25)';
+        document.body.appendChild(n); }
+      n.textContent = 'Coming soon. For now the Hub has Incentives and MPOs.';
+      n.hidden = false; clearTimeout(n.__t); n.__t = setTimeout(function () { n.hidden = true; }, 3200);
+    }, true);
+  }
+  window.kdhLimited = function () { return limited(user()); };
   function boot() { if(cookie('kdh_preview') && !canViewAs())setPreview(); chrome(); bar(); watchType(); keepAlive(); checkUpc();
     if (canViewAs()) { var hero = document.querySelector('main.home .hh'); if (hero) { var va = document.createElement('button'); va.type='button'; va.className='btn'; va.id='viewAsBtn'; va.textContent='View As'; va.addEventListener('click', function(){ viewAs(); }); hero.appendChild(va); } }
     var signatureBar=document.querySelector('.kdh-bar');if(signatureBar){var signatureBarSize=function(){document.documentElement.style.setProperty('--signature-bar-height',signatureBar.getBoundingClientRect().height+'px');};signatureBarSize();if(window.ResizeObserver)new ResizeObserver(signatureBarSize).observe(signatureBar);}
-    if(document.querySelector('main.home')){var signature=document.createElement('script');signature.src=(ROOT||'/')+'shared/signature-home.js?v=20261020ws';document.head.appendChild(signature);}
+    if(document.querySelector('main.home')){var signature=document.createElement('script');signature.src=(ROOT||'/')+'shared/signature-home.js?v=20261021r';document.head.appendChild(signature);}
     if (user() && (user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
-    if (user() && user().ws !== 'finance') { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015ui'; document.head.appendChild(work); }
+    rollout(user());
+    if (user() && user().ws !== 'finance' && !limited(user())) { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015ui'; document.head.appendChild(work); }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })(window);

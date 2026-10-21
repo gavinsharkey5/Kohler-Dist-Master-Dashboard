@@ -364,6 +364,11 @@ device, a decision).
 
 ## Done
 
+- [x] **Slow rollout: reps and associates see Incentives + MPOs only (2026-10-21).** Reps and sales associates can open
+  their home, the Incentive Hub, both MPO trackers and the Carbliss Leaderboard (the Carbliss MPO's own page) --
+  nothing else (My Accounts, Inventory, Tap / Red Bull, Non-Buy, Field Tasks, Kohler Korner, the assistant are
+  blocked on the server). Managers unchanged. To open the rest later: set `ROLLOUT_LIMITED = false` in BOTH
+  middleware.js and shared/kdh-user.js. Check after deploy: sign in as a rep on a phone.
 - [x] **Supplier Budgets: Export to Excel / CSV (2026-10-20).** Ledger toolbar "Export to: Excel | CSV" makes the
   supplier's file of the filtered ledger: columns A-L (date, supplier, account, vendor, invoice, items, Total /
   Billback / Kohler Spend); Excel adds a Summary tab with totals incl. billback received / outstanding. No internal
