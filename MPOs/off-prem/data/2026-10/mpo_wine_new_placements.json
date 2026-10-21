@@ -217,7 +217,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 171403,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Bayonne",
@@ -397,7 +397,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Andrew Lundy",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 250027,
     "CUSTOMER_NAME": "Wine Anthology (A)",
@@ -469,7 +469,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 38008,
     "CUSTOMER_NAME": "Shop Rite Liq.(A)Lodi",
@@ -562,6 +562,18 @@
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "10/23/2026",
     "LAST_DATE": "10/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "200191 Chateau Diana Non-Alcoholic Cabernet Sauvignon 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 50020,
+    "CUSTOMER_NAME": "Wineland",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/22/2026",
+    "LAST_DATE": "10/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -721,6 +733,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "200191 Chateau Diana Non-Alcoholic Cabernet Sauvignon 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 57003,
+    "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/21/2026",
+    "LAST_DATE": "10/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "200737 Lou Lou Bubbly Semi Sweet Rose 1/12/12 oz Can",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 57003,
@@ -874,6 +898,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "200738 Poca Loca Brazilian Wine 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/23/2026",
+    "LAST_DATE": "10/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -1225,7 +1261,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 170179,
     "CUSTOMER_NAME": "Shop Rite/Metro Plaza",
@@ -1237,7 +1273,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 170018,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Hoboken",
@@ -1837,7 +1873,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 36007,
     "CUSTOMER_NAME": "Shop Rite Of Wallington",
@@ -1873,7 +1909,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 42004,
     "CUSTOMER_NAME": "Wine And People",
@@ -2425,7 +2461,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 29004,
     "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
@@ -2629,7 +2665,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 75002,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Emerson",
@@ -2641,7 +2677,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
@@ -2677,7 +2713,7 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 67005,
     "CUSTOMER_NAME": "Shoprite Liq (A)Northvle",

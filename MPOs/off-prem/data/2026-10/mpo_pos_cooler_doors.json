@@ -1,5 +1,104 @@
 [
   {
+    "REP": "Javier Melo",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "MARIANA'S LIQUORS",
+    "CITY": "PASSAIC",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 05:21 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f3a402c5-d1b1-4f24-9c4d-a312461241eb/"
+  },
+  {
+    "REP": "Derrick Laws",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "ANGEL'S WINE & LIQUORS",
+    "CITY": "PATERSON",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 12:38 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f6e90736-458d-43d7-b391-7aa37ac96521/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "LONG HILL LIQUORS (A)",
+    "CITY": "OAKLAND",
+    "BRAND": "COORS LIGHT BEER",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 11:16 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/1f6c93f0-848d-42a6-bdfd-44e685dacdfe/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "LONG HILL LIQUORS (A)",
+    "CITY": "OAKLAND",
+    "BRAND": "MILLER LITE BEER",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 11:16 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/1f6c93f0-848d-42a6-bdfd-44e685dacdfe/"
+  },
+  {
+    "REP": "Dan Lagala",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WINE AND FOOD MART (Z)",
+    "CITY": "CLIFFSIDE PARK",
+    "BRAND": "COORS LIGHT BEER",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 10:35 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f33321f7-1f74-422c-a1d5-57f5eb6ec594/"
+  },
+  {
+    "REP": "Dan Lagala",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WINE AND FOOD MART (Z)",
+    "CITY": "CLIFFSIDE PARK",
+    "BRAND": "COORS LIGHT BEER",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 10:34 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/aa24f0fe-e76b-4689-8f5f-d3a9b3074600/"
+  },
+  {
+    "REP": "Shane Barreca",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WINEMART DISCOUNT",
+    "CITY": "WESTWOOD",
+    "BRAND": "DOGFISH HEAD 60 MINUTE IPA",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 07:07 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/616a2726-6760-4744-b06b-4447f5a26f14/"
+  },
+  {
+    "REP": "Shane Barreca",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WINEMART DISCOUNT",
+    "CITY": "WESTWOOD",
+    "BRAND": "TALKHOUSE ENCORE GRAPEFRUIT TEQUILA SODA",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 07:06 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/28f1d985-abea-4aa8-a7ad-62495accf712/"
+  },
+  {
+    "REP": "Shane Barreca",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WINEMART DISCOUNT",
+    "CITY": "WESTWOOD",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/20/2026 07:03 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/d34c3578-647e-4cfc-be54-6e9c17da3053/"
+  },
+  {
     "REP": "Dan Lagala",
     "SOURCE": "Promo",
     "CUSTOMER_NAME": "GARDEN STATE FOOD&LIQ (P)",

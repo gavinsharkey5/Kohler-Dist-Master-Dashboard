@@ -932,7 +932,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 35001,
     "CUSTOMER_NAME": "Westmont Liquors 64",
-    "DATE": "10/20/2026",
+    "DATE": "10/23/2026",
     "CASES": 1.0
   },
   {
@@ -941,7 +941,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 35001,
     "CUSTOMER_NAME": "Westmont Liquors 64",
-    "DATE": "10/20/2026",
+    "DATE": "10/23/2026",
     "CASES": 1.0
   },
   {
@@ -950,7 +950,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 35001,
     "CUSTOMER_NAME": "Westmont Liquors 64",
-    "DATE": "10/20/2026",
+    "DATE": "10/23/2026",
     "CASES": 1.0
   },
   {
@@ -1149,6 +1149,15 @@
     "CUSTOMER_NUM": 43013,
     "CUSTOMER_NAME": "Buy Rite Of Fairview",
     "DATE": "9/29/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 49055,
+    "CUSTOMER_NAME": "Edgewater Liquor (A)",
+    "DATE": "10/21/2026",
     "CASES": 1.0
   },
   {
@@ -3099,6 +3108,60 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 21006,
+    "CUSTOMER_NAME": "Camilo Liquors(A)",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 21006,
+    "CUSTOMER_NAME": "Camilo Liquors(A)",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 21006,
+    "CUSTOMER_NAME": "Camilo Liquors(A)",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27040,
+    "CUSTOMER_NAME": "Danny's Liquor",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27040,
+    "CUSTOMER_NAME": "Danny's Liquor",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27040,
+    "CUSTOMER_NAME": "Danny's Liquor",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 20021,
     "CUSTOMER_NAME": "Diamond Liquors (P)",
     "DATE": "10/20/2026",
@@ -3268,6 +3331,42 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27071,
+    "CUSTOMER_NAME": "Mariana's Liquors",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27071,
+    "CUSTOMER_NAME": "Mariana's Liquors",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27071,
+    "CUSTOMER_NAME": "Mariana's Liquors",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27071,
+    "CUSTOMER_NAME": "Mariana's Liquors",
+    "DATE": "10/21/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 21021,
@@ -3282,6 +3381,33 @@
     "CUSTOMER_NUM": 25047,
     "CUSTOMER_NAME": "Parker Liquors (Z)",
     "DATE": "8/5/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24003,
+    "CUSTOMER_NAME": "Paulison Liquors (P)",
+    "DATE": "10/22/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24003,
+    "CUSTOMER_NAME": "Paulison Liquors (P)",
+    "DATE": "10/22/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24003,
+    "CUSTOMER_NAME": "Paulison Liquors (P)",
+    "DATE": "10/22/2026",
     "CASES": 1.0
   },
   {
@@ -6179,7 +6305,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 15040,
     "CUSTOMER_NAME": "Legacy Bar & Liquor",
-    "DATE": "10/20/2026",
+    "DATE": "10/21/2026",
     "CASES": 1.0
   },
   {
@@ -6188,7 +6314,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 15040,
     "CUSTOMER_NAME": "Legacy Bar & Liquor",
-    "DATE": "10/20/2026",
+    "DATE": "10/21/2026",
     "CASES": 1.0
   },
   {
@@ -6197,7 +6323,7 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 15040,
     "CUSTOMER_NAME": "Legacy Bar & Liquor",
-    "DATE": "10/20/2026",
+    "DATE": "10/21/2026",
     "CASES": 1.0
   },
   {
@@ -7403,8 +7529,35 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 92008,
     "CUSTOMER_NAME": "Ramsey Wine & Liquor",
+    "DATE": "10/22/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 92008,
+    "CUSTOMER_NAME": "Ramsey Wine & Liquor",
     "DATE": "8/27/2026",
     "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 92008,
+    "CUSTOMER_NAME": "Ramsey Wine & Liquor",
+    "DATE": "10/22/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 92008,
+    "CUSTOMER_NAME": "Ramsey Wine & Liquor",
+    "DATE": "10/22/2026",
+    "CASES": 2.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",

@@ -343,12 +343,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49055,
-    "CUSTOMER_NAME": "Edgewater Liquor (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 43006,
     "CUSTOMER_NAME": "Fairview Liq & Groc.(A)",
     "AREA": "Bergen"
@@ -721,20 +715,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21006,
-    "CUSTOMER_NAME": "Camilo Liquors(A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 27059,
     "CUSTOMER_NAME": "D'bar Liquors (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27040,
-    "CUSTOMER_NAME": "Danny's Liquor",
     "AREA": "Passaic"
   },
   {
@@ -769,20 +751,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27071,
-    "CUSTOMER_NAME": "Mariana's Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 27046,
     "CUSTOMER_NAME": "New Eagle Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 24003,
-    "CUSTOMER_NAME": "Paulison Liquors (P)",
     "AREA": "Passaic"
   },
   {
