@@ -5739,3 +5739,9 @@ Innovation OFF = the same "Innovation Fall 2026 OFF w Goals" _15 file the Octobe
   On-prem pkg   1,531 -> 1,556 of 2,107 buyers; 6 of 20 reps hold every family.
   On-prem draft 206 -> 208 of 381 buyers. Overall 1 of 24 reps holding every goal. Day 51 of 91.
 Same goal notes as 10/16: frozen goals stand (Innovation export column = 90%; 1 Modelo SKU row drift).
+
+2026-10-21 REFRESH (2) -- Molson Coors, MABI Fall, Constellation Innovation _16
+Molson Coors _9 workbooks (convert_mc_retention.py, all reconciled): 53 -> 56 of 100 brand goals held; off 3,227 ->
+3,269 / 2,912, on 795 -> 803 / 840. MABI Fall _14 (convert_mabi_fall.py, goals unchanged): 6,016 -> 6,173 / 7,326
+(84.3%), 1 of 24 reps at 90%. Innovation _16 saved to BOTH the MPO and constellation_fall_innovation_off.csv:
+incentive 933 -> 938 / 1,400; October Off-Premise MPO 5 of 16 at 75% (Dan Lagala 89 of 88).

@@ -32,12 +32,12 @@
     "GOAL": 76.0
   },
   {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "GOAL": 82.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "GOAL": 70.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "GOAL": 82.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -64,11 +64,11 @@
     "GOAL": 4.0
   },
   {
-    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "SALES_REP_ASSIGNED": "John Neukum",
     "GOAL": 0.0
   },
   {
-    "SALES_REP_ASSIGNED": "John Neukum",
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
     "GOAL": 0.0
   },
   {
@@ -76,7 +76,7 @@
     "GOAL": 0.0
   },
   {
-    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
     "GOAL": 0.0
   }
 ]
