@@ -5730,3 +5730,12 @@ The Target Account Launch export now arrives as two files, OFF (Placement Count 
 then run generate.py. The converter keeps each row's date from the previous industrial_arts.csv and
 dates new rows with the pull day (on-premise draft pays only for an OCTOBER keg). Ask Gavin to add the
 Date column back before November, or a late-October keg pulled in November reads as November.
+
+2026-10-21 REFRESH -- Constellation Fall, six exports
+Packages ON _14, Draft ON _15, Impact OFF _3, Modelo Gaintain OFF _3, Corona Gaintain OFF (w/ Goals) _23;
+Innovation OFF = the same "Innovation Fall 2026 OFF w Goals" _15 file the October Off-Premise MPO loaded today.
+  Off-premise   Corona Gaintain 1,438 -> 1,469 / 1,610 · Modelo Gaintain 2,270 -> 2,294 / 2,395 · Impact
+                3,341 -> 3,406 / 3,452 · Innovation 882 -> 933 / 1,400. 3 of 22 reps hold every category.
+  On-prem pkg   1,531 -> 1,556 of 2,107 buyers; 6 of 20 reps hold every family.
+  On-prem draft 206 -> 208 of 381 buyers. Overall 1 of 24 reps holding every goal. Day 51 of 91.
+Same goal notes as 10/16: frozen goals stand (Innovation export column = 90%; 1 Modelo SKU row drift).
