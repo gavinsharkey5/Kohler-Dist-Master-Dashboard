@@ -2816,21 +2816,28 @@ function mpoSectionHtml(scope, mk, progs){
    EXPORT DATA = the COMPLETE filtered result set as CSV -- every program
    the Program View filters keep, crossed with every rep on this manager's
    authorized roster (ROSTER is already cut to a district manager's team),
-   not just what is drawn on screen. EXPORT RECAP = a print-ready report
-   (Save as PDF from the print dialog) of the same set: team results per
-   program, every rep's progress and what is left, deadlines, definitions
-   and data freshness; account lines only when asked for. Both reuse the
-   trackers' own numbers (p.forRep, progFacts, programStats, distFor) --
-   nothing is recalculated, nothing is narrated, and a lead or eligible
-   account is never shown as a result. Manager Mode only (reps never reach
-   Program View); preview cannot export.
+   not just what is drawn on screen; progress only, no dollar figures.
+   EXPORT RECAP (2026-10-19) = the billing + payout recap of the same set:
+   a print page (Save as PDF, landscape) and a Download Excel workbook with
+   Supplier Billing, Manager Payouts, Rep Payouts, Program Setup and the
+   credited Detail. Payouts and billbacks come from program_finance.terms
+   (managers only under RLS) through shared/payouts.js, the site's one
+   payout calculation; progress is the trackers' own (p.forRep, progFacts,
+   distFor, the custom-program evaluator) -- nothing is recalculated, and a
+   lead or eligible account is never shown as a result. Manager Mode only
+   (reps never reach Program View); preview cannot export.
    ==================================================================== */
 const EXPORT_DEFS = [
   ['Participating reps', 'Reps on this manager’s roster the program applies to and the tracker has data for (territory and support-rep rules applied).'],
   ['Qualified / at goal', 'The tracker’s own status: an incentive marked complete or exceeded, or an MPO objective marked achieved.'],
   ['Progress, goal, remaining', 'The tracker’s figures for that rep, in the program’s own unit; remaining = goal minus current, never below zero.'],
   ['Credited lines', 'Placements or purchases the tracker credits to the rep (customer, product, date). Some trackers publish a total without lines.'],
-  ['Not included', 'Possible opportunities, eligible accounts and leads are not results and are not counted. No payout or dollar figures are in this export.'],
+  ['Rep payout', 'Program’s stored payout terms applied to the tracker’s result: per unit = rate × actual; flat = amount when the objective is met; a tier only when its threshold is a number or a % of the goal; a package rate only on an exact package match. $0 when a qualifier is not met.'],
+  ['Manager payout', 'The program’s manager rule for each DM (district manager of the rep’s group): flat when the team goal is met, per qualified rep, or a % of the team’s rep payouts.'],
+  ['Amount to bill', 'The program’s supplier billback rule applied to the rep and manager payouts (or a $ per unit), capped when a cap is stored. Programs with no billback rule, or no terms stored on the site, are listed but not billed.'],
+  ['Projected / Final', 'Final = the program has ended and been closed out. Everything else is projected from results to date.'],
+  ['Incomplete', 'At least one payout could not be determined (data not loaded, rule not computable, team result not computed); the total shown is what could be computed.'],
+  ['Not included', 'Possible opportunities, eligible accounts and leads are not results and are not counted. The CSV carries progress only, no dollar figures.'],
 ];
 function exportFilterText(f){
   const sup = f.sup==='all' ? 'All suppliers' : f.sup;
@@ -2895,60 +2902,259 @@ async function exportData(onlyId, withLines){
   const head = [
     ['# Kohler Distribution Hub — Program Data Export'], ['# Generated', st.label], ['# Filters', onlyId ? 'One program: '+(list[0] ? list[0].shortName||list[0].name : onlyId) : exportFilterText(state.filters)],
     ['# Scope', exportScopeText()], ['# Programs', String(list.length)], ['# Rows', String(rows.length)+(withLines ? ' (rep progress + credited lines)' : ' (rep progress)')],
-    ['# Note', 'Tracker figures as published; leads and eligible accounts are not results; no dollar figures.'], []];
+    ['# Note', 'Tracker figures as published; leads and eligible accounts are not results; no dollar figures in this CSV (payouts are in Export Recap).'], []];
   const text = head.map(r=>r.map(csvCell).join(',')).join('\r\n') + '\r\n' + cols.join(',') + '\r\n' + rows.map(r=>cols.map(c=>csvCell(r[c])).join(',')).join('\r\n') + '\r\n';
   downloadText(`kohler-programs-${st.file}.csv`, '﻿'+text, 'text/csv;charset=utf-8');
   return {rows: rows.length, programs: list.length};
+}
+/* ---- EXPORT RECAP (2026-10-19): supplier billing + rep and DM payouts ----
+   One model, two renderers: recapModel() builds everything once, then
+   recapHtml() draws the print page and recapBook() the Excel workbook, so
+   the two can never disagree. Money comes ONLY from shared/payouts.js
+   (KdhPayouts -- the same function Manage Programs' preview calls) over
+   program_finance.terms, which RLS lets only managers read; nothing here
+   recalculates progress (the trackers' / evaluator's results are reused).
+   NEVER GUESS: a payout the rule or the data cannot determine is a status
+   text, its totals are marked Incomplete, and a program with no stored
+   terms (the hard-coded trackers) or no billback rule is left out of the
+   billing totals with the reason printed. */
+const RECAP_FINAL = 'Final', RECAP_PROJ = 'Projected (to date)';
+const r2 = n => Math.round((Number(n)||0)*100)/100;
+function recapStatusText(r){ if(!r) return ''; if(r.support && r.support!=='supported') return (window.KdhPayouts ? KdhPayouts.SUPPORT_LABEL[r.support] : '') || r.support; return (r.status==='achieved'?'Met':r.status==='inprogress'?'In Progress':'Not Started') + (r.locked ? ' · locked until '+r.lockedBy : ''); }
+function recapDmRows(reps, payFor){
+  const byDm = new Map(); reps.forEach(x=>{ const k = x.dm || ''; if(!byDm.has(k)) byDm.set(k, []); byDm.get(k).push(x); });
+  return [...byDm.keys()].sort((a,b)=>(a==='')-(b==='') || a.localeCompare(b)).map(dm=>payFor(dm, byDm.get(dm)));
+}
+async function recapModel(list){
+  const PT = window.KdhPayouts, KP = window.KdhPrograms;
+  const canMoney = !!(PT && SIGNED_MGR && isMgr() && !LOCKED_REP && !(KDH_USER && KDH_USER.preview) && window.KdhData && KdhData.signedIn && KdhData.signedIn());
+  const repDm = rep => { const g = DM_GROUPS.find(x=>x.reps.includes(rep)); return g ? g.dm : ''; };
+  const sum = a => r2(a.reduce((t,v)=>t+(Number(v)||0),0));
+  const fin = {}; let finState = 'none';
+  const cust = list.filter(p=>p.custom && p.program);
+  if(cust.length){
+    if(!canMoney) finState = 'denied';
+    else {
+      const ids = [...new Set(cust.map(p=>p.program.id))];
+      const r = await KdhData.rest('program_finance?select=terms,program_versions!inner(program_id,version)&program_versions.program_id=in.('+ids.map(encodeURIComponent).join(',')+')');
+      if(r && r.ok && Array.isArray(r.data)){ finState = 'ok'; r.data.forEach(x=>{ [].concat(x.program_versions||[]).forEach(v=>{ fin[v.program_id+':'+v.version] = x.terms || {}; }); }); }
+      else finState = 'error';
+    }
+  }
+  const prodMap = (cust.length && KP) ? ((await KP.products().catch(()=>null)) || {map:{}}).map : {};
+  const out = [];
+  for(const p of list){
+    const end = p.period && p.period.end, ended = end instanceof Date && end < TODAY;
+    const m = {p, title:p.shortName||p.name, fullName:p.name, supplier:p.supplier||'—', period:(p.period&&p.period.label)||'', dataAsOf:dataDateOf(p)||'', reps:[], dms:[], detail:[], setup:[], objs:[], billing:null, custom:!!(p.custom && p.program)};
+    m.setup.push(['Supplier', m.supplier], ['Channel', p.channelLabel||''], ['Type', p.type==='MPO' ? (p.monthLabel||'')+' MPO' : 'Incentive'], ['Period', m.period]);
+    if(p.shortName && p.shortName!==p.name) m.setup.push(['Full program name', p.name]);
+    if(m.custom){
+      const prog = p.program, def = prog.definition || {};
+      m.final = prog.status==='closed' && ended;
+      const has = Object.prototype.hasOwnProperty.call(fin, prog.id+':'+prog.version);
+      const T = PT.normalize(has ? fin[prog.id+':'+prog.version] : {});
+      const objNm = id => { const o = id ? (def.objectives||[]).find(x=>x.id===id) : null; return o ? (o.label || KP.metricLabel(o)) : (id ? '?' : 'Whole program'); };
+      m.objs = (def.objectives||[]).map(o=>{ const name = o.label||KP.metricLabel(o), unit = KP.unitOf(o); return {id:o.id, name, unit: String(name).toLowerCase()===String(unit).toLowerCase() ? '' : unit}; });
+      // the team goal is program-wide: every participant is evaluated, whatever the viewer's scope
+      const parts = KP.participants(def), all = {};
+      await Promise.all(parts.map(async rep=>{ try{ all[rep] = await KP.resultFor(prog, rep); }catch(e){} }));
+      const team = PT.teamResult(def, all);
+      const termsOk = finState==='ok' && has;
+      const moneyState = finState!=='ok' ? (finState==='error' ? 'Financial terms could not be read' : 'Financial terms not available') : !has ? 'No payout terms stored' : !T.items.length ? 'No payout terms' : '';
+      const scope = ROSTER.filter(rep=>KP.isParticipant(def, rep) && supportAllows(rep, p));
+      for(const rep of scope){
+        let R = null; try{ R = await KP.resultFor(prog, rep); }catch(e){}
+        if(!R) continue;
+        const pay = moneyState ? null : PT.repPayout(T, R, {team, products: prodMap});
+        const req = R.objectives.filter(r=>(r.objective.logic||'required')==='required');
+        const qualified = req.some(r=>r.support!=='supported') ? null : !!R.met;
+        const cells = m.objs.map(o=>{ const r = R.objectives.find(x=>x.id===o.id) || {};
+          const b = pay && pay.byObjective[o.id];
+          return {goal: r.goal==null ? null : r.goal, actual: (r.notReady || (r.support!=='supported' && r.support!=='awaiting_evidence')) ? null : r.value, status: recapStatusText(r),
+                  payout: moneyState ? null : (b ? b.amount : null), payText: moneyState ? moneyState : b ? b.texts.join('; ') : 'No term', flags: b ? b.flags : [], incomplete: !!(b && b.incomplete)}; });
+        m.reps.push({rep, dm: repDm(rep), cells, total: pay ? pay.total : null, totalText: moneyState, incomplete: !!(pay && pay.incomplete), qualified});
+        const date = R.through ? KP.monthLabel(R.through) : '';
+        R.objectives.forEach(r=>(r.credited||[]).forEach(a=>{
+          if(a.lines && a.lines.length) a.lines.forEach(l=>m.detail.push({rep, objective:r.label, n:a.n, name:a.name, product:l.name, date, units:1}));
+          else if(a.bought && a.bought.length) a.bought.forEach(b=>m.detail.push({rep, objective:r.label, n:a.n, name:a.name, product:b.name, date, units:b.cases}));
+          else m.detail.push({rep, objective:r.label, n:a.n, name:a.name, product:a.note||'', date, units: a.records!=null ? a.records : null});
+        }));
+      }
+      // DMs: their team's reps in this export's scope
+      m.dms = recapDmRows(m.reps, (dm, reps)=>{
+        const mp = !termsOk ? null : !dm ? {amount:null, text:'No DM on file', none:true} : PT.managerPayout(T.manager, {reps: reps.map(x=>({qualified:x.qualified, payout:x.total, incomplete:x.incomplete})), teamGoal: team});
+        return {dm: dm || 'No DM on file', teamReps: reps.length, qualified: reps.filter(x=>x.qualified===true).length, unknown: reps.filter(x=>x.qualified==null).length,
+          teamGoal: team.computed ? (team.met ? 'Yes' : 'No') : 'Not computed', rule: termsOk ? PT.managerRuleText(T.manager) : (moneyState || 'Not available'),
+          payout: mp && mp.amount!=null ? mp.amount : null, payText: mp ? (mp.amount==null || mp.incomplete ? mp.text : '') : (moneyState || 'Not available'), incomplete: !!(mp && mp.incomplete), none: !!(mp && mp.none),
+          repTotal: moneyState ? null : sum(reps.map(x=>x.total)), repIncomplete: reps.some(x=>x.incomplete)};
+      });
+      // billing
+      const repSum = sum(m.reps.map(x=>x.total)), mgrSum = sum(m.dms.map(x=>x.payout));
+      const repInc = m.reps.some(x=>x.incomplete), mgrInc = m.dms.some(x=>x.incomplete);
+      const bbo = T.billback.objectiveId, bbObj = (def.objectives||[]).find(o=>o.id===bbo), bbIdx = m.objs.findIndex(o=>o.id===bbo);
+      let units = null;
+      if(T.billback.kind==='per_unit' && bbObj){ const vals = m.reps.map(x=>x.cells[bbIdx] ? x.cells[bbIdx].actual : null); units = vals.some(v=>v==null) ? null : sum(vals); }
+      const bbRule = Object.assign({}, T.billback, {objectiveLabel: bbObj ? (bbObj.label||KP.metricLabel(bbObj)) : ''});
+      const bb = termsOk ? PT.billback(bbRule, {rep:repSum, mgr:mgrSum, units, incomplete: repInc||mgrInc}) : null;
+      const included = !!(bb && !bb.notStated && bb.amount!=null);
+      m.billing = {rep: moneyState ? null : repSum, mgr: termsOk ? mgrSum : null, basis: bb ? bb.basis + (bb.capped ? ' (cap applied)' : '') : (moneyState || 'Not available'),
+        amount: included ? bb.amount : null, included, incomplete: !!(bb && bb.incomplete),
+        note: !bb ? (moneyState || 'Financial terms not available') : bb.notStated ? 'Billback not stated: not billed' : bb.amount==null ? 'Billback not computed' : (bb.incomplete ? 'Some payouts not computed' : '')};
+      KP.rulesText(def).forEach(t=>m.setup.push(['Rule', t]));
+      const res = (def.products && def.products.resolved) || [];
+      m.setup.push(['Products', res.length ? res.length+': '+res.map(x=>x.name+(x.id?' #'+x.id:'')+(x.package?' ('+x.package+')':'')).join('; ') : 'None selected']);
+      (def.objectives||[]).forEach(o=>m.setup.push(['Goal · '+(o.label||KP.metricLabel(o)), KP.goalSummary(o)]));
+      m.setup.push(['Team result', team.computed ? `${team.value} of ${team.goal} (${team.met?'met':'not met'})` : team.reason]);
+      if(termsOk){
+        T.items.forEach((it,i)=>m.setup.push(['Rep payout '+(i+1), PT.termText(it, objNm)]));
+        if(!T.items.length) m.setup.push(['Rep payouts', 'No payout terms']);
+        m.setup.push(['Manager payout', PT.managerRuleText(T.manager)], ['Supplier billback', PT.basisText(bbRule)]);
+        if(T.notes) m.setup.push(['Notes', T.notes]);
+      } else m.setup.push(['Payout terms', moneyState || 'Not available']);
+    } else {
+      // hard-coded trackers: performance only, no stored terms
+      m.final = false; m.legacy = true;
+      const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
+      const LEG = 'Terms not stored on the site';
+      m.objs = [{id:'_', name: p.shortName||p.name, unit: p.type==='MPO' ? ((p.objective && p.objective.unit) || '') : ''}];
+      if(loaded) ROSTER.forEach(rep=>{
+        if(!supportAllows(rep, p)) return; const r = p.forRep(rep); if(!r || r.soon) return;
+        const f = progFacts(p, r, rep) || {}; const N = p.type==='MPO' ? mpoNums(r) : incNums(r);
+        const q = qualifiedOf(p, r);
+        if(!m.objs[0].unit) m.objs[0].unit = unitOf(r) || '';
+        m.reps.push({rep, dm: repDm(rep), cells:[{goal: N && N.goal!=='' && N.goal!=null ? N.goal : null, actual: N && N.cur!=='' && N.cur!=null ? N.cur : null, status: f.label||'', payout:null, payText:LEG, flags:[], incomplete:false}],
+          total:null, totalText:LEG, incomplete:false, qualified: q==='yes' ? true : q==='no' ? false : null});
+        if(r.status!=='unavailable') distFor(p, rep).forEach(x=>m.detail.push({rep, objective:m.title, n:x.n||'', name:x.name||'', product:x.what||'', date:x.date||'', units:null}));
+      });
+      m.dms = recapDmRows(m.reps, (dm, reps)=>({dm: dm||'No DM on file', teamReps: reps.length, qualified: reps.filter(x=>x.qualified===true).length, unknown: reps.filter(x=>x.qualified==null).length, teamGoal:'Not computed', rule:LEG, payout:null, payText:LEG, incomplete:false, none:false, repTotal:null, repIncomplete:false}));
+      m.billing = {rep:null, mgr:null, basis:LEG, amount:null, included:false, incomplete:false, note: !loaded ? 'Data not loaded for this month' : p.manual ? 'Verified by hand; no data feed' : LEG+': not in billing totals'};
+      (p.rules||[]).map(x=>String(x).replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&nbsp;/g,' ').trim()).filter(Boolean).forEach(t=>m.setup.push(['Rule', t]));
+      m.setup.push(['Payout terms', 'Not stored on the site']);
+    }
+    m.statusLabel = m.final ? RECAP_FINAL : RECAP_PROJ;
+    out.push(m);
+  }
+  // supplier groups + grand total (only billed programs count; the rest are listed with the reason)
+  const groups = new Map(); out.forEach(m=>{ if(!groups.has(m.supplier)) groups.set(m.supplier, []); groups.get(m.supplier).push(m); });
+  const sups = [...groups.keys()].sort((a,b)=>a.localeCompare(b)).map(s=>{ const ms = groups.get(s); const inc = ms.filter(m=>m.billing.included);
+    return {supplier:s, programs:ms, rep: sum(ms.map(m=>m.billing.rep)), mgr: sum(ms.map(m=>m.billing.mgr)), amount: sum(inc.map(m=>m.billing.amount)),
+      incomplete: inc.some(m=>m.billing.incomplete), final: ms.every(m=>m.final), excluded: ms.filter(m=>!m.billing.included).length}; });
+  const total = {rep: sum(sups.map(s=>s.rep)), mgr: sum(sups.map(s=>s.mgr)), amount: sum(sups.map(s=>s.amount)), incomplete: sups.some(s=>s.incomplete), final: out.length>0 && out.every(m=>m.final), excluded: sups.reduce((t,s)=>t+s.excluded,0)};
+  return {programs: out, sups, total, finState, canMoney, team: HUB_TEAM ? HUB_TEAM.dm : ''};
+}
+function recapTotalLabel(x){ return [x.final ? RECAP_FINAL : RECAP_PROJ, x.incomplete ? 'Incomplete' : ''].filter(Boolean).join(' · '); }
+function recapHead(st, onlyId, list, M){
+  return [
+    ['Kohler Distribution Hub — Program Recap'],
+    [`Status: ${recapTotalLabel(M.total)}${M.total.excluded ? ` · ${M.total.excluded} program${M.total.excluded===1?'':'s'} not in billing totals` : ''}`],
+    [(M.team ? `Team scope: ${M.team} · ` : '') + exportScopeText() + ' · ' + (onlyId ? 'One program' : exportFilterText(state.filters))],
+    [`Generated ${st.label} · ${list.length} program${list.length===1?'':'s'} · Incentive data refreshed ${incRefreshed()||'—'}`]];
+}
+// Excel: same content as the print page. Numbers are numeric cells; totals
+// are SUM formulas carrying their cached value.
+function recapBook(M, st, onlyId, list){
+  const head = recapHead(st, onlyId, list, M), H = r => r.map(v=>({v, s:'bold'}));
+  const money = v => v==null ? null : {v, s:'money'}, mb = (v, f) => ({v, f, s:'moneyBold'});
+  const col = i => { let s=''; i++; while(i){ const m=(i-1)%26; s=String.fromCharCode(65+m)+s; i=Math.floor((i-1)/26); } return s; };
+  const sheets = [];
+  { const rows = head.slice(); rows.push([]); rows.push(H(['Supplier','Program','Period','Rep Payouts','Manager Payouts','Billback Basis','Amount to Bill','Data As Of','Status','Notes']));
+    const subRefs = [];
+    M.sups.forEach(s=>{ const first = rows.length+1;
+      s.programs.forEach(m=>rows.push([m.supplier, m.title, m.period, money(m.billing.rep), money(m.billing.mgr), m.billing.basis, money(m.billing.amount), m.dataAsOf, [m.statusLabel, m.billing.incomplete?'Incomplete':''].filter(Boolean).join(' · '), m.billing.note]));
+      const last = rows.length; subRefs.push(rows.length+1);
+      rows.push([{v:'Subtotal — '+s.supplier, s:'bold'}, '', '', mb(s.rep, `SUM(D${first}:D${last})`), mb(s.mgr, `SUM(E${first}:E${last})`), '', mb(s.amount, `SUM(G${first}:G${last})`), '', recapTotalLabel(s), s.excluded ? s.excluded+' not in totals' : '']); });
+    const ref = c => subRefs.length ? `SUM(${subRefs.map(r=>c+r).join(',')})` : '0';
+    rows.push([{v:'Grand Total', s:'bold'}, '', '', mb(M.total.rep, ref('D')), mb(M.total.mgr, ref('E')), '', mb(M.total.amount, ref('G')), '', recapTotalLabel(M.total), M.total.excluded ? M.total.excluded+' not in totals' : '']);
+    sheets.push({name:'Supplier Billing', rows, widths:[26,34,22,14,16,40,16,18,24,44], freeze:6}); }
+  { const rows = head.slice(); rows.push([]); rows.push(H(['DM','Program','Team Reps','Reps Qualified','Team Goal Met','Manager Payout Rule','Manager Payout','Team Rep Payouts','Status / Notes']));
+    const first = rows.length+1;
+    M.programs.forEach(m=>m.dms.forEach(d=>rows.push([d.dm, m.title, d.teamReps, d.unknown ? `${d.qualified} (+${d.unknown} not computed)` : d.qualified, d.teamGoal, d.rule, money(d.payout), money(d.repTotal), [d.payout==null && !d.none ? d.payText : (d.payText||''), d.incomplete||d.repIncomplete ? 'Incomplete' : '', m.statusLabel].filter(Boolean).join(' · ')])));
+    const last = Math.max(first, rows.length), allD = M.programs.flatMap(m=>m.dms);
+    rows.push([{v:'Total', s:'bold'}, '', '', '', '', '', mb(r2(allD.reduce((a,d)=>a+(d.payout||0),0)), `SUM(G${first}:G${last})`), mb(r2(allD.reduce((a,d)=>a+(d.repTotal||0),0)), `SUM(H${first}:H${last})`), recapTotalLabel(M.total)]);
+    sheets.push({name:'Manager Payouts', rows, widths:[22,34,11,15,14,46,15,16,40], freeze:6}); }
+  { const rows = head.slice(); let freeze = 4;
+    M.programs.forEach(m=>{ rows.push([]); rows.push([{v:`${m.title} · ${m.period} · ${m.statusLabel}`, s:'bold'}]);
+      const hdr = ['Rep','DM']; m.objs.forEach(o=>{ const n = o.name + (o.unit ? ' ('+o.unit+')' : ''); hdr.push(n+' Goal', n+' Actual', o.name+' Status', o.name+' Payout'); }); hdr.push('Total Payout','Notes');
+      rows.push(H(hdr)); if(M.programs.length===1) freeze = rows.length;
+      const first = rows.length+1;
+      m.reps.forEach(x=>{ const r = [x.rep, x.dm||'']; const notes = [x.incomplete ? 'Incomplete' : ''];
+        x.cells.forEach((c,i)=>{ r.push(c.goal==null?null:{v:c.goal, s:'num'}, c.actual==null?null:{v:c.actual, s:'num'}, c.status, c.payout==null ? (c.payText||null) : money(c.payout)); if(c.flags.length) notes.push(m.objs[i].name+': '+c.flags.join('; ')); if(c.payout!=null && c.payText) notes.push(m.objs[i].name+' (not included): '+c.payText); });
+        r.push(x.total==null ? (x.totalText||null) : money(x.total)); r.push(notes.filter(Boolean).join(' · ')); rows.push(r); });
+      const last = Math.max(first, rows.length), tot = [{v:'Total', s:'bold'},''];
+      m.objs.forEach((o,i)=>{ const pc = col(2+i*4+3); tot.push('', '', '', m.billing.rep==null ? '' : mb(r2(m.reps.reduce((t,x)=>t+(x.cells[i].payout||0),0)), `SUM(${pc}${first}:${pc}${last})`)); });
+      const tc = col(2+m.objs.length*4);
+      tot.push(m.billing.rep==null ? (m.legacy ? 'Terms not stored on the site' : '') : mb(m.billing.rep, `SUM(${tc}${first}:${tc}${last})`), recapTotalLabel({final:m.final, incomplete:m.reps.some(x=>x.incomplete)}));
+      rows.push(tot); });
+    sheets.push({name:'Rep Payouts', rows, widths:[22,18].concat(new Array(40).fill(14)), freeze}); }
+  if(M.programs.length > 1){ const rows = head.slice(); rows.push([]); rows.push(H(['Rep','DM','Programs','Total Payout','Status']));
+    const by = new Map(); M.programs.forEach(m=>m.reps.forEach(x=>{ const t = by.get(x.rep) || {rep:x.rep, dm:x.dm, n:0, total:0, inc:false}; t.n++; if(x.total!=null) t.total = r2(t.total + x.total); if(x.incomplete || x.total==null) t.inc = true; by.set(x.rep, t); }));
+    const first = rows.length+1; const ts = [...by.values()].sort((a,b)=>a.rep.localeCompare(b.rep));
+    ts.forEach(t=>rows.push([t.rep, t.dm||'', t.n, money(t.total), [t.inc ? 'Incomplete (a program has no computed payout)' : '', RECAP_PROJ].filter(Boolean).join(' · ')]));
+    rows.push([{v:'Total', s:'bold'}, '', '', mb(r2(ts.reduce((a,t)=>a+t.total,0)), `SUM(D${first}:D${Math.max(first, rows.length)})`), recapTotalLabel(M.total)]);
+    sheets.push({name:'Rep Totals', rows, widths:[22,20,10,14,44], freeze:6}); }
+  { const rows = head.slice(); rows.push([]); rows.push(H(['Program','Item','Value']));
+    M.programs.forEach(m=>m.setup.forEach(([k,v])=>rows.push([m.title, k, v])));
+    sheets.push({name:'Program Setup', rows, widths:[34,26,120], freeze:6}); }
+  { const rows = head.slice(); rows.push([]); rows.push(H(['Program','Objective','Rep','Account #','Account Name','Product','Date','Units']));
+    M.programs.forEach(m=>m.detail.forEach(d=>rows.push([m.title, d.objective||'', d.rep, d.n==null||d.n==='' ? null : (isNaN(Number(d.n)) ? String(d.n) : Number(d.n)), d.name, d.product, d.date, d.units==null ? null : {v:d.units, s:'num'}])));
+    sheets.push({name:'Detail', rows, widths:[30,24,20,11,34,40,14,9], freeze:6}); }
+  return sheets;
+}
+function recapHtml(M, st, onlyId, list, withAccounts, xlsxUrl, xlsxName){
+  const esc = E, $ = v => v==null ? '' : KdhPayouts.money(v);
+  const cell = (v, t) => v==null ? `<span class="na">${esc(t||'—')}</span>` : esc($(v));
+  const head = recapHead(st, onlyId, list, M);
+  const billing = M.sups.map(s=>s.programs.map(m=>`<tr><td>${esc(m.supplier)}</td><td>${esc(m.title)}</td><td>${esc(m.period)}</td><td class="n">${cell(m.billing.rep)}</td><td class="n">${cell(m.billing.mgr)}</td><td>${esc(m.billing.basis)}</td><td class="n b">${cell(m.billing.amount, 'Not billed')}</td><td>${esc(m.dataAsOf)}</td><td>${esc([m.statusLabel, m.billing.incomplete?'Incomplete':''].filter(Boolean).join(' · '))}</td><td class="sm">${esc(m.billing.note)}</td></tr>`).join('')
+    + `<tr class="sub"><td colspan="3">Subtotal — ${esc(s.supplier)}</td><td class="n">${esc($(s.rep))}</td><td class="n">${esc($(s.mgr))}</td><td></td><td class="n">${esc($(s.amount))}</td><td></td><td>${esc(recapTotalLabel(s))}</td><td class="sm">${s.excluded ? s.excluded+' not in totals' : ''}</td></tr>`).join('')
+    + `<tr class="tot"><td colspan="3">Grand Total</td><td class="n">${esc($(M.total.rep))}</td><td class="n">${esc($(M.total.mgr))}</td><td></td><td class="n">${esc($(M.total.amount))}</td><td></td><td>${esc(recapTotalLabel(M.total))}</td><td class="sm">${M.total.excluded ? M.total.excluded+' not in totals' : ''}</td></tr>`;
+  const mgr = M.programs.map(m=>m.dms.map(d=>`<tr><td>${esc(d.dm)}</td><td>${esc(m.title)}</td><td class="n">${d.teamReps}</td><td class="n">${d.qualified}${d.unknown?` <span class="na">(+${d.unknown} not computed)</span>`:''}</td><td>${esc(d.teamGoal)}</td><td>${esc(d.rule)}</td><td class="n b">${cell(d.payout, d.none ? 'None' : d.payText)}</td><td class="n">${cell(d.repTotal, '—')}</td><td class="sm">${esc([d.payout!=null?d.payText:'', d.incomplete||d.repIncomplete?'Incomplete':''].filter(Boolean).join(' · '))}</td></tr>`).join('')).join('');
+  const reps = M.programs.map(m=>`<h3>${esc(m.title)} <span class="meta">· ${esc(m.period)} · ${esc(m.statusLabel)}</span></h3>
+    <table><thead><tr><th rowspan="2">Rep</th><th rowspan="2">DM</th>${m.objs.map(o=>`<th colspan="4" class="grp">${esc(o.name)}${o.unit?` <span class="na">(${esc(o.unit)})</span>`:''}</th>`).join('')}<th rowspan="2" class="n">Total Payout</th></tr>
+    <tr>${m.objs.map(()=>'<th class="n">Goal</th><th class="n">Actual</th><th>Status</th><th class="n">Payout</th>').join('')}</tr></thead><tbody>
+    ${m.reps.map(x=>`<tr><td>${esc(x.rep)}</td><td>${esc(x.dm||'')}</td>${x.cells.map(c=>`<td class="n">${c.goal==null?'—':esc(fmtNum(c.goal))}</td><td class="n">${c.actual==null?'—':esc(fmtNum(c.actual))}</td><td>${esc(c.status)}</td><td class="n">${cell(c.payout, c.payText)}${c.flags.length?`<div class="flag">${esc(c.flags.join(' · '))}</div>`:''}${c.payout!=null && c.payText?`<div class="flag">Not included: ${esc(c.payText)}</div>`:''}</td>`).join('')}<td class="n b">${cell(x.total, x.totalText)}${x.incomplete?'<div class="flag">Incomplete</div>':''}</td></tr>`).join('') || `<tr><td colspan="${3+m.objs.length*4}" class="na">No reps in scope.</td></tr>`}
+    </tbody></table>`).join('');
+  const setup = M.programs.map(m=>`<h3>${esc(m.title)}</h3><dl>${m.setup.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`).join('');
+  const detail = withAccounts ? `<section><h2>Detail</h2>${M.programs.map(m=>m.detail.length ? `<h3>${esc(m.title)}</h3><table><thead><tr><th>Rep</th><th>Objective</th><th>Account #</th><th>Account</th><th>Product</th><th>Date</th><th class="n">Units</th></tr></thead><tbody>${m.detail.map(d=>`<tr><td>${esc(d.rep)}</td><td>${esc(d.objective||'')}</td><td>${esc(d.n||'')}</td><td>${esc(d.name)}</td><td>${esc(d.product)}</td><td>${esc(d.date)}</td><td class="n">${d.units==null?'':esc(fmtNum(d.units))}</td></tr>`).join('')}</tbody></table>` : '').join('') || '<p class="na">No credited lines.</p>'}</section>` : '';
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  return `<!doctype html><html lang="en" data-theme="${theme}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Program Recap · ${esc(st.label)}</title>
+<style>
+@page{size:letter landscape;margin:10mm}
+:root{--bg:#fff;--text:#0E1A33;--mute:#4a5568;--line:#d5d8dd;--soft:#F4F6FA;--brand:#2866C0;--ink:#fff;--warn:#B54708}
+[data-theme="dark"]{--bg:#0A1226;--text:#E6ECF7;--mute:#A9B4C8;--line:#2A3A5C;--soft:#111C36;--brand:#6AA1FF;--ink:#0A1226;--warn:#FB923C}
+body{font:13px/1.4 -apple-system,"Segoe UI",Inter,Arial,sans-serif;color:var(--text);background:var(--bg);margin:24px}
+h1{font-size:22px;margin:0 0 4px} h2{font-size:17px;margin:22px 0 8px;border-bottom:2px solid var(--brand);padding-bottom:4px} h3{font-size:15px;margin:16px 0 6px}
+.sub,.meta{color:var(--mute);margin:2px 0;font-weight:400} .na{color:var(--mute)} .flag{color:var(--warn);font-size:12px} .sm{font-size:12px;color:var(--mute)}
+.bar{display:flex;gap:8px;margin:12px 0 4px} .bar button,.bar a{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var(--brand);background:var(--brand);color:var(--ink);cursor:pointer;text-decoration:none}
+table{width:100%;border-collapse:collapse;margin:4px 0 10px} th,td{text-align:left;padding:5px 7px;border-bottom:1px solid var(--line);vertical-align:top} th{font-size:12px;color:var(--mute);font-weight:600;background:var(--soft)} th.grp{text-align:center;border-left:1px solid var(--line)}
+td.n,th.n{text-align:right;white-space:nowrap} td.b{font-weight:600} tr.sub td{font-weight:600;background:var(--soft)} tr.tot td{font-weight:700;border-top:2px solid var(--text)}
+dl{display:grid;grid-template-columns:200px 1fr;gap:3px 14px;margin:0} dt{font-weight:600} dd{margin:0}
+@media print{.bar{display:none} body{margin:0} :root,[data-theme="dark"]{--bg:#fff;--text:#000;--mute:#444;--line:#ccc;--soft:#f2f2f2;--brand:#2866C0;--warn:#9a3412} h2{break-after:avoid} tr{break-inside:avoid}}
+</style></head><body>
+<h1>Program Recap</h1>
+${head.slice(1).map(r=>`<p class="sub">${esc(r[0])}</p>`).join('')}
+<div class="bar"><button type="button" onclick="window.print()">Print / Save as PDF</button>${xlsxUrl ? `<a href="${xlsxUrl}" download="${esc(xlsxName)}">Download Excel</a>` : ''}</div>
+${!list.length ? '<p class="na">No programs match these filters.</p>' : `
+<section><h2>Supplier Billing</h2><table><thead><tr><th>Supplier</th><th>Program</th><th>Period</th><th class="n">Rep Payouts</th><th class="n">Manager Payouts</th><th>Billback Basis</th><th class="n">Amount to Bill</th><th>Data As Of</th><th>Status</th><th>Notes</th></tr></thead><tbody>${billing}</tbody></table></section>
+<section><h2>Manager Payouts</h2><table><thead><tr><th>DM</th><th>Program</th><th class="n">Team Reps</th><th class="n">Reps Qualified</th><th>Team Goal Met</th><th>Manager Payout Rule</th><th class="n">Manager Payout</th><th class="n">Team Rep Payouts</th><th>Notes</th></tr></thead><tbody>${mgr || '<tr><td colspan="9" class="na">No DMs in scope.</td></tr>'}</tbody></table></section>
+<section><h2>Rep Payouts</h2>${reps}</section>
+<section><h2>Program Setup</h2>${setup}</section>
+${detail}`}
+<section><h2>Definitions</h2><dl>${EXPORT_DEFS.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl></section>
+</body></html>`;
 }
 async function exportRecap(onlyId, withAccounts){
   const list = programsForExport(onlyId);
   await ensureLoadedFor(list);
   const st = exportStamp();
-  const esc = E;
-  const sections = list.map(p=>{
-    const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
-    const stt = loaded ? programStats(p) : null;
-    const reps = [];
-    if(loaded) ROSTER.forEach(rep=>{ if(!supportAllows(rep, p)) return; const r = p.forRep(rep); if(!r || r.soon) return; reps.push({rep, r, f: progFacts(p, r, rep) || {}}); });
-    reps.sort((a,b)=> (qualifiedOf(p,b.r)==='yes') - (qualifiedOf(p,a.r)==='yes') || ((b.r.pct||0)-(a.r.pct||0)) || a.rep.localeCompare(b.rep));
-    const repRows = reps.map(({rep, r, f})=>`<tr><td>${esc(rep)}</td><td>${f.main||'—'}</td><td>${f.need && f.need!==f.label ? f.need : (qualifiedOf(p,r)==='yes' ? 'Goal met' : '—')}</td><td>${esc(f.label||'')}</td></tr>${withAccounts ? (()=>{ const L = r.status==='unavailable' ? [] : distFor(p, rep); return L.length ? `<tr class="lines"><td></td><td colspan="3">${L.map(x=>`${esc(x.name)}${x.n ? ' #'+esc(x.n) : ''} · ${esc(x.what||'')}${x.date ? ' · '+esc(x.date) : ''}`).join('<br>')}</td></tr>` : ''; })() : ''}`).join('');
-    // the program's own requirement lines; payout terms ($) stay on the trackers, not in a performance recap
-    const rules = (p.rules||[]).map(x=>String(x).replace(/<[^>]+>/g,'')).filter(x=>!/\$\s?\d/.test(x)).slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('');
-    return `<section class="prog"><h2>${esc(p.shortName||p.name)}</h2>
-      <p class="meta">${esc(p.supplier)} · ${esc(p.channelLabel)} · ${esc(p.type==='MPO' ? p.monthLabel+' MPO' : 'Incentive')} · ${esc(p.period.label)} · ${esc(endsLabel(p.period))}</p>
-      ${p.shortName && p.shortName!==p.name ? `<p class="full">Full program name: ${esc(p.name)}</p>` : ''}
-      ${rules ? `<ul class="rules">${rules}</ul>` : ''}
-      ${!loaded ? '<p class="na">Data not loaded for this month.</p>' : p.manual ? '<p class="na">Verified by hand from iSellBeer photos — no data feed, so no completion numbers.</p>' : !stt.participants ? '<p class="na">No export for this program yet.</p>' : `
-      <div class="kpis"><div><b>${stt.participants}</b><span>participating reps</span></div><div><b>${stt.complete}</b><span>at goal</span></div><div><b>${Math.round(stt.pctComplete)}%</b><span>of reps at goal</span></div>${stt.avg!=null ? `<div><b>${Math.round(stt.avg)}%</b><span>average progress</span></div>` : ''}</div>
-      <table><thead><tr><th>Rep</th><th>Current</th><th>Remaining</th><th>Status</th></tr></thead><tbody>${repRows}</tbody></table>`}
-      <p class="fresh">Data as of ${esc(dataDateOf(p) || 'not stated')}</p></section>`;
-  }).join('');
-  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Program Recap · ${esc(st.label)}</title>
-<style>
-@page{size:letter;margin:14mm}
-body{font:14px/1.45 -apple-system,"Segoe UI",Inter,Arial,sans-serif;color:#1a1c1f;margin:24px;max-width:960px}
-h1{font-size:22px;margin:0 0 4px} h2{font-size:17px;margin:0 0 2px} .sub{color:#4a4f57;margin:0 0 2px}
-.bar{display:flex;gap:8px;margin:12px 0 18px} .bar button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid #2866C0;background:#2866C0;color:#fff;cursor:pointer}
-.prog{border-top:1px solid #d5d8dd;padding:14px 0 10px;break-inside:avoid-page} .meta,.full,.fresh{color:#4a4f57;margin:2px 0} .fresh{font-size:12.5px}
-.rules{margin:6px 0 8px;padding-left:18px;color:#33373d} .na{color:#4a4f57;font-style:italic}
-.kpis{display:flex;flex-wrap:wrap;gap:8px 22px;margin:8px 0} .kpis b{display:block;font-size:18px} .kpis span{color:#4a4f57;font-size:12.5px}
-table{width:100%;border-collapse:collapse;margin:6px 0} th,td{text-align:left;padding:5px 8px;border-bottom:1px solid #e3e5e8;vertical-align:top} th{font-size:12.5px;color:#4a4f57;font-weight:600}
-tr.lines td{font-size:12.5px;color:#33373d;border-bottom:1px solid #e3e5e8}
-dl{display:grid;grid-template-columns:200px 1fr;gap:4px 14px} dt{font-weight:600} dd{margin:0;color:#33373d}
-@media print{.bar{display:none} body{margin:0}}
-</style></head><body>
-<h1>Program Recap</h1>
-<p class="sub">Generated ${esc(st.label)} · ${esc(exportScopeText())}</p>
-<p class="sub">${esc(onlyId ? 'One program' : exportFilterText(state.filters))} · ${list.length} ${list.length===1?'program':'programs'}${withAccounts ? ' · with credited account lines' : ''}</p>
-<p class="sub">Incentive data refreshed ${esc(incRefreshed()||'—')}. MPO data dates are shown per program.</p>
-<div class="bar"><button onclick="window.print()">Print / Save as PDF</button></div>
-${sections || '<p class="na">No programs match these filters.</p>'}
-<section class="prog"><h2>Definitions</h2><dl>${EXPORT_DEFS.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl></section>
-</body></html>`;
+  const M = await recapModel(list);
+  const name = `kohler-program-recap-${st.file}.xlsx`;
+  let url = '';
+  if(window.KdhXlsx && list.length){ try{ url = URL.createObjectURL(KdhXlsx.book(recapBook(M, st, onlyId, list))); }catch(e){ url = ''; } }
+  const html = recapHtml(M, st, onlyId, list, withAccounts, url, name);
   const w = window.open('', '_blank');
   if(w && w.document){ w.document.open(); w.document.write(html); w.document.close(); }
   else downloadText(`kohler-program-recap-${st.file}.html`, html, 'text/html;charset=utf-8');
-  return {programs: list.length, html};
+  return {programs: list.length, html, model: M, xlsxUrl: url};
 }
 // EXPORTS (2026-10-04, Gavin: explicit buttons, not a hidden menu). Both read
 // the COMPLETE filtered set for the authorized roster -- never just the page.
@@ -2962,7 +3168,7 @@ function exportMenuHtml(onlyId){
     <details class="xopts"><summary>Options</summary><div class="xpanel">
       <label class="xopt"><input type="checkbox" id="xLines"> CSV: include credited account lines</label>
       <label class="xopt"><input type="checkbox" id="xAccts"> Recap: include account detail</label>
-      <p class="xnote">${E(exportScopeText())} · tracker figures as published · no dollar figures</p></div></details>
+      <p class="xnote">${E(exportScopeText())} · Recap: supplier billing, rep and DM payouts, program setup (print + Excel) · CSV: progress only, no dollar figures</p></div></details>
   </div>`;
 }
 function screenPrograms(){
@@ -4141,7 +4347,8 @@ function boot(){
 window.KohlerHub = {NO_BUY, state, programs:()=>PROGRAMS, sortedForRep, programStats, render, rebuild:rebuildPrograms, buyingFor, accountsFor, nextAccounts, closedFor,
   // library surface for the Accounts page (2026-09-30)
   lib:LIB, loadFor, distFor, progFacts, sellAsk, endsLabel, periodLabel, isActive, incBand, isDollarProgram, availability, supportAllows, isSupport,
-  mpoRepMonth, mpoMonthLoaded, scopes:MPO_SCOPES, incRows, RA, lockedRep:LOCKED_REP, roster:ROSTER, dmGroups:DM_GROUPS, brandScope:()=>BRAND_SCOPE};
+  mpoRepMonth, mpoMonthLoaded, scopes:MPO_SCOPES, incRows, RA, lockedRep:LOCKED_REP, roster:ROSTER, dmGroups:DM_GROUPS, brandScope:()=>BRAND_SCOPE,
+  exportRecap, recapModel, recapBook, programsForExport};
 // A manager's brand scope must be known BEFORE the first build, or Program
 // View would flash every supplier: wait for it (3 s at most), then boot.
 // Reps, rep previews and library mode boot at once.

@@ -20,6 +20,15 @@ device, a decision).
   `supabase/migrations/20261020090000_account_windows.sql` in the Supabase SQL Editor. Until then the pages say
   "Window tracking turns on once ..." and Window photos save exactly as before. Next step when you want it: the
   roll-up page (by rep / associate / DM / brand / program / competitor).
+- [ ] **Export Recap: supplier billing + rep and DM payouts (2026-10-19).** Built: Program View's Export Recap
+  now opens a print page (landscape) with Supplier Billing, Manager Payouts, Rep Payouts, Program Setup (and
+  Detail when "include account detail" is ticked) plus a Download Excel button with the same tabs. Money is
+  read only for managers (not in preview) from the program's stored Financial Terms. To use it: open each
+  manager-built program in Manage Programs -> Financial Terms and set the new Manager Payout and Supplier
+  Billback rules (old programs read None / Not stated, so nothing is billed until you set one). The hard-coded
+  trackers (Summer of Success, the summer MPOs ...) show performance with "Terms not stored on the site" and
+  stay out of billing totals. No migration needed. Check one real export before sending a supplier a bill.
+
 - [ ] **UPC Registration Audit for Vlad (2026-10-15).** Built: /upc-audit/ -- Vlad adds his FileMaker export
   and the ABC registration search (license -002; this year's file, plus next year's once renewals start), the
   page matches them on UPC in his browser and lists what still needs registering (Not Registered, UPC Not on
@@ -373,6 +382,11 @@ device, a decision).
   supplier's file of the filtered ledger: columns A-L (date, supplier, account, vendor, invoice, items, Total /
   Billback / Kohler Spend); Excel adds a Summary tab with totals incl. billback received / outstanding. No internal
   columns and no internal export. Any manager who can read the ledger may export what they see; off in preview.
+- [x] **Export Recap billing + payouts (2026-10-19).** One payout calculation (shared/payouts.js) used by Manage
+  Programs and the hub; Financial Terms gained Manager Payout and structured Supplier Billback (with cap);
+  Export Recap = print page + Excel (Supplier Billing, Manager Payouts, Rep Payouts, Rep Totals, Program Setup,
+  Detail). Incomplete / Projected / Final labelled on every total; DM exports cover their team only.
+
 - [x] **Supplier budget layout and New Expense PDFs (2026-10-16).** Nine grouped
   ledger columns, aligned financial figures, compact document actions, responsive
   cards and sorting by every original field. Budget editors can select PDFs in New

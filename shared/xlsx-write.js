@@ -5,6 +5,10 @@
  *   cell:   string | number | null | {v, link}   (link = an external URL; the
  *           cell shows v and opens the link when clicked, like iSellBeer's
  *           Photo column)
+ *           | {v, s, f}  (2026-10-19, Export Recap): s = 'bold' | 'money' |
+ *           'moneyBold' | 'num'; f = a formula WITHOUT the '=' (e.g.
+ *           'SUM(D2:D20)'), written with v as its cached value so the file
+ *           reads correctly before Excel recalculates.
  * Strings are written inline (no shared-string table); the zip is "stored"
  * (no compression), which every spreadsheet app reads. */
 (function (global) {
@@ -36,15 +40,17 @@
   }
   function x(s) { return String(s).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function col(i) { var s = ''; i++; while (i) { var m = (i - 1) % 26; s = String.fromCharCode(65 + m) + s; i = Math.floor((i - 1) / 26); } return s; }
+  var STY = { bold: 1, link: 2, money: 3, moneyBold: 4, num: 5 };
   function sheetXml(sh) {
     var links = [];
     var rows = sh.rows.map(function (r, ri) {
       return '<row r="' + (ri + 1) + '">' + r.map(function (v, ci) {
-        var ref = col(ci) + (ri + 1), link = null;
-        if (v && typeof v === 'object') { link = v.link; v = v.v; }
-        if (v == null || v === '') return '';
+        var ref = col(ci) + (ri + 1), link = null, sty = null, f = null;
+        if (v && typeof v === 'object') { link = v.link; sty = v.s; f = v.f; v = v.v; }
+        if ((v == null || v === '') && !f) return '';
         if (link) links.push({ ref: ref, url: link });
-        var st = link ? ' s="2"' : (sh.freeze && ri + 1 === sh.freeze ? ' s="1"' : '');
+        var st = link ? ' s="2"' : sty ? ' s="' + (STY[sty] || 0) + '"' : (sh.freeze && ri + 1 === sh.freeze ? ' s="1"' : '');
+        if (f) return '<c r="' + ref + '"' + st + '><f>' + x(f) + '</f>' + (typeof v === 'number' && isFinite(v) ? '<v>' + v + '</v>' : '') + '</c>';
         if (typeof v === 'number' && isFinite(v)) return '<c r="' + ref + '"' + st + '><v>' + v + '</v></c>';
         return '<c r="' + ref + '" t="inlineStr"' + st + '><is><t xml:space="preserve">' + x(v) + '</t></is></c>';
       }).join('') + '</row>';
@@ -68,16 +74,18 @@
       + sheets.map(function (s, i) { return '<Override PartName="/xl/worksheets/sheet' + (i + 1) + '.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'; }).join('') + '</Types>') });
     files.push({ name: '_rels/.rels', data: u('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>') });
     files.push({ name: 'xl/workbook.xml', data: u('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>'
-      + names.map(function (n, i) { return '<sheet name="' + x(n) + '" sheetId="' + (i + 1) + '" r:id="rId' + (i + 1) + '"/>'; }).join('') + '</sheets></workbook>') });
+      + names.map(function (n, i) { return '<sheet name="' + x(n) + '" sheetId="' + (i + 1) + '" r:id="rId' + (i + 1) + '"/>'; }).join('') + '</sheets><calcPr calcId="191029" fullCalcOnLoad="1"/></workbook>') });
     files.push({ name: 'xl/_rels/workbook.xml.rels', data: u('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
       + sheets.map(function (s, i) { return '<Relationship Id="rId' + (i + 1) + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet' + (i + 1) + '.xml"/>'; }).join('')
       + '<Relationship Id="rId' + (sheets.length + 1) + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>') });
-    // styles: 0 normal, 1 bold (header row), 2 blue underlined (links)
+    // styles: 0 normal, 1 bold (header row), 2 blue underlined (links), 3 currency, 4 bold currency, 5 number
     files.push({ name: 'xl/styles.xml', data: u('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+      + '<numFmts count="1"><numFmt numFmtId="164" formatCode="&quot;$&quot;#,##0.00"/></numFmts>'
       + '<fonts count="3"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font><font><u/><sz val="11"/><color rgb="FF0563C1"/><name val="Calibri"/></font></fonts>'
       + '<fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border/></borders>'
       + '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'
-      + '<cellXfs count="3"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs>'
+      + '<cellXfs count="6"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/>'
+      + '<xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="1" fillId="0" borderId="0" xfId="0" applyNumberFormat="1" applyFont="1"/><xf numFmtId="3" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/></cellXfs>'
       + '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>') });
     sheets.forEach(function (s, i) {
       var r = sheetXml(s);

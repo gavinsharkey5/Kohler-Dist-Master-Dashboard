@@ -468,10 +468,25 @@ function stepHtml(n, errs){
       <div class="row3">${field('Paid Only When This Objective Is Met', `<select data-f="${i}" data-k="qualifier"><option value="">— None —</option>${d.objectives.map(x=>`<option value="${x.id}" ${it.qualifier===x.id?'selected':''}>${E(objName(x))}</option>`).join('')}</select>`)}
       ${field('Team Condition', `<select data-f="${i}" data-k="houseEffect"><option value="" ${!it.houseEffect?'selected':''}>— None —</option><option value="half" ${it.houseEffect==='half'?'selected':''}>50% payout if the team goal is missed</option><option value="none" ${it.houseEffect==='none'?'selected':''}>No payout if the team goal is missed</option><option value="rate" ${it.houseEffect==='rate'?'selected':''}>Higher rate when team + individual are met</option></select>`)}
       ${it.houseEffect==='rate' ? field('Rate When Both Are Met ($)', `<input type="number" min="0" step="0.01" data-f="${i}" data-k="rateBoth" value="${E(it.rateBoth==null?'':it.rateBoth)}">`) : ''}</div>
-      ${field('Supplier Billback Terms', `<input type="text" data-f="${i}" data-k="billback" value="${E(it.billback||'')}" placeholder="Leave blank unless the supplier stated them">`)}</div>`; }).join('');
+      ${field('Billback Notes', `<input type="text" data-f="${i}" data-k="billback" value="${E(it.billback||'')}" placeholder="The supplier's own wording, if any">`)}</div>`; }).join('');
+    const PT = window.KdhPayouts; const M = PT.normalize(F).manager, B = PT.normalize(F).billback;
+    const opt = (v, cur, label) => `<option value="${v}" ${cur===v?'selected':''}>${label}</option>`;
+    const mgrBlock = `<div class="obj" id="finMgr"><div class="obj-h"><b>Manager Payout</b><span class="tag">Optional</span></div>
+      <div class="row3">${field('Rule', `<select id="fm_kind">${opt('none',M.kind,'None')}${opt('flat_team',M.kind,'Flat $ per DM when their team meets the goal')}${opt('per_qualified',M.kind,'$ per qualified rep on their team')}${opt('pct_team',M.kind,'% of their team’s rep payouts')}</select>`, 'A DM is the district manager of the rep’s group.')}
+      ${M.kind==='flat_team'||M.kind==='per_qualified' ? field(M.kind==='flat_team'?'Amount per DM ($)':'Amount per Qualified Rep ($)', `<input type="number" min="0" step="0.01" id="fm_amount" value="${E(M.amount==null?'':M.amount)}">`) : ''}
+      ${M.kind==='pct_team' ? field('Percent of Team Rep Payouts', `<input type="number" min="0" max="100" step="0.1" id="fm_pct" value="${E(M.pct==null?'':M.pct)}">`) : ''}
+      ${M.kind==='flat_team' ? field('Team Goal Means', `<select id="fm_when">${opt('program_team',M.when,'The program’s team goal is met')}${opt('all_qualified',M.when,'Every rep on their team qualifies')}</select>`) : ''}</div></div>`;
+    const bbBlock = `<div class="obj" id="finBb"><div class="obj-h"><b>Supplier Billback</b><span class="tag">What the supplier funds</span></div>
+      <div class="row3">${field('Supplier Funds', `<select id="fb_kind">${opt('not_stated',B.kind,'Not stated')}${opt('rep',B.kind,'100% of rep payouts')}${opt('rep_mgr',B.kind,'100% of rep + manager payouts')}${opt('pct',B.kind,'A stated % of payouts')}${opt('per_unit',B.kind,'A fixed $ per unit of an objective')}${opt('none',B.kind,'None')}</select>`, 'Leave on Not stated unless the supplier agreed to fund it. Nothing is billed by default.')}
+      ${B.kind==='pct' ? field('Percent', `<input type="number" min="0" max="100" step="0.1" id="fb_pct" value="${E(B.pct==null?'':B.pct)}">`)+field('Of', `<select id="fb_basis">${opt('rep',B.pctBasis,'Rep payouts')}${opt('rep_mgr',B.pctBasis,'Rep + manager payouts')}</select>`) : ''}
+      ${B.kind==='per_unit' ? field('Rate ($ per Unit)', `<input type="number" min="0" step="0.01" id="fb_rate" value="${E(B.rate==null?'':B.rate)}">`)+field('Objective', `<select id="fb_obj">${d.objectives.map(x=>opt(x.id,B.objectiveId,E(objName(x)))).join('')}</select>`) : ''}</div>
+      ${B.kind!=='not_stated'&&B.kind!=='none' ? `<div class="row3">${field('Cap ($, Optional)', `<input type="number" min="0" step="0.01" id="fb_cap" value="${E(B.cap==null?'':B.cap)}">`)}</div>` : ''}</div>`;
     return `<h2>Financial Terms</h2><div class="money"><h3>Manager-Only</h3><p class="lock">Participants never receive these fields. They are stored in a separate table the rep sign-in cannot read, and every participant-facing query, export and notice is built without them.</p></div>
+      <h3 class="sec">Rep Payouts</h3>
       ${rows||'<div class="mpempty" style="margin-top:12px">No payout terms yet. A program can be approved without them (an MPO usually has none).</div>'}
       <div class="btnrow"><button class="btn sm" data-act="add-fin">Add Payout Term</button></div>
+      <h3 class="sec">Manager Payout</h3>${mgrBlock}
+      <h3 class="sec">Supplier Billback</h3>${bbBlock}
       ${field('Notes for the Approver', `<textarea id="fin_notes">${E(F.notes||'')}</textarea>`, 'Unclear supplier wording goes here (e.g. "Four Loko $1.00 rate: all cases or only after positive growth?") so it is decided, not guessed.')}`;
   }
   if(n===8) return reviewHtml(errs);
@@ -672,7 +687,10 @@ function collect(){
     d.objectives.forEach(o=>{ document.querySelectorAll(`.obj[data-obj="${o.id}"] [data-o="${o.id}"]`).forEach(el=>{ const k = el.dataset.k; const v = el.type==='checkbox' ? el.checked : el.value; if(k.includes('.')){ const [a,b] = k.split('.'); o[a] = o[a]||{}; o[a][b] = v; } else o[k] = k==='nonBuyDays' ? Number(v) : v; }); normalizeObjective(o); }); }
   if(S.step===6){ d.objectives.forEach(o=>{ const g = o.goal; const r = document.querySelector(`input[name=gt_${o.id}]:checked`); if(r) g.type = r.value;
     document.querySelectorAll(`[data-g="${o.id}"]`).forEach(el=>{ const k = el.dataset.k; if(k==='perRep'){ g.perRep = g.perRep||{}; g.perRep[el.dataset.rep] = el.value===''?'':Number(el.value); } else if(k==='pctPercent'){ g.pct = el.value===''?'':Number(el.value)/100; } else g[k] = el.value===''?'':(k==='rounding'?el.value:Number(el.value)); }); }); }
-  if(S.step===7 && $('fin_notes')){ const F = S.fin; F.items = F.items||[]; document.querySelectorAll('[data-f]').forEach(el=>{ const it = F.items[Number(el.dataset.f)]; if(!it) return; const k = el.dataset.k; it[k] = (k==='rate'||k==='rateBoth') ? (el.value===''?null:Number(el.value)) : el.value; }); F.notes = (document.getElementById('fin_notes')||{}).value||''; }
+  if(S.step===7 && $('fin_notes')){ const F = S.fin; F.items = F.items||[]; document.querySelectorAll('[data-f]').forEach(el=>{ const it = F.items[Number(el.dataset.f)]; if(!it) return; const k = el.dataset.k; it[k] = (k==='rate'||k==='rateBoth') ? (el.value===''?null:Number(el.value)) : el.value; }); F.notes = (document.getElementById('fin_notes')||{}).value||'';
+    const nv = id => { const el = document.getElementById(id); return el ? (el.value===''?null:Number(el.value)) : null; }, sv = (id, dflt) => { const el = document.getElementById(id); return el ? el.value : dflt; };
+    const mk = sv('fm_kind', 'none'); F.manager = {kind:mk, amount:(mk==='flat_team'||mk==='per_qualified') ? nv('fm_amount') : null, pct: mk==='pct_team' ? nv('fm_pct') : null, when: mk==='flat_team' ? sv('fm_when','program_team') : 'program_team'};
+    const bk = sv('fb_kind', 'not_stated'); F.billback = {kind:bk, pct: bk==='pct' ? nv('fb_pct') : null, pctBasis: bk==='pct' ? sv('fb_basis','rep') : 'rep', rate: bk==='per_unit' ? nv('fb_rate') : null, objectiveId: bk==='per_unit' ? sv('fb_obj','') : '', cap: (bk!=='not_stated'&&bk!=='none') ? nv('fb_cap') : null}; }
   S.dirty = true;
 }
 
@@ -683,24 +701,14 @@ async function evaluateFor(def, reps){
   return out;
 }
 function supTag(s){ return `<span class="sup ${s}">${E(KP.SUPPORT_LABEL[s]||s)}</span>`; }
-function payoutPreview(def, F, R){
-  // projected payouts where the formula and data exist; never a profit figure, never a billback inference
-  if(!F || !F.items || !F.items.length) return '<p class="muted">No payout terms entered.</p>';
-  const lines = F.items.map((it,i)=>{
-    const o = it.objectiveId ? R.objectives.find(x=>x.id===it.objectiveId) : (R.primary||R.objectives[0]);
-    if(!o) return `<li>Payout ${i+1}: no objective to apply it to.</li>`;
-    const qual = it.qualifier ? R.objectives.find(x=>x.id===it.qualifier) : null;
-    const gated = qual && qual.status!=='achieved';
-    if(o.support!=='supported') return `<li>${E(o.label)}: cannot project — ${E(KP.SUPPORT_LABEL[o.support])}.</li>`;
-    let accrued = null, atGoal = null, how = '';
-    if(it.kind==='per_unit' && it.rate!=null){ accrued = o.value*it.rate; atGoal = o.goal ? o.goal*it.rate : null; how = '$'+it.rate+' × '+fmt(o.value)+' '+o.unit; }
-    else if(it.kind==='flat' && it.rate!=null){ accrued = o.status==='achieved' ? it.rate : 0; atGoal = it.rate; how = 'flat $'+it.rate+' when met'; }
-    else how = it.kind+' terms are saved; no projection formula is applied in this version.';
-    if(gated && accrued!=null){ how += ' · qualifier "'+(qual.label)+'" not met → $0 accrued'; accrued = 0; }
-    if(it.houseEffect==='half') how += ' · 50% if the house goal is missed (house result not computed here)';
-    return `<li><b>${E(o.label)}</b> — ${E(how)}${accrued!=null?`. Accrued from results to date: <b>$${fmt(accrued)}</b>`:''}${atGoal!=null?` · at goal: $${fmt(atGoal)}`:''} · final approved payout: not until closeout.</li>`;
-  });
-  return `<ul>${lines.join('')}</ul><p class="muted">Incentive payouts are not gross profit and no supplier billback is inferred from them.</p>`;
+function payoutPreview(def, F, R, rep){
+  // accrued payouts from results to date, through the ONE payout calculation (shared/payouts.js); never a profit figure
+  const PT = window.KdhPayouts; const T = PT.normalize(F);
+  if(!T.items.length || !R) return '';
+  const P = PT.repPayout(T, R, {team:{computed:false}});
+  const name = id => { const o = (def.objectives||[]).find(x=>x.id===id); return o ? objName(o) : 'Whole program'; };
+  const lines = P.terms.map(t=>`<li><b>${E(name(t.objectiveId))}</b> — ${t.amount==null ? E(t.text) : 'Accrued to date: <b>'+E(PT.money(t.amount))+'</b>'+(t.how?' ('+E(t.how)+')':'')}${t.flags.length?' · '+E(t.flags.join(' · ')):''}</li>`).join('');
+  return `<p><b>Projected payout for ${E(rep||'the first participant')}</b> (results to date; the team result is computed in the hub's Export Recap):</p><ul class="rs-list">${lines}</ul><p class="muted">Total ${E(PT.money(P.total))}${P.incomplete?' · Incomplete':''}. Final approved payout: not until closeout.</p>`;
 }
 // ---- Review & Submit (step 8) and the approver's review page share reviewSections()
 function reviewHtml(errs){
@@ -759,7 +767,10 @@ function reviewSections(d, F, R, reps, first, opt){
   const objDates = (d.objectives||[]).map(o=>{ const r = KP.objectiveRule(o, pe).filter(x=>!/different qualifying products|cases per account|premise accounts only|alternatives|unlocks/.test(x)); const base = isMerch(o) ? 'Records dated '+(o.actDates==='custom'&&o.followOn.start?KP.periodText(o.followOn):'in the program period')+' count; no purchase window' : usesLookback(o) ? '' : usesComparison(o) ? '' : 'Purchases in the program period; no lookback or comparison period'; return `<div><dt>${E(objName(o))}</dt><dd>${E([base].concat(r.map(x=>x.charAt(0).toUpperCase()+x.slice(1))).filter(Boolean).join(' · '))}</dd></div>`; }).join('');
   const s4 = sec('dates', 'Dates & Rules', KP.periodText(pe), kv(dateRows)+(objDates?`<dl class="kvrows">${objDates}</dl>`:''), false, secErrs([5]));
   // 5 finance (manager-only)
-  const finBody = `<p class="lock">Manager-only. Participants never receive these fields.</p>${F&&F.items&&F.items.length ? `<ul class="rs-list">${F.items.map((it,i)=>{ const o = it.objectiveId ? (d.objectives||[]).find(x=>x.id===it.objectiveId) : null; return `<li><b>Payout ${i+1}</b> · ${E(o?objName(o):'Whole program')} · ${E(it.kind==='flat'?'Flat $'+(it.rate==null?'—':it.rate)+' when met':it.kind==='per_unit'?'$'+(it.rate==null?'—':it.rate)+' per unit':it.kind==='tiered'?'Tiered':'Package rates')}${it.qualifier?' · paid only when '+E(objName((d.objectives||[]).find(x=>x.id===it.qualifier)||{label:'?'}))+' is met':''}${it.houseEffect?' · team condition: '+E(it.houseEffect):''}</li>`; }).join('')}</ul>` : '<p class="muted">No payout terms. A program can be approved without them.</p>'}${F&&F.notes?`<p><b>Notes for the approver:</b> ${E(F.notes)}</p>`:''}`;
+  const PT = window.KdhPayouts; const TF = PT.normalize(F); const objNm = id => { const o = id ? (d.objectives||[]).find(x=>x.id===id) : null; return o ? objName(o) : (id ? '?' : 'Whole program'); };
+  const bbRule = Object.assign({}, TF.billback, {objectiveLabel: TF.billback.objectiveId ? objNm(TF.billback.objectiveId) : ''});
+  const finBody = `<p class="lock">Manager-only. Participants never receive these fields.</p>${TF.items.length ? `<ul class="rs-list">${TF.items.map((it,i)=>`<li><b>Payout ${i+1}</b> · ${E(PT.termText(it, objNm))}</li>`).join('')}</ul>` : '<p class="muted">No payout terms. A program can be approved without them.</p>'}
+    <ul class="rs-list"><li><b>Manager payout</b> · ${E(PT.managerRuleText(TF.manager))}</li><li><b>Supplier billback</b> · ${E(PT.basisText(bbRule))}</li></ul>${payoutPreview(d, F, first, reps&&reps[0])}${F&&F.notes?`<p><b>Notes for the approver:</b> ${E(F.notes)}</p>`:''}`;
   const s5 = `<details class="rsec money" id="rs_finance"><summary><span class="rs-t">Financial Terms</span><span class="rs-s">${F&&F.items&&F.items.length ? F.items.length+' payout '+plural(F.items.length,'term') : 'None'} · manager-only</span>${edit?`<button type="button" class="btn sm outline rs-e" data-act="edit-step" data-step="7">Edit</button>`:''}<i class="rs-c" aria-hidden="true"></i></summary><div class="rs-b">${finBody}</div></details>`;
   // 6 data readiness (not configuration: what the site can compute today)
   const objR = first ? first.objectives : []; const sup = objR.map(r=>r.support);
@@ -945,7 +956,7 @@ document.addEventListener('change', e=>{
   if(el.name && /^gt_/.test(el.name)){ collect(); renderWizard({keep:true}); return; }
   if(el.dataset.g && (el.dataset.k==='pctPercent' || el.dataset.k==='rounding')){ collect(); renderWizard({keep:true}); return; }
   if(el.id==='pe_type' || el.id==='pe_start' || el.id==='pe_end'){ collect(); renderWizard({keep:true}); return; }
-  if(el.dataset.f && (el.dataset.k==='kind' || el.dataset.k==='houseEffect')){ collect(); renderWizard({keep:true}); return; }
+  if((el.dataset.f && (el.dataset.k==='kind' || el.dataset.k==='houseEffect')) || el.id==='fm_kind' || el.id==='fb_kind'){ collect(); renderWizard({keep:true}); return; }
   S.dirty = true; savedLine();
 });
 document.addEventListener('input', e=>{

@@ -3526,3 +3526,31 @@ cards (`[data-rollout-off]`; associate/index.html has a `[data-rollout-only]` Pr
 any other in-site link is stopped with "Coming soon" (account links on hub / MPO cards). signature-home.js
 returns early for them. REP_PATHS / ASSOCIATE_PATHS are untouched, so false restores the full site.
 Tag kdh-user.js 20261021r everywhere. Tests (scratchpad): rollout_mw_test.mjs (56), rollout_ui.mjs (18).
+
+
+## Export Recap: supplier billing + rep and DM payouts (2026-10-19)
+
+Program View's Export Recap (hub.js `exportRecap`) is now the billing recap: `recapModel(list)` builds one
+model, `recapHtml()` draws the print page (landscape letter, light / dark from the opener) and `recapBook()`
+the Excel workbook (shared/xlsx-write.js, now loaded by the hub; it gained `{v, s:'money'|'moneyBold'|'num'|
+'bold', f}` cells -- f = a formula without '=', written WITH its cached value -- and `fullCalcOnLoad`). Tabs:
+Supplier Billing (subtotal per supplier, grand total, SUM formulas), Manager Payouts, Rep Payouts (one block
+per program, objective column groups Goal / Actual / Status / Payout), Rep Totals (several programs), Program
+Setup, Detail (credited lines). ONE PAYOUT CALCULATION: shared/payouts.js (`KdhPayouts`: repPayout /
+termPayout / managerPayout / billback / teamResult) -- Manage Programs' payoutPreview and the recap both
+call it; never compute a payout anywhere else. program_finance.terms gained `manager` {kind none | flat_team
+(when program_team | all_qualified) | per_qualified | pct_team} and `billback` {kind not_stated | none | rep |
+rep_mgr | pct (pctBasis) | per_unit (objectiveId) , cap}; the old per-item billback text is "Billback notes".
+Old terms read None / Not stated and NOTHING is billed by default. Rules: per_unit = rate x actual, flat =
+rate when met, $0 when the qualifier is not met; a tier only for a number or % of goal threshold, else
+"Tier not determinable: ..." (blank, Incomplete); package rates only on an exact package match (unmatched
+listed); team conditions only when the program's house goal is computed for EVERY participant (all are
+evaluated even in a DM-scoped export), else "Team condition not applied"; awaiting_* objectives get status
+text and mark totals Incomplete; Final = closed + ended, else "Projected (to date)". Hard-coded tracker
+programs show performance with "Terms not stored on the site" and are out of billing totals; TEST programs
+never appear. Money is computed only for a signed-in manager in Manager Mode, not in preview (rep / associate /
+preview never request program_finance -- RLS also refuses). The CSV stays progress-only, no dollars.
+Tests (scratchpad): payouts_test.mjs (33, engine), recap_test.mjs (77, real hub over a stubbed Supabase with
+fake programs / sales; Chrome, Edge would not launch) + recap_check.py (openpyxl: names, headers, numeric
+cells, totals tie). Tags: hub.js 20261019a (also in accounts/, exceptions/, performance/), payouts.js /
+xlsx-write.js / manage.js 20261019a.
