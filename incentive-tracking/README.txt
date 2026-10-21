@@ -5722,3 +5722,11 @@ the new RDE account export saved over yuengling_retention_fall_draft_on_detail.c
 Sengebush's and Robin Feldman's Flight accounts are empty-keg rows); 15 flagged
 buyers with no kegs excluded. Anthony Palmisano now holds Lager (26 of 26).
 Refresh: save both draft exports over those two files, then generate.py.
+
+INDUSTRIAL ARTS: SPLIT EXPORTS (2026-10-21)
+The Target Account Launch export now arrives as two files, OFF (Placement Count + Cases) and ON
+(Buyer Count + Cases), with no Package / Premise / Date column. Combine them first:
+  python3 incentive-tracking/convert_industrial_arts.py <..._LAUNCH_OFF_...csv> <..._LAUNCH_ON_...csv>
+then run generate.py. The converter keeps each row's date from the previous industrial_arts.csv and
+dates new rows with the pull day (on-premise draft pays only for an OCTOBER keg). Ask Gavin to add the
+Date column back before November, or a late-October keg pulled in November reads as November.

@@ -165815,6 +165815,51 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-01"
           },
           {
+            "customer": "Bridgeview Liquors",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Bayonne",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Town House Liq (A)& Wine",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Kearny Plaza Discount Liq",
             "skus": 2,
             "skuList": [
@@ -165841,20 +165886,27 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-06"
           }
         ],
-        "openedCount": 4,
+        "openedCount": 7,
         "progressCount": 0,
-        "skuPlacements": 19,
-        "caseVolume": 37.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "skuPlacements": 31,
+        "caseVolume": 55.0,
+        "draftAccounts": [
+          {
+            "customer": "OTS BY LLC (Aqua)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 1,
         "draftHoldCount": 0,
-        "openedPayout": 200,
-        "draftPayout": 0,
-        "payout": 200,
+        "openedPayout": 350,
+        "draftPayout": 100,
+        "payout": 450,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 4,
+        "totalNew": 8,
         "offPremTargets": [
           {
             "customer": "Bbb Liquors(Costco)",
@@ -165873,20 +165925,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 1607.0
           },
           {
-            "customer": "Bridgeview Liquors",
-            "cases2026": 1449.0
-          },
-          {
             "customer": "BuyRite Liquors - Kearny",
             "cases2026": 1126.0
           },
           {
             "customer": "Shop Rite Wine & Spirits Kearny",
             "cases2026": 985.0
-          },
-          {
-            "customer": "ShopRite Wines & Spirits of Bayonne",
-            "cases2026": 837.0
           },
           {
             "customer": "Seabra Liquors",
@@ -165907,10 +165951,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Cottage Liquors",
             "cases2026": 542.0
-          },
-          {
-            "customer": "Town House Liq (A)& Wine",
-            "cases2026": 512.0
           },
           {
             "customer": "Belleville Liquors",
@@ -165935,17 +165975,35 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Liquor City",
             "cases2026": 366.0
+          },
+          {
+            "customer": "Harry's Wine Cellar",
+            "cases2026": 328.0
+          },
+          {
+            "customer": "White Oaks Liquors",
+            "cases2026": 294.0
+          },
+          {
+            "customer": "Eddy's Wine & Liq",
+            "cases2026": 287.0
           }
         ],
-        "offPremTargetCount": 84
+        "offPremTargetCount": 81
       },
       "Allison Scott": {
         "accounts": [],
         "openedCount": 0,
         "progressCount": 0,
         "skuPlacements": 0,
-        "caseVolume": 6.0,
+        "caseVolume": 7.0,
         "draftAccounts": [
+          {
+            "customer": "The Yard",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
           {
             "customer": "Maggie's Town Tav.(P)",
             "bbl": 0.25,
@@ -165954,8 +166012,8 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Blackjack Mulligans (Hawthorne)",
-            "bbl": 0.25,
-            "qualifies": false,
+            "bbl": 0.75,
+            "qualifies": true,
             "hold": false
           },
           {
@@ -165971,15 +166029,15 @@ const PROGRAM_DATA_2026_10 = {
             "hold": false
           }
         ],
-        "draftNewCount": 4,
-        "draftQualifiedCount": 0,
+        "draftNewCount": 5,
+        "draftQualifiedCount": 1,
         "draftHoldCount": 0,
         "openedPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "draftPayout": 100,
+        "payout": 100,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 1,
         "offPremTargets": [],
         "offPremTargetCount": 0
       },
@@ -165998,11 +166056,45 @@ const PROGRAM_DATA_2026_10 = {
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 16.0,
+            "cases": 19.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-06"
+          },
+          {
+            "customer": "Dittrick's W&L (A)",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 12.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Buy Rite Liq (A)",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 8.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Witty's Fine Wine & Spirt",
@@ -166021,6 +166113,52 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-08"
           },
           {
+            "customer": "Bottle King Springfield",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Central Avenue Wine & Liq",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 8.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Wine Anthology (A)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Jersey Fine Wines",
             "skus": 3,
             "skuList": [
@@ -166033,6 +166171,48 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-06"
+          },
+          {
+            "customer": "Milton Liquors",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Drinq Linq The Liquor Store",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Shop Rite of Westfield",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "House of Wine & Liquor Westfield",
@@ -166049,17 +166229,57 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-06"
           },
           {
-            "customer": "Drinq Linq The Liquor Store",
-            "skus": 2,
+            "customer": "Total Wine & More (Union)",
+            "skus": 3,
             "skuList": [
-              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
-              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
             "cases": 3.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-06"
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "M & M Liquors",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Providence Liquors",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 4.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Home Wines & Liquors (360 Union)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Buyrite Liquors",
@@ -166067,17 +166287,17 @@ const PROGRAM_DATA_2026_10 = {
             "skuList": [
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 1.0,
+            "cases": 2.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-06"
           }
         ],
-        "openedCount": 6,
+        "openedCount": 17,
         "progressCount": 0,
-        "skuPlacements": 22,
-        "caseVolume": 47.0,
+        "skuPlacements": 63,
+        "caseVolume": 118.0,
         "draftAccounts": [
           {
             "customer": "Bareburger (Westfield)",
@@ -166089,17 +166309,13 @@ const PROGRAM_DATA_2026_10 = {
         "draftNewCount": 1,
         "draftQualifiedCount": 1,
         "draftHoldCount": 0,
-        "openedPayout": 300,
+        "openedPayout": 850,
         "draftPayout": 100,
-        "payout": 400,
+        "payout": 950,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 7,
+        "totalNew": 18,
         "offPremTargets": [
-          {
-            "customer": "Total Wine & More (Union)",
-            "cases2026": 3617.0
-          },
           {
             "customer": "Bayway World Of Liquor",
             "cases2026": 1767.0
@@ -166107,10 +166323,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Metro Liquor (Linden)",
             "cases2026": 1483.0
-          },
-          {
-            "customer": "Shop Rite of Westfield",
-            "cases2026": 1329.0
           },
           {
             "customer": "Shoppers Paradise Liq",
@@ -166127,14 +166339,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Denny's Liquors",
             "cases2026": 840.0
-          },
-          {
-            "customer": "Wine Anthology (A)",
-            "cases2026": 839.0
-          },
-          {
-            "customer": "Dittrick's W&L (A)",
-            "cases2026": 789.0
           },
           {
             "customer": "Fenrose Wine & Liq",
@@ -166157,10 +166361,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 638.0
           },
           {
-            "customer": "Bottle King Springfield",
-            "cases2026": 638.0
-          },
-          {
             "customer": "Queen City Liquors",
             "cases2026": 619.0
           },
@@ -166173,30 +166373,71 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 563.0
           },
           {
-            "customer": "Home Wines & Liquors (360 Union)",
-            "cases2026": 561.0
+            "customer": "Mega Liquors",
+            "cases2026": 457.0
+          },
+          {
+            "customer": "Payless Liquor_2",
+            "cases2026": 440.0
+          },
+          {
+            "customer": "Home Wine & Liquors (1850 Union)",
+            "cases2026": 414.0
+          },
+          {
+            "customer": "Pied Piper Liquor",
+            "cases2026": 394.0
+          },
+          {
+            "customer": "Rotondo's Liquor",
+            "cases2026": 376.0
+          },
+          {
+            "customer": "America Liquors",
+            "cases2026": 368.0
           }
         ],
-        "offPremTargetCount": 72
+        "offPremTargetCount": 61
       },
       "Anthony Palmisano": {
         "accounts": [
           {
+            "customer": "Usa Wine Traders (Wanaque)",
+            "skus": 9,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 24.0,
+            "opened": true,
+            "payout": 100,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Uncorked Wines & Spirits (West Milford)",
-            "skus": 6,
+            "skus": 7,
             "skuList": [
               "Industrial Arts Metric Pils 6/4/16 oz Can",
               "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
               "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 16.0,
+            "cases": 17.0,
             "opened": true,
-            "payout": 70,
+            "payout": 80,
             "toOpen": 0,
-            "date": "2026-10-02"
+            "date": "2026-10-21"
           },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
@@ -166216,36 +166457,79 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-06"
           },
           {
-            "customer": "Usa Wine Traders (Wanaque)",
-            "skus": 6,
+            "customer": "Greenwood Lake Disc.(P)",
+            "skus": 5,
             "skuList": [
-              "Industrial Arts Forever Fest 6/4/16 oz Can",
-              "Industrial Arts Impact Wrench 6/4/16 oz Can",
-              "Industrial Arts Metric Pils 6/4/16 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 7.0,
+            "cases": 24.0,
             "opened": true,
-            "payout": 70,
+            "payout": 60,
             "toOpen": 0,
-            "date": "2026-10-08"
+            "date": "2026-10-21"
           },
           {
-            "customer": "Greenwood Lake Disc.(P)",
-            "skus": 4,
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "skus": 5,
             "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 10.0,
+            "cases": 11.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Empire Wine & Liquor",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 8.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-08"
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Roserne Pkg Store South",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 13.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Ringwood W&L",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 11.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Highland Wine&Liquor Inc",
@@ -166262,6 +166546,20 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-09"
           },
           {
+            "customer": "Home Wine and Liquors",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "George's Market (A)",
             "skus": 2,
             "skuList": [
@@ -166275,19 +166573,6 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-07"
           },
           {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "skus": 2,
-            "skuList": [
-              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
-              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
-            ],
-            "cases": 3.0,
-            "opened": false,
-            "payout": 0,
-            "toOpen": 1,
-            "date": "2026-10-06"
-          },
-          {
             "customer": "Best Cellars (Wanaque)",
             "skus": 1,
             "skuList": [
@@ -166298,46 +166583,22 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 0,
             "toOpen": 2,
             "date": "2026-10-02"
-          },
-          {
-            "customer": "Roserne Pkg Store South",
-            "skus": 1,
-            "skuList": [
-              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
-            ],
-            "cases": 7.0,
-            "opened": false,
-            "payout": 0,
-            "toOpen": 2,
-            "date": "2026-10-06"
-          },
-          {
-            "customer": "Ringwood W&L",
-            "skus": 1,
-            "skuList": [
-              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can"
-            ],
-            "cases": 5.0,
-            "opened": false,
-            "payout": 0,
-            "toOpen": 2,
-            "date": "2026-10-01"
           }
         ],
-        "openedCount": 5,
-        "progressCount": 5,
-        "skuPlacements": 32,
-        "caseVolume": 90.0,
+        "openedCount": 10,
+        "progressCount": 2,
+        "skuPlacements": 51,
+        "caseVolume": 155.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 300,
+        "openedPayout": 580,
         "draftPayout": 0,
-        "payout": 300,
+        "payout": 580,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 5,
+        "totalNew": 10,
         "offPremTargets": [
           {
             "customer": "Turnpike Discount Liquors",
@@ -166380,10 +166641,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 4676.0
           },
           {
-            "customer": "Empire Wine & Liquor",
-            "cases2026": 3432.0
-          },
-          {
             "customer": "Bloomingdale Discount Liq",
             "cases2026": 3317.0
           },
@@ -166400,32 +166657,41 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 1886.0
           },
           {
-            "customer": "Home Wine and Liquors",
-            "cases2026": 1848.0
-          },
-          {
             "customer": "Vault Liquors",
             "cases2026": 789.0
           }
         ],
-        "offPremTargetCount": 17
+        "offPremTargetCount": 15
       },
       "Brian Sengebush": {
         "accounts": [],
         "openedCount": 0,
         "progressCount": 0,
         "skuPlacements": 0,
-        "caseVolume": 0.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "caseVolume": 2.0,
+        "draftAccounts": [
+          {
+            "customer": "Newton Country Club",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "Sparta Lanes (Pino)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 2,
+        "draftQualifiedCount": 1,
         "draftHoldCount": 0,
         "openedPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "draftPayout": 100,
+        "payout": 100,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 1,
         "offPremTargets": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
@@ -166472,6 +166738,32 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-07"
           },
           {
+            "customer": "Buy Rite Discount Liquor",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Exquisite W & L (A)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Wineland",
             "skus": 2,
             "skuList": [
@@ -166485,16 +166777,17 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-08"
           },
           {
-            "customer": "Morlot W & L (A)",
-            "skus": 1,
+            "customer": "Radburn Liquors (A",
+            "skus": 2,
             "skuList": [
-              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 1.0,
+            "cases": 2.0,
             "opened": false,
             "payout": 0,
-            "toOpen": 2,
-            "date": "2026-10-02"
+            "toOpen": 1,
+            "date": "2026-10-21"
           },
           {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
@@ -166507,22 +166800,41 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 0,
             "toOpen": 2,
             "date": "2026-10-02"
+          },
+          {
+            "customer": "Morlot W & L (A)",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-02"
           }
         ],
         "openedCount": 1,
-        "progressCount": 3,
-        "skuPlacements": 8,
-        "caseVolume": 12.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "progressCount": 6,
+        "skuPlacements": 14,
+        "caseVolume": 26.0,
+        "draftAccounts": [
+          {
+            "customer": "Ridgewood Country Club",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 1,
         "draftHoldCount": 0,
         "openedPayout": 50,
-        "draftPayout": 0,
-        "payout": 50,
+        "draftPayout": 100,
+        "payout": 150,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 1,
+        "totalNew": 2,
         "offPremTargets": [
           {
             "customer": "Garden Liquors (P)",
@@ -166533,16 +166845,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 12469.0
           },
           {
-            "customer": "Exquisite W & L (A)",
-            "cases2026": 11863.5
-          },
-          {
             "customer": "Buy Rite Of Main St Lodi",
             "cases2026": 11690.7
-          },
-          {
-            "customer": "Buy Rite Discount Liquor",
-            "cases2026": 9703.2
           },
           {
             "customer": "Figlar's (P)",
@@ -166603,9 +166907,17 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Hollywd Liq&Deli (A)",
             "cases2026": 3223.7
+          },
+          {
+            "customer": "JR Sports Bar & Liquors(Z)",
+            "cases2026": 3027.0
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 2969.0
           }
         ],
-        "offPremTargetCount": 38
+        "offPremTargetCount": 35
       },
       "Dan Lagala": {
         "accounts": [
@@ -166626,45 +166938,76 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-05"
           },
           {
+            "customer": "Liquor City(A)Cliffside",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Buy Rite Of Fairview",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Andres Wine & Spirits",
             "skus": 2,
             "skuList": [
               "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 5.0,
+            "cases": 10.0,
             "opened": false,
             "payout": 0,
             "toOpen": 1,
             "date": "2026-10-08"
+          },
+          {
+            "customer": "Linwood Wine-Hudson Light",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 2.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-21"
           }
         ],
-        "openedCount": 1,
-        "progressCount": 1,
-        "skuPlacements": 7,
-        "caseVolume": 10.0,
+        "openedCount": 2,
+        "progressCount": 3,
+        "skuPlacements": 13,
+        "caseVolume": 37.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 60,
+        "openedPayout": 100,
         "draftPayout": 0,
-        "payout": 60,
+        "payout": 100,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 1,
+        "totalNew": 2,
         "offPremTargets": [
-          {
-            "customer": "Buy Rite Of Fairview",
-            "cases2026": 21494.0
-          },
           {
             "customer": "Liquor World",
             "cases2026": 13951.0
-          },
-          {
-            "customer": "Liquor City(A)Cliffside",
-            "cases2026": 12843.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
@@ -166711,10 +167054,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 6218.0
           },
           {
-            "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 6079.0
-          },
-          {
             "customer": "Garden State Food&Liq (P)",
             "cases2026": 5852.0
           },
@@ -166733,41 +167072,69 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Rome Liquor (Cliffside Park)",
             "cases2026": 4578.0
+          },
+          {
+            "customer": "Checo Supermarket",
+            "cases2026": 4465.0
+          },
+          {
+            "customer": "Palisades Park Liq(P)",
+            "cases2026": 3870.0
+          },
+          {
+            "customer": "Ridgefield Liq (Z)",
+            "cases2026": 3668.3
           }
         ],
-        "offPremTargetCount": 42
+        "offPremTargetCount": 39
       },
       "Dave Ehlers": {
         "accounts": [
           {
             "customer": "Total Wine & More (River Edge)",
-            "skus": 5,
+            "skus": 6,
             "skuList": [
               "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
               "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 14.0,
+            "cases": 27.0,
             "opened": true,
-            "payout": 60,
+            "payout": 70,
             "toOpen": 0,
-            "date": "2026-10-06"
+            "date": "2026-10-21"
           },
           {
             "customer": "Total Wine & More (Totowa)",
-            "skus": 3,
+            "skus": 4,
             "skuList": [
               "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 6.0,
+            "cases": 10.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bergenfield Liq & Fw",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 3.0,
             "opened": true,
             "payout": 40,
             "toOpen": 0,
-            "date": "2026-10-07"
+            "date": "2026-10-21"
           },
           {
             "customer": "Buy Rite Of Hackensack",
@@ -166795,20 +167162,20 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-08"
           }
         ],
-        "openedCount": 2,
+        "openedCount": 3,
         "progressCount": 2,
-        "skuPlacements": 11,
-        "caseVolume": 26.0,
+        "skuPlacements": 16,
+        "caseVolume": 46.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 100,
+        "openedPayout": 160,
         "draftPayout": 0,
-        "payout": 100,
+        "payout": 160,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 2,
+        "totalNew": 3,
         "offPremTargets": [
           {
             "customer": "Shop Rite Liq (A)Englewd",
@@ -166825,10 +167192,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Hackensack Liquors",
             "cases2026": 17640.3
-          },
-          {
-            "customer": "Bergenfield Liq & Fw",
-            "cases2026": 14768.3
           },
           {
             "customer": "W E Beverage (A)",
@@ -166889,30 +167252,16 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Burgundy Convenience Store",
             "cases2026": 2503.0
+          },
+          {
+            "customer": "Teaneck Liquors",
+            "cases2026": 2364.0
           }
         ],
-        "offPremTargetCount": 32
+        "offPremTargetCount": 31
       },
       "Derrick Laws": {
         "accounts": [
-          {
-            "customer": "Shop Rite Wines/Spirits",
-            "skus": 7,
-            "skuList": [
-              "Industrial Arts Forever Fest 6/4/16 oz Can",
-              "Industrial Arts Impact Wrench 6/4/16 oz Can",
-              "Industrial Arts Metric Pils 6/4/16 oz Can",
-              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
-              "Industrial Arts Safety Glasses White Non-Alcoholic 4/6/12 oz Can",
-              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
-              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
-            ],
-            "cases": 7.0,
-            "opened": true,
-            "payout": 80,
-            "toOpen": 0,
-            "date": "2026-10-09"
-          },
           {
             "customer": "Shop Rite Liq (A)Littlefl",
             "skus": 1,
@@ -166926,24 +167275,28 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-07"
           }
         ],
-        "openedCount": 1,
+        "openedCount": 0,
         "progressCount": 1,
-        "skuPlacements": 8,
-        "caseVolume": 10.0,
+        "skuPlacements": 1,
+        "caseVolume": 3.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 80,
+        "openedPayout": 0,
         "draftPayout": 0,
-        "payout": 80,
+        "payout": 0,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 1,
+        "totalNew": 0,
         "offPremTargets": [
           {
             "customer": "The Liquor Shop",
             "cases2026": 30665.0
+          },
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "cases2026": 24348.5
           },
           {
             "customer": "Economy Liquors",
@@ -167016,16 +167369,29 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "The Point Liquor & Bar",
             "cases2026": 5985.0
-          },
-          {
-            "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 5963.0
           }
         ],
-        "offPremTargetCount": 31
+        "offPremTargetCount": 32
       },
       "Dylan Rubino": {
         "accounts": [
+          {
+            "customer": "Buy Rite Union City",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
           {
             "customer": "Cool Vines",
             "skus": 3,
@@ -167066,20 +167432,20 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-08"
           }
         ],
-        "openedCount": 3,
+        "openedCount": 4,
         "progressCount": 0,
-        "skuPlacements": 6,
-        "caseVolume": 11.0,
+        "skuPlacements": 12,
+        "caseVolume": 17.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 150,
+        "openedPayout": 200,
         "draftPayout": 0,
-        "payout": 150,
+        "payout": 200,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 3,
+        "totalNew": 4,
         "offPremTargets": [
           {
             "customer": "J B Liquors_2",
@@ -167130,10 +167496,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 636.0
           },
           {
-            "customer": "Buy Rite Union City",
-            "cases2026": 627.0
-          },
-          {
             "customer": "Town Beverage",
             "cases2026": 600.0
           },
@@ -167160,22 +167522,52 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Jersey Wine & Spirits",
             "cases2026": 467.0
+          },
+          {
+            "customer": "Pastore's Wine & Liquor",
+            "cases2026": 453.0
           }
         ],
-        "offPremTargetCount": 142
+        "offPremTargetCount": 141
       },
       "Hakan Sadik": {
         "accounts": [
           {
             "customer": "Buy Rite Wine & Liquor",
-            "skus": 9,
+            "skus": 14,
             "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
               "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Metric Pils 6/4/16 oz Can",
               "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
               "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Safety Glasses IPA Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Safety Glasses Pils Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
               "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 36.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bloomfield Buyrite",
+            "skus": 10,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
@@ -167184,7 +167576,58 @@ const PROGRAM_DATA_2026_10 = {
             "opened": true,
             "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-06"
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Joe Canals",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Wine Barrel (P)",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bottle King Livingston",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Lum's Cellars",
@@ -167200,27 +167643,51 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-06"
+          },
+          {
+            "customer": "Maplewood Wine & Liquor",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Village Wine Shop",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can"
+            ],
+            "cases": 2.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           }
         ],
-        "openedCount": 2,
+        "openedCount": 8,
         "progressCount": 0,
-        "skuPlacements": 13,
-        "caseVolume": 26.0,
+        "skuPlacements": 52,
+        "caseVolume": 105.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 100,
+        "openedPayout": 400,
         "draftPayout": 0,
-        "payout": 100,
+        "payout": 400,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 2,
+        "totalNew": 8,
         "offPremTargets": [
-          {
-            "customer": "Bottle King Livingston",
-            "cases2026": 2465.0
-          },
           {
             "customer": "Rapp Beer & Soda (A)",
             "cases2026": 2188.0
@@ -167238,16 +167705,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 1754.0
           },
           {
-            "customer": "Wine Barrel (P)",
-            "cases2026": 1373.0
-          },
-          {
             "customer": "Home Wine & Liquor (224 Newark)",
             "cases2026": 1369.0
-          },
-          {
-            "customer": "Bloomfield Buyrite",
-            "cases2026": 1074.5
           },
           {
             "customer": "Toast Of The Town",
@@ -167296,9 +167755,21 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Maple Liquors",
             "cases2026": 619.0
+          },
+          {
+            "customer": "Liquor Zone",
+            "cases2026": 600.0
+          },
+          {
+            "customer": "Homer Liquors",
+            "cases2026": 598.0
+          },
+          {
+            "customer": "Home Wines & Liquors (927 Newark)",
+            "cases2026": 594.0
           }
         ],
-        "offPremTargetCount": 125
+        "offPremTargetCount": 119
       },
       "Jaime Colonna": {
         "accounts": [
@@ -167314,11 +167785,59 @@ const PROGRAM_DATA_2026_10 = {
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 10.0,
+            "cases": 19.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-07"
+          },
+          {
+            "customer": "Jersey City Buy Rite (A)",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Safety Glasses IPA Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Safety Glasses Pils Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 21.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "The Thirsty Quaker (P)",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Safety Glasses Pils Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 10.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Coolvines Powerhouse",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Sunset wine & spirits",
@@ -167348,6 +167867,31 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-01"
           },
           {
+            "customer": "Uncorked Wines & Spirits - Hoboken NJ",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Garden Wine & Liq (P)",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Village Wine & Liquors Ii",
             "skus": 1,
             "skuList": [
@@ -167360,10 +167904,10 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-02"
           }
         ],
-        "openedCount": 4,
+        "openedCount": 9,
         "progressCount": 0,
-        "skuPlacements": 13,
-        "caseVolume": 23.0,
+        "skuPlacements": 31,
+        "caseVolume": 79.0,
         "draftAccounts": [
           {
             "customer": "Abbey's Pub",
@@ -167375,17 +167919,13 @@ const PROGRAM_DATA_2026_10 = {
         "draftNewCount": 1,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 200,
+        "openedPayout": 450,
         "draftPayout": 0,
-        "payout": 200,
+        "payout": 450,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 4,
+        "totalNew": 9,
         "offPremTargets": [
-          {
-            "customer": "Jersey City Buy Rite (A)",
-            "cases2026": 8125.0
-          },
           {
             "customer": "Hoboken Beer & Soda",
             "cases2026": 2415.0
@@ -167423,10 +167963,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 646.0
           },
           {
-            "customer": "The Thirsty Quaker (P)",
-            "cases2026": 611.0
-          },
-          {
             "customer": "Hoboken Vine",
             "cases2026": 579.0
           },
@@ -167451,19 +167987,27 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 425.0
           },
           {
-            "customer": "Coolvines Powerhouse",
-            "cases2026": 380.0
-          },
-          {
             "customer": "Blue Ribbon Wine/Liq/Groc",
             "cases2026": 354.0
           },
           {
             "customer": "Alvins W&L (P)",
             "cases2026": 297.0
+          },
+          {
+            "customer": "Village W & L (P)",
+            "cases2026": 263.0
+          },
+          {
+            "customer": "Giannone Wines & Liq.(P)",
+            "cases2026": 258.0
+          },
+          {
+            "customer": "Willow Grocery Liq.",
+            "cases2026": 247.0
           }
         ],
-        "offPremTargetCount": 40
+        "offPremTargetCount": 35
       },
       "Javier Melo": {
         "accounts": [],
@@ -167568,6 +168112,73 @@ const PROGRAM_DATA_2026_10 = {
       "Jayson Romine": {
         "accounts": [
           {
+            "customer": "Liquor Factory II Jefferson",
+            "skus": 8,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 16.0,
+            "opened": true,
+            "payout": 90,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "The George Inn",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 10.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Liquor Factory V Andover",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "USA Wine Traders Club Of Newton (A)",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Fredon Liquor (Fredon Deli)",
             "skus": 4,
             "skuList": [
@@ -167576,7 +168187,7 @@ const PROGRAM_DATA_2026_10 = {
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 13.0,
+            "cases": 15.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
@@ -167612,6 +168223,33 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-02"
           },
           {
+            "customer": "Liquor Factory III Sparta",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Mac & Lindy's W & S (A)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 20.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "ShopRite Wine & Spirits of Newton#830",
             "skus": 2,
             "skuList": [
@@ -167623,6 +168261,19 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 0,
             "toOpen": 1,
             "date": "2026-10-02"
+          },
+          {
+            "customer": "Super Saver Liq",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-21"
           },
           {
             "customer": "George's Wine & Spirits",
@@ -167638,19 +168289,19 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-01"
           },
           {
-            "customer": "Liquor Factory VI Byram",
+            "customer": "Liquor Factory IV Hopatcong",
             "skus": 1,
             "skuList": [
               "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
             ],
-            "cases": 3.0,
+            "cases": 6.0,
             "opened": false,
             "payout": 0,
             "toOpen": 2,
             "date": "2026-10-05"
           },
           {
-            "customer": "Liquor Factory IV Hopatcong",
+            "customer": "Liquor Factory VI Byram",
             "skus": 1,
             "skuList": [
               "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
@@ -167662,52 +168313,35 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-05"
           }
         ],
-        "openedCount": 3,
-        "progressCount": 4,
-        "skuPlacements": 17,
-        "caseVolume": 57.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
-        "draftHoldCount": 0,
-        "openedPayout": 140,
-        "draftPayout": 0,
-        "payout": 140,
-        "southern": false,
-        "draftChannelOk": false,
-        "totalNew": 3,
-        "offPremTargets": [
+        "openedCount": 8,
+        "progressCount": 6,
+        "skuPlacements": 47,
+        "caseVolume": 131.0,
+        "draftAccounts": [
           {
-            "customer": "USA Wine Traders Club Of Newton (A)",
-            "cases2026": 22855.0
-          },
+            "customer": "The George Inn",
+            "bbl": 1.0,
+            "qualifies": true,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 1,
+        "draftHoldCount": 0,
+        "openedPayout": 450,
+        "draftPayout": 100,
+        "payout": 550,
+        "southern": false,
+        "draftChannelOk": true,
+        "totalNew": 9,
+        "offPremTargets": [
           {
             "customer": "ShopRite Wines & Spirits of Sparta",
             "cases2026": 22155.0
           },
           {
-            "customer": "Liquor Factory III Sparta",
-            "cases2026": 19857.8
-          },
-          {
-            "customer": "Mac & Lindy's W & S (A)",
-            "cases2026": 16662.0
-          },
-          {
             "customer": "ShopRite Wines & Spirits of Franklin",
             "cases2026": 15968.0
-          },
-          {
-            "customer": "Liquor Factory II Jefferson",
-            "cases2026": 15824.0
-          },
-          {
-            "customer": "The George Inn",
-            "cases2026": 11148.0
-          },
-          {
-            "customer": "Liquor Factory V Andover",
-            "cases2026": 10556.0
           },
           {
             "customer": "Spring Street Liquors",
@@ -167716,10 +168350,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Liquor Factory I Landing",
             "cases2026": 9499.0
-          },
-          {
-            "customer": "Super Saver Liq",
-            "cases2026": 7569.0
           },
           {
             "customer": "Wine Country Newton",
@@ -167756,9 +168386,37 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Hamburg Liquor",
             "cases2026": 4237.2
+          },
+          {
+            "customer": "White Deer Inn",
+            "cases2026": 4105.0
+          },
+          {
+            "customer": "Kent's Liquors",
+            "cases2026": 2153.0
+          },
+          {
+            "customer": "Burkes",
+            "cases2026": 2012.2
+          },
+          {
+            "customer": "Market Place Liquor",
+            "cases2026": 1764.0
+          },
+          {
+            "customer": "Lake Wanda Store",
+            "cases2026": 1301.0
+          },
+          {
+            "customer": "Wine Grand (Franklin)",
+            "cases2026": 580.0
+          },
+          {
+            "customer": "Weis Supermarkets 143 Newton",
+            "cases2026": 11.0
           }
         ],
-        "offPremTargetCount": 29
+        "offPremTargetCount": 22
       },
       "Jim Heaney": {
         "accounts": [
@@ -167792,22 +168450,48 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-08"
+          },
+          {
+            "customer": "Lucky 7 (A)",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "West End Wine & Liq",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-21"
           }
         ],
-        "openedCount": 2,
-        "progressCount": 0,
-        "skuPlacements": 9,
-        "caseVolume": 10.0,
+        "openedCount": 3,
+        "progressCount": 1,
+        "skuPlacements": 13,
+        "caseVolume": 19.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 110,
+        "openedPayout": 150,
         "draftPayout": 0,
-        "payout": 110,
+        "payout": 150,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 2,
+        "totalNew": 3,
         "offPremTargets": [
           {
             "customer": "Shoppers Vineyard (A)",
@@ -167824,10 +168508,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Broad Liquors (A)",
             "cases2026": 14183.0
-          },
-          {
-            "customer": "Lucky 7 (A)",
-            "cases2026": 12787.8
           },
           {
             "customer": "Rainbow Liquor (P)",
@@ -167870,10 +168550,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5477.5
           },
           {
-            "customer": "West End Wine & Liq",
-            "cases2026": 5212.0
-          },
-          {
             "customer": "Dante's Liquor & Wine",
             "cases2026": 5186.0
           },
@@ -167888,9 +168564,17 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "On The Rocks",
             "cases2026": 4419.0
+          },
+          {
+            "customer": "Riverside Liquors",
+            "cases2026": 4188.0
+          },
+          {
+            "customer": "Meadow Fine Liquors",
+            "cases2026": 4179.0
           }
         ],
-        "offPremTargetCount": 41
+        "offPremTargetCount": 39
       },
       "John O'Donoghue": {
         "accounts": [
@@ -167908,7 +168592,7 @@ const PROGRAM_DATA_2026_10 = {
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 16.0,
+            "cases": 36.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
@@ -167931,6 +168615,90 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-08"
+          },
+          {
+            "customer": "Buyrite Of Chatham",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 8.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Wegmans",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 22.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bottle King Morris Plains",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Main St Wines & Liq",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 9.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "The Village Liquor Store_2",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Shop Rite Liq Parsippany",
@@ -167964,18 +168732,34 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-07"
           },
           {
-            "customer": "Wegmans",
-            "skus": 3,
+            "customer": "Florham Park Liquors",
+            "skus": 4,
             "skuList": [
-              "Industrial Arts Metric Pils 6/4/16 oz Can",
-              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
-              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 17.0,
+            "cases": 6.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-06"
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Hickory Wine Cellar",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Vine Republic (Berkeley Height)",
@@ -167985,11 +168769,53 @@ const PROGRAM_DATA_2026_10 = {
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 16.0,
+            "cases": 36.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-06"
+          },
+          {
+            "customer": "Wine & Whiskey Country Pine Brook",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Kenvil Liquor,Wine & Food",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Village Wine & Liquors",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Fairfield Wine Cellar",
@@ -168006,6 +168832,20 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-08"
           },
           {
+            "customer": "Bottle King (A) Ledgewood",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Ridgedale Wine & Liq",
             "skus": 3,
             "skuList": [
@@ -168018,6 +168858,19 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-06"
+          },
+          {
+            "customer": "Stirling Fine Wines",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Shop Rite W & S Chester",
@@ -168033,23 +168886,30 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-02"
           },
           {
-            "customer": "Stirling Fine Wines",
-            "skus": 1,
+            "customer": "X Plor Wine",
+            "skus": 2,
             "skuList": [
+              "Industrial Arts Safety Glasses Pils Non-Alcoholic 4/6/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 1.0,
+            "cases": 2.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-06"
+            "date": "2026-10-21"
           }
         ],
-        "openedCount": 10,
+        "openedCount": 21,
         "progressCount": 0,
-        "skuPlacements": 40,
-        "caseVolume": 109.0,
+        "skuPlacements": 89,
+        "caseVolume": 218.0,
         "draftAccounts": [
+          {
+            "customer": "Hoovers Tavern",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
           {
             "customer": "Revolution Bar",
             "bbl": 0.5,
@@ -168057,31 +168917,23 @@ const PROGRAM_DATA_2026_10 = {
             "hold": false
           }
         ],
-        "draftNewCount": 1,
+        "draftNewCount": 2,
         "draftQualifiedCount": 1,
         "draftHoldCount": 0,
-        "openedPayout": 500,
+        "openedPayout": 1050,
         "draftPayout": 100,
-        "payout": 600,
+        "payout": 1150,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 11,
+        "totalNew": 22,
         "offPremTargets": [
           {
             "customer": "Shop Rite Liquors",
             "cases2026": 3503.0
           },
           {
-            "customer": "The Village Liquor Store_2",
-            "cases2026": 2042.0
-          },
-          {
             "customer": "Shop Rite Wines & Spirits of Roxbury#832",
             "cases2026": 1537.0
-          },
-          {
-            "customer": "Bottle King Morris Plains",
-            "cases2026": 1474.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
@@ -168096,10 +168948,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 1044.0
           },
           {
-            "customer": "Bottle King (A) Ledgewood",
-            "cases2026": 1021.0
-          },
-          {
             "customer": "Joe Canal's Disc Liq",
             "cases2026": 738.0
           },
@@ -168112,20 +168960,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 689.0
           },
           {
-            "customer": "Florham Park Liquors",
-            "cases2026": 593.0
-          },
-          {
-            "customer": "Buyrite Of Chatham",
-            "cases2026": 493.0
-          },
-          {
             "customer": "Wine World (A)",
             "cases2026": 477.0
-          },
-          {
-            "customer": "Village Wine & Liquors",
-            "cases2026": 418.0
           },
           {
             "customer": "Wine & Whiskey Country Morris Plains",
@@ -168136,19 +168972,43 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 393.0
           },
           {
-            "customer": "Hickory Wine Cellar",
-            "cases2026": 375.0
-          },
-          {
             "customer": "Vine Republik (Mountainside)",
             "cases2026": 369.0
           },
           {
             "customer": "Randolph Liquors",
             "cases2026": 309.0
+          },
+          {
+            "customer": "Haworth Fine Wine/Spirits",
+            "cases2026": 268.0
+          },
+          {
+            "customer": "Bottle Republic (Randolph)",
+            "cases2026": 247.0
+          },
+          {
+            "customer": "Wine Cellar Of Morristown",
+            "cases2026": 212.0
+          },
+          {
+            "customer": "Midtown Wine Merchant(A)",
+            "cases2026": 208.0
+          },
+          {
+            "customer": "Four Seasons Wine & Liq",
+            "cases2026": 203.0
+          },
+          {
+            "customer": "Wine & Whisky Country",
+            "cases2026": 180.0
+          },
+          {
+            "customer": "Krauszers (Long Valley)",
+            "cases2026": 179.0
           }
         ],
-        "offPremTargetCount": 61
+        "offPremTargetCount": 50
       },
       "Klejdi Lamo": {
         "accounts": [
@@ -168205,32 +169065,90 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-05"
           },
           {
+            "customer": "House of Wine & Liquor - Boonton",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Kingston Liquors",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Milton Inn",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 8.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Stanhope Liquors",
             "skus": 1,
             "skuList": [
-              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can"
             ],
-            "cases": 3.0,
+            "cases": 1.0,
             "opened": false,
             "payout": 0,
             "toOpen": 2,
-            "date": "2026-10-02"
+            "date": "2026-10-21"
           }
         ],
-        "openedCount": 3,
-        "progressCount": 1,
-        "skuPlacements": 20,
-        "caseVolume": 22.0,
+        "openedCount": 6,
+        "progressCount": 2,
+        "skuPlacements": 34,
+        "caseVolume": 55.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 220,
+        "openedPayout": 370,
         "draftPayout": 0,
-        "payout": 220,
+        "payout": 370,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 3,
+        "totalNew": 6,
         "offPremTargets": [
           {
             "customer": "Shop Rite Liq (A)Wharton",
@@ -168239,14 +169157,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
             "cases2026": 23910.0
-          },
-          {
-            "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-            "cases2026": 21665.0
-          },
-          {
-            "customer": "House of Wine & Liquor - Boonton",
-            "cases2026": 12580.0
           },
           {
             "customer": "Shoppers Disc Liquor",
@@ -168289,10 +169199,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5276.2
           },
           {
-            "customer": "Kingston Liquors",
-            "cases2026": 5174.0
-          },
-          {
             "customer": "3 IN 1 LIQUORS INC",
             "cases2026": 4357.3
           },
@@ -168305,15 +169211,27 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 4295.3
           },
           {
-            "customer": "Stanhope Liquors",
-            "cases2026": 4152.0
-          },
-          {
             "customer": "Berkshire(P) Bot. Shop",
             "cases2026": 1325.0
+          },
+          {
+            "customer": "Nova Liquors",
+            "cases2026": 1227.0
+          },
+          {
+            "customer": "The Village Place",
+            "cases2026": 971.0
+          },
+          {
+            "customer": "23 liquor & Tobacco",
+            "cases2026": 855.0
+          },
+          {
+            "customer": "Mountain Lakes Wine & Liquor",
+            "cases2026": 50.0
           }
         ],
-        "offPremTargetCount": 25
+        "offPremTargetCount": 21
       },
       "Matt Powierski": {
         "accounts": [],
@@ -168419,19 +169337,36 @@ const PROGRAM_DATA_2026_10 = {
         "accounts": [
           {
             "customer": "Wayne Liquor Locker",
-            "skus": 5,
+            "skus": 6,
             "skuList": [
               "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 7.0,
+            "cases": 10.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-07"
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Total Wine & More (West Orange)",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 12.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Pilgrim Liquor",
@@ -168450,6 +169385,21 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-01"
           },
           {
+            "customer": "A&M Liquor",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Angelbeck's",
             "skus": 4,
             "skuList": [
@@ -168465,19 +169415,19 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-08"
           },
           {
-            "customer": "Total Wine & More (West Orange)",
+            "customer": "Krauser's Liquor Locker",
             "skus": 4,
             "skuList": [
-              "Industrial Arts Forever Fest 6/4/16 oz Can",
-              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
-              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
-              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can"
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 5.0,
+            "cases": 0.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-08"
+            "date": "2026-10-21"
           },
           {
             "customer": "Lincoln Center Liq",
@@ -168494,10 +169444,24 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-09"
           },
           {
-            "customer": "ShopRite of West Caldwell",
+            "customer": "Merit (P)",
             "skus": 3,
             "skuList": [
-              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Cedar Grove Wine Cellar",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
@@ -168508,10 +169472,10 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-08"
           },
           {
-            "customer": "Cedar Grove Wine Cellar",
+            "customer": "ShopRite of West Caldwell",
             "skus": 3,
             "skuList": [
-              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
@@ -168550,6 +169514,32 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-06"
           },
           {
+            "customer": "Shoprite Wine & Spirits",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 8.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "The Bottle Stop (Caldwell)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Quick Stop Liquors",
             "skus": 2,
             "skuList": [
@@ -168576,18 +169566,6 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-06"
           },
           {
-            "customer": "Shoprite Wine & Spirits",
-            "skus": 1,
-            "skuList": [
-              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
-            ],
-            "cases": 3.0,
-            "opened": true,
-            "payout": 50,
-            "toOpen": 0,
-            "date": "2026-10-07"
-          },
-          {
             "customer": "Verona Wine Cellar",
             "skus": 1,
             "skuList": [
@@ -168600,11 +169578,17 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-07"
           }
         ],
-        "openedCount": 13,
+        "openedCount": 17,
         "progressCount": 0,
-        "skuPlacements": 39,
-        "caseVolume": 74.0,
+        "skuPlacements": 55,
+        "caseVolume": 105.0,
         "draftAccounts": [
+          {
+            "customer": "Verona Inn(Z)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
           {
             "customer": "Halcyon Seafood Brasserie",
             "bbl": 0.25,
@@ -168612,31 +169596,23 @@ const PROGRAM_DATA_2026_10 = {
             "hold": false
           }
         ],
-        "draftNewCount": 1,
-        "draftQualifiedCount": 0,
+        "draftNewCount": 2,
+        "draftQualifiedCount": 1,
         "draftHoldCount": 0,
-        "openedPayout": 650,
-        "draftPayout": 0,
-        "payout": 650,
+        "openedPayout": 850,
+        "draftPayout": 100,
+        "payout": 950,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 13,
+        "totalNew": 18,
         "offPremTargets": [
           {
             "customer": "Shays Liquors",
             "cases2026": 10762.0
           },
           {
-            "customer": "Merit (P)",
-            "cases2026": 709.0
-          },
-          {
             "customer": "Lucky 7 Wine & Liq (A)",
             "cases2026": 695.0
-          },
-          {
-            "customer": "The Bottle Stop (Caldwell)",
-            "cases2026": 627.0
           },
           {
             "customer": "Wine Village",
@@ -168651,20 +169627,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 386.0
           },
           {
-            "customer": "Krauser's Liquor Locker",
-            "cases2026": 364.0
-          },
-          {
             "customer": "Krauszer's Food & Liq",
             "cases2026": 342.0
           },
           {
             "customer": "B & B Liquors (West Orange)",
             "cases2026": 290.0
-          },
-          {
-            "customer": "A&M Liquor",
-            "cases2026": 261.0
           },
           {
             "customer": "Romany Liquor Shop (A)",
@@ -168701,12 +169669,65 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Valley Liquors",
             "cases2026": 79.0
+          },
+          {
+            "customer": "Party Liquors",
+            "cases2026": 69.0
+          },
+          {
+            "customer": "Brinks Wine & Liquors",
+            "cases2026": 40.0
+          },
+          {
+            "customer": "Fairchilds Market Place",
+            "cases2026": 31.0
+          },
+          {
+            "customer": "Amanti Vino",
+            "cases2026": 10.0
           }
         ],
-        "offPremTargetCount": 31
+        "offPremTargetCount": 27
       },
       "Mike Ast": {
         "accounts": [
+          {
+            "customer": "Allendale Wine Shoppe",
+            "skus": 10,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 14.0,
+            "opened": true,
+            "payout": 110,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Ridgewood Super Cellar",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 20.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
           {
             "customer": "Grand Opening Liq (A)_2",
             "skus": 5,
@@ -168724,6 +169745,52 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-01"
           },
           {
+            "customer": "Waldwick Wine/Spirits",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Wine & Spirit World(W)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 30.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bottle King (A) Wayne",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
             "customer": "Long Hill Liquors (A)",
             "skus": 4,
             "skuList": [
@@ -168739,20 +169806,6 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-05"
           },
           {
-            "customer": "Wine & Spirit World(W)",
-            "skus": 3,
-            "skuList": [
-              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
-              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
-              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
-            ],
-            "cases": 15.0,
-            "opened": true,
-            "payout": 40,
-            "toOpen": 0,
-            "date": "2026-10-05"
-          },
-          {
             "customer": "Hawthorne Liq (A)",
             "skus": 3,
             "skuList": [
@@ -168760,7 +169813,7 @@ const PROGRAM_DATA_2026_10 = {
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 12.0,
+            "cases": 17.0,
             "opened": true,
             "payout": 40,
             "toOpen": 0,
@@ -168768,16 +169821,17 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Mahwah Wine & Liquor (A)",
-            "skus": 2,
+            "skus": 3,
             "skuList": [
               "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
-              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can"
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 5.0,
-            "opened": false,
-            "payout": 0,
-            "toOpen": 1,
-            "date": "2026-10-06"
+            "cases": 10.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Discount Liq (P)_2",
@@ -168791,13 +169845,31 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 0,
             "toOpen": 1,
             "date": "2026-10-01"
+          },
+          {
+            "customer": "Beekman's Wines and Liquors",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-21"
           }
         ],
-        "openedCount": 4,
+        "openedCount": 9,
         "progressCount": 2,
-        "skuPlacements": 19,
-        "caseVolume": 74.0,
+        "skuPlacements": 46,
+        "caseVolume": 165.0,
         "draftAccounts": [
+          {
+            "customer": "The Office 2131 Ridgewood",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
           {
             "customer": "Stone & Rail",
             "bbl": 0.25,
@@ -168811,20 +169883,16 @@ const PROGRAM_DATA_2026_10 = {
             "hold": false
           }
         ],
-        "draftNewCount": 2,
-        "draftQualifiedCount": 1,
+        "draftNewCount": 3,
+        "draftQualifiedCount": 2,
         "draftHoldCount": 0,
-        "openedPayout": 190,
-        "draftPayout": 100,
-        "payout": 290,
+        "openedPayout": 520,
+        "draftPayout": 200,
+        "payout": 720,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 5,
+        "totalNew": 11,
         "offPremTargets": [
-          {
-            "customer": "Bottle King (A) Wayne",
-            "cases2026": 42677.0
-          },
           {
             "customer": "Lincoln Park Fine Wines & Spirits",
             "cases2026": 16209.5
@@ -168836,10 +169904,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Nico's Wine & Spirits",
             "cases2026": 13101.2
-          },
-          {
-            "customer": "Waldwick Wine/Spirits",
-            "cases2026": 11943.8
           },
           {
             "customer": "Mahwah Liqrs (P)",
@@ -168866,20 +169930,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 7106.2
           },
           {
-            "customer": "Allendale Wine Shoppe",
-            "cases2026": 6782.0
-          },
-          {
             "customer": "Franklin Lake Liq",
             "cases2026": 5369.0
           },
           {
             "customer": "Scherer & Company",
             "cases2026": 5024.0
-          },
-          {
-            "customer": "Ridgewood Super Cellar",
-            "cases2026": 4749.5
           },
           {
             "customer": "Uncorked Wine & Spirits (Hohokus)",
@@ -168894,23 +169950,63 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 2398.0
           },
           {
-            "customer": "Beekman's Wines and Liquors",
-            "cases2026": 1848.0
-          },
-          {
             "customer": "GREEN WAY MARKETS",
             "cases2026": 1585.0
+          },
+          {
+            "customer": "The Wine Seller",
+            "cases2026": 583.0
+          },
+          {
+            "customer": "Public Ridgewood",
+            "cases2026": 498.0
+          },
+          {
+            "customer": "Whole Foods #10106 (Ridgewood)",
+            "cases2026": 478.0
+          },
+          {
+            "customer": "Wine & Spirits World (Hohokus)",
+            "cases2026": 374.3
+          },
+          {
+            "customer": "Garbo's Ital Deli&Liq(Z)",
+            "cases2026": 59.0
           }
         ],
-        "offPremTargetCount": 26
+        "offPremTargetCount": 21
       },
       "Nick Melissari": {
         "accounts": [],
         "openedCount": 0,
         "progressCount": 0,
         "skuPlacements": 0,
-        "caseVolume": 2.0,
+        "caseVolume": 9.0,
         "draftAccounts": [
+          {
+            "customer": "Harvest and Ale",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Anthony's CF Pizza (A) (Ramsey)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Biagio's",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Bareburger (Edgewater)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
           {
             "customer": "The Shannon Rose/Ramsey",
             "bbl": 0.5,
@@ -168919,20 +170015,20 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Mahwah B & G (A)",
-            "bbl": 0.5,
+            "bbl": 1.5,
             "qualifies": true,
             "hold": false
           }
         ],
-        "draftNewCount": 2,
-        "draftQualifiedCount": 2,
+        "draftNewCount": 6,
+        "draftQualifiedCount": 6,
         "draftHoldCount": 0,
         "openedPayout": 0,
-        "draftPayout": 200,
-        "payout": 200,
+        "draftPayout": 600,
+        "payout": 600,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 2,
+        "totalNew": 6,
         "offPremTargets": [
           {
             "customer": "H Mart Inc (Space A101-A)",
@@ -169050,8 +170146,50 @@ const PROGRAM_DATA_2026_10 = {
         "openedCount": 0,
         "progressCount": 0,
         "skuPlacements": 0,
-        "caseVolume": 9.0,
+        "caseVolume": 16.0,
         "draftAccounts": [
+          {
+            "customer": "Fire & Oak (A)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Four Leaves",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Andy's Corner (Z)",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "Peppercorn's",
+            "bbl": 0.75,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Axia Taverna",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "La Tequilera Restaurant",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "101 Pub (A)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
           {
             "customer": "Bareburger (Closter)",
             "bbl": 0.5,
@@ -169061,12 +170199,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Davey's Locker (A)",
             "bbl": 1.0,
-            "qualifies": true,
-            "hold": false
-          },
-          {
-            "customer": "101 Pub (A)",
-            "bbl": 0.5,
             "qualifies": true,
             "hold": false
           },
@@ -169087,23 +170219,17 @@ const PROGRAM_DATA_2026_10 = {
             "bbl": 0.5,
             "qualifies": true,
             "hold": false
-          },
-          {
-            "customer": "Peppercorn's",
-            "bbl": 0.25,
-            "qualifies": false,
-            "hold": false
           }
         ],
-        "draftNewCount": 7,
-        "draftQualifiedCount": 5,
+        "draftNewCount": 12,
+        "draftQualifiedCount": 8,
         "draftHoldCount": 0,
         "openedPayout": 0,
-        "draftPayout": 500,
-        "payout": 500,
+        "draftPayout": 800,
+        "payout": 800,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 5,
+        "totalNew": 8,
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
@@ -169120,84 +170246,163 @@ const PROGRAM_DATA_2026_10 = {
         "accounts": [
           {
             "customer": "Food Universe Marketplace",
-            "skus": 6,
+            "skus": 8,
             "skuList": [
               "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
               "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 17.0,
+            "cases": 21.0,
+            "opened": true,
+            "payout": 90,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 10.0,
+            "opened": true,
+            "payout": 80,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "USA Wine Traders Paramus",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 16.0,
             "opened": true,
             "payout": 70,
             "toOpen": 0,
-            "date": "2026-10-05"
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bottle King (A) Glen Rock",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 9.0,
+            "opened": true,
+            "payout": 70,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
-            "skus": 3,
+            "skus": 4,
             "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 6.0,
+            "cases": 13.0,
             "opened": true,
-            "payout": 40,
+            "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-08"
+            "date": "2026-10-21"
           },
           {
             "customer": "Acme Markets (Midland Park)",
-            "skus": 3,
+            "skus": 4,
             "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
               "Industrial Arts Metric Pils 6/4/16 oz Can",
               "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Stew Leonard's Wines & Spirits of Clifton",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
             "cases": 5.0,
             "opened": true,
             "payout": 40,
             "toOpen": 0,
-            "date": "2026-10-09"
+            "date": "2026-10-21"
           },
           {
             "customer": "Acme Markets (Fort Lee)",
-            "skus": 1,
+            "skus": 2,
             "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
             ],
-            "cases": 2.0,
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can"
+            ],
+            "cases": 1.0,
             "opened": false,
             "payout": 0,
             "toOpen": 2,
-            "date": "2026-10-06"
+            "date": "2026-10-21"
           }
         ],
-        "openedCount": 3,
-        "progressCount": 1,
-        "skuPlacements": 13,
-        "caseVolume": 30.0,
+        "openedCount": 7,
+        "progressCount": 2,
+        "skuPlacements": 41,
+        "caseVolume": 85.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 150,
+        "openedPayout": 450,
         "draftPayout": 0,
-        "payout": 150,
+        "payout": 450,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 3,
+        "totalNew": 7,
         "offPremTargets": [
           {
             "customer": "Super Wine Warehse(P)Pate",
             "cases2026": 59982.0
-          },
-          {
-            "customer": "Bottle King (A) Glen Rock",
-            "cases2026": 38599.0
           },
           {
             "customer": "Shop Rite Liq(A) Roch Pk",
@@ -169228,16 +170433,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 12507.0
           },
           {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "cases2026": 10342.0
-          },
-          {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
             "cases2026": 8831.0
-          },
-          {
-            "customer": "PRIME WINE CELLAR Liquor & Beer",
-            "cases2026": 6677.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
@@ -169256,10 +170453,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 3468.0
           },
           {
-            "customer": "Acme Markets (Allendale)",
-            "cases2026": 3447.0
-          },
-          {
             "customer": "Gary's Wine & Marketplace (Wayne)",
             "cases2026": 2026.0
           },
@@ -169270,9 +170463,25 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "THE BOTTLE SHOP",
             "cases2026": 1536.0
+          },
+          {
+            "customer": "Wides Deli & Liquor",
+            "cases2026": 1435.0
+          },
+          {
+            "customer": "Lushka Liquors",
+            "cases2026": 1134.2
+          },
+          {
+            "customer": "Megha Liquor & Grocery",
+            "cases2026": 601.2
+          },
+          {
+            "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
+            "cases2026": 234.0
           }
         ],
-        "offPremTargetCount": 27
+        "offPremTargetCount": 22
       },
       "Robin Feldman": {
         "accounts": [
@@ -169315,23 +170524,108 @@ const PROGRAM_DATA_2026_10 = {
         "accounts": [
           {
             "customer": "Ramsey Wine & Liquor",
-            "skus": 9,
+            "skus": 13,
             "skuList": [
               "Industrial Arts Forever Fest 6/4/16 oz Can",
               "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Metric Pils 6/4/16 oz Can",
               "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
               "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 62.0,
+            "opened": true,
+            "payout": 140,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bottle King (A) Ramsey",
+            "skus": 12,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Safety Glasses IPA Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Safety Glasses Pils Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Safety Glasses White Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 30.0,
+            "opened": true,
+            "payout": 130,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Shoprite Liq (A)Northvle",
+            "skus": 11,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Safety Glasses IPA Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Safety Glasses Pils Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Safety Glasses White Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 28.0,
+            "opened": true,
+            "payout": 120,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Montvale Wine/Liq & Beer",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 21.0,
+            "cases": 42.0,
             "opened": true,
-            "payout": 100,
+            "payout": 80,
             "toOpen": 0,
-            "date": "2026-10-05"
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Cork & Keg (A)",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 11.0,
+            "opened": true,
+            "payout": 80,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Beverage Barn (A)",
@@ -169344,7 +170638,7 @@ const PROGRAM_DATA_2026_10 = {
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 17.0,
+            "cases": 22.0,
             "opened": true,
             "payout": 70,
             "toOpen": 0,
@@ -169368,18 +170662,67 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-08"
           },
           {
-            "customer": "Montvale Wine/Liq & Beer",
-            "skus": 3,
+            "customer": "Wine And Beverage Spirits",
+            "skus": 6,
             "skuList": [
-              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 10.0,
+            "opened": true,
+            "payout": 70,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bottle King (A) Hillsdale",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 17.0,
+            "cases": 15.0,
             "opened": true,
-            "payout": 40,
+            "payout": 60,
             "toOpen": 0,
-            "date": "2026-10-06"
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Brand Bar & Bev (A)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Bottle King (A) Dumont",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-21"
           },
           {
             "customer": "Winemart Discount",
@@ -169396,69 +170739,84 @@ const PROGRAM_DATA_2026_10 = {
             "date": "2026-10-06"
           },
           {
-            "customer": "Shoprite Liq (A)Northvle",
+            "customer": "Shop Rite Liq (A)Hillsdal",
             "skus": 2,
             "skuList": [
-              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
-              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 4.0,
+            "cases": 5.0,
             "opened": false,
             "payout": 0,
             "toOpen": 1,
-            "date": "2026-10-06"
+            "date": "2026-10-21"
           },
           {
             "customer": "Ridgemont Liquors (A)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Montvale Wines & Spirits",
             "skus": 1,
             "skuList": [
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-21"
+          },
+          {
+            "customer": "Westwood Wine and Liquors",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can"
             ],
             "cases": 1.0,
             "opened": false,
             "payout": 0,
             "toOpen": 2,
-            "date": "2026-10-08"
+            "date": "2026-10-21"
           }
         ],
-        "openedCount": 5,
-        "progressCount": 2,
-        "skuPlacements": 30,
-        "caseVolume": 81.0,
+        "openedCount": 12,
+        "progressCount": 4,
+        "skuPlacements": 90,
+        "caseVolume": 275.0,
         "draftAccounts": [
           {
-            "customer": "Bottle King (A) Hillsdale",
+            "customer": "Cork & Keg (A)",
             "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "Bottle King (A) Hillsdale",
+            "bbl": 0.0,
             "qualifies": false,
             "hold": false
           }
         ],
-        "draftNewCount": 1,
+        "draftNewCount": 2,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 320,
+        "openedPayout": 960,
         "draftPayout": 0,
-        "payout": 320,
+        "payout": 960,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 5,
+        "totalNew": 12,
         "offPremTargets": [
-          {
-            "customer": "Bottle King (A) Ramsey",
-            "cases2026": 48928.0
-          },
-          {
-            "customer": "Bottle King (A) Dumont",
-            "cases2026": 39470.0
-          },
-          {
-            "customer": "Shop Rite Liq (A)Hillsdal",
-            "cases2026": 17023.5
-          },
-          {
-            "customer": "Cork & Keg (A)",
-            "cases2026": 13240.7
-          },
           {
             "customer": "Shop Rite Liq (A)Emerson",
             "cases2026": 9551.0
@@ -169468,20 +170826,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 8114.0
           },
           {
-            "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7767.0
-          },
-          {
             "customer": "Garden State Deli (A)",
             "cases2026": 7479.0
-          },
-          {
-            "customer": "Westwood Wine and Liquors",
-            "cases2026": 6090.0
-          },
-          {
-            "customer": "Wine And Beverage Spirits",
-            "cases2026": 5346.0
           },
           {
             "customer": "Wine & Whiskey (A)",
@@ -169498,10 +170844,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Royal Wine & Spirits II",
             "cases2026": 3154.0
-          },
-          {
-            "customer": "Montvale Wines & Spirits",
-            "cases2026": 2151.0
           },
           {
             "customer": "D & L Dumont Liquors",
@@ -169522,171 +170864,195 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Whole Foods #8407 (Woodcliff Lake)",
             "cases2026": 484.0
+          },
+          {
+            "customer": "Whole Foods #10381 (Closter)",
+            "cases2026": 400.0
+          },
+          {
+            "customer": "The Store",
+            "cases2026": 151.0
           }
         ],
-        "offPremTargetCount": 22
+        "offPremTargetCount": 14
       }
     },
     "leaderboard": [
       {
-        "rep": "Michael Harboy",
-        "opened": 13,
-        "draft": 0,
-        "skus": 39,
-        "payout": 650,
+        "rep": "John O'Donoghue",
+        "opened": 21,
+        "draft": 1,
+        "skus": 89,
+        "payout": 1150,
         "rank": 1
       },
       {
-        "rep": "John O'Donoghue",
-        "opened": 10,
+        "rep": "Andrew Lundy",
+        "opened": 17,
         "draft": 1,
-        "skus": 40,
-        "payout": 600,
+        "skus": 63,
+        "payout": 950,
         "rank": 2
       },
       {
-        "rep": "Andrew Lundy",
-        "opened": 6,
+        "rep": "Michael Harboy",
+        "opened": 17,
         "draft": 1,
-        "skus": 22,
-        "payout": 400,
+        "skus": 55,
+        "payout": 950,
         "rank": 3
       },
       {
-        "rep": "Anthony Palmisano",
-        "opened": 5,
+        "rep": "Shane Barreca",
+        "opened": 12,
         "draft": 0,
-        "skus": 32,
-        "payout": 300,
+        "skus": 90,
+        "payout": 960,
         "rank": 4
       },
       {
-        "rep": "Shane Barreca",
-        "opened": 5,
-        "draft": 0,
-        "skus": 30,
-        "payout": 320,
+        "rep": "Mike Ast",
+        "opened": 9,
+        "draft": 2,
+        "skus": 46,
+        "payout": 720,
         "rank": 5
       },
       {
-        "rep": "Mike Ast",
-        "opened": 4,
-        "draft": 1,
-        "skus": 19,
-        "payout": 290,
+        "rep": "Anthony Palmisano",
+        "opened": 10,
+        "draft": 0,
+        "skus": 51,
+        "payout": 580,
         "rank": 6
+      },
+      {
+        "rep": "Jayson Romine",
+        "opened": 8,
+        "draft": 1,
+        "skus": 47,
+        "payout": 550,
+        "rank": 7
+      },
+      {
+        "rep": "Jaime Colonna",
+        "opened": 9,
+        "draft": 0,
+        "skus": 31,
+        "payout": 450,
+        "rank": 8
+      },
+      {
+        "rep": "Hakan Sadik",
+        "opened": 8,
+        "draft": 0,
+        "skus": 52,
+        "payout": 400,
+        "rank": 9
+      },
+      {
+        "rep": "Alisa Acciardi",
+        "opened": 7,
+        "draft": 1,
+        "skus": 31,
+        "payout": 450,
+        "rank": 10
       },
       {
         "rep": "Paul Mclaughlin",
         "opened": 0,
-        "draft": 5,
+        "draft": 8,
         "skus": 0,
-        "payout": 500,
-        "rank": 7
-      },
-      {
-        "rep": "Alisa Acciardi",
-        "opened": 4,
-        "draft": 0,
-        "skus": 19,
-        "payout": 200,
-        "rank": 8
-      },
-      {
-        "rep": "Jaime Colonna",
-        "opened": 4,
-        "draft": 0,
-        "skus": 13,
-        "payout": 200,
-        "rank": 9
-      },
-      {
-        "rep": "Klejdi Lamo",
-        "opened": 3,
-        "draft": 0,
-        "skus": 20,
-        "payout": 220,
-        "rank": 10
-      },
-      {
-        "rep": "Jayson Romine",
-        "opened": 3,
-        "draft": 0,
-        "skus": 17,
-        "payout": 140,
+        "payout": 800,
         "rank": 11
       },
       {
         "rep": "Phil Ernst",
-        "opened": 3,
+        "opened": 7,
         "draft": 0,
-        "skus": 13,
-        "payout": 150,
+        "skus": 41,
+        "payout": 450,
         "rank": 12
       },
       {
-        "rep": "Dylan Rubino",
-        "opened": 3,
+        "rep": "Klejdi Lamo",
+        "opened": 6,
         "draft": 0,
-        "skus": 6,
-        "payout": 150,
+        "skus": 34,
+        "payout": 370,
         "rank": 13
-      },
-      {
-        "rep": "Hakan Sadik",
-        "opened": 2,
-        "draft": 0,
-        "skus": 13,
-        "payout": 100,
-        "rank": 14
-      },
-      {
-        "rep": "Dave Ehlers",
-        "opened": 2,
-        "draft": 0,
-        "skus": 11,
-        "payout": 100,
-        "rank": 15
-      },
-      {
-        "rep": "Jim Heaney",
-        "opened": 2,
-        "draft": 0,
-        "skus": 9,
-        "payout": 110,
-        "rank": 16
       },
       {
         "rep": "Nick Melissari",
         "opened": 0,
-        "draft": 2,
+        "draft": 6,
         "skus": 0,
-        "payout": 200,
-        "rank": 17
+        "payout": 600,
+        "rank": 14
       },
       {
-        "rep": "Derrick Laws",
-        "opened": 1,
+        "rep": "Dylan Rubino",
+        "opened": 4,
         "draft": 0,
-        "skus": 8,
-        "payout": 80,
-        "rank": 18
+        "skus": 12,
+        "payout": 200,
+        "rank": 15
+      },
+      {
+        "rep": "Dave Ehlers",
+        "opened": 3,
+        "draft": 0,
+        "skus": 16,
+        "payout": 160,
+        "rank": 16
+      },
+      {
+        "rep": "Jim Heaney",
+        "opened": 3,
+        "draft": 0,
+        "skus": 13,
+        "payout": 150,
+        "rank": 17
       },
       {
         "rep": "Chris Payton",
         "opened": 1,
-        "draft": 0,
-        "skus": 8,
-        "payout": 50,
-        "rank": 19
+        "draft": 1,
+        "skus": 14,
+        "payout": 150,
+        "rank": 18
       },
       {
         "rep": "Dan Lagala",
-        "opened": 1,
+        "opened": 2,
         "draft": 0,
-        "skus": 7,
-        "payout": 60,
+        "skus": 13,
+        "payout": 100,
+        "rank": 19
+      },
+      {
+        "rep": "Allison Scott",
+        "opened": 0,
+        "draft": 1,
+        "skus": 0,
+        "payout": 100,
         "rank": 20
+      },
+      {
+        "rep": "Brian Sengebush",
+        "opened": 0,
+        "draft": 1,
+        "skus": 0,
+        "payout": 100,
+        "rank": 21
+      },
+      {
+        "rep": "Derrick Laws",
+        "opened": 0,
+        "draft": 0,
+        "skus": 1,
+        "payout": 0,
+        "rank": 22
       },
       {
         "rep": "Robin Feldman",
@@ -169694,26 +171060,10 @@ const PROGRAM_DATA_2026_10 = {
         "draft": 0,
         "skus": 1,
         "payout": 0,
-        "rank": 21
-      },
-      {
-        "rep": "Alex Rodriguez",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 22
-      },
-      {
-        "rep": "Allison Scott",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
         "rank": 23
       },
       {
-        "rep": "Brian Sengebush",
+        "rep": "Alex Rodriguez",
         "opened": 0,
         "draft": 0,
         "skus": 0,
@@ -189195,5 +190545,5 @@ const PROGRAM_DATA_2026_10 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Oct 21, 2026, 10:31 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-10-21T14:31:40Z";
+const PROGRAM_DATA_REFRESHED = "Oct 21, 2026, 10:33 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-21T14:33:51Z";
