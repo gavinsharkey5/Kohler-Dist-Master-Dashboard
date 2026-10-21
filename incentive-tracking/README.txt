@@ -5752,3 +5752,12 @@ The four reports now arrive as .xlsx (one grouped label column, no outline level
 (any order; recognised by header) -> the same four data/heineken_husa_*.csv, then generate.py, whose _husa_parse()
 reconciles every subtotal. Same row counts as the CSVs. Off National 571 -> 657 / 1,628; on packages 489 -> 559 /
 1,135; Dos Equis 14 -> 20 / 59; draft 22 / 37 (unchanged). Held: 1 / 1 / 0 / 2.
+
+2026-10-21 REFRESH (4) -- Yuengling Fall from WORKBOOKS
+The three summaries now arrive as .xlsx (grouped "Sales Rep Assigned / Brand Family"). Convert first:
+  python3 incentive-tracking/convert_yuengling_fall_xlsx.py <off.xlsx> <packages_on.xlsx> <draft_on.xlsx>
+-> the same three yuengling_retention_fall_*.csv (same row counts as the CSV exports), then generate.py.
+  Off-premise   Flight 128 -> 131 / 152 · Lager 312 -> 317 / 338 · Light Lager 96 -> 101 / 134
+  On-prem pkg   Flight 5 / 6 (unchanged) · Lager 211 -> 218 / 258
+  On-prem draft goals unchanged (Lager 292, Flight 7); buyers still from the 10/16 account export
+                (draft_on_detail.csv): Lager 266, Flight 2. 13 of 58 brand goals held; day 51 of 91.

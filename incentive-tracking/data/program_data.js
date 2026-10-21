@@ -143954,16 +143954,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 28,
-            "actual": 17,
+            "actual": 18,
             "goal": 27,
-            "pct": 63.0,
+            "pct": 66.7,
             "held": false,
-            "toGo": 10
+            "toGo": 9
           }
         ],
-        "packagesActual": 17,
+        "packagesActual": 18,
         "packagesGoal": 28,
-        "packagesPct": 60.7,
+        "packagesPct": 64.3,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -144393,9 +144393,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 86,
-        "overallHeld": 70,
-        "overallToGo": 16,
-        "overallPct": 81.4
+        "overallHeld": 71,
+        "overallToGo": 15,
+        "overallPct": 82.6
       },
       "Anthony Palmisano": {
         "offBrands": [
@@ -144420,16 +144420,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Light Lager",
             "base": 16,
-            "actual": 10,
+            "actual": 11,
             "goal": 16,
-            "pct": 62.5,
+            "pct": 68.8,
             "held": false,
-            "toGo": 6
+            "toGo": 5
           }
         ],
-        "offActual": 50,
+        "offActual": 51,
         "offGoal": 54,
-        "offPct": 92.6,
+        "offPct": 94.4,
         "offGoalsTotal": 3,
         "offGoalsRetained": 2,
         "packagesBrands": [
@@ -144655,9 +144655,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 3,
         "hasAnyGoal": true,
         "overallGoal": 110,
-        "overallHeld": 101,
-        "overallToGo": 9,
-        "overallPct": 91.8
+        "overallHeld": 102,
+        "overallToGo": 8,
+        "overallPct": 92.7
       },
       "Brian Sengebush": {
         "offBrands": [],
@@ -144679,16 +144679,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 55,
-            "actual": 49,
+            "actual": 52,
             "goal": 53,
-            "pct": 92.5,
+            "pct": 98.1,
             "held": false,
-            "toGo": 4
+            "toGo": 1
           }
         ],
-        "packagesActual": 50,
+        "packagesActual": 53,
         "packagesGoal": 54,
-        "packagesPct": 92.6,
+        "packagesPct": 98.1,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 1,
         "draftBrands": [
@@ -144696,7 +144696,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Flight",
             "base": 1,
             "actual": 0,
-            "summaryActual": 1,
+            "summaryActual": 2,
             "emptyPickups": 1,
             "accounts": [
               {
@@ -145172,9 +145172,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 123,
-        "overallHeld": 115,
-        "overallToGo": 8,
-        "overallPct": 93.5
+        "overallHeld": 118,
+        "overallToGo": 5,
+        "overallPct": 95.9
       },
       "Chris Payton": {
         "offBrands": [
@@ -145190,11 +145190,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 36,
-            "actual": 33,
+            "actual": 34,
             "goal": 35,
-            "pct": 94.3,
+            "pct": 97.1,
             "held": false,
-            "toGo": 2
+            "toGo": 1
           },
           {
             "label": "Yuengling Light Lager",
@@ -145206,9 +145206,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 4
           }
         ],
-        "offActual": 41,
+        "offActual": 42,
         "offGoal": 50,
-        "offPct": 82.0,
+        "offPct": 84.0,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -145227,9 +145227,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 50,
-        "overallHeld": 41,
-        "overallToGo": 9,
-        "overallPct": 82.0
+        "overallHeld": 42,
+        "overallToGo": 8,
+        "overallPct": 84.0
       },
       "Dan Lagala": {
         "offBrands": [
@@ -145245,11 +145245,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 30,
-            "actual": 25,
+            "actual": 26,
             "goal": 29,
-            "pct": 86.2,
+            "pct": 89.7,
             "held": false,
-            "toGo": 4
+            "toGo": 3
           },
           {
             "label": "Yuengling Light Lager",
@@ -145261,9 +145261,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 1
           }
         ],
-        "offActual": 29,
+        "offActual": 30,
         "offGoal": 37,
-        "offPct": 78.4,
+        "offPct": 81.1,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -145282,9 +145282,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 37,
-        "overallHeld": 29,
-        "overallToGo": 8,
-        "overallPct": 78.4
+        "overallHeld": 30,
+        "overallToGo": 7,
+        "overallPct": 81.1
       },
       "Dave Ehlers": {
         "offBrands": [
@@ -145355,11 +145355,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 11,
-            "actual": 8,
+            "actual": 9,
             "goal": 11,
-            "pct": 72.7,
+            "pct": 81.8,
             "held": false,
-            "toGo": 3
+            "toGo": 2
           },
           {
             "label": "Yuengling Light Lager",
@@ -145371,9 +145371,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 0
           }
         ],
-        "offActual": 9,
+        "offActual": 10,
         "offGoal": 12,
-        "offPct": 75.0,
+        "offPct": 83.3,
         "offGoalsTotal": 2,
         "offGoalsRetained": 1,
         "packagesBrands": [],
@@ -145392,9 +145392,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 12,
-        "overallHeld": 9,
-        "overallToGo": 3,
-        "overallPct": 75.0
+        "overallHeld": 10,
+        "overallToGo": 2,
+        "overallPct": 83.3
       },
       "Jayson Romine": {
         "offBrands": [
@@ -145419,16 +145419,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Light Lager",
             "base": 29,
-            "actual": 24,
+            "actual": 25,
             "goal": 28,
-            "pct": 85.7,
+            "pct": 89.3,
             "held": false,
-            "toGo": 4
+            "toGo": 3
           }
         ],
-        "offActual": 83,
+        "offActual": 84,
         "offGoal": 86,
-        "offPct": 96.5,
+        "offPct": 97.7,
         "offGoalsTotal": 3,
         "offGoalsRetained": 2,
         "packagesBrands": [],
@@ -145447,9 +145447,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 2,
         "hasAnyGoal": true,
         "overallGoal": 86,
-        "overallHeld": 82,
-        "overallToGo": 4,
-        "overallPct": 95.3
+        "overallHeld": 83,
+        "overallToGo": 3,
+        "overallPct": 96.5
       },
       "Jim Heaney": {
         "offBrands": [
@@ -145465,11 +145465,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 40,
-            "actual": 35,
+            "actual": 37,
             "goal": 38,
-            "pct": 92.1,
+            "pct": 97.4,
             "held": false,
-            "toGo": 3
+            "toGo": 1
           },
           {
             "label": "Yuengling Light Lager",
@@ -145481,9 +145481,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 2
           }
         ],
-        "offActual": 54,
+        "offActual": 56,
         "offGoal": 58,
-        "offPct": 93.1,
+        "offPct": 96.6,
         "offGoalsTotal": 3,
         "offGoalsRetained": 1,
         "packagesBrands": [],
@@ -145502,9 +145502,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 58,
-        "overallHeld": 53,
-        "overallToGo": 5,
-        "overallPct": 91.4
+        "overallHeld": 55,
+        "overallToGo": 3,
+        "overallPct": 94.8
       },
       "Klejdi Lamo": {
         "offBrands": [
@@ -145566,9 +145566,9 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Flight",
             "base": 9,
-            "actual": 9,
+            "actual": 11,
             "goal": 9,
-            "pct": 100.0,
+            "pct": 122.2,
             "held": true,
             "toGo": 0
           },
@@ -145591,9 +145591,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 1
           }
         ],
-        "offActual": 42,
+        "offActual": 44,
         "offGoal": 50,
-        "offPct": 84.0,
+        "offPct": 88.0,
         "offGoalsTotal": 3,
         "offGoalsRetained": 1,
         "packagesBrands": [],
@@ -145676,11 +145676,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Flight",
             "base": 12,
-            "actual": 10,
+            "actual": 11,
             "goal": 12,
-            "pct": 83.3,
+            "pct": 91.7,
             "held": false,
-            "toGo": 2
+            "toGo": 1
           },
           {
             "label": "Yuengling Lager",
@@ -145694,16 +145694,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Light Lager",
             "base": 14,
-            "actual": 9,
+            "actual": 10,
             "goal": 14,
-            "pct": 64.3,
+            "pct": 71.4,
             "held": false,
-            "toGo": 5
+            "toGo": 4
           }
         ],
-        "offActual": 43,
+        "offActual": 45,
         "offGoal": 52,
-        "offPct": 82.7,
+        "offPct": 86.5,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -145722,9 +145722,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 52,
-        "overallHeld": 43,
-        "overallToGo": 9,
-        "overallPct": 82.7
+        "overallHeld": 45,
+        "overallToGo": 7,
+        "overallPct": 86.5
       },
       "Nick Melissari": {
         "offBrands": [],
@@ -145737,16 +145737,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 34,
-            "actual": 26,
+            "actual": 27,
             "goal": 33,
-            "pct": 78.8,
+            "pct": 81.8,
             "held": false,
-            "toGo": 7
+            "toGo": 6
           }
         ],
-        "packagesActual": 26,
+        "packagesActual": 27,
         "packagesGoal": 33,
-        "packagesPct": 78.8,
+        "packagesPct": 81.8,
         "packagesGoalsTotal": 1,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -145785,7 +145785,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 69,
             "actual": 57,
-            "summaryActual": 61,
+            "summaryActual": 62,
             "emptyPickups": 4,
             "accounts": [
               {
@@ -146230,9 +146230,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 102,
-        "overallHeld": 84,
-        "overallToGo": 18,
-        "overallPct": 82.4
+        "overallHeld": 85,
+        "overallToGo": 17,
+        "overallPct": 83.3
       },
       "Paul Mclaughlin": {
         "offBrands": [],
@@ -146262,7 +146262,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 38,
             "actual": 32,
-            "summaryActual": 34,
+            "summaryActual": 35,
             "emptyPickups": 2,
             "accounts": [
               {
@@ -146594,16 +146594,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 101,
-            "actual": 75,
+            "actual": 77,
             "goal": 96,
-            "pct": 78.1,
+            "pct": 80.2,
             "held": false,
-            "toGo": 21
+            "toGo": 19
           }
         ],
-        "packagesActual": 79,
+        "packagesActual": 81,
         "packagesGoal": 99,
-        "packagesPct": 79.8,
+        "packagesPct": 81.8,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 1,
         "draftBrands": [
@@ -146636,7 +146636,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 41,
             "actual": 33,
-            "summaryActual": 34,
+            "summaryActual": 35,
             "emptyPickups": 1,
             "accounts": [
               {
@@ -146937,9 +146937,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 140,
-        "overallHeld": 112,
-        "overallToGo": 28,
-        "overallPct": 80.0
+        "overallHeld": 114,
+        "overallToGo": 26,
+        "overallPct": 81.4
       },
       "Shane Barreca": {
         "offBrands": [
@@ -146964,16 +146964,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Light Lager",
             "base": 16,
-            "actual": 9,
+            "actual": 11,
             "goal": 16,
-            "pct": 56.2,
+            "pct": 68.8,
             "held": false,
-            "toGo": 7
+            "toGo": 5
           }
         ],
-        "offActual": 41,
+        "offActual": 43,
         "offGoal": 56,
-        "offPct": 73.2,
+        "offPct": 76.8,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -146992,9 +146992,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 56,
-        "overallHeld": 41,
-        "overallToGo": 15,
-        "overallPct": 73.2
+        "overallHeld": 43,
+        "overallToGo": 13,
+        "overallPct": 76.8
       }
     },
     "house": [
@@ -147023,30 +147023,30 @@ const PROGRAM_DATA_2026_09 = {
         "label": "Yuengling Flight",
         "base": 153,
         "goal": 152,
-        "actual": 128,
+        "actual": 131,
         "repsHeld": 5,
         "repsWithGoal": 13,
-        "pct": 84.2
+        "pct": 86.2
       },
       {
         "side": "off",
         "label": "Yuengling Lager",
         "base": 350,
         "goal": 338,
-        "actual": 312,
+        "actual": 317,
         "repsHeld": 5,
         "repsWithGoal": 13,
-        "pct": 92.3
+        "pct": 93.8
       },
       {
         "side": "off",
         "label": "Yuengling Light Lager",
         "base": 135,
         "goal": 134,
-        "actual": 96,
+        "actual": 101,
         "repsHeld": 0,
         "repsWithGoal": 12,
-        "pct": 71.6
+        "pct": 75.4
       },
       {
         "side": "packages",
@@ -147063,10 +147063,10 @@ const PROGRAM_DATA_2026_09 = {
         "label": "Yuengling Lager",
         "base": 269,
         "goal": 258,
-        "actual": 211,
+        "actual": 218,
         "repsHeld": 0,
         "repsWithGoal": 6,
-        "pct": 81.8
+        "pct": 84.5
       }
     ],
     "retainThresholdPct": 95,
@@ -192113,5 +192113,5 @@ const PROGRAM_DATA_2026_10 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Oct 21, 2026, 10:53 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-10-21T14:53:41Z";
+const PROGRAM_DATA_REFRESHED = "Oct 21, 2026, 11:00 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-21T15:00:06Z";
