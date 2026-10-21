@@ -5745,3 +5745,10 @@ Molson Coors _9 workbooks (convert_mc_retention.py, all reconciled): 53 -> 56 of
 3,269 / 2,912, on 795 -> 803 / 840. MABI Fall _14 (convert_mabi_fall.py, goals unchanged): 6,016 -> 6,173 / 7,326
 (84.3%), 1 of 24 reps at 90%. Innovation _16 saved to BOTH the MPO and constellation_fall_innovation_off.csv:
 incentive 933 -> 938 / 1,400; October Off-Premise MPO 5 of 16 at 75% (Dan Lagala 89 of 88).
+
+2026-10-21 REFRESH (3) -- Heineken USA SDD retention from WORKBOOKS
+The four reports now arrive as .xlsx (one grouped label column, no outline levels). Convert first:
+  python3 incentive-tracking/convert_heineken_husa.py <off.xlsx> <packages_on.xlsx> <draft_on.xlsx> <dos_equis_on.xlsx>
+(any order; recognised by header) -> the same four data/heineken_husa_*.csv, then generate.py, whose _husa_parse()
+reconciles every subtotal. Same row counts as the CSVs. Off National 571 -> 657 / 1,628; on packages 489 -> 559 /
+1,135; Dos Equis 14 -> 20 / 59; draft 22 / 37 (unchanged). Held: 1 / 1 / 0 / 2.
