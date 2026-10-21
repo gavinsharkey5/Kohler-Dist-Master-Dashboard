@@ -3470,6 +3470,13 @@ retention (`heineken_husa`, Oct 1 - Nov 30) BUILT from four RDE "with Goals" exp
 (`build_heineken_husa`, data/heineken_husa_*.csv, card cardHeinekenHusa, hub TOTALS_ONLY).
 Gavin: one goal per file per rep (its Goals column); the files beat the deck; no Local / Innovation
 (incentive-tracking/README.txt). Tags: incentive programs.js / hub.js / program_data.js 20261016c.
+2026-10-21: touchdowns_tea and other_half joined SEPT_PROGRAMS_STILL_RUNNING and lytt joined
+AUG_PROGRAMS_STILL_RUNNING -- their refreshed exports had been silently replaced by the frozen
+blobs. RULE: any program whose registry period runs past its blob's month must be on one of those
+lists, or a refresh never reaches the page. Other Half on-premise is now read per month (sepBbl /
+octBbl; "qualifies" = 1/3 bbl in BOTH Sept and Oct), still unpriced until October closes.
+convert_new_belgium_retain.py reads a blank SKU-line goal as 0 (totals stay strict).
+Industrial Arts arrives as split OFF / ON exports: convert_industrial_arts.py first.
 
 ## Account Windows: a window list per account (2026-10-20)
 

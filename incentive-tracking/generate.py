@@ -4656,12 +4656,20 @@ def build_other_half():
         on_by_cust[(rep, num)].append(row)
         cust_name[(rep, num)] = name
 
+    # Since 2026-10-21 the on-premise export spans Sep 1 - Oct 31 with a Date per row, so the
+    # 1st-half rule is read per month: an account "qualifies" (at the floor) only with 1/3 bbl
+    # in SEPTEMBER and again in OCTOBER. Still no dollars (onPremScored False) -- October is not
+    # closed yet. The field keeps its old name (onPremSeptember) so the cards need no new key.
     for (rep, num), krows in on_by_cust.items():
-        bbl = sum((keg_bbl(r["Package"]) or 0.0) * to_num(r[on_unit_col]) for r in krows)
-        bbl = round(bbl, 3)
-        qualifies = bbl >= DRAFT_MIN_BBL
+        by_month = defaultdict(float)
+        for r in krows:
+            d = _us_date(r.get("Date"))
+            by_month[(d.year, d.month) if d else None] += (keg_bbl(r["Package"]) or 0.0) * to_num(r[on_unit_col])
+        sep, octo = round(by_month[(2026, 9)], 3), round(by_month[(2026, 10)], 3)
+        bbl = round(sum(by_month.values()), 3)
+        qualifies = sep >= DRAFT_MIN_BBL and octo >= DRAFT_MIN_BBL
         by_rep[rep]["onPremSeptember"].append({
-            "customer": cust_name[(rep, num)], "bbl": bbl, "qualifies": qualifies,
+            "customer": cust_name[(rep, num)], "bbl": bbl, "sepBbl": sep, "octBbl": octo, "qualifies": qualifies,
         })
         if qualifies:
             by_rep[rep]["onPremQualifyingCount"] += 1
@@ -5540,9 +5548,14 @@ def build_four_loko():
                      "placeWindow": cur_w, "placeBaseWindow": base_w, "offRoster": off_roster}}
 
 
-SEPT_PROGRAMS_STILL_RUNNING = ("constellation_fall", "mabi_retention_fall", "yuengling_retention_fall")
-# The August blob holds mc_retention (Jul 27 - Oct 25), still running in October.
-AUG_PROGRAMS_STILL_RUNNING = ("mc_retention",)
+# Touchdowns & Tea (Sep 1 - Oct 31) and Other Half (Sept - Dec) joined on 2026-10-21: both
+# live in the September blob and kept being restored from data/frozen/ -- refreshed exports
+# never reached the page.
+SEPT_PROGRAMS_STILL_RUNNING = ("constellation_fall", "mabi_retention_fall", "yuengling_retention_fall",
+                               "touchdowns_tea", "other_half")
+# The August blob holds mc_retention (Jul 27 - Oct 25) and Lytt Launch (registry period
+# Aug 1 - Dec 31; joined 2026-10-21), both still running in October.
+AUG_PROGRAMS_STILL_RUNNING = ("mc_retention", "lytt")
 
 
 def main():
@@ -5804,8 +5817,8 @@ def main():
     print(f"other_half: {sum(d['offPremNewCount'] for d in oh.values())} off-premise accounts opened "
           f"(${sum(d['offPremPayout'] for d in oh.values()):,} -- {oh_south} at the Southern District "
           f"$50 flat rate, unconfirmed reading) | on-premise {sum(len(d['onPremSeptember']) for d in oh.values())} "
-          f"accounts active in September ({sum(d['onPremQualifyingCount'] for d in oh.values())} at the "
-          f"1/3 bbl floor), NOT paid -- needs October to confirm the two-month hold")
+          f"draft accounts Sept-Oct ({sum(d['onPremQualifyingCount'] for d in oh.values())} at the "
+          f"1/3 bbl floor in BOTH months), NOT paid until October closes")
 
     yu = data["yuengling_retention"]["byRep"]
     yu_goaled = [d for d in yu.values() if d["goalsTotal"]]

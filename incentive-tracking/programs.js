@@ -1129,7 +1129,7 @@ function cardOtherHalf(rep){
 
   const board = statBoard([
     {num:d.offPremNewCount, label:'New Off-Premise Accounts', status:cntStatus(d.offPremNewCount), sub:`$${R.offPrem||40}+ each — every account here is new to Other Half`},
-    {num:(d.onPremSeptember||[]).length, label:'On-Premise Accounts, September', sub:'Needs October too before the $150 pays'},
+    {num:(d.onPremSeptember||[]).length, label:'On-Premise Accounts, Sept–Oct', sub:'1/3 bbl in both September and October earns the $150'},
     {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Tracked Earnings', sub:'Off-premise only — on-premise isn’t priced yet'},
   ]);
 
@@ -1159,14 +1159,14 @@ function cardOtherHalf(rep){
     icon:'🍻', title:'On-Premise Activity — Not Priced Yet',
     rate:`$${R.onPrem1stHalf||150} NEEDS TWO MONTHS`,
     rateNote:`The same account has to buy Other Half core draft in BOTH September and October (1/2 bbl, or two 1/6 bbls, each month) before the $${R.onPrem1stHalf||150} pays. Only September exists right now, so nothing here is priced — these are accounts on track, not confirmed earnings.`,
-    whatToDo:'Get a new on-premise account pouring Other Half core draft at 1/2 bbl (or two 1/6 bbls) or more this month, then keep it buying in October to lock the payout.',
+    whatToDo:'Keep each new Other Half draft account at 1/2 bbl (or two 1/6 bbls) or more in October. It needs both September and October.',
     stats:[
       {num:(d.onPremSeptember||[]).length, label:'Accounts Active'},
-      {num:d.onPremQualifyingCount, label:'At The Volume Floor'},
+      {num:d.onPremQualifyingCount, label:'At The Floor Both Months'},
     ],
     detail:{
-      label:'Your September Other Half Accounts',
-      items:(d.onPremSeptember||[]).map(a=>({name:a.customer, stat:a.bbl.toFixed(2)+' bbl', status:a.qualifies?'qualified':'progress'})),
+      label:'Your Other Half Draft Accounts, Sept–Oct',
+      items:(d.onPremSeptember||[]).map(a=>({name:a.customer, stat:a.sepBbl!=null?'Sep '+a.sepBbl.toFixed(2)+' · Oct '+a.octBbl.toFixed(2)+' bbl':a.bbl.toFixed(2)+' bbl', status:a.qualifies?'qualified':'progress'})),
       emptyMsg:'No on-premise Other Half activity yet this month.',
     },
   });

@@ -59,8 +59,11 @@ def convert(source):
                 if any(v not in (None, "") for v in raw): raise ValueError(f"Unlabelled row {index}")
                 continue
             label = str(label).strip()
+            # A SKU line can carry placements with no SKU goal (Bell's Big Hearted, 2026-10-21):
+            # that is "no goal on this SKU" = 0. Rep, package-group and report totals stay strict.
+            sku_line = re.fullmatch(r"\d+ .+", label) is not None
             metric = {"placements": count(actual, f"row {index} actual"),
-                      "goal": count(goal, f"row {index} goal")}
+                      "goal": 0 if (goal is None and sku_line) else count(goal, f"row {index} goal")}
             if label == "Total":
                 if report["house"] is not None or report["reps"]:
                     raise ValueError("Unexpected extra report total")
