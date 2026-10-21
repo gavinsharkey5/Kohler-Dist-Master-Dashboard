@@ -169,6 +169,36 @@ function repDenied(pathname) {
   return false;
 }
 
+// SLOW ROLLOUT (Gavin, 2026-10-21): "only allow the sales reps and associates
+// to see incentives and MPOs right now". While ROLLOUT_LIMITED is true a rep
+// or a sales associate may open ONLY their home page, the Incentive Hub, the
+// two MPO trackers (+ the Carbliss Leaderboard, which IS the on-premise
+// Carbliss MPO's program page) and the files those pages load. Everything else
+// -- My Accounts, Inventory, Tap / Red Bull trackers, Non-Buy, Field Tasks,
+// Kohler Korner, the assistant -- redirects home (403 for a data fetch).
+// Associates go through the same per-rep data slicing as reps, so they can
+// never receive another rep's rows. Set to false to give back the full rep /
+// associate site (REP_PATHS / ASSOCIATE_PATHS below, unchanged).
+// shared/kdh-user.js carries the same switch (ROLLOUT_LIMITED) for the links.
+const ROLLOUT_LIMITED = true;
+const ROLLOUT_PATHS = [
+  '/rep/',                                       // rep home
+  '/associate/',                                 // associate home
+  '/hub/',                                       // Incentives (+ /hub/data/accounts.js, rewritten per rep)
+  '/MPOs/',                                      // Off- / On-Premise MPO trackers + guided.js
+  '/carbliss-onprem-targets/',                   // the Carbliss MPO's leaderboard (served per rep)
+  '/carbliss-mpo/data/',                         // program.json the Carbliss MPO card reads (served per rep)
+  '/incentive-tracking/assets/',                 // supplier logos the hub shows
+  '/incentive-tracking/programs.js',             // the hub's program library ...
+  '/incentive-tracking/data/program_data.js',    // ... and its data (served per rep)
+  '/accounts/data/',                             // elig / hist / catalog / book the hub + MPO cards read (per rep, checked below)
+  '/shared/',
+];
+function rolloutMayOpen(pathname) {
+  const p = pathname.split('?')[0];
+  return ROLLOUT_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+}
+
 function repMayOpen(pathname) {
   const p = pathname.split('?')[0];
   return REP_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
@@ -283,7 +313,19 @@ function route(request, url, verdict) {
       }
       return redirect(new URL(FINANCE_HOME, url).toString());
     }
-    if (verdict.role === 'associate') {
+    if (ROLLOUT_LIMITED) {   // every role left here is a rep or an associate (managers / IT returned above)
+      if (!rolloutMayOpen(url.pathname)) {
+        if (!wantsDocument(request)) {
+          return new Response(JSON.stringify({ error: 'not available yet' }), {
+            status: 403,
+            headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+          });
+        }
+        return redirect(new URL(verdict.role === 'associate' ? ASSOCIATE_HOME : REP_HOME, url).toString());
+      }
+      if (verdict.role === 'associate' && /^\/rep\/(index\.html)?$/.test(url.pathname)) return redirect(new URL(ASSOCIATE_HOME, url).toString());
+      // falls through to the rep data rules below (per-rep slices, denials), for associates too
+    } else if (verdict.role === 'associate') {
       if (url.pathname === '/accounts/' || url.pathname === '/accounts' || url.pathname === '/accounts/index.html') return rewrite(new URL('/accounts/field.html', url));
       if (associateMayOpen(url.pathname)) return passThrough();
       if (!wantsDocument(request)) {
@@ -316,7 +358,7 @@ function route(request, url, verdict) {
     }
     // Only the rep pages. The root index is the managers' page, so
     // a rep asking for "/" lands on /rep/ instead.
-    if (repMayOpen(url.pathname)) return passThrough();
+    if (ROLLOUT_LIMITED || repMayOpen(url.pathname)) return passThrough();   // under the rollout the path was checked above
     const isDoc =
       request.headers.get('sec-fetch-dest') === 'document' ||
       (request.headers.get('accept') || '').includes('text/html');

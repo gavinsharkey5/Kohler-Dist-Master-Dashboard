@@ -11,12 +11,30 @@
 <link rel="stylesheet" href="../rep/rep.css?v=20261020ws">
 <meta name="kdh-page" content="Home">
 <meta name="kdh-home" content="associate">
-<script src="../shared/kdh-user.js?v=20261020ws"></script>
+<script src="../shared/kdh-user.js?v=20261021r"></script>
 </head>
 <body>
 <main class="wrap home">
  <header class="hh"><div class="hh-id"><h1>Home</h1><p class="hh-meta"><b id="associateWho">Your workspace</b><span id="associateMeta"></span></p></div></header>
  <section data-my-day aria-label="My Day" class="work-card"><p>Loading your day…</p></section>
+ <!-- slow rollout (2026-10-21): Incentives + MPOs only; kdh-user.js shows [data-rollout-only] while ROLLOUT_LIMITED is on and hides the other cards -->
+ <section class="hs" data-rollout-only hidden><div class="hs-h"><h2>Programs</h2></div><div class="kt-grid">
+      <a class="kt" href="../hub/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Incentives</span><span class="kt-s">Your programs by supplier</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" href="../MPOs/off-prem/index.html#view=program">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Off-Premise MPOs</span><span class="kt-s">Off-premise objectives this month</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" href="../MPOs/on-prem/index.html#view=program">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/><path d="M6 8a3 3 0 0 1 5-2.2A3 3 0 0 1 16 8"/></svg></span>
+        <span class="kt-main"><span class="kt-t">On-Premise MPOs</span><span class="kt-s">On-premise objectives this month</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+ </div></section>
  <section class="hs"><div class="hs-h"><h2>Your work</h2></div><div class="kt-grid">
   <a class="kt" href="../tasks/"><span><b class="kt-t">Field Tasks</b><small class="kt-s">Your assignments, updates, and completion photos</small></span></a>
   <a class="kt" href="../accounts/field.html"><span><b class="kt-t">Accounts</b><small class="kt-s">Find customers and add account photos</small></span></a>

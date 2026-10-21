@@ -3502,3 +3502,20 @@ the page; shared/signature-home.js puts it first in her home shortcuts (a 4-card
 signature.css `:has(>a:nth-child(4))`, 2 across 600-1199px, 4 from 1200px). A manager previewing
 her sees the same. Other managers unchanged. Add a name to WS_VIEWERS to give someone else the
 shortcut. Tags 20261020ws.
+
+## SLOW ROLLOUT: reps + associates get Incentives and MPOs only (2026-10-21)
+
+Gavin: "only allow the sales reps and associates to see incentives and mpos right now ... roll this out
+slowly." ONE switch, `ROLLOUT_LIMITED = true`, in BOTH middleware.js (enforcement) and shared/kdh-user.js
+(links). Middleware: every role that reaches the rep branch (rep, associate) may open only `ROLLOUT_PATHS`
+-- /rep/, /associate/, /hub/, /MPOs/, /carbliss-onprem-targets/ (the on-premise Carbliss MPO's page),
+/carbliss-mpo/data/, the hub's incentive-tracking programs.js / program_data.js / assets, /accounts/data/
+(per-rep checks still apply) and /shared/; anything else redirects to their home (403 for data). Associates
+now go through the REP data rules (per-rep slices by name, raw-file / other-rep denials) so they never get
+another rep's rows; an associate not on a roster gets the pages' fail-closed "couldn't find your name"
+notice. kdh-user.js `limited(u)` (rep / associate, previews included): nav = Home / Incentives / Off- /
+On-Premise MPOs (finance-style), no tools, no My Day (work.js not loaded), home pages keep only the program
+cards (`[data-rollout-off]`; associate/index.html has a `[data-rollout-only]` Programs section), and a tap on
+any other in-site link is stopped with "Coming soon" (account links on hub / MPO cards). signature-home.js
+returns early for them. REP_PATHS / ASSOCIATE_PATHS are untouched, so false restores the full site.
+Tag kdh-user.js 20261021r everywhere. Tests (scratchpad): rollout_mw_test.mjs (56), rollout_ui.mjs (18).
