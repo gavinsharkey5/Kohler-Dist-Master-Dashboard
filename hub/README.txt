@@ -15,7 +15,24 @@ ROUND 2, PHASE 1 (2026-10-22)
   authentication is a local fixture and live Supabase is not called. Compares
   current results with HEAD, checks manager HTML unchanged, and exercises cards
   at 390 / 820 / 1366 in light and dark. Local screenshots: shots/incentive-cards/.
-  Approved for commit and publication on 2026-10-22. Phase 2 has not started.
+  Phase 1 approved for commit and publication on 2026-10-22.
+
+ROUND 2, PHASE 2 (2026-10-22)
+  Larger supplier wordmarks in rep headers; manager Program View is one summary
+  per incentive, followed by Review Reps. Multiple programs may stay expanded.
+  Program Details retains original stats, payout information, rules and account
+  workspace. Global and per-program exports, all filters and scope remain.
+  Export checkboxes are local to their export bar (unique IDs). A DM's incentive
+  ranking rows are restricted to the same roster as their existing stats/exports;
+  tracker performance values and rank numbers are unchanged. No new data/tables.
+  Tags hub.js / hub.css 20261022p2; accounts, exceptions and performance references
+  are bumped too. Run tools/incentive-manager-browser-test.cjs for scoped data,
+  export and responsive UI checks; the existing rep card suite remains available.
+  Playwright is required. Screenshots: shots/incentive-manager/ (ignored).
+  Passed: 392 manager checks across five scopes, three widths/two themes, CSV
+  and Excel downloads. Rep regression: 1,204 unchanged program/rep models, 966
+  cards, 30 representative screens. Local auth fixture; no live database writes.
+  Logo changes and Phase 2 approved for publication on 2026-10-22. Phase 3 has not started.
 
 One link for reps: pick your name and you are looking at every incentive
 and MPO program you are in -- where you stand, what you

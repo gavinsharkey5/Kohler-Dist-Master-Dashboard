@@ -373,10 +373,15 @@ device, a decision).
 
 ## Done
 
+- [x] **Round 2, Phase 2: manager incentive summaries + larger supplier logos (2026-10-22).** Approved for
+  publication. One summary per incentive; Review Reps expands results; Program Details retains statistics, payout
+  details, rules and account workspace. Filters and global/per-program exports remain. Ranking rows use the
+  existing scoped roster. Larger supplier logos on rep/mobile views. No rollout change. Phase 3 has not started.
+
 - [x] **Round 2, Phase 1: shared incentive cards (2026-10-22).** Approved for publication. Rep incentive lists and
   program screens share Goal / Current / Remaining, with Remaining largest, stacked rows on phones, and No Fixed
   Goal for open-ended programs. Constellation separates progress from Goals Held. Calculations, rules, eligibility,
-  manager screens and limited rollout are unchanged. Phase 2 has not started.
+  manager screens and limited rollout are unchanged.
 
 - [x] **Slow rollout: reps and associates see Incentives + MPOs only (2026-10-21).** Reps and sales associates can open
   their home, the Incentive Hub, both MPO trackers and the Carbliss Leaderboard (the Carbliss MPO's own page) --

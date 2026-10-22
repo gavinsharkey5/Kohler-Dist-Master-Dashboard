@@ -3584,4 +3584,27 @@ Tags hub.js / hub.css 20261022p1; hub.js references also bumped in accounts/, ex
 Test: tools/incentive-cards-browser-test.cjs, real static datasets + actual middleware routing, fixed clock,
 local identity fixture (no live authentication or Supabase writes), baseline results and manager HTML compared
 with HEAD; responsive screens at 390 / 820 / 1366, light / dark. Screenshots in ignored shots/incentive-cards/.
-Approved for commit and publication on 2026-10-22. Phase 2 has not started.
+Phase 1 approved for commit and publication on 2026-10-22.
+
+## Round 2, Phase 2: manager summaries and readable supplier logos (2026-10-22)
+
+Rep supplier headers use 144 x 72px logo boxes, with contain-fit images
+and wrapping names/counts. The original logo files are unchanged. Manager incentive summaries use 144 x 72px
+marks and one column. Program View retains all existing filters and its global exports; each incentive starts
+with completed of participating REP counts + remaining from programStats, or Reps Active + No Fixed Goal for
+open-ended programs. Review Reps expands in place (multiple cards may stay open); rep rows still open the
+existing breakdown, and Back returns to the expanded card. Program Details folds the existing statistics,
+payout exposure, rules and eligible-account workspace. Per-program exports remain in each expanded card;
+export option IDs are unique and the event reads that export bar's options, not the global bar's checkbox.
+Deep program links retain their original detail screen. Native buttons support keyboard activation; expanded
+Program Details folds survive re-rendering. Scoping: makeIncentive.ranking now filters the tracker's global
+rank rows to the existing scoped ROSTER (its values and rank numbers stay unchanged); stats and exports already
+used that scoped roster. Brand-manager and hybrid-manager scope logic is unchanged. No rollout/data changes.
+Shared progressFigureHtml supplies the figure markup for Phase 1 rep cards and manager summaries; no new
+performance calculation. Tags hub.js / hub.css 20261022p2, all hub.js consumers bumped.
+Verification suites: tools/incentive-manager-browser-test.cjs (HEAD comparison of scoped calculations, filtered
+CSV rows and recap workbook models, UI exports/filters/Review Reps, mobile logos, three widths/two themes)
+and tools/incentive-cards-browser-test.cjs (rep regression). Auth is a local fixture, no live database writes.
+Verified: 392 manager checks across five scopes and three widths/two themes; rep regression confirms 1,204
+unchanged program/rep models, 966 cards and 30 representative screens. CSV and Excel downloads exercised.
+Logo changes and Phase 2 approved for commit and publication on 2026-10-22. Phase 3 has not started.

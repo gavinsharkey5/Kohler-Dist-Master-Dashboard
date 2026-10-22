@@ -288,7 +288,7 @@ function makeIncentive(entry, month){
   };
   p.detailHtml = rep => withIncMonth(month, ()=>fixAssets(cardFor(entry.key, rep)));
   p.ranking = function(){
-    return withIncMonth(month, ()=>rankProgram(entry)).map(r=>{
+    return withIncMonth(month, ()=>rankProgram(entry)).filter(r=>ROSTER.includes(r.rep)).map(r=>{
       const d = entry.getRep(r.rep);
       const board = (PROGRAM_BOARD[entry.key] && d) ? PROGRAM_BOARD[entry.key](d) : null;
       const rr = p.forRep(r.rep) || {};
@@ -2635,7 +2635,7 @@ function screenDetail(){
   const r = p.forRep(rep);
   const peekNote = state.peek ? `<div class="peek">Viewing <strong>${E(rep)}</strong>’s progress${state.rep?` — you are still signed in as ${E(state.rep)}`:''}.</div>` : '';
   const back = state.from==='program'
-    ? `<button class="back" data-act="open-program" data-prog="${E(p.id)}"><span class="ar">‹</span> Back to ${E(p.shortName)} leaderboard</button>`
+    ? `<button class="back" data-act="${reviewedPrograms.has(p.id)?'back-review':'open-program'}" data-prog="${E(p.id)}"><span class="ar">‹</span> Back to ${E(p.shortName)} ${reviewedPrograms.has(p.id)?'Reps':'leaderboard'}</button>`
     : `<button class="back" data-act="my-programs"><span class="ar">‹</span> Back to My Programs</button>`;
   if(!r) return `<div class="detail">${back}<div class="empty">${E(rep)} is not in ${E(p.name)}${p.type==='Incentive' && p.territory==='Core Market counties' ? ' — it runs in the Core Market counties only.' : '.'}</div></div>`;
   const rank = p.ranking(); const mine = rank.find(x=>x.rep===rep);
@@ -3161,15 +3161,51 @@ async function exportRecap(onlyId, withAccounts){
 function exportMenuHtml(onlyId){
   if(!isMgr() || LOCKED_REP || state.asRep || (KDH_USER && KDH_USER.preview)) return '';
   const pid = onlyId ? ` data-prog="${E(onlyId)}"` : '';
+  const optionPrefix = onlyId ? 'x-'+onlyId.replace(/[^a-z0-9_-]/gi,'-')+'-' : '';
   const ico = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
   return `<div class="xbar" role="group" aria-label="Export">
     <button type="button" class="xbtn2" data-act="export-data"${pid}>${ico('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>')}<b>Download CSV</b></button>
     <button type="button" class="xbtn2" data-act="export-recap"${pid}>${ico('<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>')}<b>Export Recap</b></button>
     <details class="xopts"><summary>Options</summary><div class="xpanel">
-      <label class="xopt"><input type="checkbox" id="xLines"> CSV: include credited account lines</label>
-      <label class="xopt"><input type="checkbox" id="xAccts"> Recap: include account detail</label>
+      <label class="xopt"><input type="checkbox" class="x-lines" id="${optionPrefix}xLines"> CSV: include credited account lines</label>
+      <label class="xopt"><input type="checkbox" class="x-accts" id="${optionPrefix}xAccts"> Recap: include account detail</label>
       <p class="xnote">${E(exportScopeText())} · Recap: supplier billing, rep and DM payouts, program setup (print + Excel) · CSV: progress only, no dollar figures</p></div></details>
   </div>`;
+}
+// Keep more than one incentive open for comparison. Data and scoping still
+// come from PROGRAMS / ROSTER; only an expanded card renders its rep detail.
+const reviewedPrograms = new Set();
+const reviewDetailsOpen = new Set();
+document.addEventListener('toggle', e=>{
+  const d=e.target;
+  if(!d.isConnected || !d.matches || !d.matches('details[data-program-details]')) return;
+  if(d.open) reviewDetailsOpen.add(d.dataset.programDetails); else reviewDetailsOpen.delete(d.dataset.programDetails);
+},true);
+function managerIncentiveCard(p){
+  const st = programStats(p), open = reviewedPrograms.has(p.id);
+  const hasGoal = ROSTER.some(rep=>{
+    if(!supportAllows(rep,p)) return false;
+    const r = p.forRep(rep);
+    return r && !r.soon && r.status!=='unavailable' && availability(p,rep).ok && !r.openEnded && Number(r.goalNum)>0;
+  });
+  const bodyId = 'review-'+p.id.replace(/[^a-z0-9_-]/gi,'-');
+  const progress = p.manual ? '<span class="pv-note">Manually Verified · No Data Feed</span>'
+    : !st.participants ? '<span class="pv-note">Awaiting Data</span>'
+    : hasGoal ? `<span class="inc-progress${st.incomplete===0?' met':''}"><span class="inc-stats">
+        ${progressFigureHtml('Reps Complete',fmtN(st.complete)+`<span class="pv-of"> of ${fmtN(st.participants)}</span>`,`${st.incomplete} Remaining · ${Math.round(st.pctComplete)}% Complete`,'pv-team-stat')}
+      </span>${hbar({pct:st.pctComplete,cls:st.incomplete===0?'met':'ontrack'})}
+      </span>`
+    : `<span class="pv-open-progress"><span class="pv-note">No Fixed Goal</span><span class="pv-active"><b>${st.started}</b> of ${st.participants}</span><span>Reps Active</span></span>`;
+  return `<article class="pv-incentive${isActive(p)?'':' over'}" id="program-${E(p.id)}">
+    <button type="button" class="pv-summary" data-act="review-reps" data-prog="${E(p.id)}" aria-expanded="${open}" aria-controls="${E(bodyId)}">
+      ${logoStrip(p)}<span class="pv-program-name">${E(p.name)}</span>
+      <span class="pv-program-meta">${E(p.supplier)} · ${E(p.channelLabel)}${isActive(p)?'':' · Ended'}</span>
+      ${progress}
+      <span class="pv-program-meta">${E(p.period.label)} · ${E(endsLabel(p.period))}</span>
+      <span class="pv-review">${open?'Hide Reps':'Review Reps'} <span aria-hidden="true">${open?'▴':'▾'}</span></span>
+    </button>
+    <section class="pv-review-body" id="${E(bodyId)}" aria-label="${E(p.name)} Rep Results"${open?'':' hidden'}>${open?screenProgram(p,true):''}</section>
+  </article>`;
 }
 function screenPrograms(){
   state.filters.type = 'inc';      // Incentives only (2026-10-07): MPOs are on their trackers
@@ -3226,24 +3262,7 @@ function screenPrograms(){
   });
   if(groups.length && incs.length) html += `<div class="g-step-head pv-inc-head"><div class="g-title">Incentives</div>
     <div class="g-sub">Supplier programs — participation and completion across the roster.</div></div>`;
-  if(incs.length) html += `<div class="pgrid">${incs.map(p=>{
-    const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
-    const st = loaded ? programStats(p) : null;
-    const exp = loaded ? p.exposure() : null;
-    const ag = (loaded && p.atGoal) ? p.atGoal() : null;
-    return `<article class="pvcard${isActive(p)?'':' over'}" data-act="open-program" data-prog="${E(p.id)}" tabindex="0" role="button">
-      <div class="pcard-top">${logoStrip(p)}<div class="pcard-title"><div class="pcard-name">${E(p.name)}</div>
-        <div class="pcard-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span>${isActive(p)?'':'<span class="chip over">Ended</span>'}</div></div></div>
-      ${!loaded ? '<div class="soon-note">Loading…</div>' : p.manual ? '<div class="soon-note">Manually verified — no data feed, so no completion numbers.</div>' : st.participants===0 ? '<div class="soon-note">Waiting on the first export for this program.</div>' : `
-      <div class="facts">
-        <div class="fact"><span class="fact-l">Participating reps</span><span class="fact-v">${st.participants}</span></div>
-        <div class="fact"><span class="fact-l">Completed</span><span class="fact-v ok">${st.complete}</span><span class="fact-s">${st.incomplete} not yet</span></div>
-        <div class="fact"><span class="fact-l">Overall completion</span><span class="fact-v">${Math.round(st.pctComplete)}%</span><span class="fact-s">${st.avg!=null?`avg progress ${Math.round(st.avg)}%`:`${st.started} reps on the board`}</span></div>
-        <div class="fact"><span class="fact-l">${exp!=null?'Payout exposure':'Reward'}</span><span class="fact-v${exp!=null?'':' small'}">${exp!=null?'$'+exp.toLocaleString('en-US'):E(p.reward||'—')}</span></div>
-      </div>
-      <div class="bar"><div class="bar-fill ${st.pctComplete>=100?'earned':st.pctComplete>=ALMOST_PCT?'close':st.pctComplete>0?'ontrack':'notstarted'}" style="width:${Math.max(st.pctComplete, st.pctComplete>0?2:0)}%"></div></div>`}
-      <div class="pcard-foot"><span class="period">📅 ${E(p.period.label)} · ${E(endsLabel(p.period))}</span><span class="refreshed">Data ${E(p.refreshed?'refreshed '+p.refreshed:'loading…')}</span><span class="viewbtn">Rep rankings <span class="ar">›</span></span></div>
-    </article>`;}).join('')}</div>`;
+  if(incs.length) html += `<div class="pv-incentives">${incs.map(managerIncentiveCard).join('')}</div>`;
   return `<div class="pview">${html}</div>`;
 }
 
@@ -3341,8 +3360,8 @@ function screenProgramCarbliss(p){
     ${workspaceTeamHtml(p) ? `<details class="dsec fold"><summary class="dsec-h">Team Opportunities</summary>${workspaceTeamHtml(p)}</details>` : ''}
   </div>`;
 }
-function screenProgram(){
-  const p = PROGRAMS.find(x=>x.id===state.prog);
+function screenProgram(selected, inline){
+  const p = selected || PROGRAMS.find(x=>x.id===state.prog);
   if(!p) return `<div class="empty">That program is not on the board.</div>`;
   if(isCarbliss(p)) return screenProgramCarbliss(p);
   const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
@@ -3351,34 +3370,37 @@ function screenProgram(){
   const exp = loaded ? p.exposure() : null;
   const ag = (loaded && p.atGoal) ? p.atGoal() : null;
   const notIn = loaded ? ROSTER.filter(rep=>supportAllows(rep, p) && !p.forRep(rep)) : [];
-  return `<div class="detail pdetail">
-    <div class="pv-title"><button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>${exportMenuHtml(p.id)}</div>
-    <div class="dhero">
+  const overview = `    <div class="dhero">
       <div class="dhero-top">${logoStrip(p,'lg')}<div class="dhero-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span>${p.territory?`<span class="chip terr">${E(p.territory)}</span>`:''}${isActive(p)?'':'<span class="chip over">Ended</span>'}</div></div>
       <div class="dhero-sup">${E(p.supplier)} · ${E(p.monthLabel)}</div>
       <h1 class="dhero-name">${E(p.name)}</h1>
       ${p.pitch ? `<p class="dhero-pitch">${E(p.pitch)}</p>` : ''}
       ${st && st.participants ? `<div class="pstats">
-        <div class="pstat"><div class="pstat-n">${st.participants}</div><div class="pstat-l">participating reps</div></div>
-        <div class="pstat good"><div class="pstat-n">${st.complete}</div><div class="pstat-l">completed</div></div>
-        <div class="pstat"><div class="pstat-n">${st.incomplete}</div><div class="pstat-l">not yet</div></div>
-        <div class="pstat accent"><div class="pstat-n">${Math.round(st.pctComplete)}%</div><div class="pstat-l">overall completion${st.avg!=null?` · avg ${Math.round(st.avg)}%`:''}</div></div>
-        ${exp!=null?`<div class="pstat amber"><div class="pstat-n">$${exp.toLocaleString('en-US')}</div><div class="pstat-l">payout exposure so far</div></div>`:''}
+        <div class="pstat"><div class="pstat-n">${st.participants}</div><div class="pstat-l">Participating Reps</div></div>
+        <div class="pstat good"><div class="pstat-n">${st.complete}</div><div class="pstat-l">Completed</div></div>
+        <div class="pstat"><div class="pstat-n">${st.incomplete}</div><div class="pstat-l">Not Yet</div></div>
+        <div class="pstat accent"><div class="pstat-n">${Math.round(st.pctComplete)}%</div><div class="pstat-l">Overall Completion${st.avg!=null?` · avg ${Math.round(st.avg)}%`:''}</div></div>
+        ${exp!=null?`<div class="pstat amber"><div class="pstat-n">$${exp.toLocaleString('en-US')}</div><div class="pstat-l">Payout Exposure So Far</div></div>`:''}
         ${ag && ag.headline ? `<div class="pstat"><div class="pstat-n">${E(ag.headline)}</div><div class="pstat-l">${E(ag.sub||'')}</div></div>`:''}
       </div>` : `<div class="soon-note">${loaded ? (p.manual ? 'Manually verified — no data feed, so no completion numbers.' : 'Waiting on the first export for this program.') : 'Loading…'}</div>`}
       <div class="dhero-line"><span class="period">📅 ${E(p.period.label)} · ${E(endsLabel(p.period))}</span><span class="refreshed">Data ${E(p.refreshed?'refreshed '+p.refreshed:'loading…')}</span></div>
     </div>
     <section class="dsec">
-      <h2 class="dsec-h">Rules &amp; payout</h2>
+      <h2 class="dsec-h">Rules &amp; Payout</h2>
       <ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul>
       ${p.type==='MPO' ? `<p class="note"><a href="${E(MPO_SCOPES[p.source].page)}#view=program&program=${encodeURIComponent(p.key)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker ›</a></p>` : `<p class="note"><a href="${INC_ASSETS}index.html">Open the Incentive Tracker ›</a></p>`}
     </section>
     ${loaded ? workspaceTeamHtml(p) : ''}
-    <section class="dsec">
-      <h2 class="dsec-h">Rep rankings</h2>
+`;
+  const reps = `    <section class="dsec">
+      <h2 class="dsec-h">Rep Rankings</h2>
       ${rank.length ? `<p class="dsec-p">${plw(rank.length,'rep')} ranked by ${E(rank[0].metricLabel)} · tap a rep for their full breakdown</p>${leaderboard(p, rank, state.rep, 0)}` : `<div class="empty small">${loaded ? 'No rep activity yet for this program.' : 'Loading…'}</div>`}
       ${notIn.length && rank.length ? `<p class="note">Not in this program: ${E(notIn.join(', '))}.</p>` : ''}
     </section>
+`;
+  return `<div class="detail pdetail">
+    ${inline ? `<div class="pv-inline-tools">${exportMenuHtml(p.id)}</div>` : `<div class="pv-title"><button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>${exportMenuHtml(p.id)}</div>`}
+    ${inline ? reps + `<details class="pv-details" data-program-details="${E(p.id)}"${reviewDetailsOpen.has(p.id)?' open':''}><summary>Program Details</summary>${overview}</details>` : overview + reps}
   </div>`;
 }
 
@@ -3531,6 +3553,10 @@ function progFacts(p, r, rep){
 }
 const htag = f => f && f.label ? `<span class="htag ${f.cls}">${E(f.label)}</span>` : '';
 const hbar = f => (f && f.pct!=null) ? `<div class="hbar ${f.cls}"><div class="hbar-fill" style="width:${Math.round(f.pct)}%"></div></div>` : '';
+// Shared figure markup: manager summaries label rep counts explicitly.
+function progressFigureHtml(label, value, sub, cls, text){
+  return `<span class="inc-stat ${cls||''}"><span class="inc-stat-label">${label}</span><span class="inc-stat-value${text?' inc-stat-text':''}">${value}</span>${sub ? `<span class="inc-stat-unit">${sub}</span>` : ''}</span>`;
+}
 // One presentation for rep incentives. Read the existing facts (including
 // tier/account conversions), falling back to incNums for unitless goals.
 // No goal, qualification, status or sorting calculation lives here.
@@ -3550,7 +3576,7 @@ function incentiveProgressHtml(p, r, rep, opt){
   // Constellation's combined total mixes placements and buyers: keep the
   // original total and make its component units explicit, never rename it cases.
   const context = d && d.hasAnyGoal ? 'Off-Premise Placements + On-Premise Buyers' : (f.why || f.rule || '');
-  const stat = (label, value, sub, cls) => `<span class="inc-stat ${cls||''}"><span class="inc-stat-label">${label}</span><span class="inc-stat-value${fixed?'':' inc-stat-text'}">${value}</span>${sub ? `<span class="inc-stat-unit">${sub}</span>` : ''}</span>`;
+  const stat = (label, value, sub, cls) => progressFigureHtml(label, value, sub, cls, !fixed);
   return `<span class="inc-progress${fixed ? (N.need<=0?' met':'') : ' no-fixed-goal'}">
     <span class="inc-stats">
       ${stat('Goal', goal, fixed ? unit(N.goal) : '', 'inc-goal')}
@@ -4261,7 +4287,7 @@ document.addEventListener('click', e=>{
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
     case 'export-data': case 'export-recap': {
       if(!isMgr() || (KDH_USER && KDH_USER.preview)) break;
-      const lines = !!(document.getElementById(t.dataset.act==='export-data' ? 'xLines' : 'xAccts')||{}).checked;
+      const lines = !!(t.closest('.xbar')?.querySelector(t.dataset.act==='export-data' ? '.x-lines' : '.x-accts')||{}).checked;
       const lbl = t.querySelector('b'); const was = lbl.textContent; lbl.textContent = 'Preparing…'; t.disabled = true;
       (t.dataset.act==='export-data' ? exportData(t.dataset.prog||'', lines) : exportRecap(t.dataset.prog||'', lines))
         .catch(e=>{ alert('Export failed: '+(e && e.message || e)); })
@@ -4290,6 +4316,18 @@ document.addEventListener('click', e=>{
       else go({view:'detail', prog:t.dataset.prog, peek: who===state.rep ? null : who, from: state.view==='program' ? 'program' : null});
       break; }
     case 'programs': go({view:'programs', prog:null}); break;
+    case 'review-reps': {
+      if(!isMgr()) break;
+      const id = t.dataset.prog, y = window.scrollY;
+      if(reviewedPrograms.has(id)) reviewedPrograms.delete(id); else reviewedPrograms.add(id);
+      render(); window.scrollTo(0,y);
+      const button = [...document.querySelectorAll('[data-act="review-reps"]')].find(b=>b.dataset.prog===id);
+      if(button) button.focus({preventScroll:true});
+      break; }
+    case 'back-review': {
+      go({view:'programs',prog:null,rep:null,peek:null,from:null});
+      requestAnimationFrame(()=>{ const card=document.getElementById('program-'+t.dataset.prog); if(card) card.scrollIntoView({block:'start'}); });
+      break; }
     case 'open-program': go({view:'program', prog:t.dataset.prog}); break;
   }
 });

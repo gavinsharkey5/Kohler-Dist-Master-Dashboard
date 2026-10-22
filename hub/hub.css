@@ -1789,6 +1789,43 @@ a.hreturn{text-decoration:none;}
 .inc-card .inc-remaining .inc-stat-value{font-size:38px}
 .inc-card .inc-stat-value.inc-stat-text{font-size:18px}
 .inc-card .inc-remaining .inc-stat-value.inc-stat-text{font-size:24px}
+/* Supplier wordmarks need horizontal space, especially on phones. */
+.hsupg-h .suplogo,.hhead-row .suplogo{width:144px;height:72px;padding:6px;border-radius:8px}
+.hsupg-h .suplogo img,.hhead-row .suplogo img{width:100%;height:100%;object-fit:contain}
+.hsupg-h{gap:12px;flex-wrap:wrap;padding:12px 0}
+.hsupg-n{flex:1;min-width:100px}
+.hsupg-c{font-size:14px}
+/* Manager incentives: one column, summary first, rep detail on demand. */
+.pv-incentives{display:flex;flex-direction:column;gap:16px}
+.pv-incentive{border:1px solid var(--kdh-border);border-radius:var(--kdh-r-lg);background:var(--kdh-surface);overflow:hidden;scroll-margin-top:76px}
+.pv-summary{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;padding:16px;border:0;background:transparent;color:var(--kdh-text);font:inherit;text-align:center;cursor:pointer}
+.pv-summary:hover{background:var(--kdh-surface-2)}
+.pv-summary:focus-visible{outline:2px solid var(--kdh-focus);outline-offset:-3px}
+.pv-program-name{font-size:18px;font-weight:600;line-height:1.35}
+.pv-program-meta,.pv-note,.pv-open-progress{font-size:14px;line-height:1.4;color:var(--kdh-text-2)}
+.pv-summary>.inc-progress{width:100%;margin:0}
+.pv-summary .mark{width:144px;height:72px;padding:6px}
+.pv-summary .inc-stats{grid-template-columns:1fr}
+.pv-summary .pv-team-stat{display:flex;align-items:center;padding:0;border:0;background:transparent;gap:6px}
+.pv-team-stat .inc-stat-value{font-size:42px;font-weight:700}
+.pv-team-stat .pv-of{font-size:24px;font-weight:500;color:var(--kdh-text-2)}
+.pv-review{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;font-size:16px;font-weight:600;color:var(--kdh-brand)}
+.pv-open-progress{display:flex;flex-direction:column;gap:6px}
+.pv-active{font-size:18px}.pv-active b{font-size:42px;font-weight:700;color:var(--kdh-text)}
+.pv-review-body{padding:16px;border-top:1px solid var(--kdh-border)}
+.pv-review-body .pdetail{max-width:none;margin:0}
+.pv-review-body .dsec{margin:0 0 16px}
+.pv-inline-tools{display:flex;justify-content:flex-end;margin-bottom:12px}
+.pv-details{border:1px solid var(--kdh-border);border-radius:var(--kdh-r);padding:0 14px}
+.pv-details>summary{min-height:48px;display:flex;align-items:center;cursor:pointer;font-size:16px;font-weight:600;color:var(--kdh-text)}
+.pv-details>summary::before{content:'▸';margin-right:8px}.pv-details[open]>summary::before{content:'▾'}
+.pv-details .dhero{margin-bottom:16px}
+.pv-review-body .lrow{min-width:0}
+@media(max-width:600px){
+  .hsupg-h .suplogo,.hhead-row .suplogo{width:144px;height:72px}
+  .pv-review-body{padding:12px}
+  .pv-summary .marks{justify-content:center}
+}
 @media(max-width:600px){
   .inc-stats{grid-template-columns:1fr;gap:12px}
   .inc-stat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:4px 12px;text-align:left;padding:12px 14px}
