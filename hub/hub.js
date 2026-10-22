@@ -3531,12 +3531,50 @@ function progFacts(p, r, rep){
 }
 const htag = f => f && f.label ? `<span class="htag ${f.cls}">${E(f.label)}</span>` : '';
 const hbar = f => (f && f.pct!=null) ? `<div class="hbar ${f.cls}"><div class="hbar-fill" style="width:${Math.round(f.pct)}%"></div></div>` : '';
+// One presentation for rep incentives. Read the existing facts (including
+// tier/account conversions), falling back to incNums for unitless goals.
+// No goal, qualification, status or sorting calculation lives here.
+function incentiveProgressHtml(p, r, rep, opt){
+  opt = opt || {};
+  if(!r || isDollarProgram(r)) return '';
+  const f = progFacts(p, r, rep) || {};
+  const N = f.goalN!=null ? {cur:f.cur, goal:f.goalN, need:f.needN} : incNums(r);
+  const fixed = !!(N && Number.isFinite(N.goal) && Number.isFinite(N.cur) && Number.isFinite(N.need));
+  const unit = n => f.unit ? E(titleW(uPl(n, f.unit))) : '';
+  const unavailable = r.soon || r.status==='unavailable';
+  const goal = fixed ? fmtN(N.goal) : unavailable ? 'Awaiting Data' : 'No Fixed Goal';
+  const current = fixed ? fmtN(N.cur) : (f.main || E(r.now || '—'));
+  const remaining = fixed ? (N.need<=0 ? 'Met' : fmtN(N.need)) : unavailable ? 'Awaiting Data' : 'No Fixed Goal';
+  const d = p.key==='constellation_fall' && p.entry && p.entry.getRep(rep);
+  const held = d && d.hasAnyGoal ? `<span class="inc-held"><span>Goals Held</span><b>${fmtN(d.goalsRetained)} <span>of ${fmtN(d.goalsTotal)}</span></b></span>` : '';
+  // Constellation's combined total mixes placements and buyers: keep the
+  // original total and make its component units explicit, never rename it cases.
+  const context = d && d.hasAnyGoal ? 'Off-Premise Placements + On-Premise Buyers' : (f.why || f.rule || '');
+  const stat = (label, value, sub, cls) => `<span class="inc-stat ${cls||''}"><span class="inc-stat-label">${label}</span><span class="inc-stat-value${fixed?'':' inc-stat-text'}">${value}</span>${sub ? `<span class="inc-stat-unit">${sub}</span>` : ''}</span>`;
+  return `<span class="inc-progress${fixed ? (N.need<=0?' met':'') : ' no-fixed-goal'}">
+    <span class="inc-stats">
+      ${stat('Goal', goal, fixed ? unit(N.goal) : '', 'inc-goal')}
+      ${stat('Current', current, fixed ? unit(N.cur) : '', 'inc-current')}
+      ${stat('Remaining', remaining, fixed ? (N.need<=0 ? 'Goal Complete' : unit(N.need)) : '', 'inc-remaining')}
+    </span>
+    ${fixed ? hbar(f) : ''}
+    ${held}
+    ${context && (!opt.compact || r.house || (d && d.hasAnyGoal)) ? `<span class="inc-context">${E(subNoMoney(context))}</span>` : ''}
+    ${!opt.compact ? `<span class="inc-deadline">${E(endsLabel(p.period))}</span>` : ''}
+  </span>`;
+}
 // One program as a row: name + status, supplier/channel and the deadline
 // once, one progress line, a thin bar. Tap opens the program.
 function progRowHtml(p, r, rep, noSup){
   const f = progFacts(p, r, rep) || {main:'', need:'', cls:'open', label:''};
   const meta = [state.view==='sup' || noSup ? p.channelLabel : `${p.supplier} · ${p.channelLabel}`, endsLabel(p.period)].filter(Boolean).join(' · ');
   const off = r.status==='unavailable' || r.soon;
+  if(p.type==='Incentive') return `<button class="hrow prog inc-card${off?' off':''}" data-act="open" data-prog="${E(p.id)}" id="card-${E(p.id)}">
+    <span class="hrow-main">
+      <span class="hrow-t"><span>${E(p.shortName||p.name)}</span>${p.isTest?'<span class="htag test">Test</span>':''}${htag(f)}</span>
+      ${incentiveProgressHtml(p, r, rep, {compact:true})}
+      <span class="hrow-s">${E(meta)}</span>
+    </span>${CHEV}</button>`;
   const rowLogo = (p.type==='MPO' && p.brandLogos && p.brandLogos[0]) ? `<img class="hrow-lg" src="${E(p.brandLogos[0])}" alt="" loading="lazy" onerror="this.remove()">` : '';
   return `<button class="hrow prog${off?' off':''}" data-act="open" data-prog="${E(p.id)}" id="card-${E(p.id)}">
     ${rowLogo}<span class="hrow-main">
@@ -3685,8 +3723,8 @@ function screenProgramRep(p, r, rep){
   const legs = (!off && r.legs && r.legs.length) ? r.legs : null;
   const legHtml = g => `<section class="px-leg" data-leg="${E(g.key||'')}">
         <div class="px-leg-head"><span class="px-leg-badge">${E(g.label)}</span>${g.where?`<span class="px-leg-where">${E(g.where)}</span>`:''}</div>
+        <div class="inc-leg-current"><span>Current</span><b>${E(g.big)} ${E(g.cap)}</b></div>
         ${g.ask?`<p class="px-qual"><span>Qualifies</span>${E(g.ask)}</p>`:''}
-        <div class="px-main">${E(g.big)} ${E(g.cap)}</div>
         ${g.line?`<div class="px-rule">${E(g.line)}</div>`:''}
         ${g.need?`<div class="px-need open">${E(g.need)}</div>`:''}
       </section>`;
@@ -3697,7 +3735,7 @@ function screenProgramRep(p, r, rep){
   // Goal -> Current / Still Needed -> bar -> deadline -> View Eligible Accounts (2026-10-06)
   const eligBtn = (!off && !legs && !C.loading && !C.hold && C.targets && !BG.length && f && f.needN>0)
     ? `<button class="pw-btn outline gb-btn" data-act="accts" data-prog="${E(p.id)}" data-list="targets">View Eligible Accounts</button>` : '';
-  const gbHtml = (!off && !legs) ? goalBlockHtml(p, f, {button: eligBtn}) : '';
+  const gbHtml = !off ? (p.type==='Incentive' ? incentiveProgressHtml(p, r, rep)+eligBtn : (!legs ? goalBlockHtml(p, f, {button: eligBtn}) : '')) : '';
   return `<div class="hview">
     ${backForProgram(p)}
     <div class="px${legs?' has-legs':''}">
@@ -3705,14 +3743,14 @@ function screenProgramRep(p, r, rep){
       <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
       <div class="px-meta">${htag(f)}${gbHtml ? '' : `<span class="px-ends">${E(endsLabel(p.period))}</span>`}</div>
       ${off ? `<div class="kdh-state ${r.status==='unavailable'?'unavailable':'empty'}"><b>${f.main}</b>${f.rule?`<span>${E(f.rule)}</span>`:''}</div>` : legs ? `
-      <div class="px-legs">${legs.map(legHtml).join('')}</div>` : `
+      ${gbHtml}<div class="px-legs">${legs.map(legHtml).join('')}</div>` : `
       ${gbHtml ? gbHtml : `<div class="px-prog">
         <div class="px-main">${f.main}</div>
         <div class="px-need ${f.cls}">${f.need}</div>
         ${hbar(f)}
         ${p.type==='MPO' ? '' : (f.rule ? `<div class="px-rule">${f.rule}</div>` : '')}
       </div>`}
-      ${f.segments && f.segments.length ? `<div class="px-segs">${f.segments.map(g=>`<div class="px-seg"><span>${E(g.label)}</span><b>${E(g.valueText)}</b></div>`).join('')}</div>` : ''}
+      ${f.segments && f.segments.length ? `<div class="px-segs">${f.segments.map(g=>`<div class="px-seg"><span>${E(g.label)}</span><b>${E(g.valueText || g.line)}</b></div>`).join('')}</div>` : ''}
       <p class="px-qual"><span>Qualifies</span>${E(sellAsk(p))}</p>
       ${p.type==='MPO' ? `<div class="px-cap dim">MPO weight: ${Math.round((f.weight||0))}%</div>` : ''}`}
     </div>
@@ -3750,7 +3788,7 @@ function screenIncentiveFocus(p, r, rep, f, C){
   const folds = T.on ? [['done', T.done.length], ['skip', T.later.length]].filter(x=>x[1]).map(([k,c])=>`<button class="hrow fold" data-act="accts" data-prog="${E(p.id)}" data-list="${k}"><span class="hrow-main"><span class="hrow-t"><span>${RA_MARK[k]} ${E(LISTS[k])}</span></span></span><span class="hcount">${c}</span>${CHEV}</button>`).join('') : '';
   const pv = RA.previewOf(rep) ? `<p class="hnote">Marks are ${E(first(rep))}’s own. Saving is off while you preview.</p>` : '';
   const countable = f && f.goalN!=null && isFinite(Number(f.goalN));
-  const sum = countable ? pwFocusSummary(p, f) : `<div class="px-prog"><div class="px-main">${f.main}</div><div class="px-need ${f.cls}">${f.need}</div>${hbar(f)}${f.rule ? `<div class="px-rule">${f.rule}</div>` : ''}<div class="pwf-dl">${E(endsLabel(p.period))}</div></div>`;
+  const sum = p.type==='Incentive' ? incentiveProgressHtml(p, r, rep) : countable ? pwFocusSummary(p, f) : `<div class="px-prog"><div class="px-main">${f.main}</div><div class="px-need ${f.cls}">${f.need}</div>${hbar(f)}${f.rule ? `<div class="px-rule">${f.rule}</div>` : ''}<div class="pwf-dl">${E(endsLabel(p.period))}</div></div>`;
   const rules = repRulesHtml(p, 'ibul');
   const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
   const tl = p.timeline(rep);
@@ -4014,7 +4052,7 @@ function screenWorkspaceRep(p, r, rep, R){
   if(!d || !d.programs || !d.programs[p.id]) return null;   // no file for this rep: fall back to the tracker's own screen
   const M = window.KdhElig.model(p.id, [{rep, data:d}]);
   return `<div class="hview">${top}
-      ${pwFocusSummary(p, f)}
+      ${p.type==='Incentive' ? incentiveProgressHtml(p, r, rep) : pwFocusSummary(p, f)}
     </div>
     ${pwProductsFold(R)}
     <section class="pw-view pwf-list" id="pwList">${pwFocusAccounts(M, R, rep)}</section>

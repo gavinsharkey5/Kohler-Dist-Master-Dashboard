@@ -1754,3 +1754,49 @@ a.hreturn{text-decoration:none;}
   .cbt td.cbt-rep{order:-1;opacity:.8}
 }
 .cbt td.cbt-name::before{display:none!important}
+
+/* Rep incentives: one Goal / Current / Remaining component on lists and
+   program screens. Scoped so manager cards and MPOs retain their layout. */
+.inc-progress{display:flex;flex-direction:column;gap:12px;margin-top:14px;text-align:center;min-width:0}
+.inc-stats{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:12px;align-items:stretch}
+.inc-stat{display:flex;flex-direction:column;justify-content:center;gap:4px;min-width:0;padding:12px;border:1px solid var(--kdh-border);border-radius:var(--kdh-r-lg);background:var(--kdh-surface-2)}
+.inc-stat-label,.inc-stat-unit{font-size:14px;line-height:1.4;color:var(--kdh-text-2)}
+.inc-stat-label{font-weight:600}
+.inc-stat-value{font-size:30px;font-weight:600;line-height:1.15;color:var(--kdh-text);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.inc-remaining{background:var(--kdh-warn-soft);border-color:var(--kdh-warn)}
+.inc-remaining .inc-stat-value{font-size:42px;font-weight:700;color:var(--kdh-warn)}
+.inc-remaining .inc-stat-label,.inc-remaining .inc-stat-unit{color:var(--kdh-warn)}
+.inc-progress.met .inc-remaining{background:var(--kdh-ok-soft);border-color:var(--kdh-ok)}
+.inc-progress.met .inc-remaining :is(.inc-stat-label,.inc-stat-value,.inc-stat-unit){color:var(--kdh-ok)}
+.inc-progress.no-fixed-goal .inc-remaining{background:var(--kdh-surface-3);border-color:var(--kdh-border-2)}
+.inc-progress.no-fixed-goal .inc-remaining :is(.inc-stat-label,.inc-stat-value,.inc-stat-unit){color:var(--kdh-text)}
+.inc-stat-value.inc-stat-text{font-size:18px;font-weight:600;line-height:1.35}
+.inc-remaining .inc-stat-value.inc-stat-text{font-size:24px}
+.inc-progress>.hbar{display:block;width:100%;height:8px;margin:0;max-width:none}
+.inc-context,.inc-deadline{display:block;font-size:14px;line-height:1.4;color:var(--kdh-text-2)}
+.inc-held{display:flex;align-items:center;justify-content:center;gap:12px;font-size:14px;color:var(--kdh-text-2)}
+.inc-held>b{font-size:24px;font-weight:600;color:var(--kdh-text)}
+.inc-held>b>span{font-size:16px;font-weight:500;color:var(--kdh-text-2)}
+.inc-leg-current{display:flex;flex-direction:column;gap:4px;margin:12px 0;text-align:center;color:var(--kdh-text)}
+.inc-leg-current>span{font-size:14px;color:var(--kdh-text-2)}
+.inc-leg-current>b{font-size:20px;font-weight:600;line-height:1.35}
+.hrow.inc-card{padding:16px;align-items:center;text-align:center}
+.inc-card .hrow-t{justify-content:center}
+.inc-card .hrow-s{margin-top:12px;font-size:14px}
+.inc-card .chev{flex:none}
+.inc-card .inc-progress{margin-top:12px}
+.inc-card .inc-stat-value{font-size:30px}
+.inc-card .inc-remaining .inc-stat-value{font-size:38px}
+.inc-card .inc-stat-value.inc-stat-text{font-size:18px}
+.inc-card .inc-remaining .inc-stat-value.inc-stat-text{font-size:24px}
+@media(max-width:600px){
+  .inc-stats{grid-template-columns:1fr;gap:12px}
+  .inc-stat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:4px 12px;text-align:left;padding:12px 14px}
+  .inc-stat-label{grid-column:1;grid-row:1 / span 2;align-self:center}
+  .inc-stat-value,.inc-stat-unit{grid-column:2;text-align:right}
+  .inc-card .inc-stat-value.inc-stat-text,.inc-stat-value.inc-stat-text{font-size:18px}
+  .inc-card .inc-remaining .inc-stat-value.inc-stat-text,.inc-remaining .inc-stat-value.inc-stat-text{font-size:24px}
+  .hrow.inc-card{position:relative;padding:16px}
+  .inc-card>.chev{position:absolute;right:12px;bottom:16px;width:16px}
+  .inc-card .hrow-s{padding:0 12px}
+}

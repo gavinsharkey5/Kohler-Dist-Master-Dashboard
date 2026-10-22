@@ -1,6 +1,22 @@
 Incentives & MPO Hub
 ====================
 
+ROUND 2, PHASE 1 (2026-10-22)
+  Rep incentive lists and program screens use incentiveProgressHtml() in hub.js:
+  Goal / Current / Remaining, with Remaining largest; labelled stacked rows on
+  phones. No Fixed Goal means no target was invented. House goals stay explicitly
+  company-wide; multi-part programs retain each part's own counts and rules.
+  Constellation shows numeric progress plus a separate Goals Held count.
+  Numbers come from the existing progFacts() / incNums() adapters unchanged.
+  Manager screens, MPOs, eligibility and the rollout switch are unchanged.
+  Browser assets: hub.js / hub.css tag 20261022p1 (all hub.js consumers bumped).
+  Verification: node tools/incentive-cards-browser-test.cjs from the repository root,
+  with Playwright installed/available. Uses real static data and middleware routing;
+  authentication is a local fixture and live Supabase is not called. Compares
+  current results with HEAD, checks manager HTML unchanged, and exercises cards
+  at 390 / 820 / 1366 in light and dark. Local screenshots: shots/incentive-cards/.
+  Approved for commit and publication on 2026-10-22. Phase 2 has not started.
+
 One link for reps: pick your name and you are looking at every incentive
 and MPO program you are in -- where you stand, what you
 still need, when each one ends and what it pays -- in one design.

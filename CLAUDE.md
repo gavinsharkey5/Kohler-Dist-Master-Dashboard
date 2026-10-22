@@ -3571,3 +3571,17 @@ View As (2026-10-22, Gavin): the Rep tab also lists signed-in reps who sit in no
 role rep), grouped by kdh-user.js `PICKER_UNDER` (Adam Badalamenti -> "Chris Politano") or "Other
 Reps". Picker ONLY: Adam is NOT in DM_GROUPS, because that would make Chris Politano a DM scoped to
 one rep. Adam has no account book, so his preview shows no programs of his own. kdh-user.js 20261022a.
+
+## Round 2, Phase 1: one rep incentive summary (2026-10-22)
+
+Rep incentive lists and program screens now use hub.js `incentiveProgressHtml`: Goal / Current / Remaining,
+Remaining largest, labelled stacked rows on phones, No Fixed Goal when there is no countable target.
+It reads the existing progFacts / incNums values without changing calculations, qualification, status or sorting.
+Constellation separates its original combined total (placements + buyers) from numeric Goals Held; its brand
+goals remain below. House totals stay explicitly company-wide; multi-part programs keep their parts and rules.
+Manager Program View, MPO cards, eligibility, per-rep copies and ROLLOUT_LIMITED are unchanged.
+Tags hub.js / hub.css 20261022p1; hub.js references also bumped in accounts/, exceptions/ and performance/.
+Test: tools/incentive-cards-browser-test.cjs, real static datasets + actual middleware routing, fixed clock,
+local identity fixture (no live authentication or Supabase writes), baseline results and manager HTML compared
+with HEAD; responsive screens at 390 / 820 / 1366, light / dark. Screenshots in ignored shots/incentive-cards/.
+Approved for commit and publication on 2026-10-22. Phase 2 has not started.

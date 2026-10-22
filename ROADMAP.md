@@ -373,6 +373,11 @@ device, a decision).
 
 ## Done
 
+- [x] **Round 2, Phase 1: shared incentive cards (2026-10-22).** Approved for publication. Rep incentive lists and
+  program screens share Goal / Current / Remaining, with Remaining largest, stacked rows on phones, and No Fixed
+  Goal for open-ended programs. Constellation separates progress from Goals Held. Calculations, rules, eligibility,
+  manager screens and limited rollout are unchanged. Phase 2 has not started.
+
 - [x] **Slow rollout: reps and associates see Incentives + MPOs only (2026-10-21).** Reps and sales associates can open
   their home, the Incentive Hub, both MPO trackers and the Carbliss Leaderboard (the Carbliss MPO's own page) --
   nothing else (My Accounts, Inventory, Tap / Red Bull, Non-Buy, Field Tasks, Kohler Korner, the assistant are
