@@ -3554,3 +3554,15 @@ Tests (scratchpad): payouts_test.mjs (33, engine), recap_test.mjs (77, real hub 
 fake programs / sales; Chrome, Edge would not launch) + recap_check.py (openpyxl: names, headers, numeric
 cells, totals tie). Tags: hub.js 20261019a (also in accounts/, exceptions/, performance/), payouts.js /
 xlsx-write.js / manage.js 20261019a.
+
+## Bardstown / Green River Display & Activation is live from iSellBeer (2026-10-22)
+
+`bardstown_display` (September blob, Sept 1 - Oct 31, now on SEPT_PROGRAMS_STILL_RUNNING) has a
+builder: `incentive-tracking/convert_bardstown_display.py <Promos_Report.xlsx> <Displays Report.xlsx>`
+merges iSellBeer rows (key photo link + brand) into data/bardstown_displays.csv /
+bardstown_activations.csv, then generate.py. Off-premise = 3+ case stack on the DISPLAYS report
+($30/account); on-premise = Cocktail List / Feature Activation photo at an on-premise account + 3
+bottles of Bardstown Bourbon Co since Sep 1 from the sales record ($50/account; fewer = "waiting on 3
+bottles"). Credit = the account's assigned rep, whoever took the photo. Promo Event Activation
+(tastings) not counted. Card cardBardstownDisplay; hub summary "N stack displays · M activations".
+incentive-tracking/README.txt has the rules + open questions. Tags programs.js / program_data.js 20261022b.

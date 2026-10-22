@@ -5548,11 +5548,157 @@ def build_four_loko():
                      "placeWindow": cur_w, "placeBaseWindow": base_w, "offRoster": off_roster}}
 
 
+BARDSTOWN_START, BARDSTOWN_END = datetime.date(2026, 9, 1), datetime.date(2026, 10, 31)
+BARDSTOWN_RATES = {"display": 30, "activation": 50, "minCases": 3, "minBottles": 3}
+# Promotion types that are a branded activation / feature drink with its documentation
+# (menu, table tent, spirit list, posters, dated specials). "Promo Event Activation"
+# (supplier tastings run by Sales Associates) is NOT counted -- open question for Gavin.
+BARDSTOWN_ACTIVATION_TYPES = {"Cocktail List Activation", "Feature Activation"}
+
+
+def _bardstown_bottles():
+    """{customer_num: bottles of any Bardstown Bourbon Co product bought since Sep 1}
+    and the date the sales record runs through. Monthly net cases from the Rolling
+    Distribution master (bottles = cases x 6, 6 x 750 mL to a case), then the daily
+    RDE Bardstown export for any days after the master's last month -- so a re-pulled
+    Bardstown export fills in October without touching this code."""
+    root = DATA_DIR.parent.parent
+    master = root / "rolling-distribution" / "data" / "master"
+    prods = {r["product_num"] for r in csv.DictReader(open(master / "products.csv", newline="", encoding="utf-8-sig"))
+             if r["supplier"] == "Bardstown Bourbon Co"}
+    bottles = defaultdict(float)
+    last_month = None
+    for f in sorted((master / "months").glob("2026-*.csv")):
+        m = datetime.date(int(f.stem[:4]), int(f.stem[5:7]), 1)
+        if m < BARDSTOWN_START.replace(day=1):
+            continue
+        last_month = m
+        for r in csv.DictReader(open(f, newline="", encoding="utf-8")):
+            if r["product_num"] in prods:
+                bottles[r["customer_num"]] += to_num(r["cases"]) * 6
+    through = None
+    if last_month:
+        nm = (last_month.replace(day=28) + datetime.timedelta(days=4)).replace(day=1)
+        through = nm - datetime.timedelta(days=1)
+    rde = root / "bardstown-green-river" / "RDE_Bardstown_Green_River_Retention_History.csv"
+    if rde.exists():
+        rows = list(csv.DictReader(open(rde, newline="", encoding="utf-8-sig")))
+        ucol = next(c for c in rows[0] if c.startswith("Units"))
+        after = through or (BARDSTOWN_START - datetime.timedelta(days=1))
+        latest = None
+        for r in rows:
+            d = datetime.datetime.strptime(r["Date"], "%m/%d/%Y").date()
+            if d > after:
+                bottles[r["Customer Num"]] += to_num(r[ucol])
+                latest = max(latest or d, d)
+        if latest:
+            through = latest
+    return {k: round(v) for k, v in bottles.items()}, through
+
+
+def build_bardstown_display():
+    """Bardstown / Green River Display & Activation, Sept 1 - Oct 31 2026 (deck).
+
+        OFF-PREMISE  minimum 3-case stack display: $30 per account placed
+                     (merchandising standards -- high visibility, case card
+                     pricing -- are checked on the photo by hand)
+        ON-PREMISE   after 9/1: 3 bottles ordered for a branded activation /
+                     feature drink, with documentation: $50 per account
+
+    Sources: iSellBeer, merged by convert_bardstown_display.py --
+      data/bardstown_displays.csv     Displays report (Quantity = cases on display)
+      data/bardstown_activations.csv  Promos report (Cocktail List / Feature
+                                      Activation at an ON-PREMISE account)
+    Credit goes to the account's ASSIGNED rep (customer_base_full.csv), whoever
+    took the photo -- a Sales Associate's display at a rep's account is that rep's.
+    One payout per account per leg. The 3 bottles are checked against sales since
+    Sep 1 (_bardstown_bottles); an activation without them yet is "pending", not paid.
+    """
+    base = load_customer_base_full()
+    acct = {c: (rep, info) for rep, accts in base.items() for c, info in accts.items()}
+    core_reps = load_core_market_reps()
+    bottles, sales_through = _bardstown_bottles()
+    pdate = lambda s: datetime.datetime.strptime(s.strip(), "%m/%d/%Y %I:%M %p")
+    title = lambda s: " ".join(w if w.isupper() and len(w) <= 3 and w not in ("CO.",) else w.capitalize() for w in s.split())
+    by_rep = {rep: {"displaysNew": [], "activationsNew": [], "activationsPending": []} for rep in base}
+    skipped = []
+
+    def place(r, why):
+        skipped.append({"customer": acct[r["account"]][1]["customer"] if r["account"] in acct else title(r["dba"]), "account": r["account"], "date": r["date"][:10], "photoTaker": r["photo_taker"],
+                        "type": r.get("promotion_type") or "Display", "why": why})
+
+    # ---- off-premise displays: one per account, the photo's SKU lines summed ----
+    disp = defaultdict(list)
+    for r in read_rows("bardstown_displays.csv") if (DATA_DIR / "bardstown_displays.csv").exists() else []:
+        disp[r["account"]].append(r)
+    for num, rows in disp.items():
+        rows.sort(key=lambda r: pdate(r["date"]))
+        if num not in acct:
+            place(rows[0], "Not an active account in the customer base"); continue
+        rep, info = acct[num]
+        if info["premise"] != "Off Premise":
+            place(rows[0], "Display at an on-premise account"); continue
+        shots = defaultdict(list)
+        for r in rows:
+            if BARDSTOWN_START <= pdate(r["date"]).date() <= BARDSTOWN_END:
+                shots[r["photo"]].append(r)
+        best = max(shots.values(), key=lambda rs: sum(to_num(x["quantity"]) for x in rs), default=None)
+        if not best:
+            place(rows[0], "Outside Sep 1 - Oct 31"); continue
+        cases = sum(to_num(x["quantity"]) for x in best)
+        item = {"customer": info["customer"], "account": num, "date": pdate(best[0]["date"]).date().isoformat(),
+                "cases": cases, "brands": sorted({title(x["brand"]) for x in best}),
+                "product": f"Stack display · {cases:g} cases",
+                "photo": best[0]["photo"], "photoTaker": best[0]["photo_taker"], "role": best[0]["role"]}
+        if cases >= BARDSTOWN_RATES["minCases"]:
+            by_rep[rep]["displaysNew"].append(item)
+        else:
+            place(best[0], f"Display under {BARDSTOWN_RATES['minCases']} cases ({cases:g})")
+
+    # ---- on-premise activations: one per account, documentation + 3 bottles ----
+    act = defaultdict(list)
+    for r in read_rows("bardstown_activations.csv") if (DATA_DIR / "bardstown_activations.csv").exists() else []:
+        act[r["account"]].append(r)
+    for num, rows in act.items():
+        rows.sort(key=lambda r: pdate(r["date"]))
+        if num not in acct:
+            place(rows[0], "Not an active account in the customer base"); continue
+        rep, info = acct[num]
+        ok = [r for r in rows if r["promotion_type"] in BARDSTOWN_ACTIVATION_TYPES
+              and BARDSTOWN_START <= pdate(r["date"]).date() <= BARDSTOWN_END]
+        if info["premise"] != "On Premise":
+            place(rows[0], "Off-premise account -- only a Displays report photo counts off-premise"); continue
+        if not ok:
+            place(rows[0], f"{rows[0]['promotion_type']} is not counted as an activation"); continue
+        docs = sorted({e.strip() for r in ok for e in r["elements"].split(",") if e.strip()})
+        item = {"customer": info["customer"], "account": num, "date": pdate(ok[0]["date"]).date().isoformat(),
+                "photos": len({r["photo"] for r in ok}), "documentation": docs,
+                "brands": sorted({title(r["brand"]) for r in ok}), "photo": ok[0]["photo"],
+                "photoTaker": ok[0]["photo_taker"], "bottles": bottles.get(num, 0)}
+        item["product"] = "Activation · " + (", ".join(docs) or "documented") + f" · {item['bottles']} bottles since Sep 1"
+        key = "activationsNew" if item["bottles"] >= BARDSTOWN_RATES["minBottles"] else "activationsPending"
+        by_rep[rep][key].append(item)
+
+    for rep, d in by_rep.items():
+        for k in ("displaysNew", "activationsNew", "activationsPending"):
+            d[k].sort(key=lambda a: a["date"])
+        d["displayCount"] = len(d["displaysNew"])
+        d["activationCount"] = len(d["activationsNew"])
+        d["pendingCount"] = len(d["activationsPending"])
+        d["displays"] = d["displayCount"] + d["activationCount"]
+        d["payout"] = d["displayCount"] * BARDSTOWN_RATES["display"] + d["activationCount"] * BARDSTOWN_RATES["activation"]
+        d["territoryEligible"] = rep in core_reps
+    return {"byRep": by_rep,
+            "periodStart": BARDSTOWN_START.isoformat(), "periodEnd": BARDSTOWN_END.isoformat(),
+            "meta": {"rates": BARDSTOWN_RATES, "salesThrough": sales_through.isoformat() if sales_through else None,
+                     "notCounted": sorted(skipped, key=lambda s: s["date"])}}
+
+
 # Touchdowns & Tea (Sep 1 - Oct 31) and Other Half (Sept - Dec) joined on 2026-10-21: both
 # live in the September blob and kept being restored from data/frozen/ -- refreshed exports
 # never reached the page.
 SEPT_PROGRAMS_STILL_RUNNING = ("constellation_fall", "mabi_retention_fall", "yuengling_retention_fall",
-                               "touchdowns_tea", "other_half")
+                               "touchdowns_tea", "other_half", "bardstown_display")
 # The August blob holds mc_retention (Jul 27 - Oct 25) and Lytt Launch (registry period
 # Aug 1 - Dec 31; joined 2026-10-21), both still running in October.
 AUG_PROGRAMS_STILL_RUNNING = ("mc_retention", "lytt")
@@ -5605,6 +5751,8 @@ def main():
         # builders' docstrings. Every other rep reads "not in this program".
         "path_to_victory_sd": build_path_to_victory_sd(),
         "fall_seasonal_sd": build_fall_seasonal_sd(),
+        # Sept 1 - Oct 31, from iSellBeer (convert_bardstown_display.py) -- 2026-10-22
+        "bardstown_display": build_bardstown_display(),
     }
     # October 2026 lives in a third blob (PROGRAM_DATA_2026_10). Four Loko and
     # the Sam Adams seasonal conversion have no builder yet: their registry

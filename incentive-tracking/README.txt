@@ -5761,3 +5761,30 @@ The three summaries now arrive as .xlsx (grouped "Sales Rep Assigned / Brand Fam
   On-prem pkg   Flight 5 / 6 (unchanged) · Lager 211 -> 218 / 258
   On-prem draft goals unchanged (Lager 292, Flight 7); buyers still from the 10/16 account export
                 (draft_on_detail.csv): Lager 266, Flight 2. 13 of 58 brand goals held; day 51 of 91.
+
+BARDSTOWN / GREEN RIVER DISPLAY & ACTIVATION -- LIVE 2026-10-22
+(bardstown_display, Sept 1 - Oct 31, September blob, on SEPT_PROGRAMS_STILL_RUNNING)
+Inputs: iSellBeer, merged with
+    python3 incentive-tracking/convert_bardstown_display.py Promos_Report_NN.xlsx Report_NN.xlsx
+  -> data/bardstown_displays.csv     Displays report (Bardstown supplier filter)
+  -> data/bardstown_activations.csv  Promos report
+  Rows merge by photo link + brand (never Promo #), so weekly pulls are safe.
+Then: python3 incentive-tracking/generate.py
+Rules as built (build_bardstown_display):
+  OFF-PREMISE  $30 per account with a 3+ case stack on the Displays report (the
+               photo's SKU quantities summed). Visibility / case card pricing are
+               checked on the photo by hand. Promos-report "Feature Activation" rows
+               at off-premise accounts are NOT displays (listed in meta.notCounted).
+  ON-PREMISE   $50 per account with a Cocktail List / Feature Activation photo at an
+               on-premise account AND 3+ bottles of any Bardstown Bourbon Co product
+               bought since Sep 1 (rolling-distribution master months, cases x 6, plus
+               the daily Bardstown RDE export for days after the master's last month).
+               Under 3 bottles = "waiting on 3 bottles", not paid.
+  Credit = the account's ASSIGNED rep, whoever took the photo (an associate's display
+  at Phil Ernst's account is Phil's). One payout per account per leg.
+  Not counted: "Promo Event Activation" (associate-run tastings), account 120001
+  (Red Bull vending machine, not a customer).
+First run: Phil Ernst 1 display (Bottle King Glen Rock, 6 cases); paid activations
+Mike Ast, Brian Sengebush, Nick Melissari, Robin Feldman (1 each); 14 activations
+waiting on bottles (sales only through Sep 30 -- October orders need the next
+Rolling Distribution month or a fresh Bardstown RDE export).

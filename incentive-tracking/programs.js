@@ -338,8 +338,7 @@ const PROGRAM_LIST_2026_09 = [
   {key:'bardstown_display', group:'new', title:'Bardstown / Green River Display & Activation', shortTitle:'Bardstown Display', tag:'Sept–Oct',
    pitch:`Build a 3-case stack off-premise or a branded activation on-premise — both pay per account.`,
    getRep:sept('bardstown_display'),
-   metric:d=>d.displays, metricLabel:'displays / activations', fmt:v=>v.toFixed(0),
-   manual:true, awaitingNote:`Photo- and documentation-verified program — displays and activations are submitted manually, so there is no RDE feed behind this card. The rules above are the whole program.`},
+   metric:d=>d.displays, metricLabel:'displays + activations', fmt:v=>v.toFixed(0)},
   {key:'two_xo', group:'new', title:'2XO Bourbon', shortTitle:'2XO Bourbon', tag:'Sept–Oct (retro Aug)',
    pitch:`60-day non-buy accounts: pair American Oak with French Oak off-premise, or land a 2-bottle POD on-premise.`,
    getRep:sept('two_xo'),
@@ -486,8 +485,7 @@ const PROGRAM_LIST_2026_10 = [
   {key:'bardstown_display', group:'ongoing', title:'Bardstown / Green River Display & Activation', shortTitle:'Bardstown Display', tag:'Sept–Oct',
    pitch:`Build a 3-case stack off-premise or a branded activation on-premise — both pay per account.`,
    getRep:sept('bardstown_display'),
-   metric:d=>d.displays, metricLabel:'displays / activations', fmt:v=>v.toFixed(0),
-   manual:true, awaitingNote:`Photo- and documentation-verified program — displays and activations are submitted manually, so there is no RDE feed behind this card. The rules above are the whole program.`},
+   metric:d=>d.displays, metricLabel:'displays + activations', fmt:v=>v.toFixed(0)},
   {key:'two_xo', group:'ongoing', title:'2XO Bourbon', shortTitle:'2XO Bourbon', tag:'Sept–Oct (retro Aug)',
    pitch:`60-day non-buy accounts: pair American Oak with French Oak off-premise, or land a 2-bottle POD on-premise.`,
    getRep:sept('two_xo'),
@@ -1358,7 +1356,60 @@ const PROGRAM_CARD_FN = {
   'yuengling_retention_fall': cardYuenglingRetentionFall,
   'sam_adams_conversion': cardSamAdamsConversion,
   'sam_adams_cold_snap': cardSamAdamsColdSnap,
+  'bardstown_display': cardBardstownDisplay,
 };
+
+// Bardstown / Green River Display & Activation (Sept 1 - Oct 31), from iSellBeer --
+// see build_bardstown_display(). Off-premise = a 3+ case stack display on the
+// Displays report; on-premise = a documented activation (Promos report) at an
+// account that has also ordered 3+ bottles since Sep 1. One payout per account.
+function cardBardstownDisplay(rep){
+  const P = PROGRAM_DATA_2026_09['bardstown_display']||{};
+  const d = P.byRep?.[rep];
+  if(!d) return '';
+  const M = P.meta||{}, R = M.rates||{};
+  const thru = M.salesThrough ? new Date(M.salesThrough+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+  const day = s=>new Date(s+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  const board = statBoard([
+    {num:d.displayCount, label:'Stack Displays', status:cntStatus(d.displayCount), sub:`$${R.display||30} each, off-premise`},
+    {num:d.activationCount, label:'Activations', status:cntStatus(d.activationCount), sub:`$${R.activation||50} each, on-premise`},
+    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Tracked Earnings', sub:d.pendingCount?`${d.pendingCount} more waiting on 3 bottles`:'From iSellBeer photos'},
+  ]);
+  const dispBlock = earnBlock({
+    icon:'📦', title:'Off-Premise Stack Displays',
+    rate:`EARN $${R.display||30}`,
+    rateNote:`per account with a ${R.minCases||3}+ case Bardstown or Green River stack on the iSellBeer Displays report. High visibility (wing, end cap, register) with case card pricing — checked on the photo.`,
+    stats:[{num:d.displayCount, label:'Displays'}],
+    detail:{label:'Your Displays', items:(d.displaysNew||[]).map(a=>({name:a.customer, sub:a.brands.join(', ')+' · photo by '+a.photoTaker, stat:a.cases+' cases · '+day(a.date)})),
+      emptyMsg:'No 3-case displays on the Displays report yet.'},
+  });
+  const actBlock = earnBlock({
+    icon:'🥃', title:'On-Premise Activations',
+    rate:`EARN $${R.activation||50}`,
+    rateNote:`per on-premise account with a documented activation (menu, table tent, spirit list, posters, dated specials) and ${R.minBottles||3}+ bottles ordered since Sep 1.`,
+    stats:[{num:d.activationCount, label:'Paid'},{num:d.pendingCount, label:'Need 3 Bottles'}],
+    detail:{label:'Your Activations', items:(d.activationsNew||[]).map(a=>({name:a.customer, sub:(a.documentation.join(', ')||'Activation')+' · '+a.brands.join(', '), stat:a.bottles+' bottles · '+day(a.date)})),
+      emptyMsg:'No paid activations yet.'},
+  });
+  const pendBlock = (d.activationsPending||[]).length ? earnBlock({
+    icon:'⏳', title:'Activations Waiting on 3 Bottles',
+    rate:'NOT PAID YET',
+    rateNote:`Documented on iSellBeer, but under ${R.minBottles||3} bottles ordered since Sep 1${thru?' (sales through '+thru+')':''}. Orders after that date fill in on the next sales refresh.`,
+    detail:{label:'Accounts', items:d.activationsPending.map(a=>({name:a.customer, sub:(a.documentation.join(', ')||'Activation')+' · '+a.brands.join(', '), stat:a.bottles+' of 3 bottles'})), emptyMsg:''},
+  }) : '';
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo('bardstown_display')}<span class="prog-name">Bardstown / Green River Display &amp; Activation</span><span class="prog-tag">Sept&ndash;Oct</span>${terrTag('bardstown_display')}</div>
+      ${progPitch('bardstown_display')}
+    </div>
+    <div class="prog-body">
+      ${board}
+      ${dispBlock}
+      ${actBlock}
+      ${pendBlock}
+    </div>
+  </div>`;
+}
 
 // Zero-state card for a program whose rules and goals are known but whose data
 // source hasn't arrived yet (every September program except the six ongoing
@@ -3943,6 +3994,12 @@ const PROGRAM_SUMMARY = {
     label:`${pl(d.totalNewPlacements,'new placement')}`, sub:money(d.payout)+' earned',
     next:`Every new Wave Chaser placement pays <strong>$10–$15</strong>, and a new draught line pays <strong>$100</strong>.`}),
 
+  bardstown_display:(d)=>({goal:false, now:d.displays, unit:'accounts',
+    label:`${pl(d.displayCount,'stack display')} · ${pl(d.activationCount,'activation')}`,
+    sub:d.pendingCount?`${pl(d.pendingCount,'activation')} waiting on 3 bottles`:'',
+    next:d.pendingCount?`Get <strong>3 bottles</strong> ordered at ${d.pendingCount===1?'the account':'the '+d.pendingCount+' accounts'} you activated, or build a <strong>3-case stack</strong> off-premise.`
+      :`Build a <strong>3-case stack</strong> off-premise, or a documented <strong>feature drink</strong> on-premise with 3 bottles ordered.`}),
+
   two_xo:(d)=>({goal:false, now:d.offPremNewCount+d.onPremNewCount, unit:'PODs',
     label:`${d.offPremNewCount+d.onPremNewCount} landed`,
     next:`Pair American Oak with French Oak in an off-premise account, or land a <strong>2-bottle on-premise POD</strong>.`}),
@@ -4463,6 +4520,8 @@ const PROGRAM_RULES = {
     'Display must meet merchandising standards — high visibility (wing, end cap, by the register) with case card pricing',
     'On-premise after 9/1: $50 for 3 bottles ordered for a branded activation or feature drink',
     'Activation needs documentation — posters, table tents, dated drink specials',
+    'Scored from iSellBeer: Displays report (off-premise) and Promos report (on-premise); one payout per account',
+    'The 3 bottles are checked against sales since Sep 1',
   ],
   'two_xo': [
     'Targets 60-day non-buy accounts — August activity counts retroactively',
