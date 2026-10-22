@@ -5788,3 +5788,10 @@ First run: Phil Ernst 1 display (Bottle King Glen Rock, 6 cases); paid activatio
 Mike Ast, Brian Sengebush, Nick Melissari, Robin Feldman (1 each); 14 activations
 waiting on bottles (sales only through Sep 30 -- October orders need the next
 Rolling Distribution month or a fresh Bardstown RDE export).
+
+2026-10-22 (later): Displays Report_74 merged (Sep 1 - Oct 22, 14 Bardstown rows). Displays rows
+now merge by account + date/time + brand + SKU, and each photo / submission is its own display
+(photo link, else date/time). Counted: Phil Ernst 3 (Stew Leonard's Paramus 5 cases, Stew
+Leonard's Clifton 7, Bottle King Glen Rock 6), Klejdi Lamo 3 (ShopRite Wharton 52, House of Wine
+& Liquor Boonton 8, Liquor Outlet 5 -- the Boonton two photographed by associate Adam
+Badalamenti), Shane Barreca 1 (Westwood Wine and Liquors 4, also Adam's photo).

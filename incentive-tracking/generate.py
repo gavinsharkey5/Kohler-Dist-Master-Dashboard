@@ -5641,7 +5641,7 @@ def build_bardstown_display():
         shots = defaultdict(list)
         for r in rows:
             if BARDSTOWN_START <= pdate(r["date"]).date() <= BARDSTOWN_END:
-                shots[r["photo"]].append(r)
+                shots[r["photo"] or r["date"]].append(r)   # one photo / submission
         best = max(shots.values(), key=lambda rs: sum(to_num(x["quantity"]) for x in rs), default=None)
         if not best:
             place(rows[0], "Outside Sep 1 - Oct 31"); continue

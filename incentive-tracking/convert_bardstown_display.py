@@ -9,10 +9,12 @@ Either report, in any order, as many as you like. The kind is read from the head
   * Promos report ("Promotion type", "Elements" columns)         -> data/bardstown_activations.csv
     (on-premise activations / feature drinks and their documentation)
 
-Only Bardstown Bourbon Company rows are kept. Rows MERGE onto what is on file: the key is
-the photo link + brand (iSellBeer's Promo # / row # renumbers on every pull, so it is never
-the key), a row seen again replaces the old copy, and nothing already on file is dropped --
-a weekly pull of just the newest days is safe. Photo links are the hyperlink TARGETS.
+Only Bardstown Bourbon Company rows are kept. Rows MERGE onto what is on file (iSellBeer's
+Promo # / row # renumbers on every pull, so it is never the key): Displays rows by account +
+date/time + brand + SKU (some Displays pulls have no Photo column), Promos rows by photo link +
+brand. A row seen again replaces the old copy but keeps a photo link already on file; nothing
+on file is dropped, so a weekly pull of just the newest days is safe. Photo links are the
+hyperlink TARGETS.
 """
 import csv
 import sys
@@ -48,8 +50,8 @@ def read(path):
             continue
         if str(g("supplier") or "").strip().upper() != SUPPLIER:
             continue
-        pc = r[col["photo"]]
-        photo = pc.hyperlink.target if pc.hyperlink else str(pc.value or "")
+        pc = r[col["photo"]] if "photo" in col else None   # some Displays pulls carry no Photo column
+        photo = (pc.hyperlink.target if pc.hyperlink else str(pc.value or "")) if pc is not None else ""
         base = {"date": str(g("date/time") or "").strip(), "account": str(g("account #") or "").strip(),
                 "dba": str(g("dba") or "").strip(), "city": str(g("city") or "").strip(),
                 "photo_taker": str(g("photo taker") or "").strip(),
@@ -70,14 +72,19 @@ def main(paths):
     for p in paths:
         kind, rows = read(p)
         out, cols = OUT[kind]
+        key = (lambda r: (r["account"], r["date"], r["brand"], r.get("sku", ""))) if kind == "displays" \
+            else (lambda r: (r["photo"], r["brand"]))
         have = {}
         if out.exists():
             with open(out, newline="", encoding="utf-8") as f:
                 for r in csv.DictReader(f):
-                    have[(r["photo"], r["brand"])] = r
+                    have[key(r)] = r
         before = len(have)
         for r in rows:
-            have[(r["photo"], r["brand"])] = r
+            old = have.get(key(r))
+            if old and not r["photo"]:
+                r["photo"] = old.get("photo", "")
+            have[key(r)] = r
         with open(out, "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=cols)
             w.writeheader()

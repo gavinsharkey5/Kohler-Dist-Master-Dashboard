@@ -154725,14 +154725,58 @@ const PROGRAM_DATA_2026_09 = {
         "territoryEligible": true
       },
       "Klejdi Lamo": {
-        "displaysNew": [],
+        "displaysNew": [
+          {
+            "customer": "House of Wine & Liquor - Boonton",
+            "account": "190216",
+            "date": "2026-10-21",
+            "cases": 8.0,
+            "brands": [
+              "Bardstown Origins Single Barrel",
+              "Green River Kentucky Straight Wheated Bourbon Whiskey"
+            ],
+            "product": "Stack display \u00b7 8 cases",
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/11486a4a-85d6-43fb-8302-3b00a04b0dd1/",
+            "photoTaker": "Adam Badalamenti",
+            "role": "Sales Associate"
+          },
+          {
+            "customer": "Liquor Outlet",
+            "account": "190207",
+            "date": "2026-10-21",
+            "cases": 5.0,
+            "brands": [
+              "Green River Kentucky Straight Wheated Bourbon Whiskey"
+            ],
+            "product": "Stack display \u00b7 5 cases",
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/1c1b48e5-1b69-4cf9-98a0-a7513f0583a2/",
+            "photoTaker": "Adam Badalamenti",
+            "role": "Sales Associate"
+          },
+          {
+            "customer": "Shop Rite Liq (A)Wharton",
+            "account": "190917",
+            "date": "2026-10-22",
+            "cases": 52.0,
+            "brands": [
+              "Bardstown Origins Single Barrel",
+              "Green River Kentucky Straight Bourbon Whiskey",
+              "Green River Kentucky Straight RYE Whiskey",
+              "Green River Kentucky Straight Wheated Bourbon Whiskey"
+            ],
+            "product": "Stack display \u00b7 52 cases",
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/351bb7f3-aecf-4fd4-a7c1-89810bd48e09/",
+            "photoTaker": "Klejdi Lamo",
+            "role": "Sales Rep"
+          }
+        ],
         "activationsNew": [],
         "activationsPending": [],
-        "displayCount": 0,
+        "displayCount": 3,
         "activationCount": 0,
         "pendingCount": 0,
-        "displays": 0,
-        "payout": 0,
+        "displays": 3,
+        "payout": 90,
         "territoryEligible": true
       },
       "Matt Powierski": {
@@ -154926,6 +154970,32 @@ const PROGRAM_DATA_2026_09 = {
       "Phil Ernst": {
         "displaysNew": [
           {
+            "customer": "Stew Leonard's(A) Paramus Wine",
+            "account": "80026",
+            "date": "2026-09-01",
+            "cases": 5.0,
+            "brands": [
+              "Bardstown Origins Single Barrel"
+            ],
+            "product": "Stack display \u00b7 5 cases",
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5e38c9f1-403e-4a1c-bc5f-05d0b3174524/",
+            "photoTaker": "phil Ernst",
+            "role": "Sales Rep"
+          },
+          {
+            "customer": "Stew Leonard's Wines & Spirits of Clifton",
+            "account": "25010",
+            "date": "2026-09-09",
+            "cases": 7.0,
+            "brands": [
+              "Green River Kentucky Straight Wheated Bourbon Whiskey"
+            ],
+            "product": "Stack display \u00b7 7 cases",
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f106990c-c91c-4799-9c11-ebc27cbf7721/",
+            "photoTaker": "phil Ernst",
+            "role": "Sales Rep"
+          },
+          {
             "customer": "Bottle King (A) Glen Rock",
             "account": "83010",
             "date": "2026-10-02",
@@ -154941,11 +155011,11 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "activationsNew": [],
         "activationsPending": [],
-        "displayCount": 1,
+        "displayCount": 3,
         "activationCount": 0,
         "pendingCount": 0,
-        "displays": 1,
-        "payout": 30,
+        "displays": 3,
+        "payout": 90,
         "territoryEligible": true
       },
       "Robin Feldman": {
@@ -154977,14 +155047,29 @@ const PROGRAM_DATA_2026_09 = {
         "territoryEligible": true
       },
       "Shane Barreca": {
-        "displaysNew": [],
+        "displaysNew": [
+          {
+            "customer": "Westwood Wine and Liquors",
+            "account": "74009",
+            "date": "2026-10-19",
+            "cases": 4.0,
+            "brands": [
+              "Bardstown Origins Single Barrel",
+              "Green River Kentucky Straight Wheated Bourbon Whiskey"
+            ],
+            "product": "Stack display \u00b7 4 cases",
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/cfdf7cc9-553e-4562-90ed-2ca44d4cce27/",
+            "photoTaker": "Adam Badalamenti",
+            "role": "Sales Associate"
+          }
+        ],
         "activationsNew": [],
         "activationsPending": [],
-        "displayCount": 0,
+        "displayCount": 1,
         "activationCount": 0,
         "pendingCount": 0,
-        "displays": 0,
-        "payout": 0,
+        "displays": 1,
+        "payout": 30,
         "territoryEligible": true
       }
     },
@@ -192815,5 +192900,5 @@ const PROGRAM_DATA_2026_10 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Oct 22, 2026, 11:14 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-10-22T15:14:37Z";
+const PROGRAM_DATA_REFRESHED = "Oct 22, 2026, 11:40 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-22T15:40:23Z";

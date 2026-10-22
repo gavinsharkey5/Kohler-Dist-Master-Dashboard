@@ -568,6 +568,7 @@
     manager: { title: 'View as Manager', sub: 'Preview this manager’s team and program tools within your existing access. Pick yourself to leave preview.', search: 'Search managers', empty: 'No manager matches' }
   };
   var pickRole = 'rep', pickerGroups = [], peopleCache = {};
+  var PICKER_UNDER = { 'Adam Badalamenti': 'Chris Politano' };
   function rpc(name, body) {
     var cfg = global.KDH_AUTH || {}, tok = cookie('kdh_at');
     if (!cfg.url || !cfg.key || !tok) return Promise.resolve(null);
@@ -580,7 +581,24 @@
       var T = team(groups);
       var g = (T ? groups.filter(function (g) { return g.dm === T.dm || g.under === T.dm; }) : groups)
         .map(function (g) { return { dm: g.dm, people: (g.reps || []).filter(isRep).slice().sort().map(function (r) { return { name: r }; }) }; }).filter(function (g) { return g.people.length; });
-      peopleCache.rep = g; cb(g);
+      if (T) { peopleCache.rep = g; return cb(g); }
+      // Reps on the sign-in list who sit in no district group are still listed so a
+      // manager can view as them: under PICKER_UNDER's name when set (Gavin,
+      // 2026-10-22: Adam Badalamenti under Chris Politano -- PICKER ONLY; adding him
+      // to DM_GROUPS would make Chris a DM scoped to one rep), else "Other Reps".
+      // A DM keeps their own team only.
+      var listed = []; g.forEach(function (x) { x.people.forEach(function (p) { listed.push(p.name); }); });
+      rpc('kdh_team', {}).then(function (team) {
+        var extra = (team || []).filter(function (t) { return t && t.role === 'rep' && t.name && isRep(t.name) && !matchName(t.name, listed); })
+          .map(function (t) { return t.name; });
+        Object.keys(PICKER_UNDER).forEach(function (n) { if (!matchName(n, listed) && !matchName(n, extra)) extra.push(n); });
+        var by = {};
+        extra.sort().forEach(function (n) { var k = PICKER_UNDER[n] || 'Other Reps'; (by[k] = by[k] || []).push({ name: n }); });
+        var out = g.slice();
+        Object.keys(by).sort(function (a, b) { return (a === 'Other Reps') - (b === 'Other Reps') || a.localeCompare(b); })
+          .forEach(function (k) { out.push({ dm: k, people: by[k] }); });
+        peopleCache.rep = out; cb(out);
+      });
     });
     if (role === 'associate') return rpc('kdh_people', { p_role: 'associate' }).then(function (rows) {
       var list = (rows || []).filter(function (r) { return r && r.name; }).map(function (r) { return { name: r.name, email: r.email || '', dm: r.reports_to || '' }; });

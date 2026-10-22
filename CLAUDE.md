@@ -3566,3 +3566,8 @@ bottles of Bardstown Bourbon Co since Sep 1 from the sales record ($50/account; 
 bottles"). Credit = the account's assigned rep, whoever took the photo. Promo Event Activation
 (tastings) not counted. Card cardBardstownDisplay; hub summary "N stack displays · M activations".
 incentive-tracking/README.txt has the rules + open questions. Tags programs.js / program_data.js 20261022b.
+
+View As (2026-10-22, Gavin): the Rep tab also lists signed-in reps who sit in no DM group (kdh_team
+role rep), grouped by kdh-user.js `PICKER_UNDER` (Adam Badalamenti -> "Chris Politano") or "Other
+Reps". Picker ONLY: Adam is NOT in DM_GROUPS, because that would make Chris Politano a DM scoped to
+one rep. Adam has no account book, so his preview shows no programs of his own. kdh-user.js 20261022a.
