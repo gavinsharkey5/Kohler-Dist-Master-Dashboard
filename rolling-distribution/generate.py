@@ -824,3 +824,7 @@ def main(argv):
 
 if __name__ == '__main__':
     main(sys.argv[1:])
+    # The manager Pulse reads only monthly cases and the same dimensions.
+    # Keep its summaries current after imports and --build; money stays unused.
+    import subprocess
+    subprocess.run([sys.executable, os.path.join(os.path.dirname(HERE), 'sales-pulse', 'generate.py')], check=True)

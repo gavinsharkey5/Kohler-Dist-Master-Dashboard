@@ -1,0 +1,26 @@
+body{margin:0;background:var(--kdh-bg);color:var(--kdh-text);font-family:Inter,"Source Sans 3",sans-serif;font-size:16px}
+.pulse-wrap{max-width:960px;padding:20px 16px 40px;margin:auto;box-sizing:border-box}
+.pulse-head{text-align:center;margin:0 0 16px}.pulse-head h1{font-size:18px;margin:0 0 8px;font-weight:600}.pulse-head p{margin:0;color:var(--kdh-text-3);font-size:14px}
+.pulse-filters{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.pulse-filters label,.pulse-detail label{display:grid;gap:6px;font-size:14px;font-weight:600}
+.pulse-filters select,.pulse-detail select{width:100%;box-sizing:border-box;background:var(--kdh-surface);color:var(--kdh-text);border:1px solid var(--kdh-border-2);border-radius:8px;padding:10px;font:inherit;min-height:44px}
+.pulse-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pulse-card{background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:12px;padding:16px;text-align:center;min-width:0}
+.pulse-card.total{border-color:var(--kdh-brand)}.pulse-card h2{font-size:18px;font-weight:600;margin:0 0 14px}
+.pulse-hero{padding-bottom:16px;border-bottom:1px solid var(--kdh-border)}.pulse-hero span{display:block;color:var(--kdh-text-3);font-size:14px}
+.pulse-hero strong{display:block;font-size:38px;line-height:1.25;font-weight:700;font-variant-numeric:tabular-nums;margin:4px 0 8px}
+.pulse-change{font-size:14px;font-weight:600}.pulse-change.up{color:var(--kdh-ok)}.pulse-change.down{color:var(--kdh-bad)}.pulse-change.flat{color:var(--kdh-text-3)}
+.pulse-prior{display:block;color:var(--kdh-text-3);font-size:14px;margin-top:6px}
+.pulse-metrics{margin:0}.pulse-metrics>div{padding:14px 0;border-bottom:1px solid var(--kdh-border)}.pulse-metrics dt{font-size:14px;color:var(--kdh-text-3)}.pulse-metrics dd{margin:6px 0;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}.pulse-metrics small{font-size:14px;color:var(--kdh-text-3)}
+.pulse-button{display:inline-block;min-height:44px;padding:10px 14px;border:1px solid var(--kdh-border-2);background:var(--kdh-surface);color:var(--kdh-brand);border-radius:8px;font:inherit;font-weight:600;cursor:pointer;box-sizing:border-box}.pulse-card .pulse-button{width:100%;margin-top:16px}
+.pulse-button[aria-expanded=true]{background:var(--kdh-brand-soft)}.pulse-button:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--kdh-focus);outline-offset:3px}
+.pulse-note{font-size:14px;color:var(--kdh-text-3);margin:14px 0;text-align:center}.pulse-note a{color:var(--kdh-brand)}
+.pulse-detail,.pulse-coverage{border:1px solid var(--kdh-border);border-radius:12px;background:var(--kdh-surface);padding:16px;margin-top:16px}
+.pulse-detail[hidden]{display:none}.pulse-detail{scroll-margin-top:80px}.pulse-detail-head{display:flex;align-items:center;justify-content:space-between;gap:14px}.pulse-detail h2{font-size:18px;margin:0;font-weight:600}.pulse-detail h3{font-size:16px;font-weight:600;margin:16px 0 12px}
+.pulse-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.pulse-list{list-style:none;margin:0;padding:0}.pulse-list li{display:grid;grid-template-columns:minmax(0,1fr) 140px;gap:14px;padding:14px 0;border-top:1px solid var(--kdh-border)}.pulse-list b{display:block;font-weight:600;overflow-wrap:anywhere}.pulse-list small{display:block;font-size:14px;color:var(--kdh-text-3);margin-top:4px}.pulse-list .pulse-amount{text-align:right}
+.pulse-trend{width:100%;overflow:hidden}.pulse-trend svg{display:block;width:100%;height:180px}.pulse-trend text{font:14px Inter,sans-serif;fill:var(--kdh-text-3)}.pulse-trend .this-year{fill:var(--kdh-brand)}.pulse-trend .last-year{fill:var(--kdh-border-2)}
+.pulse-trend-labels{display:grid;grid-template-columns:repeat(var(--pulse-months),minmax(0,1fr));font-size:14px;text-align:center;color:var(--kdh-text-3)}
+.pulse-coverage summary{font-size:16px;font-weight:600;cursor:pointer;min-height:32px}.pulse-coverage p{font-size:14px;color:var(--kdh-text-3);line-height:1.5;margin:12px 0}.pulse-coverage h3{font-size:16px;font-weight:600}.pulse-coverage dl{margin:0}.pulse-coverage dl>div{display:flex;justify-content:space-between;gap:14px;border-top:1px solid var(--kdh-border);padding:12px 0}.pulse-coverage dt,.pulse-coverage dd{font-size:14px;margin:0}
+.pulse-state{padding:24px;background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:12px;text-align:center}
+@media(max-width:680px){.pulse-cards{grid-template-columns:1fr}.pulse-card.total{order:-1}.pulse-metrics>div{display:grid;grid-template-columns:1fr auto;align-items:center;gap:6px;text-align:left}.pulse-metrics dd{text-align:right;margin:0}.pulse-metrics .pulse-change,.pulse-metrics small{grid-column:1/-1;text-align:right}.pulse-hero strong{font-size:40px}.pulse-detail-head{align-items:flex-start}.pulse-controls{grid-template-columns:1fr}.pulse-list li{grid-template-columns:1fr}.pulse-list .pulse-amount{text-align:left}.pulse-wrap{padding-top:16px}}

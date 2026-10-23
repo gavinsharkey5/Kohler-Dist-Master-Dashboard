@@ -3633,4 +3633,40 @@ under ignored shots/program-access/. Verification covers all 27 reps, all eight 
 2XO and general programs retained, explicit team-only access, owner preview, deep links, unchanged
 manager exports/statistics and 390 / 820 / 1366 in light / dark. Passed 1,438 data/generator checks and
 2,249 browser checks. Phase 3 approved for commit and publication on 2026-10-23.
-No Phase 4 work.
+
+## Round 2, Phase 4: manager Sales Pulse + own incentive estimates (2026-10-23)
+
+Gavin explicitly authorized reps to see their OWN estimated incentive earnings, then clarified MPO
+dollars must wait (no payout constructs in the supplied sheets). This overrides the older blanket
+no-dollar rep DISPLAY rule ONLY for this own-estimate field. Other reps' dollars, rates, house-dollar
+goals and program_finance remain hidden. hub.js ownIncentiveEstimateHtml requires LOCKED_REP and
+the identical rep name, reads only an existing finite numeric entry.getRep(rep).payout, and labels
+it Estimated Earnings / not final. Missing amounts are Estimate Unavailable, never zero. No new
+formula or extrapolation; legacy tracker estimates are not added to billing. Existing Southern-rate
+uncertainty is flagged. No MPO payout, no Supabase/RLS/finance changes. Goal/Current/Remaining and all
+program eligibility/scoring stay unchanged. Previous-month rows also show the rep's own estimate.
+
+sales-pulse/ is managers-only via the existing middleware (its entire path, including JSON, is outside
+rep/associate/IT permissions; existing finance workspace remains restricted). Rep previews never fetch
+the Pulse data. Manager Home -> All Tools & Reports -> Sales Performance links it. Three cards: Core / Southern / Total;
+month or matched YTD; details show monthly cases and brand-family/account case movements. Total includes
+Other Areas, explicitly reconciled under Coverage & Definitions. Geography = customer_base.py's current
+rule (Morris 2 is OTHER); active customer geography overrides master, historical customers fall back to
+master. Closed/inactive history remains. No judging districts on raw size.
+sales-pulse/generate.py reads Rolling Distribution's monthly case master + products/customers/sources,
+never money exports. Complete months only, same months of prior year; latest Sep 2026 (imported Oct 1),
+default Jan-Sep 2026 vs Jan-Sep 2025. Placements = positive net cases per account x product over the full
+period; buyers = positive account net; distinct counts never added across months. New buyers = first
+positive month in loaded Jan 2025+ history, excluding the first month's left-censored buyers, and still
+buying over the selected period; not lifetime new and no prior-year percent claimed. Internal accounts /
+finance charges excluded. No daily/weekly/October MTD data invented. rolling-distribution/generate.py
+rebuilds Pulse after imports / --build; rebuild after customer-base edits too. JSON is generated, not
+hand-edited. No DB/table/background job. Program progress links to the hub because its newer source
+windows differ. This is separate from the kohler-pulse email/report; share definitions/JSON, not its
+old Morris-2 territory note. No email/report/PDF or automation created.
+Tests: tools/sales-pulse-data-test.py (independent CSV reconciliation + synthetic boundary fixtures),
+tools/sales-pulse-browser-test.cjs (actual middleware, real static data, local identities, no live DB
+writes). Screenshots in ignored shots/sales-pulse/ at 390/820/1366 light/dark. Cache tags hub.js/hub.css
+(all hub.js consumers) and Pulse JS/CSS/JSON 20261023p4b. Passed 518 independent data checks and
+740 browser checks, including nine reps with positive / zero / unavailable estimates and both Pulse
+and own-estimate layouts at every width/theme. Approved for commit and publication 2026-10-23. Phase 5 has not started.

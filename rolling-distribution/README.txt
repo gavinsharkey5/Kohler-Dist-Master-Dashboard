@@ -1,6 +1,11 @@
 ROLLING DISTRIBUTION TRENDS
 ===========================
 
+SALES PULSE (2026-10-23)
+  generate.py also rebuilds sales-pulse/data/pulse.json after imports / --build.
+  It reads monthly cases and dimensions, never money. Complete matched month/YTD
+  comparisons only. See ../sales-pulse/README.txt for definitions and tests.
+
 Buyers, placements and cases for every supplier -> brand family -> brand
 -> product, in rolling periods (default three whole calendar months) that
 advance one month at a time: Oct-Dec, Nov-Jan, Dec-Feb, Jan-Mar... Filter

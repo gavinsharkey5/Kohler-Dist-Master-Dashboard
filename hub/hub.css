@@ -1837,3 +1837,7 @@ a.hreturn{text-decoration:none;}
   .inc-card>.chev{position:absolute;right:12px;bottom:16px;width:16px}
   .inc-card .hrow-s{padding:0 12px}
 }
+/* Own incentive estimates: secondary to Goal / Current / Remaining. */
+.inc-estimate{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;width:100%;box-sizing:border-box;padding:12px 0 0;border-top:1px solid var(--kdh-border);font-size:14px;text-align:left;color:var(--kdh-text-3)}
+.inc-estimate b{font-size:16px;color:var(--kdh-text);font-weight:600;text-align:right}.inc-estimate small{grid-column:1/-1;font-size:14px;text-align:right;color:var(--kdh-text-3)}.iended-row>.inc-estimate{grid-column:1/-1}
+@media(max-width:500px){.inc-estimate{grid-template-columns:1fr;text-align:center}.inc-estimate b,.inc-estimate small{text-align:center}}

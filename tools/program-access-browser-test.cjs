@@ -85,7 +85,7 @@ async function snapshot(p){return p.evaluate(async()=>{
    check(datasets.some(data=>data.two_xo),rep+' general 2XO data retained');
    await p.goto(origin+'/hub/#view=detail&only=inc&cat=inc&prog=inc:two_xo');await ready(p);
    check(await p.evaluate(()=>KohlerHub.state.prog==='inc:two_xo'),'general program deep link retained');
-   check(!await p.locator('#app').innerText().then(t=>t.includes('$')),'no rep dollars');
+   check(await p.locator('#app').evaluate(el=>{const c=el.cloneNode(true);c.querySelectorAll('.inc-estimate').forEach(x=>x.remove());return !c.textContent.includes('$');}),'only own estimated earnings may contain dollars');
   } else {
    assert.deepEqual(after.visible,before.visible);checks++;
    check(!after.programs.some(p=>p.key==='fall_seasonal_sd'||p.key==='path_to_victory_sd'),rep+' explicit team programs excluded');
@@ -103,7 +103,7 @@ async function snapshot(p){return p.evaluate(async()=>{
   await p.goto(origin+'/hub/#view=rep&only=inc&cat=inc');await ready(p);
   check(await p.evaluate(()=>KohlerHub.incRows(KohlerHub.state.rep).some(x=>x.p.key==='two_xo')),'preview 2XO visible');
   check(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'no horizontal overflow');
-  check(!await p.locator('#app').innerText().then(t=>t.includes('$')),'preview no dollars');
+  check(await p.locator('#app').evaluate(el=>{const c=el.cloneNode(true);c.querySelectorAll('.inc-estimate').forEach(x=>x.remove());return !c.textContent.includes('$');}),'preview dollars limited to own estimates');
   await p.screenshot({path:path.join(out,`after-${width}-${theme}.png`),fullPage:true});screens.push({width,theme});
   if(width===390)await p.locator('.hsupg').filter({hasText:'2XO Bourbon'}).screenshot({path:path.join(out,`restored-2xo-${theme}.png`)});
   if(width===390){await c.addCookies([{name:'phase1_before',value:'1',url:origin}]);await p.reload();await ready(p);await p.screenshot({path:path.join(out,`before-${width}-${theme}.png`),fullPage:true});}

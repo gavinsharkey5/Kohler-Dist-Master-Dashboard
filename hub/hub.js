@@ -3591,9 +3591,21 @@ function incentiveProgressHtml(p, r, rep, opt){
     </span>
     ${fixed ? hbar(f) : ''}
     ${held}
+    ${ownIncentiveEstimateHtml(p, rep)}
     ${context && (!opt.compact || r.house || (d && d.hasAnyGoal)) ? `<span class="inc-context">${E(subNoMoney(context))}</span>` : ''}
     ${!opt.compact ? `<span class="inc-deadline">${E(endsLabel(p.period))}</span>` : ''}
   </span>`;
+}
+// Own incentive earnings only (2026-10-23). Never infer rates or expose another rep's amount.
+// Existing tracker payout values are estimates, not approved payroll. MPOs have no dollar terms.
+function ownIncentiveEstimateHtml(p, rep){
+  if(p.type!=='Incentive' || !LOCKED_REP || rep!==LOCKED_REP || !KDH_USER || KDH_USER.role!=='rep') return '';
+  const d = p.entry && p.entry.getRep(rep);
+  const amount = d && typeof d.payout==='number' && Number.isFinite(d.payout) ? d.payout : null;
+  const text = amount==null ? 'Estimate Unavailable' : '$'+amount.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const southernRate = d && (d.southern || (d.offPremNew||[]).some(a=>a.southern)) && ['industrial_arts','other_half'].includes(p.key);
+  const note = amount==null ? 'No stored payout estimate' : southernRate ? 'Southern rate unconfirmed · not final' : 'Tracker estimate · not final';
+  return `<span class="inc-estimate"><span>Estimated Earnings</span><b>${E(text)}</b><small>${E(note)}</small></span>`;
 }
 // One program as a row: name + status, supplier/channel and the deadline
 // once, one progress line, a thin bar. Tap opens the program.
@@ -3659,7 +3671,7 @@ function prevMonthsHtml(rep){
     const ended = endedIn(rep, cur.key);
     body = ended.length ? `<div class="iended-list">${ended.map(x=>{ const f = progFacts(x.p, x.r, rep);
         const okd = x.r.status==='complete'||x.r.status==='exceeded';
-        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${f.main}</span><span class="iended-when">Ended ${E(fmtDay(x.p.period.end))}</span></div>`; }).join('')}</div>`
+        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${f.main}</span><span class="iended-when">Ended ${E(fmtDay(x.p.period.end))}</span>${ownIncentiveEstimateHtml(x.p, rep)}</div>`; }).join('')}</div>`
       : `<div class="kdh-state empty"><b>No ${E(cur.label)} incentives on record ${isSelf(rep) ? 'for you' : 'for '+E(first(rep))}.</b></div>`;
   }
   return `<section class="iprev" aria-label="Previous months">

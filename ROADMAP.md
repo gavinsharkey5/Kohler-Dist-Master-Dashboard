@@ -373,6 +373,12 @@ device, a decision).
 
 ## Done
 
+- [x] **Round 2, Phase 4: Sales Pulse + own incentive estimates (2026-10-23).** Approved for publication: manager
+  market page with Core / Southern / Total, matched monthly/YTD volume, distinct placements/buyers,
+  observed new buyers and details on tap. Other Areas reconcile totals. Rep incentive cards show
+  only their own existing tracker payout as an estimate; missing amounts unavailable. MPO dollars
+  deferred (no constructs supplied). No rollout change. Approved 2026-10-23. Phase 5 has not started.
+
 - [x] **Round 2, Phase 3: explicit team-only programs (2026-10-23).** Approved for publication. DM
   membership plus explicit program restrictions apply in the hub and generated rep data copies.
   General programs, including 2XO, keep existing territory/premise eligibility. Existing periods,

@@ -1,6 +1,19 @@
 Incentives & MPO Hub
 ====================
 
+ROUND 2, PHASE 4 (2026-10-23)
+  Sales Pulse is a managers-only page: sales-pulse/README.txt has its source,
+  refresh and metric definitions. Manager Home links it under Sales Performance.
+  Explicit user exception to the old no-dollar display rule: a signed-in rep
+  may see their OWN Estimated Earnings for incentives, from an existing numeric
+  tracker payout only. Missing = Estimate Unavailable. Rates and other reps'
+  dollars stay hidden. MPO dollars deferred: no payout constructs supplied.
+  No new payout calculation or program_finance request; exports/billing unchanged.
+  Remaining stays most prominent. Owner preview follows the selected rep only.
+  Tags hub.js / hub.css 20261023p4b, all hub.js consumers bumped.
+  Test: tools/sales-pulse-browser-test.cjs, real data and middleware, local auth.
+  Approved for commit and publication 2026-10-23. Phase 5 has not started.
+
 ROUND 2, PHASE 3 (2026-10-23)
   shared/program-access.js holds explicit team-only restrictions; membership comes
   from shared/dm-groups.js, not rep names in a program filter. General programs

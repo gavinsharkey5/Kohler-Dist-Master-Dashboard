@@ -111,7 +111,7 @@ async function geometry(page){return page.evaluate(()=>{
    await button.click();await p.waitForSelector('.px .inc-progress');
    const detail=await geometry(p);check(!detail.overflow&&detail.cards.every(c=>!c.overflow),x.id+' detail fits '+width);
    for(const c of detail.cards)check(c.sizes[2]>c.sizes[0]&&c.sizes[2]>c.sizes[1],x.id+' detail Remaining largest');
-   check(!/\$\s*\d/.test(await p.locator('#app').innerText()),x.id+' detail has no dollars');
+   check(await p.locator('#app').evaluate(el=>{const c=el.cloneNode(true);c.querySelectorAll('.inc-estimate').forEach(x=>x.remove());return !/\$\s*\d/.test(c.textContent);}),x.id+' dollars limited to own estimate');
    await p.locator('.px').screenshot({path:path.join(out,'card-'+x.id.slice(4)+'-'+width+'-'+theme+'.png')});
    if(width===390&&['inc:four_loko','inc:constellation_fall','inc:touchdowns_tea','inc:industrial_arts'].includes(x.id))await p.screenshot({path:path.join(out,'after-'+x.id.slice(4)+'-'+theme+'.png')});
    visualResults.push({width,theme,id:x.id,rep:x.rep});
