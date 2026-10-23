@@ -1,0 +1,42 @@
+const {database,identity}=require('./brand-fit-db.cjs'),assert=require('assert/strict');
+(async()=>{
+ const db=await database();let checks=0;const q=async(s,p=[])=>(await db.query(s,p)).rows;
+ const ok=(v,m)=>{assert.ok(v,m);checks++;};
+ const deny=async(s)=>{await assert.rejects(()=>q(s));checks++;};
+ await db.exec("insert into account_assignments values('1','rep'),('2','other');");
+ await identity(db,'mgr');
+ const types=await q('select * from account_fit_types');ok(types.length===3,'three real user mappings');
+ ok((await q('select * from account_fit_tags')).length===0,'no account tags seeded');
+ const id=types[0].id;
+ await q('insert into account_fit_tags values($1,$2) returning *',['1',id]);
+ await q('insert into account_fit_tags values($1,$2) returning *',['2',id]);
+ ok((await q('select * from account_fit_tags')).length===2,'manager tags');
+ await q("update account_fit_types set label='Changed' where id=$1 returning *",[id]);checks++;
+ await deny("insert into account_fit_types(label,families) values('changed',array['A'])");
+ await deny("insert into account_fit_types(label,families) values('Empty','{}')");
+ await deny("insert into account_fit_tags values('not-an-account','"+id+"')");
+ await identity(db,'rep');
+ ok((await q('select * from account_fit_types')).length===3,'rep can read mappings for future own-account use');
+ const own=await q('select * from account_fit_tags');ok(own.length===1&&own[0].customer_num==='1','rep only own account tags');
+ await deny("insert into account_fit_types(label,families) values('Spoof',array['A'])");
+ ok((await q("update account_fit_types set label='Spoof' returning *")).length===0,'rep update refused');
+ await deny("insert into account_fit_tags values('2','"+types[1].id+"')");
+ ok((await q('delete from account_fit_tags returning *')).length===0,'rep delete refused');
+ await deny('truncate account_fit_types cascade');
+ await identity(db,'other');ok((await q('select * from account_fit_tags'))[0].customer_num==='2','other route isolated');
+ for(const role of ['associate','finance','it','unlisted']){
+  await identity(db,role);ok((await q('select * from account_fit_tags')).length===0,role+' no tags');ok((await q('select * from account_fit_types')).length===0,role+' no mapping');
+  await deny("insert into account_fit_types(label,families) values('Forbidden',array['A'])");
+ }
+ await identity(db);await deny('select * from account_fit_types');await deny('select * from account_fit_tags');
+ await identity(db,'mgr');ok((await q('delete from account_fit_tags where customer_num=\'1\' returning *')).length===1,'manager removes acknowledged tag');
+ ok((await q('select * from account_fit_tags')).length===1,'other tag retained');
+ await deny('delete from account_fit_types');await deny('truncate account_fit_tags');
+ await identity(db,'');await db.exec('reset role');
+ await db.exec(require('fs').readFileSync(require('path').join(__dirname,'../supabase/migrations/20261023145203_account_brand_fit.sql'),'utf8'));
+ ok((await q("select label from account_fit_types where id='"+id+"'"))[0].label==='Changed','rerun preserves manager edits');
+ ok((await q('select * from account_fit_tags')).length===1,'rerun preserves saved tags');
+ ok((await q('select * from account_fit_types')).length===3,'rerun does not recreate renamed seed');
+ const policies=await q("select count(*)::int n from pg_policies where tablename in ('account_fit_tags','account_fit_types')");ok(policies[0].n===6,'all expected RLS policies');
+ await db.close();console.log(checks+' PostgreSQL/RLS checks passed');
+})().catch(e=>{console.error(e);process.exit(1);});

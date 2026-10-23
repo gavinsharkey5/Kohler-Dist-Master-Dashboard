@@ -1,3 +1,69 @@
+ROUND 2, PHASE 5 (2026-10-23)
+  Brand Fits: managers open Accounts -> Brand Fits (brand-fit.html).
+  Account page -> Products -> Brands That Fit -> Edit Account Types.
+  No account is tagged automatically. Class is a size code; Chain identifies
+  the business group; Customer Type is broad (Bar/Restaurant, Tavern/Bar...),
+  with no reliable Dive Bar / German Bar / Asian Restaurant or cuisine tag.
+  Managers explicitly verify and save one or more types on the account.
+  A future bulk import needs verified Customer ID + Account Type; no guessing
+  from account names, chains, or classes. Rep tagging is deferred with rollout.
+
+  Supabase setup applied 2026-10-23:
+    supabase/migrations/20261023145203_account_brand_fit.sql
+  Two RLS tables: account_fit_types (label -> catalogue brand families),
+  account_fit_tags (customer_num + type_id). Starting mappings are the user's
+  Dive Bar / German Bar / Asian Restaurant examples. Pabst resolves to Pabst
+  Blue Ribbon + Pabst Light; Hofbrau Usa is the catalogue label for Hofbraeu.
+  No tags are seeded. Rerunning setup keeps edited mappings and saved tags.
+  Live verification: three starting mappings, zero account tags; RLS enabled
+  on both tables, six policies, anonymous read denied. Security advisor has
+  no findings for the new tables. Authenticated manager read verified.
+
+  Managers edit mappings and tags with their own token; exact-one-row write
+  acknowledgements required. No success for a zero-row RLS write. Tags use
+  existing account assignments + account access; reps may read only their own
+  account tags if that page is rolled out later. Associates / finance / IT /
+  unlisted / anonymous cannot read these tables. Table grants are explicit,
+  RLS enabled, no new privileged functions, no contact fields or dollar data.
+  Manager report uses kdh_program_scope; fail closed if scope is unavailable.
+  DM = assigned reps; brand manager = assigned suppliers/families; admin all.
+  Account page keeps its existing scope. Preview does not allow writes.
+
+  A recommendation must be in data/catalog.json AND have explicit CAN SELL
+  in HUB_BRANDS for the account area, plus explicit approved overrides in
+  data/brand-fit-permissions.json. Unknown permissions are excluded, never guessed. Whole Foods alcohol restriction follows nonbuy's existing rule.
+  Miller High Life: user confirmed 2026-10-23, Molson Coors, Core Market ONLY.
+  The Phase 5 override permits Bergen / Passaic / Passaic-FF / Sussex /
+  Morris 1 / Morris 3; excludes Southern, Morris 2 and unknown areas.
+  Original workbook is unchanged. Pabst, Narragansett, Hofbrau and Sapporo
+  use existing permissions. Both Brand Fit screens use the same override.
+  No changes to programme scoring, catalogue, territory workbook or exports.
+
+  Buying = positive NET brand-family cases over the latest three complete
+  months in the account exports (currently Jul-Sep 2026). All historical
+  family SKUs count, including a discontinued package. Missing = eligible,
+  explicitly tagged, no positive net family cases in that window. A new
+  buyer may show a pitch after three months without buying; not lifetime
+  never-bought. Failed history / incomplete window = History Unavailable,
+  excluded from Missing. Untagged accounts are counted separately. Counts
+  and tap-through account details use the same engine; multiple verified
+  types may include one account in more than one group, never added to a total.
+
+  Rollout is unchanged: reps and associates still cannot open Accounts or
+  Brand Fits. No rep access has been enabled and no other-route account data
+  is shipped to reps. No rep home leaderboard work.
+  Local tests: tools/brand-fit-test.cjs, tools/brand-fit-sql-test.cjs,
+  tools/brand-fit-browser-test.cjs (real middleware + isolated PostgreSQL).
+  tools/brand-fit-db.cjs supplies local identity fixtures only. Dependencies
+  live in ignored shots/brand-fit/runtime; screenshots in shots/brand-fit/.
+  Screenshot tags are explicitly labelled samples; no production tags created.
+  Passed: 40 recommendation checks, 37 PostgreSQL/RLS checks, 54 full-flow
+  browser checks. All three widths (390/820/1366), light/dark; no browser
+  or server exceptions. Save/reload, zero-row failure, missing setup/retry,
+  failed history, team/brand scope, pagination and rollout gates verified.
+  Cache tags: accounts.js + new Brand Fit JS/CSS = 20261023p5b.
+  Approved for database setup, commit and publication 2026-10-23.
+
 Accounts tab + Account page (2026-09-30)
 ==========================================
 

@@ -1,0 +1,19 @@
+{
+  "source": "User-confirmed 2026-10-23: Miller High Life is Molson Coors, Core Market only.",
+  "families": {
+    "Miller High Life": {
+      "areas": {
+        "Bergen": "CAN SELL",
+        "Passaic": "CAN SELL",
+        "Passaic-FF": "CAN SELL",
+        "Sussex": "CAN SELL",
+        "Morris 1": "CAN SELL",
+        "Morris 3": "CAN SELL",
+        "Essex": "NOT IN TERRITORY",
+        "Hudson": "NOT IN TERRITORY",
+        "Union": "NOT IN TERRITORY",
+        "Morris 2": "NOT IN TERRITORY"
+      }
+    }
+  }
+}

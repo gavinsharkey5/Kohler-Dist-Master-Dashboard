@@ -315,7 +315,7 @@ function renderList(){
   // list would show (same search, filters and authorized accounts)
   const viewSeg = `<div class="seg vseg" id="viewSeg" role="group" aria-label="View">${[['list','List'],['map','Map']].map(([v,l])=>`<button type="button" data-mode="${v}" aria-pressed="${state.mode===v}"${state.mode===v?' class="on"':''}>${l}</button>`).join('')}</div>`;
   const nbLink = `<a class="btn sm outline nb-link" href="../nonbuy/">Non-Buy Reports</a>`;   // one engine for reps and managers (2026-10-08)
-  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1><div class="lh-acts">${nbLink}${viewSeg}</div></div>${isMgr ? `<div class="id"><p class="idline">${sub}</p></div>` : ''}</header>
+  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1><div class="lh-acts">${nbLink}${viewSeg}</div></div>${isMgr ? `<div class="bf-entry"><a class="btn outline sm" href="brand-fit.html">Brand Fits</a></div><div class="id"><p class="idline">${sub}</p></div>` : ''}</header>
     <div id="laterStrip"></div>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
@@ -755,6 +755,7 @@ async function renderAccount(){
       <section class="sec" id="photos-side"><h2>Photos &amp; Merchandising</h2><div class="card" id="actPhotos"></div></section>
     </aside></div>`)
     + secHtml('products', `
+    <section class="card" id="brandFit" aria-label="Brands That Fit"></section>
     <section class="sec" id="products"><div class="card" id="plistCard"></div></section>
     <details class="fold discuss-fold" id="discuss"${warm.length ? '' : ''}><summary>Products to Discuss · ${plural(warm.length,'program lead')}</summary>${discussHtml}</details>`)
     + secHtml('history', hseg
@@ -776,6 +777,8 @@ async function renderAccount(){
     Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', prog:'', limit:40}, saved || {});
   }
   renderProducts(a, rep, sales, CAT, months, N, targets);
+  if(window.KdhBrandFit) window.KdhBrandFit.mount(document.getElementById('brandFit'), {a,
+    sales:sales ? {...sales,months,ref:refKey} : null,catalog:CAT,permissions:typeof HUB_BRANDS!=='undefined'?HUB_BRANDS:null});
   app.querySelectorAll('[data-pq]').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault();
     Object.assign(plist, {view:'all', q: b.dataset.pprog ? '' : (b.dataset.pq||''), prog: b.dataset.pprog || '', sup:'', fam:'', pkg:'', limit:40}); renderProducts(a, rep, sales, CAT, months, N, targets); showSec('products', ''); window.scrollTo(0, 0); }));
   if(window.KdhActivity){

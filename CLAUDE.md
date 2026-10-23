@@ -3670,3 +3670,32 @@ writes). Screenshots in ignored shots/sales-pulse/ at 390/820/1366 light/dark. C
 (all hub.js consumers) and Pulse JS/CSS/JSON 20261023p4b. Passed 518 independent data checks and
 740 browser checks, including nine reps with positive / zero / unavailable estimates and both Pulse
 and own-estimate layouts at every width/theme. Approved for commit and publication 2026-10-23. Phase 5 has not started.
+
+
+## Round 2, Phase 5: account types -> Brand Fits (2026-10-23)
+accounts/README.txt has sources, definitions, setup and access notes. Account -> Products now has
+Brands That Fit, buying status and Pitch Idea for mapped, permitted families; managers explicitly
+assign account types here. Accounts header -> Brand Fits opens manager coverage + missing counts,
+account details on tap, editable type-to-family mappings. Uses kdh_program_scope for report scoping.
+No reliable cuisine / Dive / German / Asian tags in Class, Chain or Customer Type. No name-based
+inference and NO ACCOUNT TAGS SEEDED. Starting type mappings are the user's examples only.
+Applied migration 20261023145203_account_brand_fit.sql (2026-10-23): account_fit_types + account_fit_tags,
+RLS, explicit grants, manager writes, own-account rep reads for future rollout. No new privileged
+functions. Live: three mappings, zero tags, both tables RLS enabled, six policies;
+anonymous reads denied, authenticated manager read verified, no advisor findings on new tables.
+Repeated setup preserves saved edits/tags. No anonymous, associate,
+finance, IT or unlisted reads. Existing account assignment access remains the boundary.
+Engine requires current account catalogue + explicit CAN SELL permission per area (unknown excluded),
+Whole Foods NA rule. User confirmed Miller High Life as Molson Coors, CORE ONLY (2026-10-23).
+accounts/data/brand-fit-permissions.json supplements the workbook for Phase 5 on both screens:
+Bergen / Passaic / Passaic-FF / Sussex / Morris 1 / Morris 3 permitted; Southern, Morris 2, unknown
+areas excluded. Workbook and other programme logic unchanged. No rule inferred from supplier names.
+Buying uses positive net family cases over latest 3 COMPLETE export months, currently Jul-Sep 2026.
+Unavailable history/window is not a missing brand. No dollars. Distinct tagged account coverage,
+per-type/family eligible/buying/missing/unknown counts; detail matches the engine. No new data export.
+ROLLOUT_LIMITED and middleware.js UNCHANGED: reps/associates still cannot open Accounts/Brand Fits.
+No new rep data access, no leaderboard. Browser fixtures are isolated PostgreSQL, sample tags clearly
+labelled, never written to production. New JS/CSS and accounts.js cache tags 20261023p5b.
+Passed 40 recommendation, 37 local PostgreSQL/RLS and 54 browser flow checks; all three widths
+(390/820/1366) light/dark, no browser/server exceptions. Screenshots in ignored shots/brand-fit/.
+Approved for database setup, commit and publication 2026-10-23. No other phase started.

@@ -11,6 +11,7 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+
 - [ ] **Account Windows (2026-10-20).** Built: every account page's Account Details shows a Windows group (Window
   Count, executed %, competitor / open) with See All Windows -> a table of each window (name, location, size in
   inches, class High / Medium / Low, status Executed / Competitor / Open, current brand + program, latest photo,
@@ -372,6 +373,12 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] **Round 2, Phase 5: Brand Fits (2026-10-23).** Approved for publication: editable account-type
+  mappings, verified manager tags, account pitch ideas and scoped missing-brand counts. No tags
+  inferred or seeded. Catalogue + confirmed territory permissions only; three complete months
+  of net family buying. Miller High Life explicitly Core Market only. Reps/associates still cannot
+  open Accounts. Database setup applied and verified 2026-10-23; zero account tags seeded.
 
 - [x] **Round 2, Phase 4: Sales Pulse + own incentive estimates (2026-10-23).** Approved for publication: manager
   market page with Core / Southern / Total, matched monthly/YTD volume, distinct placements/buyers,
