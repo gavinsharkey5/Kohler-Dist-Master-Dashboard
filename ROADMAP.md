@@ -373,6 +373,12 @@ device, a decision).
 
 ## Done
 
+- [x] **Round 2, Phase 3: explicit team-only programs (2026-10-23).** Approved for publication. DM
+  membership plus explicit program restrictions apply in the hub and generated rep data copies.
+  General programs, including 2XO, keep existing territory/premise eligibility. Existing periods,
+  scoring and manager history retained. Travelers / Plaid Duck deferred. No new MPO restrictions
+  or rollout change. Phase 4 has not started.
+
 - [x] **Round 2, Phase 2: manager incentive summaries + larger supplier logos (2026-10-22).** Approved for
   publication. One summary per incentive; Review Reps expands results; Program Details retains statistics, payout
   details, rules and account workspace. Filters and global/per-program exports remain. Ranking rows use the

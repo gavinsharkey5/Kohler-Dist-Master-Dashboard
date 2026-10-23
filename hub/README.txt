@@ -1,6 +1,24 @@
 Incentives & MPO Hub
 ====================
 
+ROUND 2, PHASE 3 (2026-10-23)
+  shared/program-access.js holds explicit team-only restrictions; membership comes
+  from shared/dm-groups.js, not rep names in a program filter. General programs
+  keep existing territory, premise, date and no-dollar eligibility, including 2XO
+  (All Counties, Package Only). Path to Victory SD / Fall Seasonal SD require
+  their named DM's team. Older dates stay closed. No new scores or feeds.
+  Travelers / Plaid Duck deferred; no new team restrictions on MPOs.
+  tools/rep_slices.py applies the same settings to the data sent to reps. After
+  membership/settings edits run python tools/rep_slices.py --only-incentives.
+  Add --check to verify. Existing middleware rewrites / rollout are unchanged.
+  Managers retain their registry, historical statistics, exports and scope.
+  tools/dm_groups.py supplies the generator and rep copies with shared membership.
+  Passed 1,438 data/generator checks and 2,249 browser checks across all 27 reps.
+  Test: python tools/program-access-test.py; node tools/program-access-browser-test.cjs
+  (Playwright required). Screenshots: shots/program-access/ (ignored).
+  hub.js / program-access.js / program_data.js consumer tags: 20261023p3b.
+  Phase 3 approved for commit and publication on 2026-10-23. Phase 4 has not started.
+
 ROUND 2, PHASE 1 (2026-10-22)
   Rep incentive lists and program screens use incentiveProgressHtml() in hub.js:
   Goal / Current / Remaining, with Remaining largest; labelled stacked rows on

@@ -3607,4 +3607,30 @@ CSV rows and recap workbook models, UI exports/filters/Review Reps, mobile logos
 and tools/incentive-cards-browser-test.cjs (rep regression). Auth is a local fixture, no live database writes.
 Verified: 392 manager checks across five scopes and three widths/two themes; rep regression confirms 1,204
 unchanged program/rep models, 966 cards and 30 representative screens. CSV and Excel downloads exercised.
-Logo changes and Phase 2 approved for commit and publication on 2026-10-22. Phase 3 has not started.
+Logo changes and Phase 2 approved for commit and publication on 2026-10-22.
+
+## Round 2, Phase 3: explicit team-only programs (2026-10-23)
+
+The Incentives hub uses shared/program-access.js settings plus membership from shared/dm-groups.js.
+General programs remain available under the existing territory, premise, dates, goals, missing-data
+and no-dollar rules. Brand sellability is separate from incentive participation: omission from a
+Southern program list is NOT a restriction. 2XO stays available where eligible (Brand Permissions:
+All Counties, Package Only). Only Path to Victory SD and Fall Seasonal SD explicitly require Mike
+Kennedy's team. No rep names are embedded in program settings. Travelers and Plaid Duck are deferred.
+Older programs stay closed; no new periods or scores are invented.
+The hub filters the locked rep's registry, lists and direct links (including owner preview). Managers
+retain full registries, historical statistics, exports and scoping. tools/rep_slices.py reads the same
+settings and DM membership and omits excluded incentive results from per-rep copies; middleware's
+existing rewrites continue to serve only those copies. Run --only-incentives for this subset refresh
+(--check also supported); full refreshes apply the same filter. Rebuild copies after membership edits.
+tools/dm_groups.py reads the shared membership for Python; incentive-tracking/generate.py also uses
+it instead of a duplicated team list. Today's membership and all retained values match the original.
+No new team restrictions apply to MPOs. ROLLOUT_LIMITED and REP_PATHS are unchanged.
+Tags: hub.js, program-access.js and hub consumers of program_data.js use 20261023p3b; no CSS changes.
+Checks: tools/program-access-test.py and tools/program-access-browser-test.cjs; real static data and
+middleware routing, local identity fixtures, no live authentication or database writes. Screenshots
+under ignored shots/program-access/. Verification covers all 27 reps, all eight team members,
+2XO and general programs retained, explicit team-only access, owner preview, deep links, unchanged
+manager exports/statistics and 390 / 820 / 1366 in light / dark. Passed 1,438 data/generator checks and
+2,249 browser checks. Phase 3 approved for commit and publication on 2026-10-23.
+No Phase 4 work.

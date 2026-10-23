@@ -48,6 +48,7 @@ list is written into middleware.js between the SLICE_KEYS markers.
 """
 import csv, hashlib, io, json, re, shutil, sys
 from pathlib import Path
+from dm_groups import load_dm_groups
 
 ROOT = Path(__file__).resolve().parents[1]
 MW = ROOT / 'middleware.js'
@@ -73,6 +74,24 @@ def name_key(n):
 
 def dumps(o):
     return json.dumps(o, separators=(',', ':'))
+
+
+def program_allowed(source, program, key):
+    """Same DM membership/settings as the browser; never infer DM from territory."""
+    dm = REP_DMS.get(key)
+    rule = PROGRAM_ACCESS['programs'].get(source + ':' + program, {})
+    return 'dms' not in rule or dm in rule['dms']
+
+
+PROGRAM_ACCESS = json.loads(re.search(
+    r'window.KDH_PROGRAM_ACCESS\s*=\s*(\{.*?\});',
+    (ROOT / 'shared/program-access.js').read_text(encoding='utf-8'), re.S).group(1))
+REP_DMS = {}
+for group in load_dm_groups():
+    for rep in group['reps']:
+        REP_DMS[name_key(rep)] = group['dm']
+if not {dm for rule in PROGRAM_ACCESS['programs'].values() for dm in rule.get('dms', [])}.issubset(set(REP_DMS.values())):
+    raise ValueError('Program eligibility names a DM missing from shared/dm-groups.js')
 
 
 class Out:
@@ -187,6 +206,8 @@ def incentives(out, keys_holder):
                 if name in blobs:
                     sl = {}
                     for pk, prog in blobs[name].items():
+                        if not program_allowed('inc', pk, key):
+                            continue
                         p = slice_byrep(prog, key)
                         if isinstance(p, dict):
                             had = set(); rep_names_in(prog, had)
@@ -423,6 +444,19 @@ def main():
     check = '--check' in sys.argv
     out, writers, names = Out(check), [], set()
     names |= incentives(out, writers)
+    if '--only-incentives' in sys.argv:
+        # Other datasets contribute extra keys during a full run. Preserve
+        # their copies when refreshing incentives alone.
+        keys = sorted(set(all_keys(names)) | {
+            p.stem for p in (ROOT / 'incentive-tracking/data/rep').glob('*.js') if p.stem != NONE
+        })
+        for writer in writers:
+            writer(keys)
+        out.flush()
+        if out.stale:
+            raise SystemExit('Incentive copies are stale: ' + ', '.join(out.stale[:10]))
+        print(f'Incentive copies {"checked" if check else "written"}: {len(keys)} rep keys + {NONE}.')
+        return
     names |= mpos(out, writers)
     names |= redbull(out, writers)
     names |= carbliss_mpo(out, writers)

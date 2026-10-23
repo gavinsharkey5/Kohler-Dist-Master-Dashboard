@@ -17,6 +17,9 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
+from dm_groups import reps_for_dm
+
 DATA_DIR = Path(__file__).parent / "data"
 INDEX_HTML = Path(__file__).parent / "index.html"
 # The program registries, summaries and cards moved out of index.html into
@@ -1089,8 +1092,7 @@ def build_fall_seasonal():
 # Constellation grouped exports. Reps outside the team get no byRep entry, so
 # the tracker card, leaderboard and the hub all treat them as not in the
 # program (getRep -> undefined), the way a Core Market blackout does.
-MIKE_KENNEDY_TEAM = ["Alex Rodriguez", "Alisa Acciardi", "Andrew Lundy", "Dylan Rubino",
-                     "Hakan Sadik", "Jaime Colonna", "John O'Donoghue", "Michael Harboy"]
+MIKE_KENNEDY_TEAM = reps_for_dm('Mike Kennedy')
 SD_WINDOW = "8/1/2026 - 9/30/2026"
 
 

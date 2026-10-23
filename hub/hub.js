@@ -530,7 +530,8 @@ function buildPrograms(){
     if(res && res.length){ window.KDH_PROGRAM_SKUS = window.KDH_PROGRAM_SKUS || {}; window.KDH_PROGRAM_SKUS[c.id] = {source:'Manage Programs', products: res.map(x=>({id:String(x.id), name:x.name}))}; }
     out.push(c);
   });
-  PROGRAMS = BRAND_SCOPE ? out.filter(brandAllows) : out;
+  const visible = LOCKED_REP ? out.filter(p=>dmProgramAllows(p, LOCKED_REP)) : out;
+  PROGRAMS = BRAND_SCOPE ? visible.filter(brandAllows) : visible;
 }
 // Called by shared/custom-programs.js once its programs (and a rep's results) are in.
 function rebuildPrograms(){
@@ -591,7 +592,11 @@ const viewingPast = scope => mpoViewMonth(scope) !== mpoRepMonth(scope);
 // rep's book is NOT IN TERRITORY / BLOCKED for the brand, or the book has no
 // account of the program's premise at all. Provisional "yes" while an MPO
 // month is still loading.
-function availability(p, rep){
+function dmProgramAllows(p, rep){
+  return !window.kdhProgramAllowed || window.kdhProgramAllowed(p.source, p.key, rep);
+}
+function availability(p, rep, includeUnassigned=false){
+  if(!includeUnassigned && !dmProgramAllows(p, rep)) return {ok:false, why:UNAVAILABLE, sub:'This program is not assigned to your team.'};
   if(isSupport(rep)) return {ok:true};          // no route: any account counts
   if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return {ok:true};
   const A = accountsFor(p, rep);
@@ -2733,7 +2738,8 @@ function programStats(p){
   let complete = 0, started = 0;
   ROSTER.forEach(rep=>{
     if(!supportAllows(rep, p)) return;
-    const r = p.forRep(rep); if(!r || r.status==='soon' || r.status==='unavailable' || !availability(p, rep).ok) return;
+    // Manager summaries keep their existing historical participation and scoring.
+    const r = p.forRep(rep); if(!r || r.status==='soon' || r.status==='unavailable' || !availability(p, rep, true).ok) return;
     parts.push(rep);
     if(r.status==='complete'||r.status==='exceeded') complete++;
     if(r.status!=='notstarted') started++;
@@ -4192,6 +4198,13 @@ function screenAccount(){
 function render(){
   if(LIB){ acctCache.clear(); return; }
   acctCache.clear();
+  if(!isMgr() && state.prog){
+    const selected = PROGRAMS.find(p=>p.id===state.prog);
+    if(!selected || !dmProgramAllows(selected, state.rep)){
+      state.prog = null; state.view = 'rep'; state.peek = null;
+      history.replaceState(null, '', hashOf());
+    }
+  }
   if(RA.on && state.rep && RA.loadedFor()!==state.rep) RA.load(state.rep);
   const root = app();
   let body;
