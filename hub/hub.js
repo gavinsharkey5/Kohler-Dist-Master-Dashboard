@@ -1961,6 +1961,89 @@ function distFor(p, rep){
             what:x.product, date:x.date, note:x.note, photo:x.photo};
   });
 }
+// Account evidence is a presentation read, not the program's scoring engine.
+// Some exports carry a different detail shape from closedFor's historical list.
+function incentiveAccountEvidence(p, rep){
+  const d = p.entry && p.entry.getRep(rep), idx = bookIndex(rep);
+  const named = (name, what, date) => {
+    const a = idx.get(HubAccounts.norm(name));
+    return {name, n:a ? a.n : null, city:a ? a.city : '', area:a ? (a.area||a.rawArea) : '', what, date:date||''};
+  };
+  let rows = distFor(p, rep), note = 'Account detail from this program’s tracker; notes and photos do not create sales credit.';
+  if(p.key==='famosa_oct' && d){
+    const cases = n => Number(n).toLocaleString('en-US', {maximumFractionDigits:20});
+    rows = (d.accountList||[]).filter(a=>Number(a.cases26)>0).map(a=>named(a.customer,
+      `${cases(a.cases26)} Cases · ${a.cases25==null ? 'Prior Year Unavailable' : cases(a.cases25)+' Last Year'}`, ''));
+    note = 'Current-period case sales. Earnings still depend on the route’s growth rule.';
+  } else if(p.key==='mabi_single_serve' && d){
+    rows = [d.wc, d.harder].flatMap(leg=>(leg && leg.pods || []).map(a=>named(a.customer,
+      `${a.product}${a.made ? ' · MADE' : ''}`, a.date)));
+    note = 'Recorded account × product placements; earnings still depend on each leg’s qualifier.';
+  } else if(p.key==='sam_adams_cold_snap'){
+    note = 'Completed conversion account names are not supplied. The feed contains totals and unconverted accounts only.';
+  } else if(TOTALS_ONLY.has(p.key)){
+    note = 'This report contains rep and product totals only; account-level purchases are not supplied.';
+  } else if(!rows.length){
+    note = 'No account detail is supplied here. The program’s tracker result remains the source of progress.';
+  }
+  return {rows, note, available:rows.length>0 || (d && ['famosa_oct','mabi_single_serve'].includes(p.key))};
+}
+function programAccountRows(p, rep){
+  return p.type==='Incentive' ? incentiveAccountEvidence(p, rep).rows : distFor(p, rep);
+}
+function incentiveCreditedHtml(p, rep){
+  const {rows, note, available} = incentiveAccountEvidence(p, rep), groups = new Map();
+  rows.forEach(a=>{ const key = a.n!=null ? String(a.n) : HubAccounts.norm(a.name);
+    if(!groups.has(key)) groups.set(key, {account:a, lines:[]});
+    groups.get(key).lines.push(a);
+  });
+  const items = [...groups.values()].slice(0,3).map(({account:a, lines})=>{
+    const meta = [a.city, a.n!=null ? '#'+a.n : ''].filter(Boolean).join(' · ');
+    const text = p.key==='mabi_single_serve' ? plw(lines.length, 'placement') : [...new Set(lines.map(l=>l.what).filter(Boolean))].slice(0,2).join(' · ');
+    const detail = p.key==='mabi_single_serve' ? [...new Set(lines.map(l=>l.what))].slice(0,2).join(' · ') : '';
+    return `<button class="hrow acct" data-act="open-acct" data-n="${E(RA.num(a))}" data-list="dist"><span class="hrow-main"><span class="hrow-t"><span>${E(a.name)}</span></span>${meta?`<span class="hrow-s">${E(meta)}</span>`:''}<span class="hrow-p">${E(text)}</span>${detail?`<span class="inc-credit-products">${E(detail)}${lines.length>2?' · More in account detail':''}</span>`:''}</span>${CHEV}</button>`;
+  }).join('');
+  return `<section class="inc-credited" aria-label="Credited Accounts">
+    <div class="inc-credited-head"><h2>Credited Accounts <span class="pw-tn">${available ? groups.size : 'Not Supplied'}</span></h2>${rows.length ? `<button class="pw-btn outline" data-act="accts" data-prog="${E(p.id)}" data-list="dist">View All${CHEV}</button>` : ''}</div>
+    <p class="inc-credit-note">${E(note)}</p>
+    ${items ? `<div class="hlist">${items}</div>${groups.size>3?`<p class="inc-credit-foot">Showing 3 of ${groups.size} accounts</p>`:''}` : `<div class="inc-credit-empty">${available ? 'No Current Account Activity Recorded' : 'Account Breakdown Unavailable'}</div>`}
+  </section>`;
+}
+function incentiveDetailsHtml(p, rep, legRules){
+  const ask = ruleNoMoney(sellAsk(p));
+  // Move the existing own-earnings terms into this fold, preserving their
+  // published text and estimates rather than recalculating anything.
+  let earnings = '';
+  if(window.KdhProgramSummary && LOCKED_REP && rep===LOCKED_REP && KDH_USER?.role==='rep'){
+    const box = document.createElement('div');
+    box.innerHTML = window.KdhProgramSummary.details(p, rep, true);
+    const rows = [...box.querySelectorAll('.program-details > span')].filter(x=>!['Dates','Requirements'].includes(x.querySelector('b')?.textContent));
+    earnings = `<ul class="program-details inc-earnings">${rows.map(x=>`<li>${x.innerHTML}</li>`).join('')}</ul>`;
+  } else if(LOCKED_REP && rep===LOCKED_REP && KDH_USER?.role==='rep'){
+    // Production keeps its existing stored-payout presenter. Read its text;
+    // do not introduce the private homepage's additional payout calculations.
+    const box = document.createElement('div');
+    box.innerHTML = ownIncentiveEstimateHtml(p, rep);
+    const amount = box.querySelector('b')?.textContent || 'Estimate Unavailable';
+    const note = box.querySelector('small')?.textContent || '';
+    const payout = (p.rules||[]).filter(x=>/\$|commission|payout|bonus|\bwin\b|trip|tier/i.test(x));
+    earnings = `<ul class="program-details inc-earnings"><li><b>Payout Structure</b> ${E(payout.join(' · ')||'Needs Configuration')}</li><li><b>My Estimated Earnings</b> ${E(amount)}${note?' · '+E(note):''}</li></ul>`;
+  }
+  // Rate-only bullets can become fragments after the legacy money scrubber.
+  // Their complete published wording remains in the own Payout Structure below.
+  const rules = repRules(p).filter(x=>x!==ask && !/^(Case|Placement|Account|Bottle|Keg|Package) on\b/i.test(x));
+  const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
+  return `<details class="hdet inc-details"><summary>Program Details</summary>
+    <ul class="ibul inc-parameters">${ask?`<li><b>Requirement:</b> ${E(ask)}</li>`:''}
+      ${p.shortName && p.shortName!==p.name ? `<li><b>Program:</b> ${E(p.name)}</li>` : ''}
+      <li><b>Period:</b> ${E(p.period.label)}</li>
+      ${fams && fams.length ? `<li><b>Brands:</b> ${E(fams.join(' · '))}</li>` : ''}
+      <li><b>Applies To:</b> ${E([p.channelLabel, p.territory].filter(Boolean).join(' · '))}</li>
+      ${legRules ? '' : rules.map(x=>`<li>${E(x)}</li>`).join('')}
+    </ul>${legRules||''}${earnings}
+    <p class="hnote">Data through ${E(p.refreshed||'—')}</p>
+  </details>`;
+}
 // HOW FAR THIS LIST RECONCILES. The trackers publish a summary number AND,
 // for some programs, the lines behind it -- but they are not the same feed.
 // Measured 2026-09-11 for one rep: Sam Adams Conversion read 39 with 50
@@ -3738,7 +3821,7 @@ function listCounts(p, r, rep){
   if(off || loading) return {loading, targets:null, dist:null, follow:null, hold:false};
   const plan = nextAccounts(p, rep);
   const T = raSplit(p, rep, plan.rows.filter(a=>!a.foreign));
-  return {loading:false, hold:plan.hold, targets:T.live.length, done:T.done.length, skip:T.later.length, dist:distFor(p, rep).length, follow:T.on ? T.follow.length : null};
+  return {loading:false, hold:plan.hold, targets:T.live.length, done:T.done.length, skip:T.later.length, dist:programAccountRows(p, rep).length, follow:T.on ? T.follow.length : null};
 }
 function screenProgramRep(p, r, rep){
   const f = progFacts(p, r, rep);
@@ -3755,7 +3838,7 @@ function screenProgramRep(p, r, rep){
   const row = (list, label, n, sub) => n==null ? '' : `<button class="hrow" data-act="accts" data-prog="${E(p.id)}" data-list="${list}"><span class="hrow-main"><span class="hrow-t"><span>${E(label)}</span></span>${sub?`<span class="hrow-s">${E(sub)}</span>`:''}</span><span class="hcount">${n}</span>${CHEV}</button>`;
   const lists = C.loading ? `<div class="kdh-state loading">Loading this month’s accounts…</div>` : off ? '' : TOTALS_ONLY.has(p.key) ? `<p class="hnote">Report generated ${E(p.refreshed)}. This report contains rep and SKU totals, with no customer-level purchases. Account detail is unavailable.</p>` : `<div class="hlist">
       ${BG.length ? '' : row('targets', C.hold ? LISTS.hold : LISTS.targets, C.targets, C.hold ? 'Keep these ordering' : (C.targets ? 'Where to go next' : 'Every eligible account already buys it'))}
-      ${row('dist', LISTS.dist, C.dist, C.dist ? `Credited in ${periodLabel(p.period)}` : 'Nothing credited yet')}
+      ${p.type==='Incentive' ? '' : row('dist', LISTS.dist, C.dist, C.dist ? `Credited in ${periodLabel(p.period)}` : 'Nothing credited yet')}
       ${C.follow ? row('follow', LISTS.follow, C.follow, 'Accounts you flagged to get back to') : ''}
     </div>`;
   const weight = p.type==='MPO' ? `<li>Worth ${E(String(r.weight||Math.round((p.objective.weight||0)*100)))}% of the ${E(p.monthLabel)} ${E(p.channelLabel)} MPO.</li>` : '';
@@ -3795,17 +3878,18 @@ function screenProgramRep(p, r, rep){
         ${p.type==='MPO' ? '' : (f.rule ? `<div class="px-rule">${f.rule}</div>` : '')}
       </div>`}
       ${f.segments && f.segments.length ? `<div class="px-segs">${f.segments.map(g=>`<div class="px-seg"><span>${E(g.label)}</span><b>${E(g.valueText || g.line)}</b></div>`).join('')}</div>` : ''}
-      <p class="px-qual"><span>Qualifies</span>${E(sellAsk(p))}</p>
+      ${p.type==='Incentive' ? '' : `<p class="px-qual"><span>Qualifies</span>${E(sellAsk(p))}</p>`}
       ${p.type==='MPO' ? `<div class="px-cap dim">MPO weight: ${Math.round((f.weight||0))}%</div>` : ''}`}
     </div>
+    ${p.type==='Incentive' && !off ? incentiveCreditedHtml(p, rep) + incentiveDetailsHtml(p, rep, legRules) : ''}
     ${lists}
     ${BG.length ? `<section class="hsec"><h2>${p.key==='new_belgium_distribution_retain'?'Your Package-Group Goals':p.key==='heineken_husa'?'Your Goals':'Your Brand Goals'}</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>` : ''}
-    <details class="hdet"><summary>How It Is Scored</summary>
+    ${p.type==='Incentive' ? (off ? incentiveDetailsHtml(p, rep, legRules) : '') : `<details class="hdet"><summary>How It Is Scored</summary>
       ${p.shortName && p.shortName!==p.name ? `<p class="px-full"><span>Full program name</span>${E(p.name)}</p>` : ''}
       ${legRules ? legRules : rules ? rules.replace('<ul class="ibul">', '<ul class="ibul">'+weight) : `<ul class="ibul">${weight}</ul>`}
       ${(fams && fams.length) ? `<p class="hnote">Pays on ${E(fams.join(' · '))}.</p>` : ''}
       <p class="hnote">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p>
-    </details>
+    </details>`}
     ${tl && tl.length ? `<details class="hdet"><summary>Progress So Far</summary>${chartHtml(tl, p, r)}</details>` : ''}
   </div>`;
 }
@@ -3821,7 +3905,7 @@ function incProductsFold(p){
   const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)] || [];
   const products = E2.rows.map(c=>({id:c[0], name:c[1], family:c[3]}));
   return qpFoldHtml({products, open: state.pv==='prods',
-    note: E2.byProduct ? '' : `Every ${fams.length ? fams.join(' / ') : 'brand'} product we carry. The program’s exact SKU list is not on file yet, so only what “What Counts” names is certain to count.`});
+    note: E2.byProduct ? '' : `Every ${fams.length ? fams.join(' / ') : 'brand'} product we carry. The program’s exact SKU list is not on file yet, so only what Program Details names is certain to count.`});
 }
 function screenIncentiveFocus(p, r, rep, f, C){
   const key = p.id+'|elig';
@@ -3842,8 +3926,9 @@ function screenIncentiveFocus(p, r, rep, f, C){
       <h1 class="px-name">${E(p.shortName||p.name)}</h1>
       <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
       ${sum}
-      <p class="pwf-ask"><span>What Counts</span>${E(sellAsk(p))}</p>
+      ${p.type==='Incentive' ? '' : `<p class="pwf-ask"><span>What Counts</span>${E(sellAsk(p))}</p>`}
     </div>
+    ${p.type==='Incentive' ? incentiveCreditedHtml(p, rep) + incentiveDetailsHtml(p, rep) : ''}
     ${incProductsFold(p)}
     <section class="pw-view pwf-list" id="pwList">
       <h2 class="pwf-h">Eligible Accounts <span class="pw-tn">${fmtN(n)}</span></h2>
@@ -3853,13 +3938,13 @@ function screenIncentiveFocus(p, r, rep, f, C){
       ${folds ? `<div class="hlist hfolds">${folds}</div>` : ''}
     </section>
     <div class="pwf-more">
-      ${C.dist!=null ? `<button class="hrow" data-act="accts" data-prog="${E(p.id)}" data-list="dist"><span class="hrow-main"><span class="hrow-t"><span>${E(LISTS.dist)}</span></span><span class="hrow-s">${C.dist ? `Credited in ${E(periodLabel(p.period))}` : 'Nothing credited yet'}</span></span><span class="hcount">${C.dist}</span>${CHEV}</button>` : ''}
-      <details class="hdet"><summary>How It Is Scored</summary>
+      ${p.type!=='Incentive' && C.dist!=null ? `<button class="hrow" data-act="accts" data-prog="${E(p.id)}" data-list="dist"><span class="hrow-main"><span class="hrow-t"><span>${E(LISTS.dist)}</span></span><span class="hrow-s">${C.dist ? `Credited in ${E(periodLabel(p.period))}` : 'Nothing credited yet'}</span></span><span class="hcount">${C.dist}</span>${CHEV}</button>` : ''}
+      ${p.type==='Incentive' ? '' : `<details class="hdet"><summary>How It Is Scored</summary>
         ${p.shortName && p.shortName!==p.name ? `<p class="px-full"><span>Full program name</span>${E(p.name)}</p>` : ''}
         ${rules || ''}
         ${(fams && fams.length) ? `<p class="hnote">Pays on ${E(fams.join(' · '))}.</p>` : ''}
         <p class="hnote">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p>
-      </details>
+      </details>`}
       ${tl && tl.length ? `<details class="hdet"><summary>Progress So Far</summary>${chartHtml(tl, p, r)}</details>` : ''}
     </div>
   </div>`;
@@ -4098,6 +4183,7 @@ function screenWorkspaceRep(p, r, rep, R){
   return `<div class="hview">${top}
       ${p.type==='Incentive' ? incentiveProgressHtml(p, r, rep) : pwFocusSummary(p, f)}
     </div>
+    ${p.type==='Incentive' ? incentiveCreditedHtml(p, rep) + incentiveDetailsHtml(p, rep) : ''}
     ${pwProductsFold(R)}
     <section class="pw-view pwf-list" id="pwList">${pwFocusAccounts(M, R, rep)}</section>
   </div>`;
@@ -4121,7 +4207,7 @@ function workspaceTeamHtml(p){
 function acctRowsFor(p, rep, list){
   const plan = nextAccounts(p, rep); const rows = plan.rows.filter(a=>!a.foreign);
   const T = raSplit(p, rep, rows);
-  if(list==='dist') return distFor(p, rep).map(x=>Object.assign({}, x, {line:[x.what, x.date].filter(Boolean).join(' · ')}));
+  if(list==='dist') return programAccountRows(p, rep).map(x=>Object.assign({}, x, {line:[x.what, x.date].filter(Boolean).join(' · ')}));
   const withLine = a => Object.assign({}, a, {line: plan.hold ? 'Keep ordering' : noBuyText(a.why||'', p)});
   if(list==='follow') return T.follow.map(withLine);
   if(list==='done') return T.done.map(withLine);
@@ -4155,13 +4241,14 @@ function screenAccounts(){
   const rows = acctRowsFor(p, rep, list);
   const T = raSplit(p, rep, plan.rows.filter(a=>!a.foreign));
   const title = list==='targets' && plan.hold ? LISTS.hold : LISTS[list];
-  const sub = list==='dist' ? (r ? reconLine(p, r, rows).t : '') : list==='targets' ? (plan.hold ? 'Accounts already buying — keep them ordering.' : 'In your book, in territory, not buying it yet. Warm leads first.') : list==='follow' ? 'Accounts you flagged to get back to.' : '';
+  const sub = list==='dist' ? (p.type==='Incentive' ? incentiveAccountEvidence(p, rep).note : (r ? reconLine(p, r, rows).t : '')) : list==='targets' ? (plan.hold ? 'Accounts already buying — keep them ordering.' : 'In your book, in territory, not buying it yet. Warm leads first.') : list==='follow' ? 'Accounts you flagged to get back to.' : '';
   const q = acctQ[key]||'';
+  const count = p.type==='Incentive' && list==='dist' ? `${plw(new Set(rows.map(x=>x.n!=null?String(x.n):HubAccounts.norm(x.name))).size,'account')} · ${plw(rows.length,p.key==='mabi_single_serve'?'placement':'record')}` : plw(rows.length,'account');
   const folds = list==='targets' && T.on ? [['done', T.done.length], ['skip', T.later.length]].filter(x=>x[1]).map(([k,n])=>`<button class="hrow fold" data-act="accts" data-prog="${E(p.id)}" data-list="${k}"><span class="hrow-main"><span class="hrow-t"><span>${RA_MARK[k]} ${E(LISTS[k])}</span></span></span><span class="hcount">${n}</span>${CHEV}</button>`).join('') : '';
   const pv = RA.previewOf(rep) ? `<p class="hnote">Marks are ${E(first(rep))}’s own. Saving is off while you preview.</p>` : '';
   return `<div class="hview">
     ${returnLink('back-prog', p.shortName||p.name)}
-    <div class="hhead"><h1>${E(title)}</h1><p class="hsub">${rows.length} ${rows.length===1?'account':'accounts'} · ${E(p.shortName||p.name)}${sub ? ' · '+E(sub) : ''}</p></div>
+    <div class="hhead"><h1>${E(title)}</h1><p class="hsub">${E(count)} · ${E(p.shortName||p.name)}${sub ? ' · '+E(sub) : ''}</p></div>
     ${rows.length>6 ? `<div class="hsearch"><input type="search" class="kdh-field" placeholder="Search accounts" value="${E(q)}" data-key="${E(key)}" autocomplete="off" aria-label="Search accounts"></div>` : ''}
     ${pv}
     <div class="hlist" id="acctRows">${acctRowsHtml(key)}</div>
@@ -4176,7 +4263,7 @@ function screenAccount(){
   const n = String(state.n);
   const plan = nextAccounts(p, rep);
   let a = plan.rows.find(x=>RA.num(x)===n) || null;
-  const credited = distFor(p, rep).filter(x=>RA.num(x)===n || (a && HubAccounts.norm(x.name)===HubAccounts.norm(a.name)));
+  const credited = programAccountRows(p, rep).filter(x=>RA.num(x)===n || (a && HubAccounts.norm(x.name)===HubAccounts.norm(a.name)));
   if(!a){ const d = credited[0]; const book = bookIndex(rep).get(n); a = book ? Object.assign({}, book) : (d ? {name:d.name, n:d.n, city:d.city, area:d.area} : null); }
   if(!a) return `<div class="hview">${returnLink('back-accts', LISTS[list]||'Accounts')}<div class="kdh-state empty"><b>That account is not on this list.</b></div></div>`;
   const show = RA.canShow(rep), edit = RA.canEdit(rep);

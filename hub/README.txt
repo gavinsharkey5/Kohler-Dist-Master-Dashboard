@@ -1,6 +1,35 @@
 Incentives & MPO Hub
 ====================
 
+INCENTIVE ACCOUNT DETAILS (2026-10-23)
+  Approved for publication: incentive detail changes only. The homepage redesign
+  remains private and rollout restrictions stay unchanged. Rep detail screens
+  show Credited Accounts immediately after the
+  existing progress/own estimate, with three unique-account previews and View All.
+  Program Details replaces What Counts / How It Is Scored on incentive detail
+  screens; requirements are bullets, and existing own earnings terms stay folded.
+  Eligible accounts, qualifying products, source results and manager exports stay.
+
+  This is account-evidence presentation, not a change to scoring or payout math.
+  Famosa accountList mixes current and prior-year buyers: show cases26 > 0 with
+  original cases26/cases25, not prior-year-only buyers as current distribution.
+  MABI Single Serve uses wc.pods + harder.pods (account x product placements),
+  including MADE and other qualifying products exactly as supplied. Distinct
+  account counts are separate from placement-record counts. The Boston Beer
+  October seasonal-conversion feed has totals and unconverted names only: show
+  Account Breakdown Unavailable, never fabricate completed conversion names or
+  infer them from the missing list. A completed-account supplier export would be
+  needed to fill that gap. Other totals-only/missing-detail feeds stay explicit.
+  Own published payout terms are grouped under Program Details as approved in
+  the review screenshots. Main retains its stored-payout presenter: no additional
+  private-homepage payout calculations are published. No new datasets, database
+  writes, account tags or access-rule changes.
+
+  Hub JS/CSS tags: 20261023details in every consumer.
+  Test: node tools/incentive-details-browser-test.cjs (local Playwright/Chrome).
+  Real rep-sliced data and middleware; no live auth or database calls. Optional
+  before-build captures in shots/incentive-details/before are local review files.
+
 ROUND 2, PHASE 4 (2026-10-23)
   Sales Pulse is a managers-only page: sales-pulse/README.txt has its source,
   refresh and metric definitions. Manager Home links it under Sales Performance.

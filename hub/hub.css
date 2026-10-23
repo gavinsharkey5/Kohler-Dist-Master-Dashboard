@@ -1717,6 +1717,28 @@ a.hreturn{text-decoration:none;}
 .pwf-ask{margin:12px 0 0;font-size:15px;line-height:1.4;color:var(--text);}
 .pwf-ask span{display:block;font-size:13.5px;font-weight:600;color:var(--text-dim);margin-bottom:1px;}
 
+/* Program detail: contributing accounts before the long opportunity list. */
+.inc-credited{margin:14px 0;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;}
+.inc-credited-head{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.inc-credited-head h2{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin:0;font-size:18px;font-weight:600;}
+.inc-credited-head .pw-btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;flex-shrink:0;font-size:15px;}
+.inc-credited-head .pw-btn svg{width:16px;height:16px;}
+.inc-credit-note,.inc-credit-foot{margin:12px 0;color:var(--text-dim);font-size:14px;line-height:1.45;text-align:center;}
+.inc-credit-foot{margin-bottom:0;}
+.inc-credited .hlist{margin:0;}
+.inc-credited .hrow{min-height:64px;}
+.inc-credited .hrow-p{font-weight:600;color:var(--text);font-size:15px;}
+.inc-credit-products{display:block;margin-top:4px;color:var(--text-dim);font-size:14px;line-height:1.45;overflow-wrap:anywhere;}
+.inc-credit-empty{padding:14px;text-align:center;font-size:15px;color:var(--text-dim);background:var(--card-alt);border-radius:8px;}
+.inc-details{margin:14px 0;}
+.inc-details>summary{font-size:16px;min-height:44px;}
+.inc-details .inc-parameters{font-size:15px;line-height:1.55;padding-left:22px;text-align:left;}
+.inc-details .inc-parameters li{margin:10px 0;}
+.inc-details .inc-earnings{display:block;padding-left:22px;text-align:left;font-size:15px;line-height:1.55;}
+.inc-details .inc-earnings li{margin:10px 0;}
+.inc-details .inc-earnings b{display:block;}
+@media(max-width:600px){.inc-credited{padding:14px;}.inc-credited-head{flex-direction:column;}.inc-credited-head .pw-btn{width:100%;}.inc-credited .hrow-main{min-width:0;overflow-wrap:anywhere;}}
+
 /* ---- PAGE STANDARD (2026-10-07): one 960px column, centered header ---- */
 .rep-head .rep-title{text-align:center;}
 .rep-head .rep-title h1{font-size:clamp(24px,6.4vw,28px);font-weight:600;}
